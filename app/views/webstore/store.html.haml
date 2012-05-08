@@ -1,29 +1,13 @@
 - title 'Market', false
 
-%ul.block-grid.four-up
-  - @boxes.each do |box|
-    %li
-      .row
-        .twelve.columns= image_tag(box.box_image.url)
-      .row
-        %table.twelve.columns{style:'height: 300px;'}
-          %tbody
-            %tr
-              %td Name:
-              %td= box.name
-            %tr 
-              %td Price:
-              %td= box.price.format
-            %tr
-              %td Likes:
-              %td= checkmark_boolean(box.likes)
-            %tr
-              %td Dislikes:
-              %td= checkmark_boolean(box.dislikes)
-            %tr
-              %td Description
-              %td= box.description
-      .row
-        .twelve.columns
-          = button_to 'Buy', webstore_buy_path(@distributor.parameter_name, box), method: :get, class: 'button radius'
+%ul
+  - @boxes.in_groups_of(4) do |box_row|
+    .row
+      - box_row.each do |box|
+        %li.three.columns
+          .row
+            .twelve.columns{ style: 'height:500px;' }= render partial: 'webstore/order_details', object: { box: box }
+          .row
+            .twelve.columns
+              = button_to 'Order', webstore_buy_path(@distributor.parameter_name, box), method: :get, class: 'button radius'
 
