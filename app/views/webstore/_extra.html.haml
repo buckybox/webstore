@@ -1,0 +1,4 @@
+%tr.extras-row
+  %td= extra.name_with_unit
+  %td.text-right= extra.price.format
+  %td.text-right= g.input extra.id, input_html: { min: 0, value: 0, class: 'input-text' }, as: :integer, required: false, label: false

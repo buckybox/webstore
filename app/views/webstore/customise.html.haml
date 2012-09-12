@@ -1,17 +1,41 @@
-%h3 Customise my box
-
 = simple_form_for(:webstore_order, url: root_url) do |f|
-  = f.simple_fields_for(:customise) do |g|
-    .webstore-customise.inputs
-      .dislikes_input
-        .row
-          .twelve.columns
-            = g.label :dislikes, 'Exclusions'
-            .row
-              = select_tag :dislikes_input, options_from_collection_for_select(@stock_list, :id, :name, @dislikes_list), multiple: true, class: 'twelve columns', data: { placeholder: "Exclude these items..." }
-      .likes_input
-        .row
-          .twelve.columns
-            = g.label :likes, 'Substitutes'
-            .row
-              = select_tag :likes_input, options_from_collection_for_select(@stock_list, :id, :name, @likes_list), multiple: true, class: 'twelve columns', data: { placeholder: "Substitute for these items..." }
+  .row.webstore-section
+    .ten.columns.offset-by-two
+      = f.simple_fields_for(:customise) do |g|
+        #webstore-customise.inputs
+          .row
+            .ten.columns= g.input :costomise, as: :boolean, label: 'customise my box'
+          .row
+            .ten.columns
+              .dislikes_input
+                = g.input :dislikes_input, label: 'Exclude these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' } }, required: false
+              .likes_input
+                = g.input :likes_input, label: 'Substitute for these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' } }, required: false
+
+  .row.webstore-section
+    .ten.columns.offset-by-two
+      = f.simple_fields_for(:extras) do |g|
+        #webstore-extras.inputs
+          .row
+            .ten.columns.important
+              - if @box.extras_unlimited?
+                Add any amount of extra items
+              - else
+                Add up to #{@box.extras_limit} extra items
+
+          .row
+            %table.ten.columns
+              %tbody
+                - @extras.each do |extra|
+                  = render partial: 'extra', object: extra, locals: { g: g }
+              -# Don't render for now while doing the basics
+                %tr
+                  %td{ colspan: 3 }= g.input :add_extra, label: false, collection: @extras, data: { placeholder: 'Add an extra item' }, required: false
+
+  .row.webstore-section
+    .ten.columns.offset-by-two
+      .row
+        .ten.columns.important.text-right Total
+
+  .row
+    .twelve.columns= link_to 'Next', '#', class: 'button radius float-right webstore-step-button'
