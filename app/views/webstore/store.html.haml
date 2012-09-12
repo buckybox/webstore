@@ -1,13 +1,5 @@
-- title 'Webstore', false
+- title('Webstore', false)
 
-%ul
-  - @boxes.in_groups_of(4) do |box_row|
-    .row
-      - box_row.each do |box|
-        %li.three.columns
-          .row
-            .twelve.columns{ style: 'height:500px;' }= render partial: 'webstore/order_details', object: { box: box }
-          .row
-            .twelve.columns
-              = button_to 'Order', webstore_buy_path(@distributor.parameter_name, box), method: :get, class: 'button radius'
-
+%ul#store-items.block-grid.four-up.mobile
+  - @boxes.in_groups_of(4, false) do |box_row|
+    = render partial: 'webstore/box', collection: box_row, locals: { distributor: @distributor }

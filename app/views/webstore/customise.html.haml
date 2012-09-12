@@ -1,0 +1,17 @@
+%h3 Customise my box
+
+= simple_form_for(:webstore_order, url: root_url) do |f|
+  = f.simple_fields_for(:customise) do |g|
+    .webstore-customise.inputs
+      .dislikes_input
+        .row
+          .twelve.columns
+            = g.label :dislikes, 'Exclusions'
+            .row
+              = select_tag :dislikes_input, options_from_collection_for_select(@stock_list, :id, :name, @dislikes_list), multiple: true, class: 'twelve columns', data: { placeholder: "Exclude these items..." }
+      .likes_input
+        .row
+          .twelve.columns
+            = g.label :likes, 'Substitutes'
+            .row
+              = select_tag :likes_input, options_from_collection_for_select(@stock_list, :id, :name, @likes_list), multiple: true, class: 'twelve columns', data: { placeholder: "Substitute for these items..." }
