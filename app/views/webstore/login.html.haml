@@ -1,0 +1,15 @@
+= simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
+  .row.webstore-section
+    .ten.columns.offset-by-two
+      = f.simple_fields_for(:use) do |g|
+        #login.inputs
+          .row
+            .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'expand' }
+          #registered.row
+            .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio, required: false
+          #password-field.row
+            .ten.oclumns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'expand' }
+
+  .row
+    .twelve.columns
+      .actions= f.button :submit, 'Next', class: 'float-right'

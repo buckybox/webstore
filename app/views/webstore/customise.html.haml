@@ -1,4 +1,4 @@
-= simple_form_for(:webstore_order, url: root_url) do |f|
+= simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
   .row.webstore-section
     .ten.columns.offset-by-two
       = f.simple_fields_for(:customise) do |g|
@@ -39,4 +39,5 @@
         .ten.columns.important.text-right Total
 
   .row
-    .twelve.columns= link_to 'Next', '#', class: 'button radius float-right webstore-step-button'
+    .twelve.columns
+      .actions= f.button :submit, 'Next', class: 'float-right'
