@@ -1,37 +1,40 @@
 = simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
-  .row.webstore-section
-    .ten.columns.offset-by-two
-      = f.simple_fields_for(:customise) do |g|
-        #webstore-customise.inputs
-          .row
-            .ten.columns= g.input :costomise, as: :boolean, label: 'customise my box'
-          #webstore-customisations.row
-            .ten.columns
-              .dislikes_input
-                = g.input :dislikes_input, label: 'Exclude these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' } }, required: false
-              .likes_input
-                = g.input :likes_input, label: 'Substitute for these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' } }, required: false
+  - if @box.customisable?
+    .row.webstore-section
+      .ten.columns.offset-by-two
+        = f.simple_fields_for(:customise) do |g|
+          #webstore-customise.inputs
+            .row
+              .ten.columns= g.input :costomise, as: :boolean, label: 'customise my box'
+            #webstore-customisations.row
+              .ten.columns
+                .dislikes_input
+                  = g.input :dislikes_input, label: 'Exclude these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' } }, required: false
+                - if @box.likes?
+                  .likes_input
+                    = g.input :likes_input, label: 'Substitute for these items', collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' } }, required: false
 
-  .row.webstore-section
-    .ten.columns.offset-by-two
-      = f.simple_fields_for(:extras) do |g|
-        #webstore-extras.inputs
-          .row
-            .ten.columns
-              .row
-                .twelve.columns.important
-                  - if @box.extras_unlimited?
-                    Add any amount of extra items
-                  - else
-                    Add up to #{@box.extras_limit} extra items
+  - if @box.extras_allowed?
+    .row.webstore-section
+      .ten.columns.offset-by-two
+        = f.simple_fields_for(:extras) do |g|
+          #webstore-extras.inputs
+            .row
+              .ten.columns
+                .row
+                  .twelve.columns.important
+                    - if @box.extras_unlimited?
+                      Add any amount of extra items
+                    - else
+                      Add up to #{@box.extras_limit} extra items
 
-              .row
-                %table.twelve.columns
-                  %tbody
-                    - @extras.each do |extra|
-                      = render partial: 'extra', object: extra, locals: { g: g }
-                    %tr
-                      %td{ colspan: 3 }= g.input :add_extra, label: false, collection: @extras, label_method: :name_with_unit, input_html: { data: { placeholder: 'Add an extra item' } }, required: false
+                .row
+                  %table.twelve.columns
+                    %tbody
+                      - @extras.each do |extra|
+                        = render partial: 'extra', object: extra, locals: { g: g }
+                      %tr
+                        %td{ colspan: 3 }= g.input :add_extra, label: false, collection: @extras, label_method: :name_with_unit, input_html: { data: { placeholder: 'Add an extra item' } }, required: false
 
   .row.webstore-section
     .ten.columns.offset-by-two
