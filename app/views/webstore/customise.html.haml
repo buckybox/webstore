@@ -36,11 +36,6 @@
                       %tr
                         %td{ colspan: 3 }= g.input :add_extra, label: false, collection: @extras, label_method: :name_with_unit, input_html: { data: { placeholder: 'Add an extra item' } }, required: false
 
-  .row.webstore-section
-    .ten.columns.offset-by-two
-      .row
-        .ten.columns.important.text-right Total
-
   .row
     .twelve.columns
       .actions= f.button :submit, 'Next', class: 'float-right'
