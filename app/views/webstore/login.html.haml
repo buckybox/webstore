@@ -2,7 +2,7 @@
   .row.webstore-section
     .ten.columns.offset-by-two
       = f.simple_fields_for(:user) do |g|
-        #login.inputs
+        #webstore-login.inputs
           .row
             .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'expand' }
           #registered.row

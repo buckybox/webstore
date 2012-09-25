@@ -1,5 +1,5 @@
 - title('Webstore', false)
 
-%ul#store-items.block-grid.four-up.mobile
+%ul#webstore-items.block-grid.four-up.mobile
   - @boxes.in_groups_of(4, false) do |box_row|
     = render partial: 'box', collection: box_row, locals: { distributor: @distributor }
