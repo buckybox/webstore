@@ -1,5 +1,8 @@
 - title('Webstore', false)
 
-%ul#webstore-items.block-grid.four-up.mobile
+- content_for :sidebar do
+  %h3= @distributor.name
+
+#webstore-items.unstyled
   - @boxes.in_groups_of(4, false) do |box_row|
     = render partial: 'box', collection: box_row, locals: { distributor: @distributor }

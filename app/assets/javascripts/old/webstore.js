@@ -8,6 +8,15 @@ $(function() {
     }
   });
 
+  if($('#webstore-items').length > 0) {
+    $('#webstore-items').masonry({
+      itemSelector : '.webstore-item',
+      columnWidth: function( containerWidth ) {
+        return containerWidth / 3;
+      }
+    });
+  }
+
   if($('#webstore-customise').length > 0) {
     var dislikes = $('#webstore-customise .dislikes_input');
     var likes = $('#webstore-customise .likes_input');
