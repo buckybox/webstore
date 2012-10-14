@@ -1,5 +1,7 @@
 //----- Store
 
+$webstore-item-padding: 8px
+
 #webstore-items
   .webstore-item
     width: 32.18390805%
@@ -7,9 +9,19 @@
     margin-bottom: 1.149425287%
     float: left
     .box
+      background-color: $white
       border: 1px solid #ddd
-      .price
-        background-color: $section-info
+      img
+        padding: $webstore-item-padding
+      section
+        padding: $webstore-item-padding
+      aside
+        padding: $webstore-item-padding
+        .price
+          float: left
+          font-weight: bold
+          font-size: 21px
+          line-height: 31px
         form
           float: right
           margin: 0px
