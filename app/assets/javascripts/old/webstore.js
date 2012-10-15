@@ -20,7 +20,6 @@ $(function() {
           if(containerWidth >= 700) { divider = 3; }
           else if(containerWidth <= 441) { divider = 1; }
 
-          console.info(containerWidth + ' / ' + divider + ' = ' + containerWidth / divider);
           return containerWidth / divider;
         }
       });
