@@ -9,11 +9,20 @@ $(function() {
   });
 
   if($('#webstore-items').length > 0) {
-    $('#webstore-items').masonry({
-      itemSelector : '.webstore-item',
-      columnWidth: function( containerWidth ) {
-        return containerWidth / 3;
-      }
+    var container = $('#webstore-items');
+
+    container.imagesLoaded(function(){
+      container.masonry({
+        itemSelector : '.webstore-item',
+        columnWidth: function(containerWidth) {
+          var divider = 1;
+
+          if(containerWidth >= 700) { divider = 3; }
+          else if(containerWidth >= 440) { divider = 2; }
+
+          return containerWidth / divider;
+        }
+      });
     });
   }
 

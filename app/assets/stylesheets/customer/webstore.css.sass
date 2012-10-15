@@ -1,27 +1,37 @@
 //----- Store
 
 $webstore-item-padding: 8px
+$webstore-item-border-color: #ddd
 
 #webstore-items
   .webstore-item
-    width: 32.18390805%
-    margin-left: 1.149425287%
-    margin-bottom: 1.149425287%
-    float: left
+    width: 32.99%
+    margin-bottom: 3px
+    @media (min-width: 768px) and (max-width: 979px)
+      width: 49.99%
+    @media (max-width: 767px)
+      margin-top: 3px
+      width: 49.99%
+    @media (max-width: 480px)
+      width: 100%
     .box
       background-color: $white
-      border: 1px solid #ddd
+      padding: $webstore-item-padding
+      border-left: 1px solid $webstore-item-border-color
+      border-top: 1px solid $webstore-item-border-color
+      border-right: 1px solid $webstore-item-border-color
       img
-        padding: $webstore-item-padding
-      section
-        padding: $webstore-item-padding
-      aside
-        padding: $webstore-item-padding
-        .price
-          float: left
-          font-weight: bold
-          font-size: 21px
-          line-height: 31px
-        form
-          float: right
-          margin: 0px
+        width: 100%
+    aside
+      padding: $webstore-item-padding
+      border-left: 1px solid $webstore-item-border-color
+      border-bottom: 1px solid $webstore-item-border-color
+      border-right: 1px solid $webstore-item-border-color
+      .price
+        float: left
+        font-weight: bold
+        font-size: 21px
+        line-height: 31px
+      form
+        float: right
+        margin: 0px

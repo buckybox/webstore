@@ -15,6 +15,4 @@
       .text-box
         Find us on Facebook
 
-#webstore-items.unstyled
-  - @boxes.in_groups_of(4, false) do |box_row|
-    = render partial: 'box', collection: box_row, locals: { distributor: @distributor }
+#webstore-items= render partial: 'box', collection: @boxes, locals: { distributor: @distributor }
