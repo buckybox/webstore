@@ -15,11 +15,12 @@ $(function() {
       container.masonry({
         itemSelector : '.webstore-item',
         columnWidth: function(containerWidth) {
-          var divider = 1;
+          var divider = 2;
 
           if(containerWidth >= 700) { divider = 3; }
-          else if(containerWidth >= 440) { divider = 2; }
+          else if(containerWidth <= 441) { divider = 1; }
 
+          console.info(containerWidth + ' / ' + divider + ' = ' + containerWidth / divider);
           return containerWidth / divider;
         }
       });
