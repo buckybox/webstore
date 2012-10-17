@@ -30,8 +30,8 @@ $(function() {
     var dislikes = $('#webstore-customise .dislikes_input');
     var likes = $('#webstore-customise .likes_input');
 
-    dislikes.find('select').chosen();
-    likes.find('select').chosen();
+    dislikes.find('select').select2();
+    likes.find('select').select2();
     likes.hide();
     $('#webstore-customisations').hide();
 
@@ -75,7 +75,7 @@ $(function() {
   if($('#webstore-extras').length > 0) {
     var extras_input = $('#webstore-extras select');
 
-    extras_input.chosen();
+    extras_input.select2();
     $('#webstore-extras-options').hide();
 
     extras_input.change(function() {

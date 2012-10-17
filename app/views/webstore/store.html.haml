@@ -1,18 +1,4 @@
-- title('Webstore', false)
-
-- content_for :sidebar do
-  .row-fluid= image_tag('webstore-info-placeholder.jpg', class: 'img-polaroid span12')
-  .row-fluid
-    .span12
-      %h3= @distributor.name
-      .text-box
-        %p Veggies sunt bona vobis, proinde vos postulo esse magis parsley kale caulie taro water spinach cucumber zucchini mustard salad grape prairie turnip wattle seed kohlrabi kombu water chestnut spinach.
-        %p Taro avocado kohlrabi artichoke sweet pepper aubergine scallion cress salsify. Avocado earthnut pea radish potato turnip tomatillo aubergine mung bean swiss chard bitterleaf plantain kombu. Chicory garlic tomatillo mung bean cress gumbo arugula grape.
-      .text-box
-        %h4 Details
-        %p Veggies sunt bona vobis, proinde vos postulo esse magis parsley kale caulie taro water spinach cucumber zucchini mustard salad grape prairie turnip wattle seed kohlrabi kombu water chestnut spinach.
-        %p Taro avocado kohlrabi artichoke sweet pepper aubergine scallion cress salsify. Avocado earthnut pea radish potato turnip tomatillo aubergine mung bean swiss chard bitterleaf plantain kombu. Chicory garlic tomatillo mung bean cress gumbo arugula grape.
-      .text-box
-        Find us on Facebook
+- title('Webstore - Store', false)
+= render 'webstore_sidebar'
 
 #webstore-items= render partial: 'box', collection: @boxes, locals: { distributor: @distributor }

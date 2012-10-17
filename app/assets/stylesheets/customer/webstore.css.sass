@@ -8,6 +8,7 @@ $webstore-item-border-color: #ddd
     width: 33%
     margin-bottom: 3px
     margin-left: 0.33333333%
+    +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
     &:first-child
       margin-left: 0px
     @media (min-width: 768px) and (max-width: 979px)
@@ -30,6 +31,7 @@ $webstore-item-border-color: #ddd
       img
         width: 100%
     aside
+      background-color: $section-info
       padding: $webstore-item-padding
       border-left: 1px solid $webstore-item-border-color
       border-bottom: 1px solid $webstore-item-border-color
@@ -42,3 +44,40 @@ $webstore-item-border-color: #ddd
       form
         float: right
         margin: 0px
+
+//----- Webstore Order
+
+$webstore-order-padding: 8px
+
+#current-order
+  background-color: $white
+  border: 1px solid $webstore-item-border-color
+  padding: $webstore-order-padding
+  overflow: hidden
+  position: relative
+  +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+  .section-info-background
+    background-color: $section-info
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 0
+    height: 100%
+    width: 14%
+  img
+    float: left
+    width: 28%
+    padding-right: 2%
+  table
+    float: right
+    position: relative
+    width: 70%
+    h3, h4
+      margin: 0px
+    td
+      vertical-align: top
+      &.price
+        text-align: right
+        font-size: 24px
+        line-height: 40px
+        font-weight: bold
