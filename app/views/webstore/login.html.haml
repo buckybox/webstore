@@ -1,15 +1,17 @@
-= simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
-  .row.webstore-section
-    .ten.columns.offset-by-two
-      = f.simple_fields_for(:user) do |g|
-        #webstore-login.inputs
-          .row
-            .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'expand' }
-          #registered.row
-            .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio, required: false
-          #password-field.row
-            .ten.oclumns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'expand' }, required: false
+- title('Webstore - Login', false)
+= render 'webstore_sidebar'
+= render partial: 'webstore_order', object: @webstore_order
 
-  .row
-    .twelve.columns
-      .actions= f.button :submit, 'Next', class: 'float-right'
+= simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
+  #webstore-login.row-fluid.webstore-section
+    .span10
+      = f.simple_fields_for(:user) do |g|
+        .row-fluid
+          .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'span12' }
+        #registered.row-fluid
+          .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio, required: false
+        #password-field.row-fluid
+          .ten.oclumns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }, required: false
+
+  .row-fluid.webstore-section
+    .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
