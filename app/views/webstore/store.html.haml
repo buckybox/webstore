@@ -1,4 +1,6 @@
 - title('Webstore - Store', false)
 = render 'webstore_sidebar'
 
-#webstore-items= render partial: 'box', collection: @boxes, locals: { distributor: @distributor }
+.row-fluid
+  .span12
+    #webstore-items= render partial: 'box', collection: @boxes, locals: { distributor: @distributor }

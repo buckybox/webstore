@@ -4,23 +4,22 @@ $webstore-item-padding: 8px
 
 #webstore-items
   .webstore-item
-    width: 33%
-    margin-bottom: 3px
-    margin-left: 0.33333333%
-    +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
-    &:first-child
-      margin-left: 0px
+    width: 342px
+    margin-bottom: 15px
+    @media (min-width: 1200px)
+      width: 275px
+      margin-bottom: 22px
     @media (min-width: 768px) and (max-width: 979px)
-      width: 49.6666%
+      width: 261px
     @media (max-width: 767px)
-      margin-top: 3px
-      width: 32.6666%
-    @media (max-width: 739px)
-      margin-top: 3px
-      width: 49.6666%
-    @media (max-width: 480px)
-      margin-top: 3px
       width: 100%
+    @media (max-width: 739px)
+      width: 100%
+    @media (max-width: 480px)
+      width: 100%
+    margin-bottom: 16px
+    float: left
+    +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
     .box
       background-color: $white
       padding: $webstore-item-padding

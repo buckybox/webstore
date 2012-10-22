@@ -12,16 +12,19 @@ $(function() {
     var container = $('#webstore-items');
 
     container.imagesLoaded(function(){
-      container.masonry({
+      $('#webstore-items').masonry({
         itemSelector : '.webstore-item',
+        isResizable: true,
         columnWidth: function(containerWidth) {
-          var divider = 2;
+          var columns;
 
-          if(containerWidth >= 700) { divider = 3; }
-          else if(containerWidth <= 441) { divider = 1; }
+          if(containerWidth == 870) { columns = 3; }
+          else if(containerWidth == 700) { columns = 2; }
+          else if(containerWidth == 538) { columns = 2; }
+          else { columns = 1; }
 
-          return containerWidth / divider;
-        }
+          return containerWidth / columns;
+        },
       });
     });
   }
