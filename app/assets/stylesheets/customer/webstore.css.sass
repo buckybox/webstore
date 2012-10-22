@@ -65,7 +65,7 @@ $webstore-item-padding: 8px
     float: left
     width: 28%
     padding-right: 2%
-  table
+  table.section-info
     float: right
     position: relative
     width: 70%
@@ -73,16 +73,19 @@ $webstore-item-padding: 8px
     h1, h2, .price
       margin: 0px
       font-weight: bold
-    h1, #total .price
+    h1
       font-size: 20px
       line-height: 22px
     h2, .price
       font-size: 16px
       line-height: 18px
+    #total .price
+      font-size: 24px
+      line-height: 26px
     tr
       td
         vertical-align: top
-        padding: 10px 0px
+        padding: 16px 5px
         &.description
           border-bottom: 1px solid $grayLighter
           width: 79%
@@ -91,14 +94,29 @@ $webstore-item-padding: 8px
             margin-bottom: 0px
         &.price
           text-align: right
+      &#description
+        td
+          padding-top: 0px
       &#total
         td
+          padding-bottom: 6px
           border-bottom-width: 0px
           &.price
             span
               border-top: 1px solid $black
-              padding-top: 9px
-              padding-left: 20%
+              padding-top: 15px
+              padding-left: 6%
+  table.sub-section-info
+    margin-top: 3px
+    width: 100%
+    tr
+      td
+        padding: 4px 4px 0px 0px
+        &.icon
+          width: 16px
+        &.quantity
+          width: 36px
+          text-align: right
 
 //----- Webstore Customise
 

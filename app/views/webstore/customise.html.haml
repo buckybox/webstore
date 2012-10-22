@@ -24,9 +24,13 @@
           .row-fluid
             .span12
               - if @box.extras_unlimited?
-                %h4 + Add any amount of extra items
+                %h4 
+                  %i.icon-plus 
+                  Add any amount of extra items
               - else
-                %h4 + Add up to #{@box.extras_limit} extra items
+                %h4
+                  %i.icon-plus 
+                  Add up to #{@box.extras_limit} extra items
 
           .row-fluid
             .span12
