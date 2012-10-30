@@ -7,15 +7,15 @@
     .span12
       %h3= @distributor.name
 
-      - if @distributor.about
+      - unless @distributor.about.blank?
         .text-box= simple_format(@distributor.about)
 
-      - if @distributor.details
+      - unless @distributor.details.blank?
         .text-box
           %h4 Details
           = simple_format(@distributor.details)
 
-      - if @distributor.facebook_url
+      - unless @distributor.facebook_url.blank?
         .text-box
           = link_to @distributor.facebook_url, id: 'facebook-link' do
             %i.facebook-icon
