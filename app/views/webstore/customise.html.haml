@@ -31,6 +31,11 @@
                 %h4
                   %i.icon-plus 
                   Add up to #{@box.extras_limit} extra items
+          - if @webstore_order.errors.any?
+            .row-fluid
+              .span12
+                .alert.alert-error
+                  = @webstore_order.errors[:base].join(', ')
 
           .row-fluid
             .span12
