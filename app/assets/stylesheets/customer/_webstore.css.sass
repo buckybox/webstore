@@ -153,18 +153,22 @@ $webstore-item-padding: 8px
 
 //----- Webstore Delivery
 
+#webstore-route
+  .route-info
+    p
+      background-color: $tableBackgroundAccent
+      padding: 5px 10px
+
 #webstore-schedule
   .order-days
-    .control-group
-      display: inline-block
+    td
+      &:first-child
+        +border-top-left-radius(4px)
+      width: 14.28571%
+      background-color: $tableBackgroundAccent
       text-align: center
-      width: 13%
       .checkbox
-        padding: 0
-        margin: 0 auto
-        width: 14px
-        .boolean
-          margin: 0 auto
+        margin-left: 42%
 
 //----- Webstore Complete
 
