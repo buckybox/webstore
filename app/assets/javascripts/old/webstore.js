@@ -19,7 +19,7 @@ $(function() {
           var columns;
 
           if(containerWidth == 870) { columns = 3; }
-          else if(containerWidth == 700) { columns = 2; }
+          else if(containerWidth == 700) { columns = 3; }
           else if(containerWidth == 538) { columns = 2; }
           else { columns = 1; }
 
