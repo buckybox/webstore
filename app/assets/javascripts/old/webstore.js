@@ -92,6 +92,7 @@ $(function() {
 
       selected_extra.attr('disabled', 'disabled');
       selected_extra.removeAttr('selected');
+      selected_extra.closest('select').select2('val', '');
       selected_extra.closest('select').trigger("liszt:updated");
 
       total_options = extras_input.find('option').length - 1;
