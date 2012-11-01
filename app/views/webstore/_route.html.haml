@@ -1,6 +1,6 @@
 .row-fluid.route-schedule-inputs{ id: "route-schedule-inputs-#{route.id}" }
   .span12
-    = g.input :start_date, label: false, collection: route_delivery_dates(route), input_html: { class: 'schedule-start-date span12' }, include_blank: false, disabled: true
+    = g.input :start_date, label: false, collection: order_start_dates(route), input_html: { class: 'schedule-start-date span12' }, include_blank: false, disabled: true
 
     %h4 Repeat delivery?
     = g.input :frequency, label: false, collection: frequencies, input_html: { class: 'route-schedule-frequency span12' }, include_blank: false, disabled: true
