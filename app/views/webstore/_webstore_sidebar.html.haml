@@ -5,7 +5,7 @@
 
   .row-fluid
     .span12
-      %h3= @distributor.name
+      %h1#distributor-name= @distributor.name
 
       - unless @distributor.about.blank?
         .text-box= simple_format(@distributor.about)
