@@ -12,10 +12,10 @@
           #webstore-customisations.row-fluid
             .span12
               .dislikes_input.clearfix
-                = g.input :dislikes_input, label: false, collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' }, class: 'span12' }, required: false
+                = g.input :dislikes_input, label: "<i class='icon-minus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' } }, required: false, wrapper: :inline
               - if @box.likes?
                 .likes_input.clearfix
-                  = g.input :likes_input, label: false, collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' }, class: 'span12' }, required: false
+                  = g.input :likes_input, label:  "<i class='icon-plus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' } }, required: false, wrapper: :inline
 
   - if @box.extras_allowed?
     #webstore-extras.row-fluid.webstore-section

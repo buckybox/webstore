@@ -86,10 +86,15 @@ $webstore-item-padding: 8px
         padding: 16px 5px
         &.description
           border-bottom: 1px solid $grayLighter
-          width: 79%
+          width: 74%
+          @media (min-width: 1200px)
+            width: 79%
           p
             margin-top: 10px
             margin-bottom: 0px
+          .label
+            padding-left: 8px
+            padding-right: 8px
       &#description
         td
           padding-top: 0px
@@ -128,8 +133,12 @@ $webstore-item-padding: 8px
         margin-right: 5px
   .dislikes_input, .likes_input
     margin-bottom: 10px
-    .select
-      margin-left: 0px
+    label
+      margin-top: 5px
+      margin-bottom: 0px
+      width: 3.5%
+    select, .select2-container
+      width: 96.5%
 
 #webstore-extras
   .table
