@@ -8,15 +8,15 @@
       %h1#distributor-name= @distributor.name
 
       - unless @distributor.about.blank?
-        .text-box= simple_format(@distributor.about)
+        .webstore-information-section= simple_format(@distributor.about)
 
       - unless @distributor.details.blank?
-        .text-box
+        .webstore-information-section
           %h4 Details
           = simple_format(@distributor.details)
 
       - unless @distributor.facebook_url.blank?
-        .text-box
+        .webstore-information-section
           = link_to @distributor.facebook_url, id: 'facebook-link' do
             %i.facebook-icon
             %div Find us on Facebook
