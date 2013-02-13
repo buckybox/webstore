@@ -11,7 +11,11 @@
         #registered.row-fluid
           .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio, required: false
         #password-field.row-fluid
-          .ten.oclumns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }, required: false
+          .ten.columns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }, required: false
+          .row-fluid
+            .ten.columns
+              %i.icon-lock
+              = link_to "Lost your password?", new_customer_password_path(distributor: @distributor.parameter_name)
 
   .row-fluid.webstore-section
     .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
