@@ -216,13 +216,41 @@ $webstore-item-padding: 8px
     padding: $section-padding
     border: 1px solid $section-border-color
     border-bottom-width: 0px
-  #payment
+  #payment, #payment-options
     background-color: $white
     padding: $section-padding
     border: 1px solid $section-border-color
     border-top-width: 0px
+  #payment-options
+    padding: 60px 0 60px 200px
 
 //----- Webstore Placed
 
 #webstore-placed
   +webstore-divider('box')
+
+.emphasised-label
+  font-weight: bold
+
+form.credit-card
+  select.credit-card
+    width: 350px
+  input.credit-card
+    width: 336px
+  .credit-card-expiry
+    select
+      width: 100px
+  .input-small
+    width: 86px
+  label
+    font-weight: bold
+    &.checkbox
+      font-weight: normal
+
+.controls.credit-card-expiry
+  & > .control-group, .controls
+    margin: 0
+    display: inline-block
+    select
+      margin-right: 10px
+
