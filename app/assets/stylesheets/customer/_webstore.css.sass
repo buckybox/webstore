@@ -186,10 +186,14 @@ $webstore-item-padding: 8px
 
 #webstore-schedule
   .order-days
+    tr
+      &:not(:first-child)
+        display: none
     td
       &:first-child
         +border-top-left-radius(4px)
-      width: 14.28571%
+        font-weight: bold
+        vertical-align: middle
       background-color: $tableBackgroundAccent
       text-align: center
       .checkbox

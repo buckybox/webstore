@@ -7,9 +7,11 @@
 
     %table.order-days.table.table-bordered
       %tbody
-        %tr
-          - days.each do |name, number|
-            %td
-              - input_name = "days[#{number}]"
-              - wrapper_id = "day-#{number}"
-              = g.input input_name, label: name, input_html: { data: { enabled: route.runs_on(number) } }, wrapper_html: { id: wrapper_id }, as: :boolean, disabled: true
+        - days.each_with_index do |week, index|
+          %tr
+            %td #{index.succ.ordinalize}
+            - week.each do |day, number|
+              %td
+                - input_name = "days[#{number}]"
+                - wrapper_id = "day-#{number}"
+                = g.input input_name, label: day, input_html: { data: { enabled: route.runs_on(number) } }, wrapper_html: { id: wrapper_id }, as: :boolean, disabled: true

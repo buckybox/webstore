@@ -123,15 +123,39 @@ $(function() {
       update_route_information(route_select.val());
     });
 
+    var schedule = $('.route-schedule-inputs .order-days');
+    var weeks = schedule.find('tr');
+
     $('.route-schedule-frequency').change(function() {
       var frequency_select = $(this);
-      var days_checkboxes = frequency_select.closest('.route-schedule-inputs').find('.order-days');
 
       if(frequency_select.val() === 'single') {
-        days_checkboxes.hide();
+        schedule.hide();
       }
       else {
-        days_checkboxes.show();
+        schedule.show();
+      }
+
+      if(frequency_select.val() === 'monthly') {
+        weeks.show();
+      }
+      else {
+        weeks.slice(1).hide();
+      }
+    });
+
+    $('.order-days input').click({weeks: weeks}, function(event) {
+      var checkbox = $(event.target)
+      var selected_week = checkbox.closest('tr');
+
+      if (checkbox.is(':checked')) {
+        // disable the other rows
+        var other_weeks = event.data.weeks.not(selected_week);
+        other_weeks.find('input').attr('disabled', 'true').removeAttr('checked');
+
+      } else if (selected_week.find('input:checked').length == 0) {
+        // enable all rows if this is the only checked day
+        weeks.find('input:data(enabled)').removeAttr('disabled');
       }
     });
 
