@@ -221,8 +221,42 @@ $webstore-item-padding: 8px
     padding: $section-padding
     border: 1px solid $section-border-color
     border-top-width: 0px
+  .payment-title
+    font-weight: bold
+    font-size: 19px
+    margin-top: 40px
+    margin-bottom: 30px
+  color: #333333
+  .center-row
+    float: none
+    margin-left: auto
+    margin-right: auto
+  .form-horizontal .control-label
+    text-align: left
+  .payment-message
+    color: #333333
+    text-align: center
+    padding: 25px 20px
+    font-size: 13px
+    .row-fluid
+      margin-top: 15px
+      &:last-child
+        margin-top: 30px
+      &:first-child
+        margin-bottom: 0
+      &:only-child
+        margin-top: 30px
+        margin-bottom: 40px
   #payment-options
-    padding: 60px 0 60px 200px
+    padding: 30px 0 20px
+    .form-horizontal
+      .control-label
+        text-align: left
+      .controls
+        margin-left: 100px
+      label.radio_buttons
+        width: 100px
+
 
 //----- Webstore Placed
 
@@ -232,7 +266,7 @@ $webstore-item-padding: 8px
 .emphasised-label
   font-weight: bold
 
-form.credit-card
+form.payments
   select.credit-card
     width: 350px
   input.credit-card
