@@ -125,6 +125,7 @@ $(function() {
 
     var schedule = $('.route-schedule-inputs .order-days');
     var weeks = schedule.find('tr');
+    var week_numbers = weeks.find('td:first-child');
 
     $('.route-schedule-frequency').change(function() {
       var frequency_select = $(this);
@@ -137,10 +138,12 @@ $(function() {
       }
 
       if(frequency_select.val() === 'monthly') {
+        week_numbers.show();
         weeks.show();
       }
       else {
         weeks.slice(1).hide();
+        week_numbers.hide();
       }
     });
 
