@@ -186,16 +186,24 @@ $webstore-item-padding: 8px
 
 #webstore-schedule
   .order-days
+    background-color: $white
     tr
       &:not(:first-child)
         display: none
     td
+      text-align: center
+      *
+        font-weight: bold
+      &.disabled
+        opacity: 0.5
+        background-color: rgba(127, 127, 127, 0.2)
+        *
+          font-weight: normal
       &:first-child
         display: none
         +border-top-left-radius(4px)
         font-weight: bold
         vertical-align: middle
-      text-align: center
       .checkbox
         margin-left: 42%
 

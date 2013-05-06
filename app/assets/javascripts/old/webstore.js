@@ -118,9 +118,11 @@ $(function() {
   if($('#webstore-route').length > 0) {
     var route_select = $('#route_select');
     update_route_information(route_select.val());
+    update_day_checkboxes_style();
 
     route_select.change(function() {
       update_route_information(route_select.val());
+      update_day_checkboxes_style();
     });
 
     var schedule = $('.route-schedule-inputs .order-days');
@@ -160,6 +162,8 @@ $(function() {
         // enable all rows if this is the only checked day
         weeks.find('input:data(enabled)').removeAttr('disabled');
       }
+
+      update_day_checkboxes_style();
     });
 
     $('.schedule-start-date').change(function() {
@@ -178,6 +182,18 @@ $(function() {
     });
   }
 });
+
+function update_day_checkboxes_style() {
+  $('.order-days input').each(function() {
+    var checkbox = $(this);
+    var td = checkbox.closest('td');
+
+    if (checkbox.is(':checked') || checkbox.data('enabled'))
+      td.removeClass('disabled');
+    else
+      td.addClass('disabled');
+  });
+}
 
 function update_day_checkboxes(start_date) {
   var date = new Date(start_date.val());
