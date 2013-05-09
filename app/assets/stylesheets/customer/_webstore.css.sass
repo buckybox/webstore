@@ -123,6 +123,7 @@ $webstore-item-padding: 8px
               border-top: 1px solid $black
               padding-top: 15px
               padding-left: 6%
+            font-size: 18px
   table.sub-section-info
     margin-top: 3px
     width: 100%
@@ -134,6 +135,8 @@ $webstore-item-padding: 8px
         &.quantity
           width: 36px
           text-align: right
+.total_price
+  font-size: 18px
 
 //----- Webstore Customise
 
@@ -230,13 +233,75 @@ $webstore-item-padding: 8px
     padding: $section-padding
     border: 1px solid $section-border-color
     border-bottom-width: 0px
-  #payment
+  #payment, #payment-options
     background-color: $white
     padding: $section-padding
     border: 1px solid $section-border-color
     border-top-width: 0px
+  .payment-title
+    font-weight: bold
+    font-size: 19px
+    margin-top: 40px
+    margin-bottom: 30px
+  color: #333333
+  .center-row
+    float: none
+    margin-left: auto
+    margin-right: auto
+  .form-horizontal .control-label
+    text-align: left
+  .payment-message
+    color: #333333
+    text-align: center
+    padding: 25px 20px
+    font-size: 13px
+    .row-fluid
+      margin-top: 15px
+      &:last-child
+        margin-top: 30px
+      &:first-child
+        margin-bottom: 0
+      &:only-child
+        margin-top: 30px
+        margin-bottom: 40px
+  #payment-options
+    padding: 30px 0 20px
+    .form-horizontal
+      .control-label
+        text-align: left
+      .controls
+        margin-left: 100px
+      label.radio_buttons
+        width: 100px
+
 
 //----- Webstore Placed
 
 #webstore-placed
   +webstore-divider('box')
+
+.emphasised-label
+  font-weight: bold
+
+form.payments
+  select.credit-card
+    width: 350px
+  input.credit-card
+    width: 336px
+  .credit-card-expiry
+    select
+      width: 100px
+  .input-small
+    width: 86px
+  label
+    font-weight: bold
+    &.checkbox
+      font-weight: normal
+
+.controls.credit-card-expiry
+  & > .control-group, .controls
+    margin: 0
+    display: inline-block
+    select
+      margin-right: 10px
+
