@@ -135,8 +135,6 @@ $webstore-item-padding: 8px
         &.quantity
           width: 36px
           text-align: right
-.total_price
-  font-size: 18px
 
 //----- Webstore Customise
 
@@ -219,9 +217,13 @@ $webstore-item-padding: 8px
     input
       margin-bottom: 0px
 
-#webstore-balance
-  .totals-text
-    font-size: 18px
+#webstore-payment-instructions
+  font-weight: bold
+  +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+  margin-bottom: $section-spacing
+  background-color: $white
+  padding: $section-padding
+  border: 1px solid $section-border-color
   .total
     border-top: 1px solid $black
 
