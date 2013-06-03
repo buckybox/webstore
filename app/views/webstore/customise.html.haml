@@ -3,7 +3,7 @@
 = render partial: 'webstore_order', object: @webstore_order
 
 = simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
-  - if @box.customisable?
+  - if @box.dislikes?
     #webstore-customise.row-fluid.webstore-section
       .span10
         = f.simple_fields_for(:customise) do |g|
