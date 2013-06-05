@@ -219,13 +219,21 @@ $webstore-item-padding: 8px
 
 #webstore-payment-instructions
   font-weight: bold
+  font-size: 16px
   +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
   margin-bottom: $section-spacing
   background-color: $white
-  padding: $section-padding
+  padding: 0
   border: 1px solid $section-border-color
-  .total
-    border-top: 1px solid $black
+  line-height: 30px
+  .legend
+    padding: $section-padding
+  .prices
+    background-color: $section-info
+    padding: $section-padding
+    .total
+      border-top: 1px solid $black
+      font-size: 18px
 
 #webstore-payment
   +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)

@@ -5,12 +5,13 @@
         Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
 
     .row-fluid
-      .span10
+      .span10.legend
         .row-fluid Your existing account balance with us
         .row-fluid This order
         .row-fluid Closing balance
-      .span2
+      .span2.prices
         .text-right= MoneyDisplay.new(@current_balance)
         .text-right= MoneyDisplay.new(@order_price).negative
-        .text-right.total= MoneyDisplay.new(@closing_balance)
+        .text-right
+          %span.total= MoneyDisplay.new(@closing_balance)
 
