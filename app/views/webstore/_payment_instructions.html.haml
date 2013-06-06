@@ -1,0 +1,17 @@
+- if customer_signed_in?
+  #webstore-payment-instructions
+    - if current_customer.present? && current_customer.halted?
+      .alert.alert-error
+        Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
+
+    .row-fluid
+      .span10.legend
+        .row-fluid Your existing account balance with us
+        .row-fluid This order
+        .row-fluid Closing balance
+      .span2.prices
+        .text-right= MoneyDisplay.new(@current_balance)
+        .text-right= MoneyDisplay.new(@order_price).negative
+        .text-right
+          %span.total= MoneyDisplay.new(@closing_balance)
+

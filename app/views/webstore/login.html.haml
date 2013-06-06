@@ -4,12 +4,12 @@
 
 = simple_form_for(:webstore_order, url: webstore_process_step_path) do |f|
   #webstore-login.row-fluid.webstore-section
-    .span10
+    .span12
       = f.simple_fields_for(:user) do |g|
         .row-fluid
           .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'span12' }
         #registered.row-fluid
-          .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio, required: false
+          .ten.columns= g.input :registered, checked: @checked, label: false, collection: @registered_options, as: :radio_buttons, required: false
         #password-field.row-fluid
           .ten.columns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }, required: false
           .row-fluid

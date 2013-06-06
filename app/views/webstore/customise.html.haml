@@ -5,7 +5,7 @@
 = simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
   - if @box.dislikes?
     #webstore-customise.row-fluid.webstore-section
-      .span10
+      .span12
         = f.simple_fields_for(:customise) do |g|
           .row-fluid
             .span12= g.input :costomise, as: :boolean, label: 'Customise my box', wrapper: :inline_checkbox, wrapper_html: { class: 'checkbox-header' }
@@ -19,7 +19,7 @@
 
   - if @box.extras_allowed?
     #webstore-extras.row-fluid.webstore-section
-      .span10
+      .span12
         = f.simple_fields_for(:extras) do |g|
           .row-fluid
             .span12
