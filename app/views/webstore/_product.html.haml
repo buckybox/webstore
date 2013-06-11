@@ -1,0 +1,11 @@
+.webstore-item
+  .box
+    = image_tag(product.image)
+
+    %section
+      %h4.name= product.name
+      .description= simple_format product.description
+
+  %aside.clearfix
+    .price= product.price
+    = button_to 'Order', product.order_link, method: :post, class: 'btn btn-process'
