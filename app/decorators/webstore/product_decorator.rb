@@ -10,7 +10,7 @@ module Webstore
     end
 
     def order_link
-      h.webstore_process_step_path(distributor_parameter_name, webstore_order: { box_id: box })
+      h.webstore_start_order_path(distributor_parameter_name, box)
     end
 
   private
