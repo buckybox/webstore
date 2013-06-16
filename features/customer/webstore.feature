@@ -33,8 +33,3 @@ Scenario: Order a box
   Then My order should be placed
   And I should see the details of my order
 
-Scenario: Review my box
-  Given I have just ordered a box
-  When I am viewing my dashboard
-  Then I should have an order
-

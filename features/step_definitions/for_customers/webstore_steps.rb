@@ -68,7 +68,10 @@ end
 When /^I fill in my delivery address$/ do
   fill_in :webstore_order_address_name, with: "Crazy Rabbit"
   fill_in :webstore_order_address_street_address, with: "Rabbit Hole"
-  click_button "Complete Order"
+
+  expect {
+    click_button "Complete Order"
+  }.to change{Order.count}.by(1)
 end
 
 When /^I select the payment option "(.*)"$/ do |option|
