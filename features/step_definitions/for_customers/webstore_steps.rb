@@ -85,8 +85,10 @@ Then /^My order should be placed$/ do
 end
 
 Then /^I should see the details of my order$/ do
-  page.should have_content "Payment instructions"
-  # TODO more checks
+  page.should have_content "Payment instructions",
+    "Pay by Cash On Delivery",
+    "Order summary",
+    "Deliver to"
 end
 
 Given "I have just ordered a box" do
