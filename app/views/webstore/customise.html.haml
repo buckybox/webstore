@@ -1,48 +1,49 @@
 - title('Webstore - Customise', false)
 = render 'webstore_sidebar'
-= render partial: 'webstore_order', object: @webstore_order
+= render partial: 'order', object: customise_order.order
 
-= simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
-  - if @box.dislikes?
-    #webstore-customise.row-fluid.webstore-section
-      .span12
-        = f.simple_fields_for(:customise) do |g|
-          .row-fluid
-            .span12= g.input :costomise, as: :boolean, label: 'Customise my box', wrapper: :inline_checkbox, wrapper_html: { class: 'checkbox-header' }
-          #webstore-customisations.row-fluid
-            .span12
-              .dislikes_input.clearfix
-                = g.input :dislikes_input, label: "<i class='icon-minus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: @box.exclusions_limit} }, required: false, wrapper: :inline
-              - if @box.likes?
-                .likes_input.clearfix
-                  = g.input :likes_input, label:  "<i class='icon-plus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: @box.substitutions_limit} }, required: false, wrapper: :inline
+-#
+  = simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
+    - if @box.dislikes?
+      #webstore-customise.row-fluid.webstore-section
+        .span12
+          = f.simple_fields_for(:customise) do |g|
+            .row-fluid
+              .span12= g.input :costomise, as: :boolean, label: 'Customise my box', wrapper: :inline_checkbox, wrapper_html: { class: 'checkbox-header' }
+            #webstore-customisations.row-fluid
+              .span12
+                .dislikes_input.clearfix
+                  = g.input :dislikes_input, label: "<i class='icon-minus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: @box.exclusions_limit} }, required: false, wrapper: :inline
+                - if @box.likes?
+                  .likes_input.clearfix
+                    = g.input :likes_input, label:  "<i class='icon-plus-sign'></i>", collection: @stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: @box.substitutions_limit} }, required: false, wrapper: :inline
 
-  - if @box.extras_allowed?
-    #webstore-extras.row-fluid.webstore-section
-      .span12
-        = f.simple_fields_for(:extras) do |g|
-          .row-fluid
-            .span12
-              - if @box.extras_unlimited?
-                %h4 
-                  %i.icon-plus 
-                  Add any amount of extra items
-              - else
-                %h4
-                  %i.icon-plus 
-                  Add up to #{@box.extras_limit} extra items
-          - if @webstore_order.errors.any?
+    - if @box.extras_allowed?
+      #webstore-extras.row-fluid.webstore-section
+        .span12
+          = f.simple_fields_for(:extras) do |g|
             .row-fluid
               .span12
-                .alert.alert-error
-                  = @webstore_order.errors[:base].join(', ')
+                - if @box.extras_unlimited?
+                  %h4 
+                    %i.icon-plus 
+                    Add any amount of extra items
+                - else
+                  %h4
+                    %i.icon-plus 
+                    Add up to #{@box.extras_limit} extra items
+            - if @webstore_order.errors.any?
+              .row-fluid
+                .span12
+                  .alert.alert-error
+                    = @webstore_order.errors[:base].join(', ')
 
-          .row-fluid
-            .span12
-              %table.table.table-bordered
-                %tbody
-                  = render partial: 'extra', collection: @extras, locals: { g: g }
-              = g.input :add_extra, label: false, collection: @extras, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }, required: false
+            .row-fluid
+              .span12
+                %table.table.table-bordered
+                  %tbody
+                    = render partial: 'extra', collection: @extras, locals: { g: g }
+                = g.input :add_extra, label: false, collection: @extras, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }, required: false
 
-  .row-fluid.webstore-section
-    .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
+    .row-fluid.webstore-section
+      .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'

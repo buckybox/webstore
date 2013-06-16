@@ -1,0 +1,75 @@
+.row-fluid
+  #current-order.span12
+    .section-info-background
+
+    = image_tag(order.box_image)
+
+    %table.section-info
+      %tbody
+        %tr#description
+          %td.description
+            %h1= order.box_name
+            = simple_format(order.box_description)
+          %td.price= order.box_price
+
+        - if order.has_exclusions?
+          %tr#customisation
+            %td.description
+              %h2== Exclude & substitute
+              %table.sub-section-info
+                %tr
+                  %td.icon
+                    %i.icon-minus-sign
+                  %td{ title: order.exclusions_string }= order.exclusions_string
+
+                - if order.has_substitutions?
+                  %tr
+                    %td.icon
+                      %i.icon-plus-sign
+                    %td{ title: order.substitutions_string }= order.substitutions_string
+            %td.price
+
+        - if order.has_extras?
+          %tr#extras
+            %td.description
+              %h2 Extra items
+              %table.sub-section-info
+                - order.extras.each do |extra|
+                  %tr
+                    %td.icon
+                      %i.icon-plus
+                    %td= extra.with_units
+                    %td.quantity
+                      %span.label= order.extra_quantity(extra)
+              %div{ title: order.extras_description }
+            %td.price= order.extras_price
+
+        - if order.scheduled?
+          %tr#route
+            %td.description
+              %h2 Delivery service
+              = order.schedule
+            %td.price= order.delivery_fee
+
+        - if order.has_bucky_fee?
+          %tr#bucky-fee
+            %td.description
+              %h2 Bucky Box transaction fee
+              We're using
+              = link_to 'Bucky Box', Figaro.env.mission_site_url, target: '_blank'
+              to take orders, Bucky Box is a social enterprise with a mission to 
+              support local food and organic farming worldwide.
+            %td.price= order.bucky_fee
+
+        - if order.has_total?
+          - if order.has_discount?
+            %tr#discount
+              %td.description
+                %h2 Your discount
+              %td.price= order.discount
+
+          %tr#total
+            %td.description
+              %h1 Total:
+            %td.price
+              %span= order.total

@@ -1,5 +1,4 @@
-require 'fast_spec_helper'
-require_model 'product', sub_dir: 'webstore'
+require_relative '../../../app/models/webstore/product'
 
 describe Webstore::Product do
   let(:distributor) { double('distributor') }
