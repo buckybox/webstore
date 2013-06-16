@@ -1,5 +1,7 @@
+# NOTE: see also webstore_authenticated.feature
+
 @javascript
-Feature: Customer places an order
+Feature: Unauthenticated customer places an order
   In order to buy veggies from a distributor
   As an unauthenticated visitor
   I want to be able to order via the webstore
@@ -7,9 +9,6 @@ Feature: Customer places an order
 Background:
   Given A distributor is in the system
   And I am unauthenticated
-  # TODO test both:
-  # And I am a customer
-  # And I log in
 
 Scenario: Select a box
   Given I am on the webstore
