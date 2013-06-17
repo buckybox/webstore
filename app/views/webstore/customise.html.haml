@@ -2,7 +2,7 @@
 = render 'webstore_sidebar'
 = render partial: 'order', object: order
 
-= simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
+= simple_form_for(customise_order, html: { class: 'form-inline' }) do |f|
   - if customise_order.dislikes?
     #webstore-customise.row-fluid.webstore-section
       .span12
