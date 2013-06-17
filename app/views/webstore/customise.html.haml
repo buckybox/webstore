@@ -1,6 +1,6 @@
 - title('Webstore - Customise', false)
 = render 'webstore_sidebar'
-= render partial: 'order', object: customise_order.order
+= render partial: 'order', object: order
 
 -#
   = simple_form_for(:webstore_order, url: webstore_process_step_path, html: { class: 'form-inline' }) do |f|
