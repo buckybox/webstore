@@ -1,19 +1,18 @@
-require 'fast_spec_helper'
-stub_constants %w(Box)
 require_relative '../../../app/models/webstore/order'
 
 describe Webstore::Order do
+  class Box; end
+
   let(:box)         { double('box') }
   let(:box_class)   { double('box_class', find: box ) }
   let(:money_class) { double('money_class') }
   let(:args)        { { id: 1, box_id: 1, box_class: box_class, money_class: money_class } }
   let(:order)       { Webstore::Order.new(args) }
 
-  describe '.find' do
-    it 'finds a customer based on an id' do
-      new_order = double('order')
-      Webstore::Order.stub(:new) { new_order }
-      Webstore::Order.find(1).should eq(new_order)
+  describe '#add_product' do
+    it 'adds a product to the order' do
+      order.stub(:get_box) { box }
+      order.add_product(product_id: 1).should eq(box)
     end
   end
 

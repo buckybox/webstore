@@ -6,9 +6,14 @@ class Webstore::Order
   include Draper::Decoratable
 
   def initialize(args = {})
-    args = defaults.merge(args)
+    args         = defaults.merge(args)
     @money_class = args[:money_class]
+    @box_class   = args[:box_class]
     @box         = get_box(args)
+  end
+
+  def add_product(args)
+    self.box = get_box(box_id: args[:product_id])
   end
 
   def box_image
@@ -107,19 +112,18 @@ class Webstore::Order
 
 private
 
-  attr_reader :box
+  attr_accessor :box
 
-  def money_class
-    @money_class
-  end
+  attr_reader :box_class
+  attr_reader :money_class
 
   def defaults
     { box_class: Box, money_class: Money }
   end
 
   def get_box(args)
-    box = args[:box_class].new(args[:box]) if args[:box]
-    box = args[:box_class].find(args[:box_id]) if args[:box_id]
+    box = box_class.new(args[:box]) if args[:box]
+    box = box_class.find(args[:box_id]) if args[:box_id]
     box
   end
 end
