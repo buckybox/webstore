@@ -12,8 +12,8 @@ describe Webstore::Cart do
   describe '.find' do
     context 'when a cart is found' do
       it 'returns restored cart' do
-        persistance.stub(:id) { 1 }
-        persistance.stub(:collected_data) { { data: double('data') } }
+        cart.stub(:id) { 1 }
+        persistance.stub(:collected_data) { cart }
         persistance_class.stub(:find_by_id) { persistance }
         Webstore::Cart.find(1, persistance_class).new?.should be_false
       end

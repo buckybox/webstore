@@ -9,8 +9,7 @@ class Webstore::Cart
 
   def self.find(id, persistance_class = Webstore::CartPersistance)
     persistance = persistance_class.find_by_id(id)
-    attr_hash = hash_from_persistance(persistance)
-    new(attr_hash)
+    instance_from_persistance(persistance)
   end
 
   def initialize(args = {})
@@ -41,24 +40,30 @@ class Webstore::Cart
     order.add_product(args)
   end
 
+  def distributor
+    customer.distributor
+  end
+
+  def real_customer
+    customer.customer
+  end
+
 private
 
   attr_writer :id
 
-  def self.hash_from_persistance(persistance)
-    return {} unless persistance
-    hash = { id: persistance.id }
-    hash.merge(persistance.collected_data)
+  def self.instance_from_persistance(persistance)
+    persistance ? persistance.collected_data : new
   end
 
   def new_order(args)
-    box_id = args[:box_id]
-    default_hash = box_id ? { box_id: box_id } : {}
-    Webstore::Order.new(args.fetch(:order, default_hash))
+    args = args.fetch(:order, {})
+    Webstore::Order.new(args)
   end
 
   def new_customer(args)
-    Webstore::Customer.new(customer: args[:customer])
+    args = args.fetch(:customer, {})
+    Webstore::Customer.new(args)
   end
 
   def find_or_create_persistance(persistance_class)

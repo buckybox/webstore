@@ -2,9 +2,10 @@ require_relative '../webstore'
 
 class Webstore::Customer
   attr_reader :distributor
+  attr_reader :customer
 
-  GUEST_NAME    = 'Guest'
-  GUEST_HAULTED = false
+  GUEST_NAME   = 'Guest'
+  GUEST_HALTED = false
 
   def initialize(args = {})
     @customer    = args.fetch(:customer, nil)
@@ -16,7 +17,7 @@ class Webstore::Customer
   end
 
   def halted?
-    (guest? ? GUEST_HAULTED : customer.halted?)
+    (guest? ? GUEST_HALTED : customer.halted?)
   end
 
   def name
@@ -26,8 +27,4 @@ class Webstore::Customer
   def guest?
     !customer
   end
-
-private
-
-  attr_reader :customer
 end

@@ -112,8 +112,9 @@ class Webstore::Order
 
 private
 
-  attr_accessor :box
+  attr_writer :box
 
+  attr_reader :box
   attr_reader :box_class
   attr_reader :money_class
 
