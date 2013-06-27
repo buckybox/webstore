@@ -1,10 +1,5 @@
 Given /^I am on the webstore$/ do
-  if @current_user_logged_in # make sure we are still logged in
-    @current_user = @customer
-    step "I log in"
-  end
-
-  path = webstore_store_path(distributor_parameter_name: @customer.distributor.parameter_name)
+  path = webstore_store_path(distributor_parameter_name: Distributor.last.parameter_name)
   visit path
 end
 
@@ -54,7 +49,9 @@ Given "I am asked to select my delivery frequency" do
     When I customise the box
   }
 
-  step "I fill in my email address" unless @current_user_logged_in
+  if page.has_link? "Login" # we need to log in
+    step "I fill in my email address"
+  end
 end
 
 When /^I select a (.*) delivery frequency$/ do |frequency|
@@ -128,6 +125,6 @@ end
 
 def webstore_step_path step
   path_helper = "webstore_#{step}_path"
-  public_send(path_helper, distributor_parameter_name: @customer.distributor.parameter_name)
+  public_send(path_helper, distributor_parameter_name: Distributor.last.parameter_name)
 end
 
