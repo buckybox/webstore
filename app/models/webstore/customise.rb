@@ -2,10 +2,25 @@ require 'active_attr'
 require_relative '../webstore'
 
 class Webstore::Customise
-  include ActiveAttr::BasicModel
+  include ActiveAttr::Model
 
-  def initialize(args = {})
-    @order = args[:order]
+  attribute :cart
+  attribute :has_customisations
+  attribute :dislikes
+  attribute :likes
+  attribute :extras
+  attribute :add_extra
+
+  def save
+    true
+  end
+
+  def stock_list
+    ['Apples', 'Banannas', 'Oranges', 'Grapes', 'Eggs', 'Coffee']
+  end
+
+  def extras_list
+    Extra.limit(5)
   end
 
   def dislikes?
@@ -34,13 +49,5 @@ class Webstore::Customise
 
   def extras_limit
     3
-  end
-
-  def stock_list
-    ['Apples', 'Banannas', 'Oranges', 'Grapes', 'Eggs', 'Coffee']
-  end
-
-  def extras
-    Extra.limit(5)
   end
 end
