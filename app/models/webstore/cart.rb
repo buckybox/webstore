@@ -33,11 +33,12 @@ class Webstore::Cart
   def save(persistance_class = Webstore::CartPersistance)
     persistance = find_or_create_persistance(persistance_class)
     self.id = persistance.id
-    persistance.update_attributes(collected_data: self)
+    result = persistance.update_attributes(collected_data: self)
+    result
   end
 
-  def add_product(args)
-    order.add_product(args)
+  def add_product(product_id)
+    order.add_product(product_id)
   end
 
   def distributor
@@ -46,6 +47,14 @@ class Webstore::Cart
 
   def real_customer
     customer.customer
+  end
+
+  def stock_list
+    distributor.line_items
+  end
+
+  def extras_list
+    order.extras_list
   end
 
 private

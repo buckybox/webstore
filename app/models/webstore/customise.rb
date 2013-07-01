@@ -1,26 +1,34 @@
-require 'active_attr'
+require 'virtus'
 require_relative '../webstore'
 
 class Webstore::Customise
-  include ActiveAttr::Model
+  include Virtus
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
 
   attribute :cart
-  attribute :has_customisations
-  attribute :dislikes
-  attribute :likes
-  attribute :extras
-  attribute :add_extra
+  attribute :has_customisations, Boolean
+  attribute :dislikes, Array[String]
+  attribute :likes, Array[String]
+  attribute :extras, Hash[Integer => Integer]
+  attribute :add_extra, Boolean
 
   def save
+    binding.pry
     true
   end
 
+  def persisted?
+    false
+  end
+
   def stock_list
-    ['Apples', 'Banannas', 'Oranges', 'Grapes', 'Eggs', 'Coffee']
+    cart.stock_list
   end
 
   def extras_list
-    Extra.limit(5)
+    cart.extras_list
   end
 
   def dislikes?

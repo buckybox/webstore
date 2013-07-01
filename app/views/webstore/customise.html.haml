@@ -11,10 +11,10 @@
         #webstore-customisations.row-fluid
           .span12
             .dislikes_input.clearfix
-              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_cart.exclusions_limit} }, required: false, wrapper: :inline
+              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_cart.exclusions_limit} }, wrapper: :inline
             - if customise_cart.likes?
               .likes_input.clearfix
-                = f.input :likes, label:  "<i class='icon-plus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_cart.substitutions_limit} }, required: false, wrapper: :inline
+                = f.input :likes, label:  "<i class='icon-plus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_cart.substitutions_limit} }, wrapper: :inline
 
   - if customise_cart.extras_allowed?
     #webstore-extras.row-fluid.webstore-section
@@ -29,12 +29,6 @@
               %h4
                 %i.icon-plus 
                 Add up to #{customise_cart.extras_limit} extra items
-        -# Soon we should be handling these errors via the form model not have to use custom ones like this
-          - if customise_cart.errors.any?
-            .row-fluid
-              .span12
-                .alert.alert-error
-                  = customise_cart.errors[:base].join(', ')
 
         .row-fluid
           .span12
@@ -42,7 +36,7 @@
               = f.simple_fields_for(:extras) do |g|
                 %tbody
                   = render partial: 'extra', collection: customise_cart.extras_list, locals: { g: g }
-            = f.input :add_extra, label: false, collection: customise_cart.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }, required: false
+            = f.input :add_extra, label: false, collection: customise_cart.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }
 
   .row-fluid.webstore-section
     .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'

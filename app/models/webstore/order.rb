@@ -12,8 +12,12 @@ class Webstore::Order
     @box         = get_box(args)
   end
 
-  def add_product(args)
-    self.box = get_box(box_id: args[:product_id])
+  def extras_list
+    box.available_extras
+  end
+
+  def add_product(product_id)
+    self.box = get_box(box_id: product_id)
   end
 
   def box_image
