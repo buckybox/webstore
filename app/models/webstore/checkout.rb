@@ -1,5 +1,6 @@
 require_relative 'customer'
 require_relative 'cart'
+require_relative '../webstore'
 
 class Webstore::Checkout
   attr_reader :cart

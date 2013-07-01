@@ -1,27 +1,13 @@
-require 'virtus'
+require_relative 'form'
 require_relative '../webstore'
 
-class Webstore::Customise
-  include Virtus
-  extend ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-
+class Webstore::Customise < Webstore::Form
   attribute :cart
   attribute :has_customisations, Boolean
   attribute :dislikes, Array[String]
   attribute :likes, Array[String]
   attribute :extras, Hash[Integer => Integer]
   attribute :add_extra, Boolean
-
-  def save
-    binding.pry
-    true
-  end
-
-  def persisted?
-    false
-  end
 
   def stock_list
     cart.stock_list
@@ -57,5 +43,15 @@ class Webstore::Customise
 
   def extras_limit
     3
+  end
+
+private
+
+  def to_hash
+    {
+      exclusions: dislikes,
+      substitutions: likes,
+      extras: extras,
+    }
   end
 end

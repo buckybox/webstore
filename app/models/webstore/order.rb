@@ -10,6 +10,7 @@ class Webstore::Order
     @money_class = args[:money_class]
     @box_class   = args[:box_class]
     @box         = get_box(args)
+    @information = []
   end
 
   def extras_list
@@ -114,11 +115,15 @@ class Webstore::Order
     result
   end
 
+  def add_information(information)
+    @information << information
+  end
+
 private
 
-  attr_writer :box
+  attr_accessor :box
+  attr_accessor :information
 
-  attr_reader :box
   attr_reader :box_class
   attr_reader :money_class
 

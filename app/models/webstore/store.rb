@@ -1,5 +1,6 @@
 require_relative 'product'
 require_relative 'customer'
+require_relative '../webstore'
 
 class Webstore::Store
   def initialize(args = {})

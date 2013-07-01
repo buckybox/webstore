@@ -57,6 +57,10 @@ class Webstore::Cart
     order.extras_list
   end
 
+  def add_order_information(information)
+    order.add_information(information)
+  end
+
 private
 
   attr_writer :id
