@@ -27,4 +27,8 @@ class Webstore::Customer
   def guest?
     !customer
   end
+
+  def distributor_parameter_name
+    distributor.parameter_name
+  end
 end

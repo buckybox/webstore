@@ -10,7 +10,7 @@ module Webstore
     end
 
     def order_link
-      h.webstore_checkout_path(distributor_parameter_name, box)
+      h.webstore_start_checkout_path(distributor_parameter_name, box)
     end
 
   private

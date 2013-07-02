@@ -45,6 +45,10 @@ class Webstore::Cart
     customer.distributor
   end
 
+  def distributor_parameter_name
+    customer.distributor_parameter_name
+  end
+
   def real_customer
     customer.customer
   end

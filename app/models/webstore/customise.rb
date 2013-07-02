@@ -3,11 +3,11 @@ require_relative '../webstore'
 
 class Webstore::Customise < Webstore::Form
   attribute :cart
-  attribute :has_customisations, Boolean
-  attribute :dislikes, Array[String]
-  attribute :likes, Array[String]
-  attribute :extras, Hash[Integer => Integer]
-  attribute :add_extra, Boolean
+  attribute :has_customisations,  Boolean
+  attribute :dislikes,            Array[String]
+  attribute :likes,               Array[String]
+  attribute :extras,              Hash[Integer => Integer]
+  attribute :add_extra,           Boolean
 
   def stock_list
     cart.stock_list
