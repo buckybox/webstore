@@ -1,7 +1,7 @@
 require_relative 'form'
 require_relative '../webstore'
 
-class Webstore::Authorisation < Webstore::Form
+class Webstore::CustomerAuthorisation < Webstore::Form
   attribute :cart
   attribute :email,     String
   attribute :password,  String

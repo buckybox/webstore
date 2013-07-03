@@ -2,8 +2,8 @@
 = render 'webstore_sidebar'
 = render partial: 'order', object: order
 
-= simple_form_for(customise_cart, html: { class: 'form-inline' }) do |f|
-  - if customise_cart.dislikes?
+= simple_form_for(customise_order, html: { class: 'form-inline' }) do |f|
+  - if customise_order.dislikes?
     #webstore-customise.row-fluid.webstore-section
       .span12
         .row-fluid
@@ -11,32 +11,32 @@
         #webstore-customisations.row-fluid
           .span12
             .dislikes_input.clearfix
-              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_cart.exclusions_limit} }, wrapper: :inline
-            - if customise_cart.likes?
+              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>", collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_order.exclusions_limit} }, wrapper: :inline
+            - if customise_order.likes?
               .likes_input.clearfix
-                = f.input :likes, label:  "<i class='icon-plus-sign'></i>", collection: customise_cart.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_cart.substitutions_limit} }, wrapper: :inline
+                = f.input :likes, label:  "<i class='icon-plus-sign'></i>", collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_order.substitutions_limit} }, wrapper: :inline
 
-  - if customise_cart.extras_allowed?
+  - if customise_order.extras_allowed?
     #webstore-extras.row-fluid.webstore-section
       .span12
         .row-fluid
           .span12
-            - if customise_cart.extras_unlimited?
+            - if customise_order.extras_unlimited?
               %h4 
                 %i.icon-plus 
                 Add any amount of extra items
             - else
               %h4
                 %i.icon-plus 
-                Add up to #{customise_cart.extras_limit} extra items
+                Add up to #{customise_order.extras_limit} extra items
 
         .row-fluid
           .span12
             %table.table.table-bordered
               = f.simple_fields_for(:extras) do |g|
                 %tbody
-                  = render partial: 'extra', collection: customise_cart.extras_list, locals: { g: g }
-            = f.input :add_extra, label: false, collection: customise_cart.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }
+                  = render partial: 'extra', collection: customise_order.extras_list, locals: { g: g }
+            = f.input :add_extra, label: false, collection: customise_order.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }
 
   .row-fluid.webstore-section
     .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'

@@ -38,7 +38,7 @@ $(function() {
     likes.hide();
     $('#webstore-customisations').hide();
 
-    $('#webstore_customise_has_customisations').click(function() {
+    $('#webstore_customise_order_has_customisations').click(function() {
       checkbox_toggle(this, $('#webstore-customisations'));
     });
 
@@ -87,7 +87,7 @@ $(function() {
       var extras_input = $(this);
       var selected_extra = $(extras_input.find('option:selected')[0]);
       var extra_id = selected_extra.val();
-      var quantity_input = $('#webstore_customise_extras_' + extra_id);
+      var quantity_input = $('#webstore_customise_order_extras_' + extra_id);
 
       quantity_input.val(1);
       quantity_input.closest('tr').show();
