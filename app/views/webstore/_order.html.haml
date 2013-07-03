@@ -1,3 +1,8 @@
+- if order.for_halted_customer?
+  .alert.alert-error
+    Your account is under the minimum balance and will not recieve new orders unless
+    payment is cleared before the packing date.
+
 .row-fluid
   #current-order.span12
     .section-info-background

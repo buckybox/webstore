@@ -1,0 +1,78 @@
+- title('Webstore - Address and Payment', false)
+= render 'webstore_sidebar'
+= render partial: 'order', object: order
+
+= simple_form_for(payment_options) do |f|
+  #webstore-address.row-fluid.webstore-section{ data: { 'has-address' => "#{payment_options.has_address? ? 'true' : 'false'}" } }
+    .span12
+      #existing-address.row-fluid
+        .span12
+          .row-fluid
+            .span12
+              %h4 Deliver to:
+          .row-fluid
+            .span12
+              = payment_options.address.join('<br>') if payment_options.has_address?
+              %br
+              = link_to 'Change my delivery address', '#', id: 'edit-address'
+      #update-address.row-fluid
+        .span12
+          .row-fluid
+            .span12
+              %h4 Your name
+          .row-fluid
+            .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12' }
+          - if payment_options.collect_phone?
+            .row-fluid
+              .span12
+                %h4 Your phone number
+            .row-fluid
+              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12' }
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12' }
+          .row-fluid
+            .span12
+              %h4 Deliver to
+          .row-fluid
+            .span12
+              = f.input :street_address, label: false, placeholder: 'Street', input_html: { class: 'span12' }
+              = f.input :street_address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }
+              = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12' }
+          .row-fluid
+            .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city' }
+            .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12' }, wrapper_html: { id: 'postal_code' }
+          .row-fluid
+            .span12
+              %h4 Delivery note
+          .row-fluid
+            .span12
+              = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
+
+  .row-fluid.webstore-section
+    = render partial: 'payment_instructions', locals: { payment_options: payment_options }
+
+  .row-fluid.webstore-section
+    #webstore-payment.span12
+      .row-fluid
+        #amount-due.span12
+          .row-fluid.important
+            - if payment_options.positive_closing_balance?
+              .span10 Your account is in credit
+            - else
+              .span10 Total amount due
+              .span2.text-right.total_price= payment_options.amount_due
+
+      - if payment_options.only_one_payment_option?
+        = f.input :payment_method, as: :hidden
+      - else
+        .row-fluid
+          #payment-options.span12
+            - if payment_options.payment_required
+              = render partial: 'webstore/payment_options', locals: { f: f, payment_options: payment_options }
+            - else
+              .span12.text-center No payment necessary
+              = f.input :payment_method, as: :hidden
+
+  .row-fluid
+    .span12.text-center
+      = f.input :complete, as: :hidden, input_html: { value: true }
+      = f.button :submit, 'Complete Order', class: 'btn btn-process'

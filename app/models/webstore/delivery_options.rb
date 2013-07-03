@@ -1,5 +1,6 @@
 require_relative 'form'
 require_relative '../webstore'
+require_relative '../../decorators/webstore/route_decorator'
 
 class Webstore::DeliveryOptions < Webstore::Form
   attribute :cart

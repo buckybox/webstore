@@ -119,6 +119,11 @@ class Webstore::Order
     @information << information
   end
 
+  def for_halted_customer?
+    #customer.present? && customer.halted?
+    false
+  end
+
 private
 
   attr_accessor :box

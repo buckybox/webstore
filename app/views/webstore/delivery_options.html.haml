@@ -1,10 +1,5 @@
 - title('Webstore - Delivery Options', false)
 = render 'webstore_sidebar'
-
-- if current_customer.present? && current_customer.halted?
-  .alert.alert-error
-    Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
-
 = render partial: 'order', object: order
 
 = simple_form_for(delivery_options) do |f|
