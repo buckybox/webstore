@@ -84,21 +84,6 @@ class Webstore::PaymentOptions < Webstore::Form
     ['12 Customer St']
   end
 
-  def current_balance
-    #(current_customer ? current_customer.account.balance : Money.new(0))
-    MoneyDisplay.new(Money.new(0))
-  end
-
-  def order_price
-    #order.order_price(current_customer)
-    MoneyDisplay.new(Money.new(0)).negative
-  end
-
-  def closing_balance
-    #current_balance + order_price)
-    MoneyDisplay.new(Money.new(0))
-  end
-
   def amount_due
     closing_balance.negative
   end
@@ -136,6 +121,10 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def payment_list
     PaymentOption.options(distributor)
+  end
+
+  def payment_instructions
+    Webstore::PaymentInstructions.new(cart)
   end
 
 private

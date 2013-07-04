@@ -23,7 +23,7 @@
           .row-fluid
             .span12
               %h4 When would you like it?
-          = render partial: 'route', collection: delivery_options.routes, locals: { f: f, delivery_options: delivery_options }
+          = render partial: 'route', collection: delivery_options.routes, locals: { f: f, form_object: delivery_options }
 
   - if delivery_options.cart_has_extras?
     #webstore-extras-frequency.row-fluid

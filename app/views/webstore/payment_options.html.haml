@@ -48,7 +48,7 @@
               = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
 
   .row-fluid.webstore-section
-    = render partial: 'payment_instructions', locals: { payment_options: payment_options }
+    = render partial: 'payment_instructions', locals: { form_object: payment_options.payment_instructions }
 
   .row-fluid.webstore-section
     #webstore-payment.span12
@@ -67,7 +67,7 @@
         .row-fluid
           #payment-options.span12
             - if payment_options.payment_required
-              = render partial: 'webstore/payment_options', locals: { f: f, payment_options: payment_options }
+              = render partial: 'webstore/payment_methods', locals: { f: f, form_object: payment_options }
             - else
               .span12.text-center No payment necessary
               = f.input :payment_method, as: :hidden

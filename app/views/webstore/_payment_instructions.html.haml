@@ -1,4 +1,4 @@
-- if payment_options.existing_customer?
+- if form_object.existing_customer?
   #webstore-payment-instructions
     .row-fluid
       .span10.legend
@@ -6,8 +6,8 @@
         .row-fluid This order
         .row-fluid Closing balance
       .span2.prices
-        .text-right= payment_options.current_balance
-        .text-right= payment_options.order_price
+        .text-right= form_object.current_balance
+        .text-right= form_object.order_price
         .text-right
-          %span.total= payment_options.closing_balance
+          %span.total= form_object.closing_balance
 

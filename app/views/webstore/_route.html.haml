@@ -1,14 +1,14 @@
 .row-fluid.route-schedule-inputs{ id: route.schedule_input_id }
   .span12
-    = f.input :start_date, label: false, collection: delivery_options.start_dates(route), input_html: { class: 'schedule-start-date span12' }, include_blank: false, disabled: true
+    = f.input :start_date, label: false, collection: form_object.start_dates(route), input_html: { class: 'schedule-start-date span12' }, include_blank: false, disabled: true
 
     %h4 Repeat delivery?
-    = f.input :frequency, label: false, collection: delivery_options.order_frequencies, input_html: { class: 'route-schedule-frequency span12' }, include_blank: false, disabled: true
+    = f.input :frequency, label: false, collection: form_object.order_frequencies, input_html: { class: 'route-schedule-frequency span12' }, include_blank: false, disabled: true
 
     = f.simple_fields_for(:days) do |g|
       %table.order-days.table.table-bordered
         %tbody
-          - delivery_options.dates_grid.each_with_index do |week, index|
+          - form_object.dates_grid.each_with_index do |week, index|
             %tr
               %td= index.succ.ordinalize
               - week.each do |day, number|
