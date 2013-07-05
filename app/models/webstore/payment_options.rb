@@ -85,7 +85,8 @@ class Webstore::PaymentOptions < Webstore::Form
   end
 
   def amount_due
-    closing_balance.negative
+    #closing_balance.negative
+    Money.new(0)
   end
 
   def existing_customer?

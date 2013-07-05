@@ -1,6 +1,6 @@
 - title('Webstore - Customise Order', false)
-= render 'webstore_sidebar'
-= render partial: 'order', object: order
+= render partial: 'webstore/sidebar'
+= render partial: 'webstore/order', object: order
 
 = simple_form_for(customise_order, html: { class: 'form-inline' }) do |f|
   - if customise_order.dislikes?

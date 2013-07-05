@@ -1,6 +1,6 @@
 - title('Webstore - Address and Payment', false)
-= render 'webstore_sidebar'
-= render partial: 'order', object: order
+= render partial: 'webstore/sidebar'
+= render partial: 'webstore/order', object: order
 
 = simple_form_for(payment_options) do |f|
   #webstore-address.row-fluid.webstore-section{ data: { 'has-address' => "#{payment_options.has_address? ? 'true' : 'false'}" } }
@@ -48,7 +48,7 @@
               = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
 
   .row-fluid.webstore-section
-    = render partial: 'payment_instructions', locals: { form_object: payment_options.payment_instructions }
+    = render partial: 'webstore/payment_instructions', locals: { form_object: payment_options.payment_instructions }
 
   .row-fluid.webstore-section
     #webstore-payment.span12
@@ -67,7 +67,7 @@
         .row-fluid
           #payment-options.span12
             - if payment_options.payment_required
-              = render partial: 'webstore/payment_methods', locals: { f: f, form_object: payment_options }
+              = render partial: 'payment_methods', locals: { f: f, form_object: payment_options }
             - else
               .span12.text-center No payment necessary
               = f.input :payment_method, as: :hidden

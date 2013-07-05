@@ -1,6 +1,6 @@
 - title('Webstore - Delivery Options', false)
-= render 'webstore_sidebar'
-= render partial: 'order', object: order
+= render partial: 'webstore/sidebar'
+= render partial: 'webstore/order', object: order
 
 = simple_form_for(delivery_options) do |f|
   #webstore-route.row-fluid.webstore-section{ style: "display: #{delivery_options.can_change_route? ? 'block' : 'none'}" }

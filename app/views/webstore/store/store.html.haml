@@ -1,5 +1,5 @@
 - title('Webstore - Store', false)
-= render 'webstore_sidebar'
+= render partial: 'webstore/sidebar'
 - if current_customer.present? && current_customer.halted?
   .alert.alert-error
     Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.

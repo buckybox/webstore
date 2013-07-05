@@ -1,9 +1,9 @@
 - title('Webstore - Completed Order', false)
-= render 'webstore_sidebar'
+= render partial: 'webstore/sidebar'
 
 .row-fluid.span12
   .important Payment instructions
-  = render partial: 'payment_instructions', locals: { form_object: completed.payment_instructions }
+  = render partial: 'webstore/payment_instructions', locals: { form_object: completed.payment_instructions }
 
 .row-fluid
   #webstore-payment.span12
@@ -12,11 +12,11 @@
         .row-fluid
           .span12.text-center.payment-title== Pay by #{completed.payment_method}
         .row-fluid
-          .span9.center-row= render partial: "webstore/confirmation_#{completed.payment_method}", locals: { form_object: completed }
+          .span9.center-row= render partial: "confirmation_#{completed.payment_method}", locals: { form_object: completed }
 
 .row-fluid
   .important Order summary
-  = render partial: 'order', object: order
+  = render partial: 'webstore/order', object: order
 
 .row-fluid
   #webstore-placed.span12

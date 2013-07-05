@@ -1,6 +1,6 @@
 - title('Webstore - Authorisation', false)
-= render 'webstore_sidebar'
-= render partial: 'order', object: order
+= render partial: 'webstore/sidebar'
+= render partial: 'webstore/order', object: order
 
 = simple_form_for(customer_authorisation) do |f|
   #webstore-login.row-fluid.webstore-section
