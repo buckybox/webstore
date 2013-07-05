@@ -20,5 +20,12 @@ class Webstore::CustomerAuthorisation < Webstore::Form
   def distributor_parameter_name
     cart.distributor_parameter_name
   end
+
+  def to_h
+    {
+      email:     email,
+      password:  password,
+    }
+  end
 end
 

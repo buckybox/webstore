@@ -10,7 +10,7 @@ class Webstore::Order
     @money_class = args[:money_class]
     @box_class   = args[:box_class]
     @box         = get_box(args)
-    @information = []
+    @information = {}
   end
 
   def extras_list
@@ -115,8 +115,9 @@ class Webstore::Order
     result
   end
 
-  def add_information(information)
-    @information << information
+  def add_information(new_information)
+    new_information = new_information.to_h
+    information.merge!(new_information)
   end
 
   def for_halted_customer?

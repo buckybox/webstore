@@ -5,10 +5,10 @@ require_relative '../../decorators/webstore/route_decorator'
 class Webstore::DeliveryOptions < Webstore::Form
   attribute :cart
   attribute :route
-  attribute :extra_frequency,  Boolean
   attribute :start_date,       Date
   attribute :frequency,        String
   attribute :days,             Hash[Integer => Integer]
+  attribute :extra_frequency,  Boolean
 
   def existing_route_id
     # customer used route if active where
@@ -31,6 +31,7 @@ class Webstore::DeliveryOptions < Webstore::Form
   end
 
   def order_frequencies
+    #ScheduleRule::RECUR.map { |frequencies| [frequencies.to_s.titleize, frequencies.to_s] }
     [
       ['Deliver weekly on...', :weekly],
       ['Deliver every 2 weeks on...', :fortnightly],
@@ -57,6 +58,16 @@ class Webstore::DeliveryOptions < Webstore::Form
   def cart_has_extras?
     #webstore_order.box.extras_allowed? && webstore_order.extras.present?
     true
+  end
+
+  def to_h
+    {
+      route_id:         route,
+      start_date:       start_date,
+      frequency:        frequency,
+      days:             days,
+      extra_frequency:  extra_frequency,
+    }
   end
 
 private

@@ -4,8 +4,8 @@ require_relative '../webstore'
 class Webstore::CustomiseOrder < Webstore::Form
   attribute :cart
   attribute :has_customisations,  Boolean
-  attribute :dislikes,            Array[String]
-  attribute :likes,               Array[String]
+  attribute :dislikes,            Array[Integer]
+  attribute :likes,               Array[Integer]
   attribute :extras,              Hash[Integer => Integer]
   attribute :add_extra,           Boolean
 
@@ -45,13 +45,19 @@ class Webstore::CustomiseOrder < Webstore::Form
     3
   end
 
-private
-
-  def to_hash
+  def to_h
     {
-      exclusions: dislikes,
-      substitutions: likes,
-      extras: extras,
+      dislikes:  dislikes,
+      likes:     likes,
+      extras:    extras,
     }
+  end
+
+protected
+
+  def sanitise_attributes(attributes)
+    attributes["dislikes"].delete("") if attributes["dislikes"]
+    attributes["likes"].delete("") if attributes["likes"]
+    attributes
   end
 end

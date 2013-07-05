@@ -8,20 +8,22 @@ class Webstore::Form
   include ActiveModel::Validations
 
   def initialize(attributes = nil)
-    @persisted = false
+    attributes = sanitise_attributes(attributes)
     super(attributes)
   end
 
   def save
     cart.add_order_information(self)
-    self.persisted = cart.save
+    cart.save
   end
 
   def persisted?
-    persisted
+    false
   end
 
-private
+protected
 
-  attr_accessor :persisted
+  def sanitise_attributes(attributes)
+    attributes
+  end
 end

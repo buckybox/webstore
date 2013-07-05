@@ -128,6 +128,22 @@ class Webstore::PaymentOptions < Webstore::Form
     Webstore::PaymentInstructions.new(cart)
   end
 
+  def to_h
+    {
+      name:              name,
+      phone_number:      phone_number,
+      phone_type:        phone_type,
+      street_address:    street_address,
+      street_address_2:  street_address_2,
+      suburb:            suburb,
+      city:              city,
+      postcode:          postcode,
+      delivery_note:     delivery_note,
+      payment_method:    payment_method,
+      complete:          complete,
+    }
+  end
+
 private
 
   def distributor
