@@ -58,6 +58,7 @@ protected
   def sanitise_attributes(attributes)
     attributes["dislikes"].delete("") if attributes["dislikes"]
     attributes["likes"].delete("") if attributes["likes"]
+    attributes["extras"].delete_if { |key, value| value.to_i.zero? } if attributes["extras"]
     attributes
   end
 end

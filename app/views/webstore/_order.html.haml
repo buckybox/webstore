@@ -25,13 +25,13 @@
                 %tr
                   %td.icon
                     %i.icon-minus-sign
-                  %td{ title: order.exclusions_string }= order.exclusions_string
+                  %td{ title: order.exclusions }= order.exclusions
 
                 - if order.has_substitutions?
                   %tr
                     %td.icon
                       %i.icon-plus-sign
-                    %td{ title: order.substitutions_string }= order.substitutions_string
+                    %td{ title: order.substitutions }= order.substitutions
             %td.price
 
         - if order.has_extras?
@@ -46,10 +46,9 @@
                     %td= extra.with_units
                     %td.quantity
                       %span.label= order.extra_quantity(extra)
-              %div{ title: order.extras_description }
             %td.price= order.extras_price
 
-        - if order.scheduled?
+        - if order.is_scheduled?
           %tr#route
             %td.description
               %h2 Delivery service
@@ -66,7 +65,7 @@
               support local food and organic farming worldwide.
             %td.price= order.bucky_fee
 
-        - if order.has_total?
+        - if order.has_total? 
           - if order.has_discount?
             %tr#discount
               %td.description

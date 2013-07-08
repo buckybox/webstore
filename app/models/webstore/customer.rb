@@ -3,11 +3,13 @@ require_relative '../webstore'
 class Webstore::Customer
   attr_reader :distributor
   attr_reader :customer
+  attr_reader :cart
 
   GUEST_NAME   = 'Guest'
   GUEST_HALTED = false
 
   def initialize(args = {})
+    @cart        = args.fetch(:cart, nil)
     @customer    = args.fetch(:customer, nil)
     @distributor = @customer ? @customer.distributor : args.fetch(:distributor, nil)
   end
@@ -30,5 +32,9 @@ class Webstore::Customer
 
   def distributor_parameter_name
     distributor.parameter_name
+  end
+
+  def halted?
+    false
   end
 end

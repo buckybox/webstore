@@ -74,11 +74,13 @@ private
   end
 
   def new_order(args)
+    args = args.merge({ cart: self })
     args = args.fetch(:order, {})
     Webstore::Order.new(args)
   end
 
   def new_customer(args)
+    args = args.merge({ cart: self })
     args = args.fetch(:customer, {})
     Webstore::Customer.new(args)
   end

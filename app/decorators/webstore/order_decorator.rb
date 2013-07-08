@@ -34,23 +34,11 @@ class Webstore::OrderDecorator < Draper::Decorator
     extra_decorator.decorate_collection(e)
   end
 
-  def exclusions_string
-    ''
+  def exclusions
+    object.exclusion_line_items.map(&:name).join(', ')
   end
 
-  def substitutions_string
-    ''
-  end
-
-  def extras_description
-    ''
-    # @extras_description_mem = extras.map do |id, count|
-    #   extra_object = extra_objects.find { |extra| extra.id == id.to_i }
-    #   "#{count}x #{extra_object.name} #{extra_object.unit}"
-    # end.join(', ')
-    #
-    # if schedule_rule && !schedule_rule.frequency.single?
-    #   @extras_description_mem += (extras_one_off? ? ', include in the next delivery only' : ', include with every delivery')
-    # end
+  def substitutions
+    object.substitution_line_items.map(&:name).join(', ')
   end
 end
