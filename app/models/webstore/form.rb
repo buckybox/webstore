@@ -1,4 +1,8 @@
 require 'virtus'
+require 'active_model/naming'
+require 'active_model/conversion'
+require 'active_model/validations'
+require 'active_model/translation'
 require_relative '../webstore'
 
 class Webstore::Form

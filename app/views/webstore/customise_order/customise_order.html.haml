@@ -3,7 +3,7 @@
 = render partial: 'webstore/order', object: order
 
 = simple_form_for(customise_order, html: { class: 'form-inline' }) do |f|
-  - if customise_order.dislikes?
+  - if customise_order.exclusions?
     #webstore-customise.row-fluid.webstore-section
       .span12
         .row-fluid
@@ -12,7 +12,7 @@
           .span12
             .dislikes_input.clearfix
               = f.input :dislikes, label: "<i class='icon-minus-sign'></i>", collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_order.exclusions_limit} }, wrapper: :inline
-            - if customise_order.likes?
+            - if customise_order.substitutions?
               .likes_input.clearfix
                 = f.input :likes, label:  "<i class='icon-plus-sign'></i>", collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_order.substitutions_limit} }, wrapper: :inline
 

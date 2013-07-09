@@ -13,7 +13,7 @@ class Webstore::Store
   end
 
   def customer(customer_class = Webstore::Customer)
-    @customer ||= customer_class.new(logged_in_customer: logged_in_customer, distributor: distributor)
+    @customer ||= customer_class.new(customer: logged_in_customer, distributor: distributor)
   end
 
 private

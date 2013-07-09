@@ -17,32 +17,32 @@ class Webstore::CustomiseOrder < Webstore::Form
     cart.extras_list
   end
 
-  def dislikes?
-    true
+  def exclusions?
+    box.dislikes?
   end
 
-  def likes?
-    true
+  def substitutions?
+    box.likes?
   end
 
   def extras_allowed?
-    true
+    box.extras_allowed?
   end
 
   def extras_unlimited?
-    false
+    box.extras_unlimited?
   end
 
   def exclusions_limit
-    3
+    box.exclusions_limit
   end
 
   def substitutions_limit
-    3
+    box.substitutions_limit
   end
 
   def extras_limit
-    3
+    box.extras_limit
   end
 
   def to_h
@@ -60,5 +60,9 @@ protected
     attributes["likes"].delete("") if attributes["likes"]
     attributes["extras"].delete_if { |key, value| value.to_i.zero? } if attributes["extras"]
     attributes
+  end
+
+  def box
+    cart.box
   end
 end

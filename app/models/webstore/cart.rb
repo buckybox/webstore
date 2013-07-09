@@ -65,6 +65,10 @@ class Webstore::Cart
     order.add_information(information)
   end
 
+  def box
+    order.box
+  end
+
 private
 
   attr_writer :id
