@@ -90,4 +90,13 @@ describe Webstore::CustomiseOrder do
       customise_order.extras_limit.should eq(5)
     end
   end
+
+  describe '#to_h' do
+    it 'returns a hash of the important form data' do
+      customise_order.dislikes = [1]
+      customise_order.likes    = [1]
+      customise_order.extras   = { 1 => 1 }
+      customise_order.to_h.should eq({ dislikes: [1], likes: [1], extras: { 1 => 1 } })
+    end
+  end
 end

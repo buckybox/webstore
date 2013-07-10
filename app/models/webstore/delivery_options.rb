@@ -11,10 +11,7 @@ class Webstore::DeliveryOptions < Webstore::Form
   attribute :extra_frequency,  Boolean
 
   def existing_route_id
-    # customer used route if active where
-    # active_orders = current_customer.present? && !current_customer.orders.active.count.zero?
-    #current_customer.route if active_orders
-    0
+    customer.route_id
   end
 
   def can_change_route?
@@ -74,6 +71,10 @@ private
 
   def distributor
     cart.distributor
+  end
+
+  def customer
+    cart.customer
   end
 
   def route_list_item(route)

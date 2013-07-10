@@ -7,6 +7,7 @@ class Webstore::Customer
 
   GUEST_NAME   = 'Guest'
   GUEST_HALTED = false
+  GUEST_ACTIVE = false
 
   def initialize(args = {})
     @cart        = args.fetch(:cart, nil)
@@ -14,27 +15,31 @@ class Webstore::Customer
     @distributor = @customer ? @customer.distributor : args.fetch(:distributor, nil)
   end
 
+  def guest?
+    !customer
+  end
+
   def fetch(key, default_value = nil)
     send(key) || default_value
   end
 
   def halted?
-    (guest? ? GUEST_HALTED : customer.halted?)
+    ( guest? ? GUEST_HALTED : customer.halted? )
   end
 
   def name
-    (guest? ? GUEST_NAME : customer.name)
+    ( guest? ? GUEST_NAME : customer.name )
   end
 
-  def guest?
-    !customer
+  def active?
+    ( guest? ? GUEST_ACTIVE : customer.active? )
   end
 
   def distributor_parameter_name
     distributor.parameter_name
   end
 
-  def halted?
-    false
+  def route_id
+    customer.route.id unless active?
   end
 end

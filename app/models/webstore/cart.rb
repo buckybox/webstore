@@ -69,6 +69,10 @@ class Webstore::Cart
     order.box
   end
 
+  def route
+    customer.route
+  end
+
 private
 
   attr_writer :id
