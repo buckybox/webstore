@@ -13,7 +13,7 @@
           = f.input :route, collection: delivery_options.route_list, selected: delivery_options.existing_route_id, label: 'Select the one that best services your location', include_blank: false, input_html: { id: 'route_select', class: 'span12' }
       .row-fluid
         .span12
-          - delivery_options.routes.each do |route|
+          - routes.each do |route|
             .route-info{ id: "route-info-#{route.id}" }= route.description
 
   #webstore-schedule.row-fluid{ class: "#{delivery_options.can_change_route? ? '' : 'webstore-section'}" }
@@ -23,7 +23,7 @@
           .row-fluid
             .span12
               %h4 When would you like it?
-          = render partial: 'route', collection: delivery_options.routes, locals: { f: f, form_object: delivery_options }
+          = render partial: 'route', collection: routes, locals: { f: f, form_object: delivery_options }
 
   - if delivery_options.cart_has_extras?
     #webstore-extras-frequency.row-fluid

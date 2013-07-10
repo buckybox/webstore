@@ -6,11 +6,13 @@ class Webstore::CustomerAuthorisation < Webstore::Form
   attribute :email,     String
   attribute :password,  String
 
+  AUTHORISATION_OPTIONS = [
+    ["I'm a new customer",        'new'],
+    ["I'm a returning customer",  'returning'],
+  ].freeze
+
   def options
-    [
-      ["I'm a new customer", 'new'],
-      ["I'm a returning customer", 'returning'],
-    ]
+    AUTHORISATION_OPTIONS
   end
 
   def default_option

@@ -73,6 +73,10 @@ class Webstore::Cart
     customer.route
   end
 
+  def has_extras?
+    order.has_extras?
+  end
+
 private
 
   attr_writer :id

@@ -40,6 +40,6 @@ class Webstore::Customer
   end
 
   def route_id
-    customer.route.id unless active?
+    customer.route.id if active?
   end
 end

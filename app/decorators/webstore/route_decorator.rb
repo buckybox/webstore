@@ -1,3 +1,6 @@
+require 'draper'
+require_relative '../../models/route'
+
 class Webstore::RouteDecorator < Draper::Decorator
   delegate_all
 

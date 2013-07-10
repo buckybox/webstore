@@ -6,6 +6,7 @@ class Webstore::Order
   include Draper::Decoratable
 
   attr_reader :cart
+  attr_reader :box
 
   def initialize(args = {})
     args         = defaults.merge(args)
@@ -128,9 +129,12 @@ class Webstore::Order
     customer.halted?
   end
 
+  def has_extras?
+    !!information[:extras]
+  end
+
 private
 
-  attr_accessor :box
   attr_accessor :information
 
   attr_reader :box_class

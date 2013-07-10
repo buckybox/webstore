@@ -1,14 +1,25 @@
 require_relative 'form'
 require_relative '../webstore'
-require_relative '../../decorators/webstore/route_decorator'
 
 class Webstore::DeliveryOptions < Webstore::Form
   attribute :cart
-  attribute :route
+  attribute :route,            Integer
   attribute :start_date,       Date
   attribute :frequency,        String
   attribute :days,             Hash[Integer => Integer]
   attribute :extra_frequency,  Boolean
+
+  ORDER_FREQUENCIES = [
+    ['Deliver weekly on...',         :weekly],
+    ['Deliver every 2 weeks on...',  :fortnightly],
+    ['Deliver monthly',              :monthly],
+    ['Deliver once',                 :single]
+  ].freeze
+
+  EXTRA_FREQUENCIES = [
+    ['Include Extra Items with EVERY delivery',      false],
+    ['Include Extra Items with NEXT delivery only',  true]
+  ].freeze
 
   def existing_route_id
     customer.route_id
@@ -19,42 +30,31 @@ class Webstore::DeliveryOptions < Webstore::Form
   end
 
   def routes
-    distributor_routes = distributor.routes
-    Webstore::RouteDecorator.decorate_collection(distributor_routes)
+    distributor.routes
   end
 
   def route_list
-    distributor.routes.map { |route| route_list_item(route) }
+    routes.map { |route| route_list_item(route) }
   end
 
   def order_frequencies
-    #ScheduleRule::RECUR.map { |frequencies| [frequencies.to_s.titleize, frequencies.to_s] }
-    [
-      ['Deliver weekly on...', :weekly],
-      ['Deliver every 2 weeks on...', :fortnightly],
-      ['Deliver monthly', :monthly],
-      ['Deliver once', :single]
-    ]
+    ORDER_FREQUENCIES
   end
 
   def extra_frequencies
-    [
-      ['Include Extra Items with EVERY delivery', false],
-      ['Include Extra Items with NEXT delivery only', true]
-    ]
+    EXTRA_FREQUENCIES
   end
 
-  def dates_grid
-    ::Order.dates_grid
+  def dates_grid(delivery_dates_class = ::Order)
+    delivery_dates_class.dates_grid
   end
 
-  def start_dates(route)
-    ::Order.start_dates(route)
+  def start_dates(route, delivery_dates_class = ::Order)
+    delivery_dates_class.start_dates(route)
   end
 
   def cart_has_extras?
-    #webstore_order.box.extras_allowed? && webstore_order.extras.present?
-    true
+    cart.has_extras?
   end
 
   def to_h
