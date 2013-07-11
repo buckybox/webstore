@@ -23,7 +23,7 @@ end
 
 When /^I customise the box$/ do
   check "Customise my box"
-  select2_select("Advocado", from: :webstore_order_customise_dislikes_input)
+  select2_select("Grapes", from: "webstore_order_customise_dislikes_input")
   # TODO test subs
   click_button "Next"
 end
