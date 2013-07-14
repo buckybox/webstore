@@ -7,6 +7,10 @@ class Webstore::BaseController < ApplicationController
 
 protected
 
+  def current_distributor
+    @distributor ||= Distributor.find_by_parameter_name(params[:distributor_parameter_name])
+  end
+
   def current_cart
     @current_cart ||= Webstore::Cart.find(session[:cart_id])
   end
@@ -34,9 +38,5 @@ protected
   def setup_by_distributor
     Time.zone = current_distributor.time_zone
     Money.default_currency = Money::Currency.new(current_distributor.currency)
-  end
-
-  def current_distributor
-    @distributor ||= Distributor.find_by_parameter_name(params[:distributor_parameter_name])
   end
 end
