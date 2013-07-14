@@ -140,6 +140,8 @@ private
   attr_reader :box_class
   attr_reader :money_class
 
+  attr_writer :box
+
   def defaults
     { box_class: Box, money_class: Money }
   end
