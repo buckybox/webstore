@@ -1,3 +1,5 @@
+#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
+
 require_relative '../webstore'
 require_relative 'order'
 require_relative 'customer'
@@ -8,7 +10,7 @@ class Webstore::Cart
   attr_reader :customer
 
   def self.find(id, persistance_class = Webstore::CartPersistance)
-    persistance = persistance_class.find_by_id(id)
+    persistance = persistance_class.where(id: id).first
     instance_from_persistance(persistance)
   end
 
@@ -47,10 +49,6 @@ class Webstore::Cart
 
   def distributor_parameter_name
     customer.distributor_parameter_name
-  end
-
-  def real_customer
-    customer.customer
   end
 
   def stock_list
