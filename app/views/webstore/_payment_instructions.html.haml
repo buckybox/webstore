@@ -1,13 +1,12 @@
-- if form_object.existing_customer?
-  #webstore-payment-instructions
-    .row-fluid
-      .span10.legend
-        .row-fluid Your existing account balance with us
-        .row-fluid This order
-        .row-fluid Closing balance
-      .span2.prices
-        .text-right= form_object.current_balance
-        .text-right= form_object.order_price
-        .text-right
-          %span.total= form_object.closing_balance
+#webstore-payment-instructions
+  .row-fluid
+    .span10.legend
+      .row-fluid Your existing account balance with us
+      .row-fluid This order
+      .row-fluid Closing balance
+    .span2.prices
+      .text-right= form_object.current_balance
+      .text-right= form_object.order_price
+      .text-right
+        %span.total= form_object.closing_balance
 

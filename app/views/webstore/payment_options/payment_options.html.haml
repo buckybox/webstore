@@ -3,7 +3,7 @@
 = render partial: 'webstore/order', object: order
 
 = simple_form_for(payment_options) do |f|
-  #webstore-address.row-fluid.webstore-section{ data: { 'has-address' => "#{payment_options.has_address? ? 'true' : 'false'}" } }
+  #webstore-address.row-fluid.webstore-section{ data: { 'has-address' => "#{payment_options.existing_customer? ? 'true' : 'false'}" } }
     .span12
       #existing-address.row-fluid
         .span12
@@ -12,7 +12,7 @@
               %h4 Deliver to:
           .row-fluid
             .span12
-              = payment_options.address.join('<br>') if payment_options.has_address?
+              = payment_options.address.join('<br>') if payment_options.existing_customer?
               %br
               = link_to 'Change my delivery address', '#', id: 'edit-address'
       #update-address.row-fluid
@@ -47,26 +47,27 @@
             .span12
               = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
 
-  .row-fluid.webstore-section
-    = render partial: 'webstore/payment_instructions', locals: { form_object: payment_options.payment_instructions }
+  - if form_object.existing_customer?
+    .row-fluid.webstore-section
+      = render partial: 'webstore/payment_instructions', locals: { form_object: payment_options }
 
   .row-fluid.webstore-section
     #webstore-payment.span12
       .row-fluid
         #amount-due.span12
           .row-fluid.important
-            - if payment_options.positive_closing_balance?
-              .span10 Your account is in credit
-            - else
+            - if payment_options.payment_required?
               .span10 Total amount due
               .span2.text-right.total_price= payment_options.amount_due
+            - else
+              .span10 Your account is in credit
 
       - if payment_options.only_one_payment_option?
         = f.input :payment_method, as: :hidden
       - else
         .row-fluid
           #payment-options.span12
-            - if payment_options.payment_required
+            - if payment_options.payment_required?
               = render partial: 'payment_methods', locals: { f: f, form_object: payment_options }
             - else
               .span12.text-center No payment necessary

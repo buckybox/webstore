@@ -39,7 +39,7 @@
             %td.description
               %h2 Extra items
               %table.sub-section-info
-                - order.extras.each do |extra|
+                - order.extras_as_objects.each do |extra|
                   %tr
                     %td.icon
                       %i.icon-plus
@@ -65,7 +65,7 @@
               support local food and organic farming worldwide.
             %td.price= order.bucky_fee
 
-        - if order.has_total? 
+        - if order.has_total?
           - if order.has_discount?
             %tr#discount
               %td.description
