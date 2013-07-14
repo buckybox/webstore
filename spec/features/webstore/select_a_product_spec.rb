@@ -18,10 +18,10 @@ describe 'select a product from the webstore' do
     @distributor = distributor
     setup_a_webstore(product)
     visit webstore_store_path(distributor.parameter_name)
-    click_button 'Order'
   end
 
   it 'loads the customise step' do
+    click_button 'Order'
     expect(page).to have_content box_name
     expect(page).to have_content box_description
     expect(page).to have_content box_price
@@ -29,14 +29,19 @@ describe 'select a product from the webstore' do
 
   shared_examples_for 'it has exclusions' do
     it 'can be customised' do
+      product.dislikes = true
+      product.save
+      click_button 'Order'
       expect(page).to have_content 'Customise my box'
     end
   end
 
   shared_examples_for 'it has extras' do
     it 'extras can be added' do
+      product.extras_limit = -1
+      product.save
+      click_button 'Order'
       expect(page).to have_content 'Add any amount of extra items'
-      expect(page).to have_css '#s2id_webstore_order_extras_add_extra'
     end
   end
 
