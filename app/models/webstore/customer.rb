@@ -1,3 +1,5 @@
+#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
+
 require_relative '../webstore'
 
 class Webstore::Customer
@@ -41,5 +43,9 @@ class Webstore::Customer
 
   def route_id
     customer.route.id if active?
+  end
+
+  def address
+    customer.address if existing_customer?
   end
 end
