@@ -2,23 +2,28 @@ require_relative '../../../app/models/webstore/order'
 
 describe Webstore::Order do
   class Box; end
+  class Distributor; end
+  class Customer; end
+  class Route; end
 
-  let(:box)         { double('box') }
-  let(:box_class)   { double('box_class', find: box ) }
-  let(:money_class) { double('money_class') }
-  let(:args)        { { id: 1, box_id: 1, box_class: box_class, money_class: money_class } }
-  let(:order)       { Webstore::Order.new(args) }
+  let(:box)   { double('box') }
+  let(:cart)  { double('cart') }
+  let(:args)  { { cart: cart } }
+  let(:order) { Webstore::Order.new(args) }
+
+  before { order.stub(:get_box) { box } }
 
   describe '#add_product' do
     it 'adds a product to the order' do
-      order.stub(:get_box) { box }
-      order.add_product(product_id: 1).should eq(box)
+      order.add_product(1).should eq(box)
     end
   end
 
   describe '#box_image' do
     it 'returns a box image' do
       box.stub(:webstore_image_url) { 'image.png' }
+      order = Webstore::Order.new
+      order.stub(:box) { box }
       order.box_image.should eq('image.png')
     end
   end
@@ -39,13 +44,15 @@ describe Webstore::Order do
 
   describe '#box_price' do
     it 'returns a box price' do
+      order_price_class = double('order_price_class', discounted: 5)
       box.stub(:price) { 1 }
-      order.box_price.should eq(1)
+      order.box_price(order_price_class).should eq(5)
     end
   end
 
   describe '#has_exclusions?' do
     it 'returns true if the order has exclusions' do
+      order.stub(:exclusions) { [double('exclusion')] }
       order.has_exclusions?.should eq(true)
     end
   end
@@ -75,60 +82,71 @@ describe Webstore::Order do
     end
   end
 
-  describe '#extra_price' do
+  describe '#extras_price' do
     it 'returns the total price of the extras' do
-      money_class.stub(:new) { 1 }
-      order.extras_price.should eq(1)
+      expected_array = [ double('tuple1'), double('tuple2') ]
+      order.stub(:extras_as_hashes)
+      order_price_class = double('order_price_class', extras_price: expected_array)
+      order.extras_price(order_price_class).should eq(expected_array)
     end
   end
 
   describe '#scheduled?' do
     it 'return true if the order has a schedule' do
-      order.scheduled?.should eq(true)
+      order.stub(:frequency) { double('frequency') }
+      order.is_scheduled?.should eq(true)
     end
   end
 
   describe '#schedule' do
     it 'returns the schedule for when this order should be delivered' do
-      order.schedule.should eq('Weekly')
+      schedule = double('schedule')
+      schedule_builder_class = double('schedule_builder_class', build: schedule)
+      order.schedule(schedule_builder_class).should eq(schedule)
     end
   end
 
   describe '#delivery_fee' do
     it 'return the delivery fee' do
-      money_class.stub(:new) { 1 }
-      order.discount.should eq(1)
+      order_price_class = double('order_price_class', discounted: 5)
+      order.stub(:route) { double('route', fee: 5) }
+      order.delivery_fee(order_price_class).should eq(5)
     end
   end
 
   describe '#has_bucky_fee?' do
     it 'return true if there is a bucky fee' do
+      order.stub(:distributor) { double('distributor', separate_bucky_fee?: true) }
       order.has_bucky_fee?.should eq(true)
     end
   end
 
   describe '#bucky_fee' do
     it 'returns the bucky fee' do
-      money_class.stub(:new) { 1 }
+      order.stub(:distributor) { double('distributor', consumer_delivery_fee: 1) }
       order.bucky_fee.should eq(1)
     end
   end
 
   describe '#has_total?' do
     it 'returns true if can calculate a total' do
+      order.stub(:information) { { complete: false } }
       order.has_total?.should eq(true)
     end
   end
 
   describe '#discount' do
     it 'returns the discount on the order' do
-      money_class.stub(:new) { 1 }
-      order.discount.should eq(1)
+      order_price_class = double('order_price_class', discounted: 5)
+      order.stub(:total) { 3 }
+      order.discount(order_price_class).should eq(2)
     end 
   end
 
   describe '#has_discount?' do
     it 'returns true if there is a discount on the order' do
+      customer = double('customer', discount?: true)
+      order.stub(:customer) { customer }
       order.has_discount?.should eq(true)
     end
   end
@@ -141,9 +159,9 @@ describe Webstore::Order do
       order.stub(:bucky_fee)      { 1 }
       order.stub(:discount)       { 1 }
       order.stub(:has_extras?)    { false }
-      order.stub(:scheduled?)     { false }
+      order.stub(:is_scheduled?)  { false }
       order.stub(:has_bucky_fee?) { false }
-      order.stub(:has_total?)     { false }
+      order.stub(:has_discount?)  { false }
     end
 
     it 'returns the total cost of the order with only box price' do
@@ -151,28 +169,28 @@ describe Webstore::Order do
     end
 
     it 'returns the total cost of the order with only box price' do
-      order.stub(:has_extras?)    { true }
+      order.stub(:has_extras?) { true }
       order.total.should eq(2)
     end
 
     it 'returns the total cost of the order with only box price' do
-      order.stub(:has_extras?)    { true }
-      order.stub(:scheduled?)     { true }
+      order.stub(:has_extras?)   { true }
+      order.stub(:is_scheduled?) { true }
       order.total.should eq(3)
     end
 
     it 'returns the total cost of the order with only box price' do
       order.stub(:has_extras?)    { true }
-      order.stub(:scheduled?)     { true }
+      order.stub(:is_scheduled?)  { true }
       order.stub(:has_bucky_fee?) { true }
       order.total.should eq(4)
     end
 
     it 'returns the total cost of the order with only box price' do
       order.stub(:has_extras?)    { true }
-      order.stub(:scheduled?)     { true }
+      order.stub(:is_scheduled?)  { true }
       order.stub(:has_bucky_fee?) { true }
-      order.stub(:has_total?)     { true }
+      order.stub(:has_discount?)     { true }
       order.total.should eq(5)
     end
   end

@@ -22,7 +22,6 @@ describe 'select a product from the webstore' do
   end
 
   it 'loads the customise step' do
-    save_and_open_page
     expect(page).to have_content box_name
     expect(page).to have_content box_description
     expect(page).to have_content box_price
