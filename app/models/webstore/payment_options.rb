@@ -1,7 +1,10 @@
 require_relative 'form'
 require_relative '../webstore'
+require_relative 'payment_instructions'
 
 class Webstore::PaymentOptions < Webstore::Form
+  include Webstore::PaymentInstructions
+
   attribute :cart
   attribute :name,              String
   attribute :phone_number,      String
@@ -24,108 +27,74 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :require_postcode,   if: :require_postcode?
   validates_presence_of :payment_method
 
-  def only_one_payment_option?
-    distributor.only_one_payment_option?
+  def existing_customer?
+    !customer.guest?
+  end
+
+  def address
+    #current_customer && current_customer.address
+    customer.address
   end
 
   def name
-    #existing_customer? && current_customer.name
-    'Holdername'
+    existing_customer? ? customer.name : self.name
   end
 
   def phone_number
     #address.phones.default_number
-    '123'
+    customer.phone_number
   end
 
   def phone_type
     #address.phones.default_type
-    'mobile'
+    customer.phone_type
   end
 
   def street_address
     #address.address_1
-    '123'
+    customer.street_address
   end
 
   def street_address_2
     #address.address_2
-    '123'
+    customer.street_address_2
   end
 
   def suburb
     #address.suburb
-    'burb'
+    customer.suburb
   end
 
   def city
     #@distributor.invoice_information.billing_city if @distributor.invoice_information
     #address.city
-    'city'
+    customer.city
   end
 
   def postcode
     #address.postcode
-    'e3e'
+    customer.postcode
   end
 
   def delivery_note
     #address.delivery_note
-    'this that'
+    customer.delivery_note
   end
 
-  def payment_method
-    #'value'
-    'paid'
-  end
-
-  def address
-    #current_customer && current_customer.address
-    ['12 Customer St']
-  end
-
-  def amount_due
-    #closing_balance.negative
-    Money.new(0)
-  end
-
-  def existing_customer?
-    #current_customer && current_customer.persisted?
-    true
-  end
-
-  def positive_closing_balance?
-    #customer_signed_in? && @closing_balance.positive?
-    false
+  def only_one_payment_option?
+    distributor.only_one_payment_option?
   end
 
   def collect_phone?
-    #@distributor.collect_phone?
-    true
+    distributor.collect_phone?
   end
 
-  def has_address?
-    #existing_customer?
-    false
+  def phone_types(phone_collection_class = ::PhoneCollection)
+    phone_collection_class.types_as_options
   end
 
-  def payment_required
-    #closing_balance.negative?
-    true
-  end
-
-  def phone_types
-    PhoneCollection::TYPES.each_key.map do |type|
-      [ type.capitalize, type ]
-    end
-  end
-
-  def payment_list
-    PaymentOption.options(distributor)
-  end
-
-  def payment_instructions
-    Webstore::PaymentInstructions.new(cart)
+  def payment_list(payment_options_class = ::PaymentOption)
+    payment_options_class.options(distributor)
   end
 
   def to_h
@@ -148,6 +117,10 @@ private
 
   def distributor
     cart.distributor
+  end
+
+  def customer
+    cart.customer
   end
 
   def require_phone?

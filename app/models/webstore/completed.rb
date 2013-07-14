@@ -2,6 +2,8 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::Completed < Webstore::Form
+  include Webstore::PaymentInstructions
+
   attribute :cart
 
   def distributor_parameter_name
@@ -11,15 +13,6 @@ class Webstore::Completed < Webstore::Form
   def existing_customer?
     #current_customer && current_customer.persisted?
     true
-  end
-
-  def payment_method
-    #'value'
-    :bank_deposit
-  end
-
-  def payment_instructions
-    Webstore::PaymentInstructions.new(cart)
   end
 
   def payment_message
