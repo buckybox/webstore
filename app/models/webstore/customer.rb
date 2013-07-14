@@ -7,9 +7,10 @@ class Webstore::Customer
   attr_reader :customer
   attr_reader :cart
 
-  GUEST_NAME   = 'Guest'
-  GUEST_HALTED = false
-  GUEST_ACTIVE = false
+  GUEST_HALTED     = false
+  GUEST_DISCOUNTED = false
+  GUEST_ACTIVE     = false
+  GUEST_NAME       = 'Guest'
 
   def initialize(args = {})
     @cart        = args.fetch(:cart, nil)
@@ -29,12 +30,16 @@ class Webstore::Customer
     ( guest? ? GUEST_HALTED : customer.halted? )
   end
 
-  def name
-    ( guest? ? GUEST_NAME : customer.name )
+  def discount?
+    ( guest? ? GUEST_DISCOUNTED : customer.discount? )
   end
 
   def active?
     ( guest? ? GUEST_ACTIVE : customer.active? )
+  end
+
+  def name
+    ( guest? ? GUEST_NAME : customer.name )
   end
 
   def distributor_parameter_name
@@ -47,5 +52,9 @@ class Webstore::Customer
 
   def address
     customer.address if existing_customer?
+  end
+
+  def real_customer
+    customer
   end
 end

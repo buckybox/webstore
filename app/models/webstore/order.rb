@@ -1,6 +1,6 @@
 require 'draper'
-require 'money'
 require_relative '../webstore'
+require_relative '../order_price'
 
 class Webstore::Order
   include Draper::Decoratable
@@ -9,12 +9,14 @@ class Webstore::Order
   attr_reader :box
 
   def initialize(args = {})
-    args         = defaults.merge(args)
-    @money_class = args[:money_class]
-    @box_class   = args[:box_class]
     @cart        = args[:cart]
-    @box         = get_box(args)
+    @box         = args[:box]
     @information = {}
+    @route_class = args.fetch(:route_class, Route)
+  end
+
+  def add_product(product_id, box_class = Box)
+    self.box = box_class.where(id: product_id).first
   end
 
   def add_information(new_information)
@@ -26,24 +28,16 @@ class Webstore::Order
     !!exclusions
   end
 
-  def exclusion_line_items
-    LineItem.where(id: exclusions)
-  end
-
   def has_substitutions?
     !!substitutions
   end
 
-  def substitution_line_items
-    LineItem.where(id: substitutions)
-  end
-
   def has_extras?
-    !!information[:extras]
+    !!extras
   end
 
   def is_scheduled?
-    !!information[:frequency]
+    !!frequency
   end
 
   def has_bucky_fee?
@@ -58,6 +52,23 @@ class Webstore::Order
     customer.discount?
   end
 
+  def for_halted_customer?
+    customer.halted?
+  end
+
+  def exclusion_line_items(line_item_class = LineItem)
+    line_item_class.where(id: exclusions)
+  end
+
+  def substitution_line_items(line_item_class = LineItem)
+    line_item_class.where(id: substitutions)
+  end
+
+  def extras_as_objects(extra_class = Extra)
+    extra_ids = extras.keys
+    extra_class.where(id: extra_ids)
+  end
+
   def total
     result = box_price
     result += extras_price if has_extras?
@@ -67,32 +78,28 @@ class Webstore::Order
     result
   end
 
-  def box_price
-    OrderPrice.discounted(box.price, customer)
+  def box_price(order_price_class = OrderPrice)
+     order_price_class.discounted(box.price, real_customer)
   end
 
-  def extras_price
-    OrderPrice.extras_price(extras_hash, customer)
+  def extras_price(order_price_class = OrderPrice)
+    order_price_class.extras_price(extras_as_hashes, real_customer)
   end
 
-  def delivery_fee
-    OrderPrice.discounted(route.fee, customer)
+  def delivery_fee(order_price_class = OrderPrice)
+    order_price_class.discounted(route_fee, real_customer)
   end
 
   def bucky_fee
     distributor.consumer_delivery_fee
   end
 
-  def discount
-    OrderPrice.discounted(total, customer) - total
+  def discount(order_price_class = OrderPrice)
+    order_price_class.discounted(total, real_customer) - total
   end
 
   def extras_list
     box.available_extras
-  end
-
-  def add_product(product_id)
-    self.box = get_box(box_id: product_id)
   end
 
   def box_image
@@ -107,66 +114,46 @@ class Webstore::Order
     box.description
   end
 
-  def extras
-    extra_ids = information[:extras].keys
-    Extra.where(id: extra_ids)
-  end
-
   def extra_quantity(extra)
     extra_id = extra.id
-    information[:extras][extra_id]
+    extras[extra_id]
   end
 
-  def schedule
-    @schedule ||= ScheduleBuilder.build({
-      start_date:  information[:start_date],
-      frequency:   information[:frequency],
-      days:        information[:days],
+  def schedule(schedule_builder_class = ScheduleBuilder)
+    @schedule ||= schedule_builder_class.build({
+      start_date:  start_date,
+      frequency:   frequency,
+      days:        days,
     })
-  end
-
-  def for_halted_customer?
-    customer.halted?
-  end
-
-  def has_extras?
-    !!information[:extras]
   end
 
 private
 
   attr_accessor :information
 
-  attr_reader :box_class
-  attr_reader :money_class
+  attr_reader :route_class
 
   attr_writer :box
-
-  def defaults
-    { box_class: Box, money_class: Money }
-  end
-
-  def get_box(args)
-    box = box_class.new(args[:box]) if args[:box]
-    box = box_class.find(args[:box_id]) if args[:box_id]
-    box
-  end
 
   def distributor
     cart ? cart.distributor : Distributor.new
   end
 
+  def route_fee
+    route = route_class.where(id: route_id).first
+    route.fee if route
+  end
+
   def customer
-    cart ? cart.customer.customer : Customer.new
+    cart ? cart.customer : Webstore::Customer.new
   end
 
-  def route
-    route_id = information[:route_id]
-    route_id ? Route.find(route_id) : Route.new
+  def real_customer
+    customer.real_customer
   end
 
-  def extras_hash
-    extras_hash  = extras.each_with_object({}) { |extra, hash| hash[extra] = extra_count(extra.id) }
+  def extras_as_hashes
+    extras_hash  = extras_as_objects.each_with_object({}) { |extra, hash| hash[extra] = extra_quantity(extra) }
     extras_hash.map { |extra, count| extra_as_hash(extra, count) }
   end
 
@@ -180,15 +167,31 @@ private
     }
   end
 
-  def extra_count(extra_id)
-    information[:extras][extra_id]
-  end
-
   def exclusions
     information[:likes]
   end
 
   def substitutions
     information[:dislikes]
+  end
+
+  def frequency
+    information[:frequency]
+  end
+
+  def start_date
+    information[:start_date]
+  end
+
+  def days
+    information[:days]
+  end
+
+  def extras
+    information[:extras]
+  end
+
+  def route_id
+    information[:route_id]
   end
 end
