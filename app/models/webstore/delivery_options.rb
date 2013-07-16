@@ -26,7 +26,7 @@ class Webstore::DeliveryOptions < Webstore::Form
   end
 
   def can_change_route?
-    !!existing_route_id
+    !existing_route_id
   end
 
   def routes

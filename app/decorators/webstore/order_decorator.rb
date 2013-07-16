@@ -30,7 +30,7 @@ class Webstore::OrderDecorator < Draper::Decorator
   end
 
   def extras(extra_decorator = ExtraDecorator)
-    e = object.extras
+    e = object.extras_as_objects
     extra_decorator.decorate_collection(e)
   end
 
