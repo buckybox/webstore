@@ -10,13 +10,6 @@ describe Webstore::PaymentOptions do
   class PhoneCollection; end
   class PaymentOption; end
 
-  describe '#existing_customer?' do
-    it 'returns true if the customer is an existing one' do
-      customer.stub(:guest?) { false }
-      payment_options.existing_customer?.should be_true
-    end
-  end
-
   describe '#address' do
     it 'returns an customers address' do
       address = double('address')
@@ -25,18 +18,59 @@ describe Webstore::PaymentOptions do
     end
   end
 
-  describe '#name' do
-    it 'returns an customers name' do
-      customer.stub(:guest?) { false }
-      customer.stub(:name) { 'name' }
-      payment_options.name.should eq('name')
+  describe '#phone_number' do
+    it 'retuns a customer phone number' do
+      address = double('address', default_phone_number: '123')
+      customer.stub(:address) { address }
+      payment_options.phone_number.should eq('123')
     end
   end
 
-  describe '#phone_number' do
-    it 'retuns a customer phone number' do
-      customer.stub(:phone_number) { 123 }
-      payment_options.phone_number.should eq(123)
+  describe '#phone_type' do
+    it 'retuns a customer phone type' do
+      address = double('address', default_phone_type: 'mobile')
+      customer.stub(:address) { address }
+      payment_options.phone_type.should eq('mobile')
+    end
+  end
+
+  describe '#street_address' do
+    it 'retuns a customer street address' do
+      address = double('address', address_1: '1 St')
+      customer.stub(:address) { address }
+      payment_options.street_address.should eq('1 St')
+    end
+  end
+
+  describe '#street_address_2' do
+    it 'retuns a customer street address 2' do
+      address = double('address', address_2: 'Apt 2')
+      customer.stub(:address) { address }
+      payment_options.street_address_2.should eq('Apt 2')
+    end
+  end
+
+  describe '#suburb' do
+    it 'retuns a customer suburb' do
+      address = double('address', suburb: 'Burb')
+      customer.stub(:address) { address }
+      payment_options.suburb.should eq('Burb')
+    end
+  end
+
+  describe '#city' do
+    it 'retuns a customer city' do
+      address = double('address', city: 'Wellington')
+      customer.stub(:address) { address }
+      payment_options.city.should eq('Wellington')
+    end
+  end
+
+  describe '#postcode' do
+    it 'retuns a customer postcode' do
+      address = double('address', postcode: '11111')
+      customer.stub(:address) { address }
+      payment_options.postcode.should eq('11111')
     end
   end
 
@@ -53,6 +87,21 @@ describe Webstore::PaymentOptions do
       money = double('money', '*' => -12)
       payment_options.stub(:closing_balance) { money }
       payment_options.amount_due.should eq(-12)
+    end
+  end
+
+  describe '#existing_customer?' do
+    it 'returns true if the customer is an existing one' do
+      customer.stub(:guest?) { false }
+      payment_options.existing_customer?.should be_true
+    end
+  end
+
+  describe '#name' do
+    it 'returns an customers name' do
+      customer.stub(:guest?) { false }
+      customer.stub(:name) { 'name' }
+      payment_options.name.should eq('name')
     end
   end
 
