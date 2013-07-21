@@ -62,6 +62,7 @@ describe Webstore::PaymentOptions do
     it 'retuns a customer city' do
       address = double('address', city: 'Wellington')
       customer.stub(:address) { address }
+      customer.stub(:guest?) { false }
       payment_options.city.should eq('Wellington')
     end
   end
@@ -137,17 +138,33 @@ describe Webstore::PaymentOptions do
 
   describe '#to_h' do
     it 'returns a hash of the important form data' do
+      address = double('address',
+        default_phone_number:  '123',
+        default_phone_type:    'mobile',
+        address_1:             '12 St',
+        address_2:             'Apt 2',
+        suburb:                'burb',
+        city:                  'city',
+        postcode:              '123',
+        delivery_note:         'notes',
+      )
+
+      customer.stub(:guest?)         { false }
+      customer.stub(:name)           { 'name' }
+      customer.stub(:address)        { address }
+      customer.stub(:payment_method) { 'COD' }
+
       payment_options.name           = 'name'
       payment_options.phone_number   = '123'
-      payment_options.phone_type     = 'phone type'
+      payment_options.phone_type     = 'mobile'
       payment_options.street_address = '12 St'
       payment_options.suburb         = 'burb'
       payment_options.city           = 'city'
       payment_options.postcode       = '123'
       payment_options.delivery_note  = 'deliver'
-      payment_options.payment_method = 'pay method'
+      payment_options.payment_method = 'COD'
       payment_options.complete       = true
-      payment_options.to_h.should eq({ email: 'test@example.com', password: 'password' })
+      payment_options.to_h.should eq({ name: "name", phone_number: "123", phone_type: "mobile", street_address: "12 St", street_address_2: "Apt 2", suburb: "burb", city: "city", postcode: "123", delivery_note: "notes", payment_method: "COD", complete: true })
     end
   end
 end

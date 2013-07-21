@@ -14,10 +14,10 @@ describe Webstore::DeliveryOptions do
     end
   end
 
-  describe '#can_change_route' do
+  describe '#can_change_route?' do
     it 'returns true if the there is not an existing route' do
       delivery_options.stub(:existing_route_id) { 3 }
-      delivery_options.can_change_route?.should be_true
+      delivery_options.can_change_route?.should be_false
     end
   end
 

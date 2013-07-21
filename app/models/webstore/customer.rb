@@ -51,7 +51,7 @@ class Webstore::Customer
   end
 
   def address
-    customer.address if existing_customer?
+    guest? ? NullObject.new : customer.address
   end
 
   def real_customer

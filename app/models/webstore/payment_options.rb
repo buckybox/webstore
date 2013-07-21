@@ -27,58 +27,48 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :require_postcode,   if: :require_postcode?
   validates_presence_of :payment_method
 
+  def address
+    customer.address
+  end
+
+  def phone_number
+    address.default_phone_number
+  end
+
+  def phone_type
+    address.default_phone_type
+  end
+
+  def street_address
+    address.address_1
+  end
+
+  def street_address_2
+    address.address_2
+  end
+
+  def suburb
+    address.suburb
+  end
+
+  def postcode
+    address.postcode
+  end
+
+  def delivery_note
+    address.delivery_note
+  end
+
+  def city
+    existing_customer? ? address.city : distributor.city
+  end
+
   def existing_customer?
     !customer.guest?
   end
 
-  def address
-    #current_customer && current_customer.address
-    customer.address
-  end
-
   def name
-    existing_customer? ? customer.name : self.name
-  end
-
-  def phone_number
-    #address.phones.default_number
-    customer.phone_number
-  end
-
-  def phone_type
-    #address.phones.default_type
-    customer.phone_type
-  end
-
-  def street_address
-    #address.address_1
-    customer.street_address
-  end
-
-  def street_address_2
-    #address.address_2
-    customer.street_address_2
-  end
-
-  def suburb
-    #address.suburb
-    customer.suburb
-  end
-
-  def city
-    #@distributor.invoice_information.billing_city if @distributor.invoice_information
-    #address.city
-    customer.city
-  end
-
-  def postcode
-    #address.postcode
-    customer.postcode
-  end
-
-  def delivery_note
-    #address.delivery_note
-    customer.delivery_note
+    customer.name if existing_customer?
   end
 
   def only_one_payment_option?
