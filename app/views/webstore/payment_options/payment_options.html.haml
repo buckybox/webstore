@@ -47,7 +47,7 @@
             .span12
               = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
 
-  - if form_object.existing_customer?
+  - if payment_options.existing_customer?
     .row-fluid.webstore-section
       = render partial: 'webstore/payment_instructions', locals: { form_object: payment_options }
 

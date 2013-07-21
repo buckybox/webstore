@@ -1,7 +1,7 @@
 - title('Webstore - Completed Order', false)
 = render partial: 'webstore/sidebar'
 
-- if form_object.existing_customer?
+- if completed.existing_customer?
   .row-fluid.span12
     .important Payment instructions
     = render partial: 'webstore/payment_instructions', locals: { form_object: completed }
