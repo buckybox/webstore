@@ -3,7 +3,7 @@ class Webstore::PaymentOptionsController < Webstore::BaseController
     render 'payment_options', locals: {
       order: current_order.decorate,
       payment_options: Webstore::PaymentOptions.new(cart: current_cart),
-      payment_instructions: Webstore::PaymentInstructionsDecorator.decorate(current_cart.payment_instructions),
+      cart: Webstore::PaymentDecorator.decorate(current_cart),
     }
   end
 
@@ -26,7 +26,7 @@ private
     render 'payment_options', locals: {
       order: current_order.decorate,
       delivery_options: payment_options,
-      payment_instructions: Webstore::PaymentInstructionsDecorator.decorate(current_cart.payment_instructions),
+      cart: Webstore::PaymentDecorator.decorate(current_cart),
     }
   end
 end

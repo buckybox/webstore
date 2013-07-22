@@ -12,9 +12,22 @@ class Webstore::Completed < Webstore::Form
     cart.distributor_parameter_name
   end
 
-  def existing_customer?
-    #current_customer && current_customer.persisted?
-    true
+  def customer_name
+    customer.name
+  end
+
+  def customer_address
+    address.join('<br>')
+  end
+
+  def next_delivery_occurrence
+    #@schedule_rule.next_occurrence.to_s(:day_month_date_year)
+    '2013-12-12'
+  end
+
+  def schedule_description
+    #@schedule_rule
+    'Delivery monthly on the first Thursday'
   end
 
   def payment_message
@@ -50,29 +63,13 @@ class Webstore::Completed < Webstore::Form
     '0013'
   end
 
-  def customer_name
-    #@customer.name
-    'customer name'
-  end
-
-  def customer_address
-    #@address.join('<br>')
-    '123 Street Ad'
-  end
-
-  def next_delivery_occurrence
-    #@schedule_rule.next_occurrence.to_s(:day_month_date_year)
-    '2013-12-12'
-  end
-
-  def schedule_description
-    #@schedule_rule
-    'Delivery monthly on the first Thursday'
-  end
-
 private
 
   def customer
     cart.customer
+  end
+
+  def address
+    customer.address
   end
 end

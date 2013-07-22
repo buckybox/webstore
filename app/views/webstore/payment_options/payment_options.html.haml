@@ -56,9 +56,9 @@
       .row-fluid
         #amount-due.span12
           .row-fluid.important
-            - if payment_instructions.payment_required?
+            - if cart.payment_required?
               .span10 Total amount due
-              .span2.text-right.total_price= payment_instructions.amount_due
+              .span2.text-right.total_price= payment.amount_due
             - else
               .span10 Your account is in credit
 
@@ -67,7 +67,7 @@
       - else
         .row-fluid
           #payment-options.span12
-            - if payment_instructions.payment_required?
+            - if cart.payment_required?
               = render partial: 'payment_methods', locals: { f: f, form_object: payment_options }
             - else
               .span12.text-center No payment necessary

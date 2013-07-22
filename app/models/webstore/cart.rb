@@ -75,8 +75,28 @@ class Webstore::Cart
     order.has_extras?
   end
 
-  def payment_instructions
-    @payment_instructions ||= Webstore::PaymentInstructions.new(customer: customer, order: order)
+  def payment_method
+    order.payment_method
+  end
+
+  def payment_required?
+    closing_balance.negative?
+  end
+
+  def closing_balance
+    current_balance - order_price
+  end
+
+  def current_balance
+    customer.account_balance
+  end
+
+  def order_price
+    order.total
+  end
+
+  def amount_due
+    -closing_balance
   end
 
 private
