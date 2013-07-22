@@ -57,4 +57,8 @@ class Webstore::Customer
   def real_customer
     customer
   end
+
+  def account_balance
+    customer ? customer.account_balance : Money.new(0)
+  end
 end

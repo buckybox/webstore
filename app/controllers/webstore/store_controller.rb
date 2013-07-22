@@ -18,7 +18,8 @@ class Webstore::StoreController < Webstore::BaseController
   def completed
     render 'completed', locals: { 
       order: current_order.decorate,
-      completed: Webstore::Completed.new(cart: current_cart)
+      completed: Webstore::Completed.new(cart: current_cart),
+      payment_instructions: Webstore::PaymentInstructionsDecorator.decorate(current_cart.payment_instructions),
     }
   end
 

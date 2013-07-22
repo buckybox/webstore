@@ -2,9 +2,11 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::Completed < Webstore::Form
-  include Webstore::PaymentInstructions
-
   attribute :cart
+
+  def existing_customer?
+    !customer.guest?
+  end
 
   def distributor_parameter_name
     cart.distributor_parameter_name
@@ -66,5 +68,11 @@ class Webstore::Completed < Webstore::Form
   def schedule_description
     #@schedule_rule
     'Delivery monthly on the first Thursday'
+  end
+
+private
+
+  def customer
+    cart.customer
   end
 end

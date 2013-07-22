@@ -127,6 +127,10 @@ class Webstore::Order
     })
   end
 
+  def payment_method
+    information[:payment_method]
+  end
+
 private
 
   attr_accessor :information
@@ -139,13 +143,16 @@ private
     cart ? cart.distributor : Distributor.new
   end
 
-  def route_fee
-    route = route_class.where(id: route_id).first
-    route.fee if route
+  def route
+    route_class.where(id: route_id).first
   end
 
   def customer
     cart ? cart.customer : Webstore::Customer.new
+  end
+
+  def route_fee
+    route.fee if route
   end
 
   def real_customer

@@ -75,6 +75,10 @@ class Webstore::Cart
     order.has_extras?
   end
 
+  def payment_instructions
+    @payment_instructions ||= Webstore::PaymentInstructions.new(customer: customer, order: order)
+  end
+
 private
 
   attr_writer :id

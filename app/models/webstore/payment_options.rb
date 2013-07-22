@@ -3,8 +3,6 @@ require_relative '../webstore'
 require_relative 'payment_instructions'
 
 class Webstore::PaymentOptions < Webstore::Form
-  include Webstore::PaymentInstructions
-
   attribute :cart
   attribute :name,              String
   attribute :phone_number,      String
