@@ -43,6 +43,10 @@ class Webstore::Cart
     order.add_product(product_id)
   end
 
+  def existing_customer
+    customer.existing_customer
+  end
+
   def distributor
     customer.distributor
   end

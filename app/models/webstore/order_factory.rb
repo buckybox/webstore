@@ -2,19 +2,81 @@ require_relative '../webstore'
 require_relative '../order'
 
 class Webstore::OrderFactory
-
-  def initialize cart
-    @cart = cart
+  def self.assemble(args)
+    order_factory = new(args)
+    order_factory.assemble
   end
 
-  def create_order!
-    Order.create! order
+  def initialize(args)
+    @cart     = args[:cart]
+    @customer = args[:customer]
+    @order    = Order.new
+    derive_data
+  end
+
+  def assemble
+    prepare_order
+    order.save
   end
 
 private
 
-  def order
-    @cart.order
+  attr_reader :cart
+  attr_reader :customer
+  attr_reader :webstore_order
+  attr_reader :order
+
+  def prepare_order
+    order.box                       = box
+    order.account                   = account
+    order.schedule_rule_attributes  = schedule_rule
+    order.order_extras              = order_extras
+    order.extras_one_off            = extras_one_off
+    order.excluded_line_item_ids    = excluded_line_item_ids
+    order.substituted_line_item_ids = substituted_line_item_ids
+    order.completed!
+    order
   end
 
+  def box
+    webstore_order.box
+  end
+
+  def account
+    customer.account
+  end
+
+  def schedule_rule
+    webstore_order.schedule.clone_attributes
+  end
+
+  def order_extras
+    extra_id_and_counts.each_with_object({}) do |extra, hash|
+      hash[extra.key] = { count: extra.value }
+    end
+  end
+
+  def extras_one_off
+    webstore_order.extra_frequency
+  end
+
+  def extra_id_and_counts
+    webstore_order.extras
+  end
+
+  def excluded_line_item_ids
+    webstore_order.exclusions
+  end
+
+  def substituted_line_item_ids
+    webstore_order.substitutions
+  end
+
+  def derive_data
+    self.webstore_order = get_webstore_order
+  end
+
+  def get_order(cart)
+    cart.order
+  end
 end

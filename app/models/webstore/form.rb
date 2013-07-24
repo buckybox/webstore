@@ -6,8 +6,9 @@ require 'active_model/translation'
 require_relative '../webstore'
 
 class Webstore::Form
-  include Virtus
   extend ActiveModel::Naming
+
+  include Virtus
   include ActiveModel::Conversion
   include ActiveModel::Validations
 

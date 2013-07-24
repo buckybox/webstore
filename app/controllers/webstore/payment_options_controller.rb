@@ -15,9 +15,12 @@ class Webstore::PaymentOptionsController < Webstore::BaseController
 
 private
 
+  def finalise_webstore_order
+    Webstore::Factory.assemble(cart: cart)
+  end
+
   def successful_payment_options
-    # Temp reminder. Do this when it makes sense
-    #CustomerLogin.track(@webstore_order.customer) unless current_admin.present?
+    finalise_webstore_order
     redirect_to webstore_completed_path, notice: 'Your order has been placed.'
   end
 

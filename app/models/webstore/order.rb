@@ -7,6 +7,7 @@ class Webstore::Order
 
   attr_reader :cart
   attr_reader :box
+  attr_reader :information
 
   def initialize(args = {})
     @cart        = args[:cart]
@@ -79,15 +80,15 @@ class Webstore::Order
   end
 
   def box_price(order_price_class = OrderPrice)
-     order_price_class.discounted(box.price, real_customer)
+     order_price_class.discounted(box.price, existing_customer)
   end
 
   def extras_price(order_price_class = OrderPrice)
-    order_price_class.extras_price(extras_as_hashes, real_customer)
+    order_price_class.extras_price(extras_as_hashes, existing_customer)
   end
 
   def delivery_fee(order_price_class = OrderPrice)
-    order_price_class.discounted(route_fee, real_customer)
+    order_price_class.discounted(route_fee, existing_customer)
   end
 
   def bucky_fee
@@ -95,7 +96,7 @@ class Webstore::Order
   end
 
   def discount(order_price_class = OrderPrice)
-    order_price_class.discounted(total, real_customer) - total
+    order_price_class.discounted(total, existing_customer) - total
   end
 
   def extras_list
@@ -127,17 +128,32 @@ class Webstore::Order
     })
   end
 
+  def exclusions
+    information[:likes]
+  end
+
+  def substitutions
+    information[:dislikes]
+  end
+
+  def extras
+    information[:extras]
+  end
+
+  def extra_frequency
+    information[:extra_frequency]
+  end
+
   def payment_method
     information[:payment_method]
   end
 
 private
 
-  attr_accessor :information
-
   attr_reader :route_class
 
   attr_writer :box
+  attr_writer :information
 
   def distributor
     cart ? cart.distributor : Distributor.new
@@ -155,8 +171,8 @@ private
     route.fee if route
   end
 
-  def real_customer
-    customer.real_customer
+  def existing_customer
+    cart.existing_customer
   end
 
   def extras_as_hashes
@@ -174,14 +190,6 @@ private
     }
   end
 
-  def exclusions
-    information[:likes]
-  end
-
-  def substitutions
-    information[:dislikes]
-  end
-
   def frequency
     information[:frequency]
   end
@@ -192,10 +200,6 @@ private
 
   def days
     information[:days]
-  end
-
-  def extras
-    information[:extras]
   end
 
   def route_id
