@@ -22,9 +22,9 @@ describe 'select a product from the webstore' do
 
   it 'loads the customise step' do
     click_button 'Order'
-    expect(page).to have_content box_name
-    expect(page).to have_content box_description
-    expect(page).to have_content box_price
+    expect(page).to have_content(box_name)
+    expect(page).to have_content(box_description)
+    expect(page).to have_content(box_price)
   end
 
   shared_examples_for 'it has exclusions' do
@@ -32,7 +32,7 @@ describe 'select a product from the webstore' do
       product.dislikes = true
       product.save
       click_button 'Order'
-      expect(page).to have_content 'Customise my box'
+      expect(page).to have_content('Customise my box')
     end
   end
 
@@ -41,7 +41,7 @@ describe 'select a product from the webstore' do
       product.extras_limit = -1
       product.save
       click_button 'Order'
-      expect(page).to have_content 'Add any amount of extra items'
+      expect(page).to have_content('Add any amount of extra items')
     end
   end
 

@@ -1,6 +1,5 @@
 require_relative 'form'
 require_relative '../webstore'
-require_relative 'payment_instructions'
 
 class Webstore::PaymentOptions < Webstore::Form
   attribute :cart
