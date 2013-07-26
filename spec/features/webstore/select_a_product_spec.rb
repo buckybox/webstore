@@ -1,60 +1,30 @@
-require_relative 'webstore_helper'
+require_relative '../../support/webstore/webstore_helper'
 
 describe 'select a product from the webstore' do
-  let(:distributor)     { Fabricate(:distributor) }
-  let(:box_name)        { 'Couples Box' }
-  let(:box_description) { 'This box is perfect for couples for a week!' }
-  let(:box_price)       { 21.50 }
-  let(:product) do
-    Fabricate(:box,
-      distributor:  distributor,
-      name:         box_name,
-      description:  box_description,
-      price:        box_price
-    )
-  end
+  include Webstore::StoreHelpers
+  include Webstore::CustomiseOrderHelpers
+  include Webstore::CustomerAuthorisationHelpers
+  include Webstore::DeliveryOptionsHelpers
 
-  before do
-    @distributor = distributor
-    setup_a_webstore(product)
-    visit webstore_store_path(distributor.parameter_name)
-  end
+  before { make_and_visit_a_webstore_with_products }
 
-  it 'loads the customise step' do
-    click_button 'Order'
-    expect(page).to have_content(box_name)
-    expect(page).to have_content(box_description)
-    expect(page).to have_content(box_price)
-  end
+  context 'customer not logged in' do
+    context 'when the product can be customised' do
+      it_behaves_like 'it is on the customise page'
+    end
 
-  shared_examples_for 'it has exclusions' do
-    it 'can be customised' do
-      product.dislikes = true
-      product.save
-      click_button 'Order'
-      expect(page).to have_content('Customise my box')
+    context 'when the product can not be customised' do
+      it_behaves_like 'it is on the customer authorisation page'
     end
   end
 
-  shared_examples_for 'it has extras' do
-    it 'extras can be added' do
-      product.extras_limit = -1
-      product.save
-      click_button 'Order'
-      expect(page).to have_content('Add any amount of extra items')
+  context 'when the customer is logged in' do
+    context 'when the product can be customised' do
+      it_behaves_like 'it is on the customise page'
     end
-  end
 
-  context 'ordering a product that allows exclusions' do
-    it_behaves_like 'it has exclusions'
-  end
-
-  context 'ordering a product that allows extras' do
-    it_behaves_like 'it has extras'
-  end
-
-  context 'ordering a product that allows both exclusions and extras' do
-    it_behaves_like 'it has exclusions'
-    it_behaves_like 'it has extras'
+    context 'when the product can not be customised' do
+      it_behaves_like 'it is on the delivery options page'
+    end
   end
 end
