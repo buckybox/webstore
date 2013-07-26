@@ -12,7 +12,7 @@ class Webstore::Order
   def initialize(args = {})
     @cart        = args[:cart]
     @box         = args[:box]
-    @information = {}
+    @information = args[:information] || {}
     @route_class = args.fetch(:route_class, Route)
   end
 

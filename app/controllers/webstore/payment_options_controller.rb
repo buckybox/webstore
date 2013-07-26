@@ -16,7 +16,7 @@ class Webstore::PaymentOptionsController < Webstore::BaseController
 private
 
   def finalise_webstore_order
-    Webstore::Factory.assemble(cart: cart)
+    Webstore::Factory.assemble(cart: current_cart)
   end
 
   def successful_payment_options

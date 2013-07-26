@@ -58,7 +58,9 @@
           .row-fluid.important
             - if cart.payment_required?
               .span10 Total amount due
-              .span2.text-right.total_price= payment.amount_due
+              .span2.text-right.total_price
+                ???
+                -# = payment.amount_due
             - else
               .span10 Your account is in credit
 

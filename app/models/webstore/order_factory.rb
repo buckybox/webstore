@@ -12,7 +12,7 @@ class Webstore::OrderFactory
   def initialize(args)
     @cart     = args[:cart]
     @customer = args[:customer]
-    @order    = Order.new
+    @order    = ::Order.new
     derive_data
   end
 
@@ -78,6 +78,6 @@ private
   end
 
   def get_webstore_order
-    OpenStruct.new(cart.order)
+    cart.order
   end
 end
