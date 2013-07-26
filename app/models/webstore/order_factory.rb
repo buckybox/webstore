@@ -2,6 +2,8 @@ require_relative '../webstore'
 require_relative '../order'
 
 class Webstore::OrderFactory
+  attr_reader :order
+
   def self.assemble(args)
     order_factory = new(args)
     order_factory.assemble
@@ -24,7 +26,6 @@ private
   attr_reader :cart
   attr_reader :customer
   attr_reader :webstore_order
-  attr_reader :order
 
   def prepare_order
     order.box                       = box
@@ -51,8 +52,8 @@ private
   end
 
   def order_extras
-    extra_id_and_counts.each_with_object({}) do |extra, hash|
-      hash[extra.key] = { count: extra.value }
+    extra_id_and_counts.each_with_object({}) do |(id, count), hash|
+      hash[id] = { count: count }
     end
   end
 
@@ -73,10 +74,10 @@ private
   end
 
   def derive_data
-    self.webstore_order = get_webstore_order
+    @webstore_order = get_webstore_order
   end
 
-  def get_order(cart)
-    cart.order
+  def get_webstore_order
+    OpenStruct.new(cart.order)
   end
 end

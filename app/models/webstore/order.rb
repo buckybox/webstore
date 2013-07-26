@@ -172,7 +172,7 @@ private
   end
 
   def existing_customer
-    cart.existing_customer
+    cart ? cart.existing_customer : nil
   end
 
   def extras_as_hashes
