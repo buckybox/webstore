@@ -2,8 +2,6 @@ require_relative '../webstore'
 require_relative '../order'
 
 class Webstore::OrderFactory
-  attr_reader :order
-
   def self.assemble(args)
     order_factory = new(args)
     order_factory.assemble
@@ -19,12 +17,14 @@ class Webstore::OrderFactory
   def assemble
     prepare_order
     order.save
+    order
   end
 
 private
 
   attr_reader :cart
   attr_reader :customer
+  attr_reader :order
   attr_reader :webstore_order
 
   def prepare_order

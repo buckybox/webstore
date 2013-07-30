@@ -28,7 +28,7 @@ private
     flash[:alert] = 'We\'re sorry there was an error saving your payment options.'
     render 'payment_options', locals: {
       order: current_order.decorate,
-      delivery_options: payment_options,
+      payment_options: payment_options,
       cart: Webstore::PaymentDecorator.decorate(current_cart),
     }
   end

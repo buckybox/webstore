@@ -6,6 +6,8 @@ class Webstore::CustomerAuthorisation < Webstore::Form
   attribute :email,     String
   attribute :password,  String
 
+  validates_presence_of :email
+
   AUTHORISATION_OPTIONS = [
     ["I'm a new customer",        'new'],
     ["I'm a returning customer",  'returning'],
