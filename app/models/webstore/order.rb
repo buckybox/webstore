@@ -13,10 +13,10 @@ class Webstore::Order
     @cart        = args[:cart]
     @box         = args[:box]
     @information = args[:information] || {}
-    @route_class = args.fetch(:route_class, Route)
+    @route_class = args.fetch(:route_class, ::Route)
   end
 
-  def add_product(product_id, box_class = Box)
+  def add_product(product_id, box_class = ::Box)
     self.box = box_class.where(id: product_id).first
   end
 
@@ -79,15 +79,15 @@ class Webstore::Order
     result
   end
 
-  def box_price(order_price_class = OrderPrice)
+  def box_price(order_price_class = ::OrderPrice)
      order_price_class.discounted(box.price, existing_customer)
   end
 
-  def extras_price(order_price_class = OrderPrice)
+  def extras_price(order_price_class = ::OrderPrice)
     order_price_class.extras_price(extras_as_hashes, existing_customer)
   end
 
-  def delivery_fee(order_price_class = OrderPrice)
+  def delivery_fee(order_price_class = ::OrderPrice)
     order_price_class.discounted(route_fee, existing_customer)
   end
 
@@ -95,7 +95,7 @@ class Webstore::Order
     distributor.consumer_delivery_fee
   end
 
-  def discount(order_price_class = OrderPrice)
+  def discount(order_price_class = ::OrderPrice)
     order_price_class.discounted(total, existing_customer) - total
   end
 
@@ -120,7 +120,7 @@ class Webstore::Order
     extras[extra_id]
   end
 
-  def schedule(schedule_builder_class = ScheduleBuilder)
+  def schedule(schedule_builder_class = ::ScheduleBuilder)
     @schedule ||= schedule_builder_class.build({
       start_date:  start_date,
       frequency:   frequency,
@@ -148,6 +148,10 @@ class Webstore::Order
     information[:payment_method]
   end
 
+  def customisable?
+    box.customisable?
+  end
+
 private
 
   attr_reader :route_class
@@ -156,7 +160,7 @@ private
   attr_writer :information
 
   def distributor
-    cart ? cart.distributor : Distributor.new
+    cart ? cart.distributor : ::Distributor.new
   end
 
   def route

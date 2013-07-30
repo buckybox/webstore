@@ -12,7 +12,7 @@ class Webstore::Checkout
   end
 
   def customer(customer_class = Webstore::Customer)
-    customer_class.new(logged_in_customer: logged_in_customer, distributor: distributor)
+    customer_class.new(customer: logged_in_customer, distributor: distributor)
   end
 
   def add_product!(product_id)

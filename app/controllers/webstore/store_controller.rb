@@ -12,7 +12,8 @@ class Webstore::StoreController < Webstore::BaseController
     checkout = Webstore::Checkout.new(distributor: current_distributor, logged_in_customer: logged_in_customer)
     @current_customer = checkout.customer
     distributors_customer?
-    checkout.add_product!(params[:product_id]) ? successful_new_checkout(checkout) : failed_new_checkout
+    product_id = params[:product_id]
+    checkout.add_product!(product_id) ? successful_new_checkout(checkout) : failed_new_checkout
   end
 
   def completed
@@ -27,11 +28,21 @@ private
 
   def successful_new_checkout(checkout)
     session[:cart_id] = checkout.cart_id
-    redirect_to webstore_customise_order_path
+    redirect_to next_step
   end
 
   def failed_new_checkout
     flash[:alert] = 'We\'re sorry there was an error starting your order.'
     redirect_to webstore_store_path
+  end
+
+  def next_step
+    return webstore_customise_order_path if current_order.customisable?
+
+    if current_customer.guest?
+      webstore_customer_authorisation_path
+    else
+      webstore_delivery_options_path
+    end
   end
 end

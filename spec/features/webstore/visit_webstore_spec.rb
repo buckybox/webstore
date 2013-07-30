@@ -3,7 +3,10 @@ require_relative '../../support/webstore/webstore_helper'
 describe 'visit the webstore homepage' do
   include Webstore::StoreHelpers
 
-  before { make_and_visit_a_webstore_with_products }
+  before do
+    make_a_webstore_with_products
+    visit webstore_store_path(@distributor.parameter_name)
+  end
 
   it 'shows the distributor information' do
     expect(page).to have_content(distributor_name)
