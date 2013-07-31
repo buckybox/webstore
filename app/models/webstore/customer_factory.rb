@@ -16,7 +16,7 @@ class Webstore::CustomerFactory
   def assemble
     prepare_address
     prepare_customer
-    customer.save
+    customer.save!
     customer
   end
 
@@ -29,7 +29,7 @@ private
   attr_reader :address
 
   def prepare_address
-    address.phone         = { number: phone_number, type:   phone_type }
+    address.phone         = { number: phone_number, type: phone_type }
     address.address_1     = address_1
     address.address_2     = address_2
     address.suburb        = suburb
@@ -40,15 +40,11 @@ private
   end
 
   def prepare_customer
-    if customer.valid?
-      customer.email          = email
-      customer.distributor_id = distributor_id
-      customer.route_id       = route_id
-      customer.first_name     = first_name
-      customer.address        = address
-    end
-
-    customer.first_name = first_name
+    customer.email          = email
+    customer.distributor_id = distributor_id
+    customer.route_id       = route_id
+    customer.name           = name
+    customer.address        = address
     customer.via_webstore!
     customer
   end
@@ -97,7 +93,7 @@ private
     information[:route_id]
   end
 
-  def first_name
+  def name
     information[:name]
   end
 

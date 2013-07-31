@@ -16,7 +16,7 @@ class Webstore::OrderFactory
 
   def assemble
     prepare_order
-    order.save
+    order.save!
     order
   end
 
