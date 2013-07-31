@@ -3,7 +3,7 @@ require_relative '../../support/webstore/webstore_helper'
 describe 'select a product from the webstore' do
   include Webstore::StoreHelpers
   include Webstore::CustomiseOrderHelpers
-  include Webstore::CustomerAuthorisationHelpers
+  include Webstore::AuthenticationHelpers
   include Webstore::DeliveryOptionsHelpers
 
   context 'when the product can be customised' do

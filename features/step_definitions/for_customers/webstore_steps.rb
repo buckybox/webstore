@@ -8,7 +8,7 @@ When /^I select a customisable box to order$/ do
 end
 
 Then /^I should be asked to customise the box$/ do
-  step "I should be viewing the customise step"
+  step "I should be viewing the customise_order step"
   step "I should not see a message"
 end
 
@@ -29,17 +29,17 @@ When /^I customise the box$/ do
 end
 
 Then "I should be asked to log in or sign up" do
-  step "I should be viewing the login step"
+  step "I should be viewing the authentication step"
   step "I should not see a message"
 end
 
 When /^I fill in my email address$/ do
-  fill_in :webstore_order_user_email, with: "starving.rabbit+#{SecureRandom.uuid}@example.net"
+  fill_in :webstore_authentication_user_email, with: "starving.rabbit+#{SecureRandom.uuid}@example.net"
   click_button "Next"
 end
 
 Then /^I should be asked to select my delivery frequency$/ do
-  step "I should be viewing the delivery step"
+  step "I should be viewing the delivery_options step"
   step "I should not see a message"
 end
 
@@ -55,12 +55,12 @@ Given "I am asked to select my delivery frequency" do
 end
 
 When /^I select a (.*) delivery frequency$/ do |frequency|
-  select frequency, from: :webstore_order_schedule_rule_frequency
+  select frequency, from: :webstore_delivery_options_frequency
   click_button "Next"
 end
 
 Then /^I should be asked for my delivery address$/ do
-  step "I should be viewing the complete step"
+  step "I should be viewing the payment_options step"
   step "I should not see a message"
 end
 
@@ -75,8 +75,8 @@ end
 
 When /^I (fill in|confirm) my delivery address$/ do |action|
   if action == "fill in"
-    fill_in :webstore_order_address_name, with: "Crazy Rabbit"
-    fill_in :webstore_order_address_street_address, with: "Rabbit Hole"
+    fill_in :webstore_payment_options_name, with: "Crazy Rabbit"
+    fill_in :webstore_payment_options_street_address, with: "Rabbit Hole"
   end
 
   expect {
@@ -119,7 +119,13 @@ Then /^I should be viewing the (.*) step$/ do |step|
   expected_path = webstore_step_path(step)
   current_path.should eq expected_path
 
-  page.should have_title "Bucky Box - Webstore - #{step.capitalize}"
+  titles = {
+    "payment_options" => "Address and Payment"
+  }
+
+  title = titles.fetch(step, step.titleize)
+
+  page.should have_title "Bucky Box - Webstore - #{title}"
   step "I should not see an failure message"
 end
 
