@@ -34,12 +34,13 @@
               %h4 Deliver to
           .row-fluid
             .span12
-              = f.input :street_address, label: false, placeholder: 'Street', input_html: { class: 'span12' }
-              = f.input :street_address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }
-              = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12' }
+              = f.input :street_address, label: false, placeholder: 'Street', input_html: { class: 'span12' }, required: payment_options.require_address_1
+              = f.input :street_address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }, required: payment_options.require_address_2
+              = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12' }, required: payment_options.require_suburb
           .row-fluid
-            .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city' }
-            .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12' }, wrapper_html: { id: 'postal_code' }
+            .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city' }, required: payment_options.require_city
+            .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12' }, wrapper_html: { id: 'postal_code' }, required: payment_options.require_postcode
+
           .row-fluid
             .span12
               %h4 Delivery note
