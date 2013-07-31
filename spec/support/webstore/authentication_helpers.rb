@@ -1,4 +1,4 @@
-module Webstore::CustomerAuthorisationHelpers
+module Webstore::AuthenticationHelpers
   shared_examples_for 'it is on the customer authorisation page' do
     it 'has a field to enter your email address' do
       expect(page.has_field?('Enter your e-mail address')).to be_true

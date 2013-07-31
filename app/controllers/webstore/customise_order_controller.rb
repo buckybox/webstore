@@ -15,7 +15,7 @@ class Webstore::CustomiseOrderController < Webstore::BaseController
 private
 
   def successful_order_customisation
-    redirect_to webstore_customer_authorisation_path
+    redirect_to webstore_authentication_path
   end
 
   def failed_order_customisation(customise_order)

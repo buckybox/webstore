@@ -40,7 +40,7 @@ private
     return webstore_customise_order_path if current_order.customisable?
 
     if current_customer.guest?
-      webstore_customer_authorisation_path
+      webstore_authentication_path
     else
       webstore_delivery_options_path
     end
