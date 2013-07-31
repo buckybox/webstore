@@ -12,6 +12,12 @@ module Webstore::CustomiseOrderHelpers
   end
 
   shared_examples_for 'it is on the customise page' do
+    it 'shows the order so far' do
+      expect(page).to have_content(product_name)
+      expect(page).to have_content(product_description)
+      expect(page).to have_content(product_price)
+    end
+
     it_behaves_like 'it has exclusions'
     it_behaves_like 'it has extras'
   end
