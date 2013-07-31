@@ -7,16 +7,12 @@ class Webstore::AuthenticationController < Webstore::BaseController
   end
 
   def save_authentication
-    args = { cart: current_cart }.merge(user_attributes)
+    args = { cart: current_cart }.merge(params[:webstore_authentication])
     authentication = Webstore::Authentication.new(args)
     authentication.save ? successful_authentication : failed_authentication(authentication)
   end
 
 private
-
-  def user_attributes
-    params[:webstore_authentication][:user]
-  end
 
   def successful_authentication
     redirect_to webstore_delivery_options_path

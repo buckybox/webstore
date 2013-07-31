@@ -81,6 +81,30 @@ class Webstore::PaymentOptions < Webstore::Form
     payment_options_class.options(distributor)
   end
 
+  def require_phone
+    distributor.require_phone
+  end
+
+  def require_address_1
+    distributor.require_address_1
+  end
+
+  def require_address_2
+    distributor.require_address_2
+  end
+
+  def require_suburb
+    distributor.require_suburb
+  end
+
+  def require_city
+    distributor.require_city
+  end
+
+  def require_postcode
+    distributor.require_postcode
+  end
+
   def to_h
     {
       name:              name,
@@ -118,29 +142,5 @@ private
 
   def customer
     cart.customer
-  end
-
-  def require_phone
-    distributor.require_phone
-  end
-
-  def require_address_1
-    distributor.require_address_1
-  end
-
-  def require_address_2
-    distributor.require_address_2
-  end
-
-  def require_suburb
-    distributor.require_suburb
-  end
-
-  def require_city
-    distributor.require_city
-  end
-
-  def require_postcode
-    distributor.require_postcode
   end
 end

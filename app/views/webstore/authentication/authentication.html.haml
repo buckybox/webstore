@@ -5,17 +5,16 @@
 = simple_form_for(authentication) do |f|
   #webstore-login.row-fluid.webstore-section
     .span12
-      = f.simple_fields_for(:user) do |g|
+      .row-fluid
+        .ten.columns= f.input :email, label: 'Enter your e-mail address', input_html: { class: 'span12' }
+      #registered.row-fluid
+        .ten.columns= f.input :registered, label: false, collection: authentication.options, checked: authentication.default_option, as: :radio_buttons
+      #password-field.row-fluid
+        .ten.columns= f.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }
         .row-fluid
-          .ten.columns= g.input :email, label: 'Enter your e-mail address', input_html: { class: 'span12' }
-        #registered.row-fluid
-          .ten.columns= g.input :registered, label: false, collection: authentication.options, checked: authentication.default_option, as: :radio_buttons
-        #password-field.row-fluid
-          .ten.columns= g.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }
-          .row-fluid
-            .ten.columns
-              %i.icon-lock
-              = link_to "Lost your password?", new_customer_password_path(distributor: authentication.distributor_parameter_name), target: '_blank'
+          .ten.columns
+            %i.icon-lock
+            = link_to "Lost your password?", new_customer_password_path(distributor: authentication.distributor_parameter_name), target: '_blank'
 
   .row-fluid.webstore-section
     .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
