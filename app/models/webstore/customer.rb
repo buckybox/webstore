@@ -27,19 +27,19 @@ class Webstore::Customer
   end
 
   def halted?
-    ( guest? ? GUEST_HALTED : customer.halted? )
+    guest? ? GUEST_HALTED : customer.halted?
   end
 
   def discount?
-    ( guest? ? GUEST_DISCOUNTED : customer.discount? )
+    guest? ? GUEST_DISCOUNTED : customer.discount?
   end
 
   def active?
-    ( guest? ? GUEST_ACTIVE : customer.active? )
+    guest? ? GUEST_ACTIVE : customer.active?
   end
 
   def name
-    ( guest? ? GUEST_NAME : customer.name )
+    guest? ? GUEST_NAME : customer.name
   end
 
   def distributor_parameter_name

@@ -24,8 +24,9 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :require_postcode,   if: :require_postcode?
   validates_presence_of :payment_method
 
-  def address
-    customer.address
+  def initialize(attributes = nil)
+    super
+    @address = build_address
   end
 
   def phone_number
@@ -64,10 +65,6 @@ class Webstore::PaymentOptions < Webstore::Form
     !customer.guest?
   end
 
-  def name
-    customer.name if existing_customer?
-  end
-
   def only_one_payment_option?
     distributor.only_one_payment_option?
   end
@@ -101,6 +98,19 @@ class Webstore::PaymentOptions < Webstore::Form
   end
 
 private
+
+  attr_reader :address
+
+  def build_address
+    OpenStruct.new(
+      address_1:     @street_address,
+      address_2:     @street_address_2,
+      suburb:        @suburb,
+      city:          @city,
+      postcode:      @postcode,
+      delivery_note: @delivery_note,
+    )
+  end
 
   def distributor
     cart.distributor
