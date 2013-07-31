@@ -18,6 +18,7 @@ class Webstore::Form
   end
 
   def save
+    return false unless self.valid?
     cart.add_order_information(self)
     cart.save
   end

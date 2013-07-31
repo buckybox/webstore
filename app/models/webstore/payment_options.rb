@@ -16,12 +16,12 @@ class Webstore::PaymentOptions < Webstore::Form
   attribute :complete,          Boolean
 
   validates_presence_of :name
-  validates_presence_of :require_phone,      if: :require_phone?
-  validates_presence_of :require_address_1,  if: :require_address_1?
-  validates_presence_of :require_address_2,  if: :require_address_2?
-  validates_presence_of :require_suburb,     if: :require_suburb?
-  validates_presence_of :require_city,       if: :require_city?
-  validates_presence_of :require_postcode,   if: :require_postcode?
+  validates_presence_of :phone_number,      if: :require_phone
+  validates_presence_of :street_address,    if: :require_address_1
+  validates_presence_of :street_address_2,  if: :require_address_2
+  validates_presence_of :suburb,            if: :require_suburb
+  validates_presence_of :city,              if: :require_city
+  validates_presence_of :postcode,          if: :require_postcode
   validates_presence_of :payment_method
 
   def initialize(attributes = nil)
@@ -120,27 +120,27 @@ private
     cart.customer
   end
 
-  def require_phone?
+  def require_phone
     distributor.require_phone
   end
 
-  def require_address_1?
+  def require_address_1
     distributor.require_address_1
   end
 
-  def require_address_2?
+  def require_address_2
     distributor.require_address_2
   end
 
-  def require_suburb?
+  def require_suburb
     distributor.require_suburb
   end
 
-  def require_city?
+  def require_city
     distributor.require_city
   end
 
-  def require_postcode?
+  def require_postcode
     distributor.require_postcode
   end
 end
