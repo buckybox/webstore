@@ -33,14 +33,21 @@ describe Webstore::DeliveryOptions do
     it 'returns a list of route options for selection' do
       route = double('route', id: 3, name_days_and_fee: 'route wed $5.00')
       distributor.stub(:routes) { [route] }
-      expected_route_options = []
+
       delivery_options.route_list.should eq([["route wed $5.00", 3]])
     end
   end
 
   describe '#order_frequencies' do
     it 'returns a list of order frequency options' do
-      expected_options = [["Deliver weekly on...", :weekly], ["Deliver every 2 weeks on...", :fortnightly], ["Deliver monthly", :monthly], ["Deliver once", :single]]
+      expected_options = [
+        ['- Select delivery frequency -', nil],
+        ['Deliver weekly on...',          :weekly],
+        ['Deliver every 2 weeks on...',   :fortnightly],
+        ['Deliver monthly',               :monthly],
+        ['Deliver once',                  :single]
+      ]
+
       delivery_options.order_frequencies.should eq(expected_options)
     end
   end
