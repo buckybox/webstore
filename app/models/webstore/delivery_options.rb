@@ -9,7 +9,7 @@ class Webstore::DeliveryOptions < Webstore::Form
   attribute :days,             Hash[Integer => Integer]
   attribute :extra_frequency,  Boolean
 
-  validates_presence_of :route, :start_date, :frequency, :days
+  validates_presence_of :route, :start_date, :frequency
 
   ORDER_FREQUENCIES = [
     ['- Select delivery frequency -', nil],
