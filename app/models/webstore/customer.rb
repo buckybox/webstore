@@ -4,7 +4,7 @@ require_relative '../webstore'
 
 class Webstore::Customer
   attr_reader :distributor
-  attr_reader :customer
+  attr_reader :existing_customer
   attr_reader :cart
 
   GUEST_HALTED     = false
@@ -13,13 +13,13 @@ class Webstore::Customer
   GUEST_NAME       = 'Guest'
 
   def initialize(args = {})
-    @cart        = args.fetch(:cart, nil)
-    @customer    = args.fetch(:customer, nil)
-    @distributor = @customer ? @customer.distributor : args.fetch(:distributor, nil)
+    @cart              = args.fetch(:cart, nil)
+    @existing_customer = args.fetch(:existing_customer, nil)
+    @distributor       = existing_customer ? existing_customer.distributor : args.fetch(:distributor, nil)
   end
 
   def guest?
-    !customer
+    !existing_customer
   end
 
   def fetch(key, default_value = nil)
@@ -27,19 +27,19 @@ class Webstore::Customer
   end
 
   def halted?
-    guest? ? GUEST_HALTED : customer.halted?
+    guest? ? GUEST_HALTED : existing_customer.halted?
   end
 
   def discount?
-    guest? ? GUEST_DISCOUNTED : customer.discount?
+    guest? ? GUEST_DISCOUNTED : existing_customer.discount?
   end
 
   def active?
-    guest? ? GUEST_ACTIVE : customer.active?
+    guest? ? GUEST_ACTIVE : existing_customer.active?
   end
 
   def name
-    guest? ? GUEST_NAME : customer.name
+    guest? ? GUEST_NAME : existing_customer.name
   end
 
   def distributor_parameter_name
@@ -47,18 +47,14 @@ class Webstore::Customer
   end
 
   def route_id
-    customer.route.id if active?
+    existing_customer.route.id if active?
   end
 
   def address
-    guest? ? NullObject.new : customer.address
-  end
-
-  def existing_customer
-    customer
+    guest? ? NullObject.new : existing_customer.address
   end
 
   def account_balance
-    customer ? customer.account_balance : Money.new(0)
+    existing_customer ? existing_customer.account_balance : Money.new(0)
   end
 end

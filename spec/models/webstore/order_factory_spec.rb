@@ -9,7 +9,7 @@ describe Webstore::OrderFactory do
     Webstore::Cart.new(
       customer: Webstore::Customer.new(
         cart: nil,
-        customer: nil,
+        existing_customer: nil,
         distributor: Distributor.new
       ),
       order: {

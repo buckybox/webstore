@@ -98,14 +98,14 @@ private
   end
 
   def derive_data
-    @customer    = get_customer || Customer.new
+    @customer    = get_customer || ::Customer.new
     @address     = get_address || customer.build_address
     @order       = get_order
     @information = get_order_information
   end
 
   def get_customer
-    cart.customer.existing_customer
+    cart.customer ? cart.customer.existing_customer : nil
   end
 
   def get_address
