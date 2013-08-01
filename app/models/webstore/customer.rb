@@ -22,6 +22,10 @@ class Webstore::Customer
     !existing_customer
   end
 
+  def associate_real_customer(customer)
+    self.existing_customer = customer
+  end
+
   def fetch(key, default_value = nil)
     send(key) || default_value
   end
@@ -57,4 +61,8 @@ class Webstore::Customer
   def account_balance
     existing_customer ? existing_customer.account_balance : Money.new(0)
   end
+
+private
+
+  attr_writer :existing_customer
 end

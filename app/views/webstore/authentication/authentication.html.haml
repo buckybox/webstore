@@ -8,7 +8,7 @@
       .row-fluid
         .ten.columns= f.input :email, label: 'Enter your e-mail address', input_html: { class: 'span12' }
       #registered.row-fluid
-        .ten.columns= f.input :registered, label: false, collection: authentication.options, checked: authentication.default_option, as: :radio_buttons
+        .ten.columns= f.input :registered, label: false, collection: authentication.options, as: :radio_buttons
       #password-field.row-fluid
         .ten.columns= f.input :password, label: 'Enter your password', as: :password, input_html: { class: 'span12' }
         .row-fluid

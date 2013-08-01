@@ -105,14 +105,22 @@ $(function() {
   }
 
   if($('#webstore-login').length > 0) {
+    password_field_visibility();
+
     $('#registered input[type="radio"]').click(function() {
-      if($(this).val() == 'new') {
+      password_field_visibility();
+    });
+
+    function password_field_visibility(value) {
+      var show_password_field = ($('#registered input[type=radio]:checked').val() == 'new');
+
+      if(show_password_field) {
         $('#password-field').hide();
       }
       else {
         $('#password-field').show();
       }
-    });
+    }
   }
 
   if($('#webstore-route').length > 0) {

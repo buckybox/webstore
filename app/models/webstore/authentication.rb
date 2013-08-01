@@ -2,20 +2,27 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::Authentication < Webstore::Form
+  NEW_CUSTOMER = 'new'
+  EXISTING_CUSTOMER = 'returning'
+  AUTHORISATION_OPTIONS = [
+    ["I'm a new customer",        NEW_CUSTOMER],
+    ["I'm a returning customer",  EXISTING_CUSTOMER],
+  ].freeze
+
   attribute :cart
-  attribute :email,     String
-  attribute :password,  String
+  attribute :email,       String
+  attribute :registered,  String, default: NEW_CUSTOMER
+  attribute :password,    String
 
   validates_presence_of :email
   validates_email_format_of :email
 
-  AUTHORISATION_OPTIONS = [
-    ["I'm a new customer",        'new'],
-    ["I'm a returning customer",  'returning'],
-  ].freeze
-
   def options
     AUTHORISATION_OPTIONS
+  end
+
+  def sign_in_attempt?
+    registered == EXISTING_CUSTOMER
   end
 
   def default_option
@@ -28,8 +35,7 @@ class Webstore::Authentication < Webstore::Form
 
   def to_h
     {
-      email:     email,
-      password:  password,
+      email:  email,
     }
   end
 end
