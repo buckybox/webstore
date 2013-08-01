@@ -25,7 +25,7 @@ private
   end
 
   def failed_payment_options(payment_options)
-    flash[:alert] = 'We\'re sorry there was an error saving your payment options.'
+    flash[:alert] = 'We\'re sorry there was an error saving your address.'
     render 'payment_options', locals: {
       order: current_order.decorate,
       payment_options: payment_options,
