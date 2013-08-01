@@ -26,15 +26,15 @@ class Webstore::Order
   end
 
   def has_exclusions?
-    !!exclusions
+    exclusions.present?
   end
 
   def has_substitutions?
-    !!substitutions
+    substitutions.present?
   end
 
   def has_extras?
-    !!extras
+    extras.present?
   end
 
   def is_scheduled?
