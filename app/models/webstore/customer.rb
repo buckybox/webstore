@@ -55,7 +55,7 @@ class Webstore::Customer
   end
 
   def address
-    guest? ? NullObject.new : existing_customer.address
+    existing_customer ? existing_customer.address : NullObject.new
   end
 
   def account_balance

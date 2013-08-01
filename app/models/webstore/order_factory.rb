@@ -9,6 +9,8 @@ class Webstore::OrderFactory
 
   def initialize(args)
     @cart     = args[:cart]
+    raise "cart is nil" if @cart.nil?
+
     @customer = args[:customer]
     @order    = ::Order.new
     derive_data

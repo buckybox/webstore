@@ -1,31 +1,7 @@
 require 'spec_helper'
 
 describe Webstore::CustomerFactory do
-  let(:distributor) { Fabricate(:distributor) }
-
-  let(:customer) do
-    {
-      customer: nil,
-      distributor: distributor,
-    }
-  end
-
-  let(:box) { Fabricate(:customisable_box) }
-  let(:order) do
-    Webstore::Order.new(
-      box: box,
-      cart: nil,
-      information: information_hash,
-    )
-  end
-
-  let(:args) { { cart: nil, customer: customer } }
-
-  describe "#initialize" do
-    it "accepts a cart and a customer" do
-      Webstore::OrderFactory.new args
-    end
-  end
+  include Webstore::FactoryHelper
 
   describe "#assemble" do
     before do
@@ -34,15 +10,18 @@ describe Webstore::CustomerFactory do
     end
 
     it "sets the right email" do
-      expect(@new_customer.email).to eq(customer.email)
+      expect(@new_customer.email).to eq(information_hash[:email])
     end
 
-    it "sets the right account" do
-      expect(@new_customer.account).to eq(customer.account)
-    end
+    context "#address" do
+      let(:address) { @new_customer.address }
 
-    it "sets the right address" do
-      expect(@new_customer.address).to eq(customer.address)
+      specify { expect(address.address_1).to eq(information_hash[:street_address]) }
+      specify { expect(address.address_2).to eq(information_hash[:street_address_2]) }
+      specify { expect(address.suburb).to eq(information_hash[:suburb]) }
+      specify { expect(address.city).to eq(information_hash[:city]) }
+      specify { expect(address.postcode).to eq(information_hash[:postcode]) }
+      specify { expect(address.delivery_note).to eq(information_hash[:delivery_note]) }
     end
   end
 end
