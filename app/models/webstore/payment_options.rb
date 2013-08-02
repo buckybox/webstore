@@ -26,9 +26,15 @@ class Webstore::PaymentOptions < Webstore::Form
 
   attr_reader :address
 
-  def initialize(attributes = nil)
+  def initialize(attributes = {})
+    attributes = defaults.merge(attributes)
+    @address_class = attributes.delete(:address_class)
     super
-    @address = build_address
+    @address = customer.guest? ? build_address : customer_address
+  end
+
+  def name
+    super || customer.name
   end
 
   def phone_number
@@ -136,11 +142,19 @@ private
     )
   end
 
+  def cart
+    super || BlackHole.new
+  end
+
   def distributor
     cart.distributor
   end
 
   def customer
     cart.customer
+  end
+
+  def customer_address
+    customer.address
   end
 end
