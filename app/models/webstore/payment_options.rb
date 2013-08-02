@@ -131,8 +131,14 @@ class Webstore::PaymentOptions < Webstore::Form
 
 private
 
+  attr_reader :address_class
+
+  def defaults
+    { address_class: ::Address }
+  end
+
   def build_address
-    OpenStruct.new(
+    address_class.new(
       address_1:     @street_address,
       address_2:     @street_address_2,
       suburb:        @suburb,

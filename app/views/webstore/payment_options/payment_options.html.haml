@@ -50,7 +50,7 @@
 
   - if payment_options.existing_customer?
     .row-fluid.webstore-section
-      = render partial: 'webstore/payment_instructions', locals: { form_object: payment_options }
+      = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
 
   .row-fluid.webstore-section
     #webstore-payment.span12

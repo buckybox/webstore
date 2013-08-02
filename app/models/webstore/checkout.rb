@@ -5,10 +5,10 @@ class Webstore::Checkout
   attr_reader :cart
 
   def initialize(args = {})
-    args                = defaults.merge(args)
-    @distributor        = args[:distributor]
+    args               = defaults.merge(args)
+    @distributor       = args[:distributor]
     @existing_customer = args[:existing_customer]
-    @cart               = args[:cart_class].new(customer: customer)
+    @cart              = args[:cart_class].new(customer: customer)
   end
 
   def customer(customer_class = Webstore::Customer)
