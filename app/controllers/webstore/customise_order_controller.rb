@@ -1,7 +1,7 @@
 class Webstore::CustomiseOrderController < Webstore::BaseController
   def customise_order
     render 'customise_order', locals: {
-      order: current_order.decorate,
+      order: current_order,
       customise_order: Webstore::CustomiseOrder.new(cart: current_cart)
     }
   end
@@ -21,7 +21,7 @@ private
   def failed_order_customisation(customise_order)
     flash[:alert] = 'We\'re sorry there was an error customising your order.'
     render 'customise_order', locals: {
-      order: current_order.decorate,
+      order: current_order,
       customise_order: customise_order,
     }
   end

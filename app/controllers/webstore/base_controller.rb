@@ -16,7 +16,7 @@ protected
   end
 
   def current_order
-    @current_order ||= current_cart.order
+    @current_order ||= current_cart.order.decorate
   end
 
   alias_method :logged_in_customer, :current_customer

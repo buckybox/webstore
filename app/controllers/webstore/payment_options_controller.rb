@@ -1,7 +1,7 @@
 class Webstore::PaymentOptionsController < Webstore::BaseController
   def payment_options
     render 'payment_options', locals: {
-      order: current_order.decorate,
+      order: current_order,
       payment_options: Webstore::PaymentOptions.new(cart: current_cart),
       cart: Webstore::PaymentDecorator.decorate(current_cart),
     }
@@ -27,7 +27,7 @@ private
   def failed_payment_options(payment_options)
     flash[:alert] = 'We\'re sorry there was an error saving your address.'
     render 'payment_options', locals: {
-      order: current_order.decorate,
+      order: current_order,
       payment_options: payment_options,
       cart: Webstore::PaymentDecorator.decorate(current_cart),
     }

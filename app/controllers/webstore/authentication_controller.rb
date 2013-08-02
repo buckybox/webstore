@@ -1,7 +1,7 @@
 class Webstore::AuthenticationController < Webstore::BaseController
   def authentication
     render 'authentication', locals: {
-      order: current_order.decorate,
+      order: current_order,
       authentication: Webstore::Authentication.new(cart: current_cart)
     }
   end
@@ -35,7 +35,7 @@ private
   def failed_authentication(authentication)
     flash[:alert] = 'We\'re sorry there was an error with your credentials.'
     render 'authentication', locals: {
-      order: current_order.decorate,
+      order: current_order,
       authentication: authentication,
     }
   end
