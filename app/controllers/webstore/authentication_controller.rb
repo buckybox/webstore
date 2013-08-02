@@ -33,7 +33,7 @@ private
   end
 
   def failed_authentication(authentication)
-    flash[:alert] = 'We\'re sorry there was an error with your credentials.'
+    flash[:alert] = "Your email and/or password is incorrect."
     render 'authentication', locals: {
       order: current_order,
       authentication: authentication,
