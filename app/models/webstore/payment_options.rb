@@ -24,6 +24,8 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :postcode,          if: :require_postcode
   validates_presence_of :payment_method
 
+  attr_reader :address
+
   def initialize(attributes = nil)
     super
     @address = build_address
@@ -122,8 +124,6 @@ class Webstore::PaymentOptions < Webstore::Form
   end
 
 private
-
-  attr_reader :address
 
   def build_address
     OpenStruct.new(
