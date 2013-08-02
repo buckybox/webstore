@@ -5,7 +5,7 @@ require_relative '../webstore'
 class Webstore::Store
   def initialize(args = {})
     @distributor        = args[:distributor]
-    @logged_in_customer = args[:logged_in_customer]
+    @existing_customer = args[:existing_customer]
   end
 
   def products(product_class = Webstore::Product)
@@ -13,11 +13,11 @@ class Webstore::Store
   end
 
   def customer(customer_class = Webstore::Customer)
-    @customer ||= customer_class.new(customer: logged_in_customer, distributor: distributor)
+    @customer ||= customer_class.new(existing_customer: existing_customer, distributor: distributor)
   end
 
 private
 
   attr_reader :distributor
-  attr_reader :logged_in_customer
+  attr_reader :existing_customer
 end

@@ -21,7 +21,7 @@ protected
 
   alias_method :logged_in_customer, :current_customer
   def current_customer
-    @current_customer ||= current_cart.customer
+    @current_customer ||= current_cart.customer.decorate
   end
 
   def distributors_customer?

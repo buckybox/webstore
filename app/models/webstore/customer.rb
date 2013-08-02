@@ -1,8 +1,11 @@
 #NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
 
+require 'draper'
 require_relative '../webstore'
 
 class Webstore::Customer
+  include Draper::Decoratable
+
   attr_reader :distributor
   attr_reader :existing_customer
   attr_reader :cart
@@ -18,16 +21,16 @@ class Webstore::Customer
     @distributor       = existing_customer ? existing_customer.distributor : args.fetch(:distributor, nil)
   end
 
+  def fetch(key, default_value = nil)
+    send(key) || default_value
+  end
+
   def guest?
     !existing_customer
   end
 
   def associate_real_customer(customer)
     self.existing_customer = customer
-  end
-
-  def fetch(key, default_value = nil)
-    send(key) || default_value
   end
 
   def halted?
@@ -60,6 +63,10 @@ class Webstore::Customer
 
   def account_balance
     existing_customer ? existing_customer.account_balance : Money.new(0)
+  end
+
+  def balance_threshold
+    existing_customer.balance_threshold
   end
 
 private

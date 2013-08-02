@@ -1,3 +1,5 @@
+#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
+
 require 'draper'
 require_relative '../webstore'
 require_relative '../order_price'
