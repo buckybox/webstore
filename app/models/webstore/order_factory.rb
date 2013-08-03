@@ -64,7 +64,7 @@ private
   end
 
   def extra_id_and_counts
-    webstore_order.extras
+    webstore_order.extras || []
   end
 
   def excluded_line_item_ids
