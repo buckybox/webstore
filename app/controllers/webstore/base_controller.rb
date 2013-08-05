@@ -8,7 +8,7 @@ class Webstore::BaseController < ApplicationController
 protected
 
   def current_distributor
-    @distributor ||= Distributor.find_by_parameter_name(params[:distributor_parameter_name])
+    @distributor ||= Distributor.where(parameter_name: params[:distributor_parameter_name]).first
     raise "Unknown distributor" unless @distributor
     @distributor
   end
@@ -27,7 +27,7 @@ protected
   end
 
   def distributors_customer?
-    return if current_customer.distributor.nil?
+    return if current_customer.guest?
 
     valid_customer = (current_customer.distributor == current_distributor)
     alert_message = 'This account is not for this webstore. Please logout first then try your purchase again.'
