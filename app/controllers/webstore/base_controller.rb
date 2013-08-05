@@ -8,9 +8,7 @@ class Webstore::BaseController < ApplicationController
 protected
 
   def current_distributor
-    @distributor ||= Distributor.where(parameter_name: params[:distributor_parameter_name]).first
-    raise "Unknown distributor" unless @distributor
-    @distributor
+    @distributor ||= Distributor.find_by(parameter_name: params[:distributor_parameter_name])
   end
 
   def current_cart
