@@ -9,6 +9,14 @@ describe "authenticate" do
     get_to_authentication_step
   end
 
+  shared_examples "an authentication failure" do
+    it "returns an error message" do
+      submit
+
+      expect(page).to have_content("Your email and/or password is incorrect")
+    end
+  end
+
   context "as an existing customer" do
     before do
       @customer = Fabricate(:customer, password: "PASSWORD")
@@ -20,11 +28,7 @@ describe "authenticate" do
         choose "I'm a new customer"
       end
 
-      it "returns an error" do
-        submit
-
-        expect(page).to have_content("You must enter your password")
-      end
+      it_behaves_like "an authentication failure"
     end
 
     context "when 'returning customer' is selected" do
@@ -45,16 +49,20 @@ describe "authenticate" do
         end
       end
 
-      context "with incorrect credentials" do
+      context "with incorrect email" do
+        before do
+          fill_in "webstore_authentication_email", with: "new@example.net"
+        end
+
+        it_behaves_like "an authentication failure"
+      end
+
+      context "with incorrect password" do
         before do
           fill_in "webstore_authentication_password", with: @customer.password * 2
         end
 
-        it "returns an error" do
-          submit
-
-          expect(page).to have_content("Your email and/or password is incorrect")
-        end
+        it_behaves_like "an authentication failure"
       end
     end
   end

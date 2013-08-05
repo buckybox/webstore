@@ -22,7 +22,7 @@ class Webstore::Authentication < Webstore::Form
   end
 
   def sign_in_attempt?
-    registered == EXISTING_CUSTOMER
+    registered == EXISTING_CUSTOMER || Customer.exists?(email: email)
   end
 
   def default_option
