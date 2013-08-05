@@ -136,11 +136,11 @@ class Webstore::Order
   end
 
   def exclusions
-    information[:likes]
+    information[:dislikes]
   end
 
   def substitutions
-    information[:dislikes]
+    information[:likes]
   end
 
   def extras
