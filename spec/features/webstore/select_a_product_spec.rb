@@ -9,7 +9,6 @@ describe 'select a product from the webstore' do
   context 'when the product can be customised' do
     context 'customer not logged in' do
       before do
-        pending
         make_a_webstore_with_products
         visit webstore_store_path(@distributor.parameter_name)
         customisable_product(product)

@@ -5,7 +5,7 @@ describe 'submitting customisations' do
   include Select2Helper
   include Webstore::StoreHelpers
 
-  before { pending; get_to_customise_step }
+  before { get_to_customise_step }
 
   describe 'only selected exclustions' do
     before do
