@@ -13,7 +13,6 @@ class Webstore::Customer
   GUEST_HALTED     = false
   GUEST_DISCOUNTED = false
   GUEST_ACTIVE     = false
-  GUEST_NAME       = 'Guest'
 
   def initialize(args = {})
     @cart              = args.fetch(:cart, nil)
@@ -46,7 +45,7 @@ class Webstore::Customer
   end
 
   def name
-    guest? ? GUEST_NAME : existing_customer.name
+    existing_customer.name unless guest?
   end
 
   def route_id
