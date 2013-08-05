@@ -15,7 +15,15 @@ class Webstore::CustomiseOrderController < Webstore::BaseController
 private
 
   def successful_order_customisation
-    redirect_to webstore_authentication_path
+    redirect_to next_step
+  end
+
+  def next_step
+    if current_customer.guest?
+      webstore_authentication_path
+    else
+      webstore_delivery_options_path
+    end
   end
 
   def failed_order_customisation(customise_order)
