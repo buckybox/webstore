@@ -8,6 +8,7 @@ class Webstore::Cart
   attr_reader :id
   attr_reader :order
   attr_reader :customer
+  attr_reader :distributor
 
   def self.find(id, persistance_class = Webstore::CartPersistance)
     persistance = persistance_class.where(id: id).first
@@ -15,9 +16,10 @@ class Webstore::Cart
   end
 
   def initialize(args = {})
-    @id       = args[:id]
-    @order    = new_order(args)
-    @customer = new_customer(args)
+    @id          = args[:id]
+    @order       = new_order(args)
+    @customer    = new_customer(args)
+    @distributor = args[:distributor]
   end
 
   def new?
@@ -47,12 +49,8 @@ class Webstore::Cart
     customer.existing_customer
   end
 
-  def distributor
-    customer.distributor
-  end
-
   def distributor_parameter_name
-    customer.distributor_parameter_name
+    distributor.parameter_name
   end
 
   def stock_list
@@ -112,14 +110,14 @@ private
   end
 
   def new_order(args)
-    args = args.merge({ cart: self })
     args = args.fetch(:order, {})
+    args = args.merge({ cart: self })
     Webstore::Order.new(args)
   end
 
   def new_customer(args)
-    args = args.merge({ cart: self })
     args = args.fetch(:customer, {})
+    args = args.merge({ cart: self })
     Webstore::Customer.new(args)
   end
 

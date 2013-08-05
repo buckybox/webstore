@@ -9,6 +9,8 @@ protected
 
   def current_distributor
     @distributor ||= Distributor.find_by_parameter_name(params[:distributor_parameter_name])
+    raise "Unknown distributor" unless @distributor
+    @distributor
   end
 
   def current_cart
@@ -25,6 +27,8 @@ protected
   end
 
   def distributors_customer?
+    return if current_customer.distributor.nil?
+
     valid_customer = (current_customer.distributor == current_distributor)
     alert_message = 'This account is not for this webstore. Please logout first then try your purchase again.'
     redirect_to webstore_store_path, alert: alert_message and return unless valid_customer

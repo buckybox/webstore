@@ -8,11 +8,11 @@ class Webstore::Checkout
     args               = defaults.merge(args)
     @distributor       = args[:distributor]
     @existing_customer = args[:existing_customer]
-    @cart              = args[:cart_class].new(customer: customer)
+    @cart              = args[:cart_class].new(distributor: distributor)
   end
 
-  def customer(customer_class = Webstore::Customer)
-    @customer ||= customer_class.new(existing_customer: existing_customer, distributor: distributor)
+  def customer
+    @cart.customer
   end
 
   def add_product!(product_id)

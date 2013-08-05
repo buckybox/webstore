@@ -167,7 +167,7 @@ private
   attr_writer :information
 
   def distributor
-    cart ? cart.distributor : ::Distributor.new
+    cart.distributor ? cart.distributor : ::Distributor.new
   end
 
   def route

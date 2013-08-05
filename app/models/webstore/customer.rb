@@ -30,7 +30,7 @@ class Webstore::Customer
   end
 
   def associate_real_customer(customer)
-    self.existing_customer = customer
+    @existing_customer = customer
   end
 
   def halted?
@@ -49,10 +49,6 @@ class Webstore::Customer
     guest? ? GUEST_NAME : existing_customer.name
   end
 
-  def distributor_parameter_name
-    distributor.parameter_name
-  end
-
   def route_id
     existing_customer.route.id if active?
   end
@@ -68,8 +64,4 @@ class Webstore::Customer
   def balance_threshold
     existing_customer.balance_threshold
   end
-
-private
-
-  attr_writer :existing_customer
 end
