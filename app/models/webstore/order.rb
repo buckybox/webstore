@@ -73,11 +73,16 @@ class Webstore::Order
   end
 
   def total
+    result = pre_discount_total
+    result += discount if has_discount?
+    result
+  end
+
+  def pre_discount_total
     result = box_price
     result += extras_price if has_extras?
     result += delivery_fee if is_scheduled?
     result += bucky_fee    if has_bucky_fee?
-    result += discount     if has_discount?
     result
   end
 
@@ -98,7 +103,7 @@ class Webstore::Order
   end
 
   def discount(order_price_class = ::OrderPrice)
-    order_price_class.discounted(total, existing_customer) - total
+    order_price_class.discounted(pre_discount_total, existing_customer) - pre_discount_total
   end
 
   def extras_list
