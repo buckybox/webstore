@@ -60,7 +60,7 @@
             - if cart.payment_required?
               .span10 Total amount due
               .span2.text-right.total_price
-                = order.total
+                = cart.closing_balance
             - else
               .span10 Your account is in credit
 
