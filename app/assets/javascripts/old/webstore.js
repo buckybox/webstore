@@ -117,6 +117,9 @@ $(function() {
 
   if($('#webstore-route').length > 0) {
     var route_select = $('#route_select');
+    var weeks = $('.route-schedule-inputs .order-days tr');
+
+    weeks.hide();
     update_route_information(route_select.val());
     update_day_checkboxes_style();
 
@@ -125,28 +128,26 @@ $(function() {
       update_day_checkboxes_style();
     });
 
-    var schedule = $('.route-schedule-inputs .order-days');
-    var weeks = schedule.find('tr');
-    var week_numbers = weeks.find('td:first-child');
-
     $('.route-schedule-frequency').change(function() {
-      var frequency_select = $(this);
+      var frequency = $(this).val();
+      var weeks = $('.route-schedule-inputs:visible .order-days tr');
+      var week_numbers = weeks.find('td:first-child');
 
-      if(frequency_select.val() === 'single') {
-        schedule.hide();
-      }
-      else {
-        schedule.show();
-      }
-
-      if(frequency_select.val() === 'monthly') {
+      if (!frequency || frequency === 'single') {
+        weeks.hide();
+      } else if (frequency === 'monthly') {
         week_numbers.show();
         weeks.show();
-      }
-      else {
-        weeks.slice(1).hide();
+      } else {
         week_numbers.hide();
+        weeks.slice(1).hide();
+        weeks.first().show();
       }
+
+      weeks.find('input:data(enabled)').removeAttr('disabled');
+      var route_id = $('#route_select').val();
+      var route_schedule = $('#route-schedule-inputs-' + route_id);
+      update_day_checkboxes(route_schedule.find('.schedule-start-date'));
     });
 
     $('.order-days input').click({weeks: weeks}, function(event) {
@@ -156,7 +157,7 @@ $(function() {
       if (checkbox.is(':checked')) {
         // disable the other rows
         var other_weeks = event.data.weeks.not(selected_week);
-        other_weeks.find('input').attr('disabled', 'true').removeAttr('checked');
+        other_weeks.find('input').prop('disabled', 'true').removeAttr('checked');
 
       } else if (selected_week.find('input:checked').length == 0) {
         // enable all rows if this is the only checked day
@@ -167,6 +168,8 @@ $(function() {
     });
 
     $('.schedule-start-date').change(function() {
+      var weeks = $('.route-schedule-inputs:visible .order-days tr');
+      weeks.find('input:data(enabled)').removeAttr('disabled');
       update_day_checkboxes($(this));
     });
   }
@@ -184,14 +187,15 @@ $(function() {
 });
 
 function update_day_checkboxes_style() {
-  $('.order-days input').each(function() {
+  $('.order-days:visible input[type="checkbox"]').each(function() {
     var checkbox = $(this);
     var td = checkbox.closest('td');
 
-    if (checkbox.is(':checked') || checkbox.data('enabled'))
+    if (checkbox.is(':checked') || checkbox.data('enabled')) {
       td.removeClass('disabled');
-    else
+    } else {
       td.addClass('disabled');
+    }
   });
 }
 
@@ -199,12 +203,21 @@ function update_day_checkboxes(start_date) {
   var date = new Date(start_date.val());
   var route_schedule_inputs = start_date.closest('.route-schedule-inputs');
 
-  route_schedule_inputs.find('input[type="checkbox"]').attr('checked', false);
+  route_schedule_inputs.find('input[type="checkbox"]:not([data-enabled])').prop('checked', false);
 
-  var checkbox_selector = '#day-' + date.getDay() + ' input[type="checkbox"]';
-  selected_checkbox = route_schedule_inputs.find(checkbox_selector);
+  var frequency = route_schedule_inputs.find('.route-schedule-frequency').val();
+  var weeks = route_schedule_inputs.find('.order-days tr');
 
-  selected_checkbox.attr('checked', true);
+  if (frequency !== 'monthly') {
+    weeks.slice(1).find('input[type="checkbox"]').prop('checked', false);
+  }
+
+  // pre-select first day if none already picked
+  if (weeks.find('input[type="checkbox"]:checked').length == 0) {
+    var checkbox_selector = '#day-' + date.getDay() + ' input[type="checkbox"]';
+    selected_checkbox = route_schedule_inputs.find(checkbox_selector);
+    selected_checkbox.prop('checked', true);
+  }
 }
 
 function display_address_information(from_div, has_address) {
@@ -229,16 +242,16 @@ function update_route_information(route_id) {
 
   var all_route_schedule_inputs = $('.route-schedule-inputs');
   all_route_schedule_inputs.hide();
-  all_route_schedule_inputs.find('select').attr('disabled', true);
-  all_route_schedule_inputs.find('input[type="checkbox"]').attr('disabled', true);
+  all_route_schedule_inputs.find('select').prop('disabled', true);
+  all_route_schedule_inputs.find('input[type="checkbox"]').prop('disabled', true);
 
   var route_schedule = $('#route-schedule-inputs-' + route_id);
   route_schedule.show();
   route_schedule.find('.order-days').show();
-  route_schedule.find('select').attr('disabled', false);
+  route_schedule.find('select').prop('disabled', false);
   $.each(route_schedule.find('input[type="checkbox"]'), function(index, value) {
     var day = $(value);
-    if(day.data('enabled')) { day.attr('disabled', false); }
+    if(day.data('enabled')) { day.prop('disabled', false); }
   });
   update_day_checkboxes(route_schedule.find('.schedule-start-date'));
 }
