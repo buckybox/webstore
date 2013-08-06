@@ -15,12 +15,9 @@ class Webstore::PaymentOptionsController < Webstore::BaseController
 
 private
 
-  def finalise_webstore_order
-    Webstore::Factory.assemble(cart: current_cart)
-  end
-
   def successful_payment_options
-    finalise_webstore_order
+    webstore_factory = current_cart.run_factory
+    customer_sign_in(webstore_factory.customer, no_track: current_admin.present?)
     redirect_to webstore_completed_path, notice: 'Your order has been placed.'
   end
 

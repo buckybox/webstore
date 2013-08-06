@@ -101,6 +101,12 @@ class Webstore::Cart
     -closing_balance
   end
 
+  def run_factory(factory_class = Webstore::Factory)
+    factory = factory_class.assemble(cart: self)
+    customer.associate_real_customer(factory.customer)
+    factory
+  end
+
 private
 
   attr_writer :id

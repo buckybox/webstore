@@ -31,21 +31,21 @@ private
   attr_reader :address
 
   def prepare_address
-    address.phone         = { number: phone_number, type: phone_type }
-    address.address_1     = address_1
-    address.address_2     = address_2
-    address.suburb        = suburb
-    address.city          = city
-    address.postcode      = postcode
-    address.delivery_note = delivery_note
+    address.phone         = { number: phone_number, type: phone_type } if phone_number && phone_type
+    address.address_1     = address_1     if address_1
+    address.address_2     = address_2     if address_2
+    address.suburb        = suburb        if suburb
+    address.city          = city          if city
+    address.postcode      = postcode      if postcode
+    address.delivery_note = delivery_note if delivery_note
     address
   end
 
   def prepare_customer
-    customer.email          = email
-    customer.distributor_id = distributor_id
-    customer.route_id       = route_id
-    customer.name           = name
+    customer.email          = email          if email
+    customer.distributor_id = distributor_id if distributor_id
+    customer.route_id       = route_id       if route_id
+    customer.name           = name           if name
     customer.address        = address
     customer.via_webstore!
     customer
@@ -101,20 +101,20 @@ private
 
   def derive_data
     @customer    = get_customer || ::Customer.new
-    @address     = get_address || customer.build_address
+    @address     = get_address  || customer.build_address
     @order       = get_order
     @information = get_order_information
   end
 
   def get_customer
-    cart.customer ? cart.customer.existing_customer : nil
+    get_webstore_customer.existing_customer
+  end
+
+  def get_webstore_customer
+    cart.customer
   end
 
   def get_address
-    get_customer ? get_customer.address : nil
-  end
-
-  def address
     customer.address
   end
 
