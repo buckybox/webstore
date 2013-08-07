@@ -1,8 +1,9 @@
 require_relative '../../../app/models/webstore/cart'
 
 describe Webstore::Cart do
-  class Webstore::CartPersistence; end
-  class Box; end
+  Webstore::CartPersistence = Class.new
+  Box = Class.new
+  Route = Class.new
 
   let(:persistence_class) { double('persistence_class') }
   let(:persistence)       { double('persistence') }
@@ -14,15 +15,15 @@ describe Webstore::Cart do
       it 'returns restored cart' do
         cart.stub(:id) { 1 }
         persistence.stub(:collected_data) { cart }
-        persistence_class.stub(:find_by_id) { persistence }
+        persistence_class.stub(:find_by) { persistence }
         Webstore::Cart.find(1, persistence_class).new?.should be_false
       end
     end
 
     context 'when a cart is not found' do
-      it 'returns an new cart' do
-        persistence_class.stub(:find_by_id) { nil }
-        Webstore::Cart.find(1, persistence_class).new?.should be_true
+      it 'returns nil' do
+        persistence_class.stub(:find_by) { nil }
+        Webstore::Cart.find(1, persistence_class).should be_nil
       end
     end
   end
@@ -79,14 +80,14 @@ describe Webstore::Cart do
       context 'when save works' do
         it 'saves a cart and returns an true' do
           persistence.stub(:update_attributes) { true }
-          cart.save(persistence_class).should be_true
+          cart.save.should be_true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
           persistence.stub(:update_attributes) { false }
-          cart.save(persistence_class).should be_false
+          cart.save.should be_false
         end
       end
     end
@@ -99,17 +100,15 @@ describe Webstore::Cart do
 
       context 'when save works' do
         it 'saves a cart and returns an true' do
-          persistence_class.stub(:create) { persistence }
           persistence.stub(:update_attributes) { true }
-          cart.save(persistence_class).should be_true
+          cart.save.should be_true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
-          persistence_class.stub(:create) { persistence }
           persistence.stub(:update_attributes) { false }
-          cart.save(persistence_class).should be_false
+          cart.save.should be_false
         end
       end
     end
