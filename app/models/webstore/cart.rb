@@ -11,19 +11,24 @@ class Webstore::Cart
   attr_reader :distributor
 
   def self.find(id, persistance_class = Webstore::CartPersistance)
-    persistance = persistance_class.where(id: id).first
-    instance_from_persistance(persistance)
+    persistance = persistance_class.find_by(id: id)
+    persistance.collected_data if persistance
   end
 
   def initialize(args = {})
-    @id          = args[:id]
-    @order       = new_order(args)
-    @customer    = new_customer(args)
-    @distributor = args[:distributor]
+    @id                = args[:id]
+    @order             = new_order(args)
+    @customer          = new_customer(args)
+    @distributor       = args[:distributor]
+    @persistance_class = args.fetch(:persistance_class, Webstore::CartPersistance)
   end
 
   def new?
     id.nil?
+  end
+
+  def completed?
+    @completed
   end
 
   def ==(comparison_cart)
@@ -34,11 +39,10 @@ class Webstore::Cart
     end
   end
 
-  def save(persistance_class = Webstore::CartPersistance)
-    persistance = find_or_create_persistance(persistance_class)
+  def save
+    persistance = find_or_create_persistance
     self.id = persistance.id
-    result = persistance.update_attributes(collected_data: self)
-    result
+    persistance.update_attributes(collected_data: self)
   end
 
   def add_product(product_id)
@@ -104,16 +108,14 @@ class Webstore::Cart
   def run_factory(factory_class = Webstore::Factory)
     factory = factory_class.assemble(cart: self)
     customer.associate_real_customer(factory.customer)
+    complete!
     factory
   end
 
 private
 
+  attr_reader :persistance_class
   attr_writer :id
-
-  def self.instance_from_persistance(persistance)
-    persistance ? persistance.collected_data : new
-  end
 
   def new_order(args)
     args = args.fetch(:order, {})
@@ -127,9 +129,14 @@ private
     Webstore::Customer.new(args)
   end
 
-  def find_or_create_persistance(persistance_class)
+  def find_or_create_persistance
     persistance = persistance_class.find_by_id(id)
     persistance = persistance_class.create unless persistance
     persistance
+  end
+
+  def complete!
+    @completed = true
+    save
   end
 end

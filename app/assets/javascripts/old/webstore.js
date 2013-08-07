@@ -1,4 +1,4 @@
-$(function() { 
+$(function() {
   $('#buy_extra_include_extras').change(function() {
     if($(this).is(':checked')) {
       $('#webstore_extras').show();
