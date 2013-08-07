@@ -10,9 +10,9 @@ class Webstore::Cart
   attr_reader :customer
   attr_reader :distributor
 
-  def self.find(id, persistance_class = Webstore::CartPersistance)
-    persistance = persistance_class.find_by(id: id)
-    persistance.collected_data if persistance
+  def self.find(id, persistence_class = Webstore::CartPersistence)
+    persistence = persistence_class.find_by(id: id)
+    persistence.collected_data if persistence
   end
 
   def initialize(args = {})
@@ -20,7 +20,7 @@ class Webstore::Cart
     @order             = new_order(args)
     @customer          = new_customer(args)
     @distributor       = args[:distributor]
-    @persistance_class = args.fetch(:persistance_class, Webstore::CartPersistance)
+    @persistence_class = args.fetch(:persistence_class, Webstore::CartPersistence)
   end
 
   def new?
@@ -40,9 +40,9 @@ class Webstore::Cart
   end
 
   def save
-    persistance = find_or_create_persistance
-    self.id = persistance.id
-    persistance.update_attributes(collected_data: self)
+    persistence = find_or_create_persistence
+    self.id = persistence.id
+    persistence.update_attributes(collected_data: self)
   end
 
   def add_product(product_id)
@@ -114,7 +114,7 @@ class Webstore::Cart
 
 private
 
-  attr_reader :persistance_class
+  attr_reader :persistence_class
   attr_writer :id
 
   def new_order(args)
@@ -129,10 +129,10 @@ private
     Webstore::Customer.new(args)
   end
 
-  def find_or_create_persistance
-    persistance = persistance_class.find_by_id(id)
-    persistance = persistance_class.create unless persistance
-    persistance
+  def find_or_create_persistence
+    persistence = persistence_class.find_by_id(id)
+    persistence = persistence_class.create unless persistence
+    persistence
   end
 
   def complete!
