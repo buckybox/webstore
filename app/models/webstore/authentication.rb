@@ -15,7 +15,7 @@ class Webstore::Authentication < Webstore::Form
   attribute :password,    String
 
   validates_presence_of :email
-  validates_email_format_of :email
+  validates_format_of :email, with: /.+@.+\..+/i
 
   def options
     AUTHORISATION_OPTIONS
