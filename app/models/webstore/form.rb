@@ -12,9 +12,11 @@ class Webstore::Form
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  def initialize(attributes = nil)
+  def initialize(attributes = {})
     attributes = sanitise_attributes(attributes)
-    super(attributes)
+    before_standard_initialize(attributes)
+    super
+    after_standard_initialize(attributes)
   end
 
   def save
@@ -43,5 +45,13 @@ protected
 
   def sanitise_attributes(attributes)
     attributes
+  end
+
+  def before_standard_initialize(attributes)
+    # just a NO OP hook
+  end
+
+  def after_standard_initialize(attributes)
+    # just a NO OP hook
   end
 end

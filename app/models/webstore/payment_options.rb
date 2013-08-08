@@ -26,13 +26,6 @@ class Webstore::PaymentOptions < Webstore::Form
 
   attr_reader :address
 
-  def initialize(attributes = {})
-    attributes = defaults.merge(attributes)
-    @address_class = attributes.delete(:address_class)
-    super
-    @address = customer.guest? ? build_address : customer_address
-  end
-
   def name
     super || customer.name
   end
@@ -127,6 +120,17 @@ class Webstore::PaymentOptions < Webstore::Form
       payment_method:    payment_method,
       complete:          complete,
     }
+  end
+
+protected
+
+  def before_standard_initialize(attributes)
+    attributes = defaults.merge(attributes)
+    @address_class = attributes.delete(:address_class)
+  end
+
+  def after_standard_initialize(attributes)
+    @address = customer.guest? ? build_address : customer_address
   end
 
 private
