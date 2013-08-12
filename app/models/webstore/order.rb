@@ -8,18 +8,18 @@ class Webstore::Order
   include Draper::Decoratable
 
   attr_reader :cart
-  attr_reader :box
+  attr_reader :product_id
   attr_reader :information
 
   def initialize(args = {})
-    @cart        = args[:cart]
-    @box         = args[:box]
-    @information = args[:information] || {}
-    @route_class = args.fetch(:route_class, ::Route)
+    @cart          = args[:cart]
+    @information   = args.fetch(:information, {})
+    @route_class   = args.fetch(:route_class, ::Route)
+    @product_class = args.fetch(:product_class, ::Box)
   end
 
-  def add_product(product_id, box_class = ::Box)
-    self.box = box_class.where(id: product_id).first
+  def add_product(product_id)
+    @product_id = product_id
   end
 
   def add_information(new_information)
@@ -79,15 +79,15 @@ class Webstore::Order
   end
 
   def pre_discount_total
-    result = box_price
+    result = product_price
     result += extras_price if has_extras?
     result += delivery_fee if is_scheduled?
     result += bucky_fee    if has_bucky_fee?
     result
   end
 
-  def box_price(order_price_class = ::OrderPrice)
-     order_price_class.discounted(box.price, existing_customer)
+  def product_price(order_price_class = ::OrderPrice)
+     order_price_class.discounted(product.price, existing_customer)
   end
 
   def extras_price(order_price_class = ::OrderPrice)
@@ -106,20 +106,24 @@ class Webstore::Order
     order_price_class.discounted(pre_discount_total, existing_customer) - pre_discount_total
   end
 
+  def product
+    product_class.find(product_id)
+  end
+
   def extras_list
-    box.available_extras
+    product.available_extras
   end
 
-  def box_image
-    box.webstore_image_url
+  def product_image
+    product.webstore_image_url
   end
 
-  def box_name
-    box.name
+  def product_name
+    product.name
   end
 
-  def box_description
-    box.description
+  def product_description
+    product.description
   end
 
   def extra_quantity(extra)
@@ -128,7 +132,7 @@ class Webstore::Order
   end
 
   def schedule(schedule_builder_class = ::ScheduleBuilder)
-    @schedule ||= schedule_builder_class.build({
+    schedule_builder_class.build({
       start_date:  start_date,
       frequency:   frequency,
       days:        days,
@@ -156,14 +160,15 @@ class Webstore::Order
   end
 
   def customisable?
-    box.customisable?
+    product.customisable?
   end
 
 private
 
   attr_reader :route_class
+  attr_reader :product_class
 
-  attr_writer :box
+  attr_writer :product
   attr_writer :information
 
   def distributor

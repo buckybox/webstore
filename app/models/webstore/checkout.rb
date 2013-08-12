@@ -6,9 +6,13 @@ class Webstore::Checkout
 
   def initialize(args = {})
     args               = defaults.merge(args)
-    @distributor       = args[:distributor]
     @existing_customer = args[:existing_customer]
-    @cart              = args[:cart_class].new(distributor: distributor, customer: customer_hash)
+    @cart              = args[:cart_class].new(
+      distributor_id: args[:distributor_id],
+      customer: customer_hash
+    )
+
+    cart.save
   end
 
   def customer
@@ -26,7 +30,7 @@ class Webstore::Checkout
 
 private
 
-  attr_reader :distributor
+  attr_reader :distributor_id
   attr_reader :existing_customer
 
   def customer_hash

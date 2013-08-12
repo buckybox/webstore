@@ -30,7 +30,7 @@ private
   attr_reader :webstore_order
 
   def prepare_order
-    order.box                       = box
+    order.box_id                    = product_id
     order.account                   = account
     order.schedule_rule_attributes  = schedule_rule
     order.order_extras              = order_extras
@@ -41,8 +41,8 @@ private
     order
   end
 
-  def box
-    webstore_order.box
+  def product_id
+    webstore_order.product_id
   end
 
   def account

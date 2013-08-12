@@ -18,31 +18,31 @@ class Webstore::CustomiseOrder < Webstore::Form
   end
 
   def exclusions?
-    box.dislikes?
+    product.dislikes?
   end
 
   def substitutions?
-    box.likes?
+    product.likes?
   end
 
   def extras_allowed?
-    box.extras_allowed?
+    product.extras_allowed?
   end
 
   def extras_unlimited?
-    box.extras_unlimited?
+    product.extras_unlimited?
   end
 
   def exclusions_limit
-    box.exclusions_limit
+    product.exclusions_limit
   end
 
   def substitutions_limit
-    box.substitutions_limit
+    product.substitutions_limit
   end
 
   def extras_limit
-    box.extras_limit
+    product.extras_limit
   end
 
   def to_h
@@ -63,7 +63,7 @@ protected
     attributes
   end
 
-  def box
-    cart.box
+  def product
+    cart.product
   end
 end

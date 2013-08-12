@@ -2,22 +2,38 @@ class Webstore::StoreController < Webstore::BaseController
   skip_before_filter :distributors_customer?
 
   def store
-    store = Webstore::Store.new(distributor: current_distributor, existing_customer: logged_in_customer)
+    store = Webstore::Store.new(
+      distributor: current_distributor,
+      existing_customer: logged_in_customer
+    )
+
     @current_customer = store.customer.decorate
-    products = store.products
-    render 'store', locals: { webstore_products: Webstore::ProductDecorator.decorate_collection(products) }
+
+    render 'store', locals: {
+      webstore_products: Webstore::ProductDecorator.decorate_collection(store.products)
+    }
   end
 
   def start_checkout
-    checkout = Webstore::Checkout.new(distributor: current_distributor, existing_customer: logged_in_customer)
+    checkout = Webstore::Checkout.new(
+      distributor_id: current_distributor.id,
+      existing_customer: logged_in_customer
+    )
+
     @current_customer = checkout.customer.decorate
+
     distributors_customer?
+
     product_id = params[:product_id]
-    checkout.add_product!(product_id) ? successful_new_checkout(checkout) : failed_new_checkout
+    if checkout.add_product!(product_id)
+      successful_new_checkout(checkout)
+    else
+      failed_new_checkout
+    end
   end
 
   def completed
-    render 'completed', locals: { 
+    render 'completed', locals: {
       order: current_order,
       completed: Webstore::Completed.new(cart: current_cart),
       cart: Webstore::PaymentDecorator.decorate(current_cart),

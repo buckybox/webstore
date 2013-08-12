@@ -6,8 +6,6 @@ require_relative '../webstore'
 class Webstore::Customer
   include Draper::Decoratable
 
-  attr_reader :distributor
-  attr_reader :existing_customer
   attr_reader :cart
 
   GUEST_HALTED     = false
@@ -15,9 +13,8 @@ class Webstore::Customer
   GUEST_ACTIVE     = false
 
   def initialize(args = {})
-    @cart              = args.fetch(:cart, nil)
-    @existing_customer = args.fetch(:existing_customer, nil)
-    @distributor       = existing_customer ? existing_customer.distributor : args.fetch(:distributor, nil)
+    @cart                 = args.fetch(:cart, nil)
+    @existing_customer_id = args.fetch(:existing_customer_id, nil)
   end
 
   def fetch(key, default_value = nil)
@@ -28,8 +25,12 @@ class Webstore::Customer
     !existing_customer
   end
 
+  def existing_customer
+    Customer.find(@existing_customer_id) if @existing_customer_id
+  end
+
   def associate_real_customer(customer)
-    @existing_customer = customer
+    @existing_customer_id = customer.id
   end
 
   def halted?

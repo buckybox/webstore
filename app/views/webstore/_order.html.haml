@@ -7,15 +7,15 @@
   #current-order.span12
     .section-info-background
 
-    = image_tag(order.box_image)
+    = image_tag(order.product_image)
 
     %table.section-info
       %tbody
         %tr#description
           %td.description
-            %h1= order.box_name
-            = simple_format(order.box_description)
-          %td.price= order.box_price
+            %h1= order.product_name
+            = simple_format(order.product_description)
+          %td.price= order.product_price
 
         - if order.has_exclusions?
           %tr#customisation

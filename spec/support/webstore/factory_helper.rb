@@ -19,13 +19,13 @@ module Webstore::FactoryHelper
     return @cart if @cart
 
     cart = Webstore::Cart.new(
-      customer: Webstore::Customer.new(
+      customer: {
         cart: double("Cart"),
-        existing_customer: nil,
-        distributor: distributor,
-      ),
+        existing_customer_id: nil,
+        distributor_id: distributor.id,
+      },
       order: {
-        box: box,
+        box_id: box.id,
         cart: double("Cart"),
         information: {
           :dislikes=>[

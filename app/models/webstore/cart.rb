@@ -8,7 +8,7 @@ class Webstore::Cart
   attr_reader :id
   attr_reader :order
   attr_reader :customer
-  attr_reader :distributor
+  attr_reader :distributor_id
 
   def self.find(id, persistence_class = Webstore::CartPersistence)
     persistence = persistence_class.find_by(id: id)
@@ -19,7 +19,7 @@ class Webstore::Cart
     @id                = args[:id]
     @order             = new_order(args)
     @customer          = new_customer(args)
-    @distributor       = args[:distributor]
+    @distributor_id    = args.fetch(:distributor_id)
     @persistence_class = args.fetch(:persistence_class, Webstore::CartPersistence)
   end
 
@@ -28,7 +28,8 @@ class Webstore::Cart
   end
 
   def completed?
-    @completed
+    # order.complete # FIXME
+    false
   end
 
   def ==(comparison_cart)
@@ -53,6 +54,10 @@ class Webstore::Cart
     customer.existing_customer
   end
 
+  def distributor
+    Distributor.find(distributor_id)
+  end
+
   def distributor_parameter_name
     distributor.parameter_name
   end
@@ -69,8 +74,8 @@ class Webstore::Cart
     order.add_information(information)
   end
 
-  def box
-    order.box
+  def product
+    order.product
   end
 
   def route
@@ -108,7 +113,6 @@ class Webstore::Cart
   def run_factory(factory_class = Webstore::Factory)
     factory = factory_class.assemble(cart: self)
     customer.associate_real_customer(factory.customer)
-    complete!
     factory
   end
 
@@ -119,13 +123,13 @@ private
 
   def new_order(args)
     args = args.fetch(:order, {})
-    args = args.merge({ cart: self })
+    args = args.merge(cart: self)
     Webstore::Order.new(args)
   end
 
   def new_customer(args)
     args = args.fetch(:customer, {})
-    args = args.merge({ cart: self })
+    args = args.merge(cart: self)
     Webstore::Customer.new(args)
   end
 
@@ -133,10 +137,5 @@ private
     persistence = persistence_class.find_by_id(id)
     persistence = persistence_class.create unless persistence
     persistence
-  end
-
-  def complete!
-    @completed = true
-    save
   end
 end
