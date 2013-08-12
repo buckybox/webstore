@@ -1,6 +1,6 @@
 class Webstore::PaymentOptionsController < Webstore::BaseController
   def payment_options
-    render 'payment_options', locals: {
+    render "payment_options", locals: {
       order: current_order,
       payment_options: Webstore::PaymentOptions.new(cart: current_cart),
       cart: Webstore::PaymentDecorator.decorate(current_cart),
@@ -18,12 +18,12 @@ private
   def successful_payment_options
     webstore_factory = current_cart.run_factory
     customer_sign_in(webstore_factory.customer, no_track: current_admin.present?)
-    redirect_to webstore_completed_path, notice: 'Your order has been placed.'
+    redirect_to webstore_completed_path, notice: "Your order has been placed."
   end
 
   def failed_payment_options(payment_options)
-    flash[:alert] = 'We\'re sorry there was an error saving your address.'
-    render 'payment_options', locals: {
+    flash[:alert] = "We're sorry there was an error saving your address."
+    render "payment_options", locals: {
       order: current_order,
       payment_options: payment_options,
       cart: Webstore::PaymentDecorator.decorate(current_cart),

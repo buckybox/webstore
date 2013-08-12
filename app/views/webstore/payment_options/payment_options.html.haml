@@ -64,18 +64,15 @@
             - else
               .span10 Your account is in credit
 
-      - if payment_options.only_one_payment_option?
-        = f.input :payment_method, as: :hidden
-      - else
-        .row-fluid
-          #payment-options.span12
-            - if cart.payment_required?
-              .row-fluid
-                .form-horizontal.span6.center-row
-                  = f.input :payment_method, as: :radio_buttons, collection: payment_options.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
-            - else
-              .span12.text-center No payment necessary
-              = f.input :payment_method, as: :hidden
+      .row-fluid
+        #payment-options.span12
+          - if cart.payment_required?
+            .row-fluid
+              .form-horizontal.span6.center-row
+                = f.input :payment_method, as: :radio_buttons, collection: payment_options.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
+          - else
+            .span12.text-center No payment necessary
+            = f.input :payment_method, as: :hidden
 
   .row-fluid
     .span12.text-center
