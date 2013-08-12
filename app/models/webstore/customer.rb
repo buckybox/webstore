@@ -7,6 +7,7 @@ class Webstore::Customer
   include Draper::Decoratable
 
   attr_reader :cart
+  attr_reader :existing_customer_id
 
   GUEST_HALTED     = false
   GUEST_DISCOUNTED = false
@@ -26,7 +27,11 @@ class Webstore::Customer
   end
 
   def existing_customer
-    Customer.find(@existing_customer_id) if @existing_customer_id
+    Customer.find(existing_customer_id) if existing_customer_id
+  end
+
+  def distributor
+    existing_customer.distributor if existing_customer
   end
 
   def associate_real_customer(customer)

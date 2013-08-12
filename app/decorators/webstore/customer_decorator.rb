@@ -6,6 +6,10 @@ class Webstore::CustomerDecorator < Draper::Decorator
 
   GUEST_NAME = 'Guest'
 
+  def id
+    object.existing_customer_id
+  end
+
   def balance_threshold
     object.balance_threshold.format
   end

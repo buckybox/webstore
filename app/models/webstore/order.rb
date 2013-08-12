@@ -12,7 +12,7 @@ class Webstore::Order
   attr_reader :information
 
   def initialize(args = {})
-    @cart          = args[:cart]
+    @cart          = args.fetch(:cart)
     @information   = args.fetch(:information, {})
     @route_class   = args.fetch(:route_class, ::Route)
     @product_class = args.fetch(:product_class, ::Box)

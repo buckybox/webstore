@@ -4,7 +4,7 @@ class Webstore::StoreController < Webstore::BaseController
   def store
     store = Webstore::Store.new(
       distributor: current_distributor,
-      existing_customer: logged_in_customer
+      existing_customer: current_customer,
     )
 
     @current_customer = store.customer.decorate
@@ -17,7 +17,7 @@ class Webstore::StoreController < Webstore::BaseController
   def start_checkout
     checkout = Webstore::Checkout.new(
       distributor_id: current_distributor.id,
-      existing_customer: logged_in_customer
+      existing_customer: current_customer,
     )
 
     @current_customer = checkout.customer.decorate
@@ -48,7 +48,7 @@ private
   end
 
   def failed_new_checkout
-    flash[:alert] = 'We\'re sorry there was an error starting your order.'
+    flash[:alert] = "We're sorry there was an error starting your order."
     redirect_to webstore_store_path
   end
 

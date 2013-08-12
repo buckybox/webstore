@@ -1,58 +1,58 @@
-require_relative '../../support/webstore/webstore_helper'
+require_relative "../../support/webstore/webstore_helper"
 
-describe 'select a product from the webstore' do
+describe "select a product from the webstore" do
   include Webstore::StoreHelpers
   include Webstore::CustomiseOrderHelpers
   include Webstore::AuthenticationHelpers
   include Webstore::DeliveryOptionsHelpers
 
-  context 'when the product can be customised' do
-    context 'customer not logged in' do
+  context "when the product can be customised" do
+    context "customer not logged in" do
       before do
         make_a_webstore_with_products
         visit webstore_store_path(@distributor.parameter_name)
         customisable_product(product)
-        click_button 'Order'
+        click_button "Order"
       end
 
-      it_behaves_like 'it is on the customise page'
+      it_behaves_like "it is on the customise page"
     end
 
-    context 'when the customer is logged in' do
+    context "when the customer is logged in" do
       before do
         make_a_webstore_with_products
         sign_in_customer_to_webstore
         visit webstore_store_path(@distributor.parameter_name)
         customisable_product(product)
-        click_button 'Order'
+        click_button "Order"
       end
 
-      it_behaves_like 'it is on the customise page'
+      it_behaves_like "it is on the customise page"
     end
   end
 
-  context 'when the product can not be customised' do
-    context 'customer not logged in' do
+  context "when the product can not be customised" do
+    context "customer not logged in" do
       before do
         make_a_webstore_with_products
         visit webstore_store_path(@distributor.parameter_name)
         noncustomisable_product(product)
-        click_button 'Order'
+        click_button "Order"
       end
 
-      it_behaves_like 'it is on the customer authorisation page'
+      it_behaves_like "it is on the customer authorisation page"
     end
 
-    context 'when the customer is logged in' do
+    context "when the customer is logged in" do
       before do
         make_a_webstore_with_products
         sign_in_customer_to_webstore
         visit webstore_store_path(@distributor.parameter_name)
         noncustomisable_product(product)
-        click_button 'Order'
+        click_button "Order"
       end
 
-      it_behaves_like 'it is on the delivery options page'
+      it_behaves_like "it is on the delivery options page"
     end
   end
 
