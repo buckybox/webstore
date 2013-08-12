@@ -9,6 +9,10 @@ class Webstore::CustomiseOrder < Webstore::Form
   attribute :extras,              Hash[Integer => Integer]
   attribute :add_extra,           Boolean
 
+  validate :number_of_exclusions
+  validate :number_of_substitutions
+  validate :number_of_extras
+
   def stock_list
     cart.stock_list
   end
@@ -34,15 +38,15 @@ class Webstore::CustomiseOrder < Webstore::Form
   end
 
   def exclusions_limit
-    product.exclusions_limit
+    [ product.exclusions_limit.to_i, 0 ].max
   end
 
   def substitutions_limit
-    product.substitutions_limit
+    [ product.substitutions_limit.to_i, 0].max
   end
 
   def extras_limit
-    product.extras_limit
+    [ product.extras_limit.to_i, 0 ].max
   end
 
   def to_h
@@ -65,5 +69,35 @@ protected
 
   def product
     cart.product
+  end
+
+  def exclusions_count
+    dislikes.size || 0
+  end
+
+  def substitutions_count
+    likes.size || 0
+  end
+
+  def extras_count
+    extras.values.inject(&:+) || 0
+  end
+
+  def number_of_exclusions
+    if exclusions? && exclusions_count > exclusions_limit
+      errors.add(:dislikes, "you have too many exclusions the maximum is #{exclusions_limit}")
+    end
+  end
+
+  def number_of_substitutions
+    if substitutions? && substitutions_count > substitutions_limit
+      errors.add(:likes, "you have too many substitutions the maximum is #{substitutions_limit}")
+    end
+  end
+
+  def number_of_extras
+    if !extras_unlimited? && extras_count > extras_limit
+      errors.add(:extras, "you have too many extras the maximum is #{extras_limit}")
+    end
   end
 end
