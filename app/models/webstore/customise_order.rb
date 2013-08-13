@@ -92,13 +92,13 @@ protected
   end
 
   def number_of_exclusions
-    if exclusions? && !extras_unlimited? && exclusions_count > exclusions_limit
+    if !extras_unlimited? && exclusions_count > exclusions_limit
       errors.add(:dislikes, "you have too many exclusions the maximum is #{exclusions_limit}")
     end
   end
 
   def number_of_substitutions
-    if substitutions? && !substitutions_unlimited? && substitutions_count > substitutions_limit
+    if !substitutions_unlimited? && substitutions_count > substitutions_limit
       errors.add(:likes, "you have too many substitutions the maximum is #{substitutions_limit}")
     end
   end
