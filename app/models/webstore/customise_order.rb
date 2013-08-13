@@ -38,15 +38,23 @@ class Webstore::CustomiseOrder < Webstore::Form
   end
 
   def exclusions_limit
-    [ product.exclusions_limit.to_i, 0 ].max
+    product.exclusions_limit
+  end
+
+  def exclusions_unlimited?
+    product.exclusions_unlimited?
   end
 
   def substitutions_limit
-    [ product.substitutions_limit.to_i, 0].max
+    product.substitutions_limit
+  end
+
+  def substitutions_unlimited?
+    product.substitutions_unlimited?
   end
 
   def extras_limit
-    [ product.extras_limit.to_i, 0 ].max
+    product.extras_limit
   end
 
   def to_h
@@ -84,13 +92,13 @@ protected
   end
 
   def number_of_exclusions
-    if exclusions? && exclusions_count > exclusions_limit
+    if exclusions? && !extras_unlimited? && exclusions_count > exclusions_limit
       errors.add(:dislikes, "you have too many exclusions the maximum is #{exclusions_limit}")
     end
   end
 
   def number_of_substitutions
-    if substitutions? && substitutions_count > substitutions_limit
+    if substitutions? && !substitutions_unlimited? && substitutions_count > substitutions_limit
       errors.add(:likes, "you have too many substitutions the maximum is #{substitutions_limit}")
     end
   end
