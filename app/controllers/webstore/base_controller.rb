@@ -16,6 +16,15 @@ protected
     @current_cart ||= Webstore::Cart.find(session[:cart_id])
   end
 
+  def flush_current_cart!
+    cart = current_cart.dup
+
+    session.delete(:cart_id)
+    @current_cart = nil
+
+    cart
+  end
+
   def current_order
     @current_order ||= current_cart.order.decorate
   end

@@ -33,11 +33,13 @@ class Webstore::StoreController < Webstore::BaseController
   end
 
   def completed
+    cart = flush_current_cart!
+
     render 'completed', locals: {
       completed: Webstore::Completed.new(
-        cart: current_cart,
-        real_order: ::Order.find(current_cart.real_order_id),
-        real_customer: ::Customer.find(current_cart.real_customer_id),
+        cart: cart,
+        real_order: ::Order.find(cart.real_order_id),
+        real_customer: ::Customer.find(cart.real_customer_id),
       )
     }
   end
