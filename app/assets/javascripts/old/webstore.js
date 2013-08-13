@@ -178,12 +178,10 @@ $(function() {
 
   if($('#webstore-address').length > 0) {
     var webstore_address = $('#webstore-address');
-    var has_address = webstore_address.data('has-address');
-    display_address_information(webstore_address, has_address);
 
     $('#webstore-address #edit-address').click(function() {
-      $('#webstore-address').data('has-address', false);
-      display_address_information($('#webstore-address'), false);
+      $("#existing-address").hide();
+      $("#update-address").show();
     });
   }
 });
@@ -219,22 +217,6 @@ function update_day_checkboxes(start_date) {
     var checkbox_selector = '#day-' + date.getDay() + ' input[type="checkbox"]';
     selected_checkbox = route_schedule_inputs.find(checkbox_selector);
     selected_checkbox.prop('checked', true);
-  }
-}
-
-function display_address_information(from_div, has_address) {
-  var existing_address = from_div.find('#existing-address');
-  var update_address = from_div.find('#update-address');
-
-  if(has_address) {
-    existing_address.show();
-    update_address.hide();
-    update_address.find('input').attr('disabled', true);
-  }
-  else {
-    existing_address.hide();
-    update_address.show();
-    update_address.find('input').attr('disabled', false);
   }
 }
 

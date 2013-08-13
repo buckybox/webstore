@@ -30,11 +30,11 @@ class Webstore::PaymentOptions < Webstore::Form
     super || customer.name
   end
 
-  def phone_number
+  def default_phone_number
     address.default_phone_number
   end
 
-  def phone_type
+  def default_phone_type
     address.default_phone_type
   end
 
@@ -106,6 +106,10 @@ class Webstore::PaymentOptions < Webstore::Form
     distributor.require_postcode
   end
 
+  def customer_address
+    customer.address
+  end
+
   def to_h
     {
       name:              name,
@@ -164,7 +168,4 @@ private
     cart.customer
   end
 
-  def customer_address
-    customer.address
-  end
 end

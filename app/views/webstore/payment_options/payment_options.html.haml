@@ -3,7 +3,7 @@
 = render partial: 'webstore/order', object: order
 
 = simple_form_for(payment_options) do |f|
-  #webstore-address.row-fluid.webstore-section{ data: { 'has-address' => "#{payment_options.existing_customer? ? 'true' : 'false'}" } }
+  #webstore-address.row-fluid.webstore-section
     .span12
       #existing-address.row-fluid
         .span12
@@ -14,8 +14,8 @@
             .span12
               = payment_options.address.join('<br>') if payment_options.existing_customer?
               %br
-              = link_to 'Change my delivery address', '#', id: 'edit-address'
-      #update-address.row-fluid
+              = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
+      #update-address.row-fluid{ :class => ("hide" if payment_options.existing_customer? && payment_options.customer_address.valid?) }
         .span12
           .row-fluid
             .span12
@@ -27,8 +27,8 @@
               .span12
                 %h4 Your phone number
             .row-fluid
-              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12' }
-              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12' }
+              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number }, required: payment_options.require_phone
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12' }, include_blank: false, required: payment_options.require_phone, selected: payment_options.default_phone_type
           .row-fluid
             .span12
               %h4 Deliver to
