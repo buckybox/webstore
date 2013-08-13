@@ -1,23 +1,22 @@
 - title('Webstore - Completed Order', false)
 = render partial: 'webstore/sidebar'
 
-- if completed.existing_customer?
-  .row-fluid.span12
-    .important Payment instructions
-    = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
+.row-fluid.span12
+  .important Payment instructions
+  = render partial: 'webstore/payment_instructions', locals: { form_object: completed.cart }
 
 .row-fluid
   #webstore-payment.span12
     .row-fluid
       #payment.span12
         .row-fluid
-          .span12.text-center.payment-title== Pay by #{cart.payment_method}
+          .span12.text-center.payment-title== Pay by #{completed.payment_title}
         .row-fluid
-          .span9.center-row= render partial: "confirmation_#{cart.payment_method}", locals: { form_object: completed }
+          .span9.center-row= render partial: "confirmation_#{completed.payment_method}", locals: { form_object: completed }
 
 .row-fluid
   .important Order summary
-  = render partial: 'webstore/order', object: order
+  = render partial: 'webstore/order', object: completed.cart.order
 
 .row-fluid
   #webstore-placed.span12
@@ -35,5 +34,5 @@
 
 .row-fluid
   .span12.text-center
-    = link_to 'Back to webstore', webstore_store_path(completed.distributor_parameter_name), class: 'btn btn-process', id: 'webstore'
+    = link_to 'Back to webstore', webstore_store_path(completed.distributor.parameter_name), class: 'btn btn-process', id: 'webstore'
     = link_to 'My account', customer_root_path, class: 'btn btn-process', id: 'webstore-my-account'

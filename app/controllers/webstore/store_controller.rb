@@ -34,9 +34,11 @@ class Webstore::StoreController < Webstore::BaseController
 
   def completed
     render 'completed', locals: {
-      order: current_order,
-      completed: Webstore::Completed.new(cart: current_cart),
-      cart: Webstore::PaymentDecorator.decorate(current_cart),
+      completed: Webstore::Completed.new(
+        cart: current_cart,
+        real_order: ::Order.find(current_cart.real_order_id),
+        real_customer: ::Customer.find(current_cart.real_customer_id),
+      )
     }
   end
 

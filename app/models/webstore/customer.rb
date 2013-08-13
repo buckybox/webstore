@@ -34,8 +34,8 @@ class Webstore::Customer
     existing_customer.distributor if existing_customer
   end
 
-  def associate_real_customer(customer)
-    @existing_customer_id = customer.id
+  def associate_real_customer(customer_id)
+    @existing_customer_id = customer_id
   end
 
   def halted?

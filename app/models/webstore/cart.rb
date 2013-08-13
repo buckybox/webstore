@@ -9,6 +9,8 @@ class Webstore::Cart
   attr_reader :order
   attr_reader :customer
   attr_reader :distributor_id
+  attr_reader :real_order_id # from factory
+  attr_reader :real_customer_id # from factory
 
   def self.find(id, persistence_class = Webstore::CartPersistence)
     persistence = persistence_class.find_by(id: id)
@@ -28,8 +30,7 @@ class Webstore::Cart
   end
 
   def completed?
-    # order.complete # FIXME
-    false
+    @completed
   end
 
   def ==(comparison_cart)
@@ -112,7 +113,13 @@ class Webstore::Cart
 
   def run_factory(factory_class = Webstore::Factory)
     factory = factory_class.assemble(cart: self)
-    customer.associate_real_customer(factory.customer)
+
+    @real_order_id = factory.order.id
+    @real_customer_id = factory.customer.id
+    customer.associate_real_customer(@real_customer_id)
+
+    completed!
+
     factory
   end
 
@@ -137,5 +144,10 @@ private
     persistence = persistence_class.find_by_id(id)
     persistence = persistence_class.create unless persistence
     persistence
+  end
+
+  def completed!
+    @completed = true
+    save
   end
 end

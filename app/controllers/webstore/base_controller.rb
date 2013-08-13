@@ -20,7 +20,6 @@ protected
     @current_order ||= current_cart.order.decorate
   end
 
-  alias_method :logged_in_customer, :current_customer
   def current_customer
     return super unless current_cart
     @current_customer ||= current_cart.customer.decorate
@@ -45,7 +44,7 @@ protected
   end
 
   def cart_completed?
-    if params[:action] != "store" && current_cart && current_cart.completed?
+    if !params[:action].in?(%w(store completed)) && current_cart && current_cart.completed?
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
     end
