@@ -5,17 +5,17 @@
 = simple_form_for(payment_options) do |f|
   #webstore-address.row-fluid.webstore-section
     .span12
-      #existing-address.row-fluid
+      #existing-address.row-fluid{ :class => ("hide" unless payment_options.address.valid? ) }
         .span12
           .row-fluid
             .span12
               %h4 Deliver to:
           .row-fluid
             .span12
-              = payment_options.address.join('<br>') if payment_options.existing_customer?
+              = payment_options.address.join('<br>')
               %br
-              = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
-      #update-address.row-fluid{ :class => ("hide" if payment_options.existing_customer? && payment_options.customer_address.valid?) }
+            = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
+      #update-address.row-fluid{ :class => ("hide" if payment_options.address.valid?) }
         .span12
           .row-fluid
             .span12
@@ -34,8 +34,8 @@
               %h4 Deliver to
           .row-fluid
             .span12
-              = f.input :street_address, label: false, placeholder: 'Street', input_html: { class: 'span12' }, required: payment_options.require_address_1
-              = f.input :street_address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }, required: payment_options.require_address_2
+              = f.input :address_1, label: false, placeholder: 'Street', input_html: { class: 'span12' }, required: payment_options.require_address_1
+              = f.input :address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }, required: payment_options.require_address_2
               = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12' }, required: payment_options.require_suburb
           .row-fluid
             .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city' }, required: payment_options.require_city

@@ -60,11 +60,11 @@ private
   end
 
   def address_1
-    information[:street_address]
+    information[:address_1]
   end
 
   def address_2
-    information[:street_address_2]
+    information[:address_2]
   end
 
   def suburb
