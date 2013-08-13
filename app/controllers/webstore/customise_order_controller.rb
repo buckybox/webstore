@@ -19,7 +19,7 @@ private
   end
 
   def next_step
-    if current_customer.guest?
+    if current_webstore_customer.guest?
       webstore_authentication_path
     else
       webstore_delivery_options_path

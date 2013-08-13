@@ -21,7 +21,7 @@ private
   end
 
   def handle_customer(customer)
-    current_customer.associate_real_customer(customer) if !!customer
+    current_webstore_customer.associate_real_customer(customer) if !!customer
   end
 
   def save_credentials(authentication)

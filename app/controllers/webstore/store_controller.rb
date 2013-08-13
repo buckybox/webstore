@@ -7,7 +7,7 @@ class Webstore::StoreController < Webstore::BaseController
       existing_customer: current_customer,
     )
 
-    @current_customer = store.customer.decorate
+    @current_webstore_customer = store.customer.decorate
 
     render 'store', locals: {
       webstore_products: Webstore::ProductDecorator.decorate_collection(store.products)
@@ -20,7 +20,7 @@ class Webstore::StoreController < Webstore::BaseController
       existing_customer: current_customer,
     )
 
-    @current_customer = checkout.customer.decorate
+    @current_webstore_customer = checkout.customer.decorate
 
     distributors_customer?
 
@@ -59,7 +59,7 @@ private
   def next_step
     return webstore_customise_order_path if current_order.customisable?
 
-    if current_customer.guest?
+    if current_webstore_customer.guest?
       webstore_authentication_path
     else
       webstore_delivery_options_path

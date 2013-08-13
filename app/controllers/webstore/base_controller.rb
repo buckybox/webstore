@@ -29,17 +29,16 @@ protected
     @current_order ||= current_cart.order.decorate
   end
 
-  def current_customer
-    return super unless current_cart
-    @current_customer ||= current_cart.customer.decorate
+  def current_webstore_customer
+    @current_webstore_customer ||= current_cart.customer.decorate
   end
 
   def distributors_customer?
-    return if current_customer.guest?
-
-    valid_customer = (current_customer.distributor == current_distributor)
-    alert_message = 'This account is not for this webstore. Please logout first then try your purchase again.'
-    redirect_to webstore_store_path, alert: alert_message and return unless valid_customer
+    if !current_webstore_customer.guest? && current_webstore_customer.distributor != current_distributor
+      redirect_to webstore_store_path,
+        alert: "This account is not for this webstore. Please logout first then try your purchase again." \
+      and return
+    end
   end
 
   def distributor_has_webstore?
