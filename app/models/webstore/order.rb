@@ -14,6 +14,7 @@ class Webstore::Order
   def initialize(args = {})
     @cart          = args.fetch(:cart)
     @information   = args.fetch(:information, {})
+    @product_id    = args.fetch(:product_id, nil)
     @route_class   = args.fetch(:route_class, ::Route)
     @product_class = args.fetch(:product_class, ::Box)
   end
@@ -127,8 +128,7 @@ class Webstore::Order
   end
 
   def extra_quantity(extra)
-    extra_id = extra.id
-    extras[extra_id]
+    extras[extra.id]
   end
 
   def schedule(schedule_builder_class = ::ScheduleBuilder)

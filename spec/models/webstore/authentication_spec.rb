@@ -29,7 +29,7 @@ describe Webstore::Authentication < Webstore::Form do
     it 'returns a hash of the important form data' do
       authentication.email    = 'test@example.com'
       authentication.password = 'password'
-      authentication.to_h.should eq({ email: 'test@example.com', password: 'password' })
+      authentication.to_h.should eq({ email: 'test@example.com' })
     end
   end
 end

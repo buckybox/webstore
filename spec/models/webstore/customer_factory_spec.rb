@@ -16,8 +16,8 @@ describe Webstore::CustomerFactory do
     context "#address" do
       let(:address) { @new_customer.address }
 
-      specify { expect(address.address_1).to eq(information_hash[:street_address]) }
-      specify { expect(address.address_2).to eq(information_hash[:street_address_2]) }
+      specify { expect(address.address_1).to eq(information_hash[:address_1]) }
+      specify { expect(address.address_2).to eq(information_hash[:address_2]) }
       specify { expect(address.suburb).to eq(information_hash[:suburb]) }
       specify { expect(address.city).to eq(information_hash[:city]) }
       specify { expect(address.postcode).to eq(information_hash[:postcode]) }

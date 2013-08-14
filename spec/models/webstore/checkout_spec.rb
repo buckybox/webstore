@@ -3,24 +3,30 @@ require_relative '../../../app/models/webstore/checkout'
 describe Webstore::Checkout do
   let(:distributor)        { double('distributor') }
   let(:logged_in_customer) { double('logged_in_customer') }
-  let(:cart)               { double('cart') }
+  let(:cart)               { double('cart').as_null_object }
   let(:cart_class)         { double('cart_class', new: cart) }
-  let(:args)               { { distributor: distributor, logged_in_customer: logged_in_customer, cart_class: cart_class } }
   let(:checkout)           { Webstore::Checkout.new(args) }
+  let(:args) do
+    {
+      distributor: distributor,
+      logged_in_customer: logged_in_customer,
+      cart_class: cart_class,
+      existing_customer: nil,
+    }
+  end
 
   class Webstore::Cart; end
 
   describe '#customer' do
     it 'returns a customer' do
-      customer_class = double('customer_class', new: logged_in_customer)
-      checkout.customer(customer_class).should eq(logged_in_customer)
+      cart.stub(:customer) { logged_in_customer }
+      checkout.customer.should eq(logged_in_customer)
     end
   end
 
   describe '#add_product!' do
     it 'returns true if the product is added to the cart' do
       cart.stub(:add_product)
-      cart.stub(:save) { true }
       checkout.add_product!(3).should be_true
     end
   end

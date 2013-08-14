@@ -45,7 +45,7 @@ module Webstore::StoreHelpers
   end
 
   def make_a_webstore_with_products
-    @distributor = distributor
+    @distributor ||= distributor
     setup_a_webstore(product) # Send at least one product so it doesn't make it's own
   end
 end

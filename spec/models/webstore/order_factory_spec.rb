@@ -23,16 +23,12 @@ describe Webstore::OrderFactory do
       expect(@new_order.box).to eq(box)
     end
 
-    xit "sets the right route" do
-      expect(@new_order.route.id).to eq(information_hash[:route_id])
+    it "sets the exclusions" do
+      expect(@new_order.exclusions.map(&:line_item_id)).to eq(information_hash[:dislikes])
     end
 
-    xit "sets the exclusions" do
-      expect(@new_order.exclusions).to eq(information_hash[:dislikes])
-    end
-
-    xit "sets the substitutions" do
-      expect(@new_order.substitutions).to eq(information_hash[:likes])
+    it "sets the substitutions" do
+      expect(@new_order.substitutions.map(&:line_item_id)).to eq(information_hash[:likes])
     end
 
     it "sets the extras" do

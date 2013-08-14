@@ -131,7 +131,7 @@ private
     address ||= address_class.new
 
     # forward address attributes
-    address_class::ADDRESS_ATTRIBUTES.each do |attribute|
+    address_class.address_attributes.each do |attribute|
       address.public_send("#{attribute}=", public_send(attribute))
     end
 

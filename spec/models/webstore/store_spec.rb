@@ -3,8 +3,14 @@ require_relative '../../../app/models/webstore/store'
 describe Webstore::Store do
   let(:distributor) { double('distributor') }
   let(:logged_in_customer) { double('logged_in_customer') }
-  let(:args) { { distributor: distributor, logged_in_customer: logged_in_customer } }
   let(:store) { Webstore::Store.new(args) }
+  let(:args) do
+    {
+      distributor: distributor,
+      logged_in_customer: logged_in_customer,
+      existing_customer: nil,
+    }
+  end
 
   class Webstore::Product; end
   class Webstore::Customer; end

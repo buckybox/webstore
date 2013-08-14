@@ -38,14 +38,14 @@ protected
   def distributors_customer?
     if !current_webstore_customer.guest? && current_webstore_customer.distributor != current_distributor
       redirect_to webstore_store_path,
-        alert: "This account is not for this webstore. Please logout first then try your purchase again." \
-      and return
+        alert: "This account is not for this webstore. Please logout first then try your purchase again."
     end
   end
 
   def distributor_has_webstore?
-    active_webstore = !current_distributor.nil? && current_distributor.active_webstore
-    redirect_to Figaro.env.marketing_site_url and return unless active_webstore
+    unless current_distributor && current_distributor.active_webstore
+      redirect_to Figaro.env.marketing_site_url
+    end
   end
 
   def setup_by_distributor

@@ -1,8 +1,8 @@
 require_relative '../../../app/models/webstore/customise_order'
 
 describe Webstore::CustomiseOrder do
-  let(:box)             { double('box') }
-  let(:cart)            { double('cart', box: box) }
+  let(:product)         { double('product') }
+  let(:cart)            { double('cart', product: product) }
   let(:args)            { { cart: cart } }
   let(:customise_order) { Webstore::CustomiseOrder.new(args) }
 
@@ -23,70 +23,70 @@ describe Webstore::CustomiseOrder do
   end
 
   describe '#exclusions?' do
-    it 'returns true if a box allows exclusions' do
-      box.stub(:dislikes?) { true }
+    it 'returns true if a product allows exclusions' do
+      product.stub(:dislikes?) { true }
       customise_order.exclusions?.should be_true
     end
 
-    it 'returns true if a box allows exclusions' do
-      box.stub(:dislikes?) { false }
+    it 'returns true if a product allows exclusions' do
+      product.stub(:dislikes?) { false }
       customise_order.exclusions?.should be_false
     end
   end
 
   describe '#substitutions?' do
-    it 'returns true if a box allows substitutions' do
-      box.stub(:likes?) { true }
+    it 'returns true if a product allows substitutions' do
+      product.stub(:likes?) { true }
       customise_order.substitutions?.should be_true
     end
 
-    it 'returns false if a box allows substitutions' do
-      box.stub(:likes?) { false }
+    it 'returns false if a product allows substitutions' do
+      product.stub(:likes?) { false }
       customise_order.substitutions?.should be_false
     end
   end
 
   describe '#extras_allowed?' do
-    it 'returns true if a box allows extras' do
-      box.stub(:extras_allowed?) { true }
+    it 'returns true if a product allows extras' do
+      product.stub(:extras_allowed?) { true }
       customise_order.extras_allowed?.should be_true
     end
 
-    it 'returns false if a box allows extras' do
-      box.stub(:extras_allowed?) { false }
+    it 'returns false if a product allows extras' do
+      product.stub(:extras_allowed?) { false }
       customise_order.extras_allowed?.should be_false
     end
   end
 
   describe '#extras_unlimited?' do
-    it 'returns true if a box allows unlimited extras' do
-      box.stub(:extras_unlimited?) { true }
+    it 'returns true if a product allows unlimited extras' do
+      product.stub(:extras_unlimited?) { true }
       customise_order.extras_unlimited?.should be_true
     end
 
-    it 'returns false if a box allows unlimited extras' do
-      box.stub(:extras_unlimited?) { false }
+    it 'returns false if a product allows unlimited extras' do
+      product.stub(:extras_unlimited?) { false }
       customise_order.extras_unlimited?.should be_false
     end
   end
 
   describe '#exclusions_limit' do
     it 'returns the exclusions limit' do
-      box.stub(:exclusions_limit) { 5 }
+      product.stub(:exclusions_limit) { 5 }
       customise_order.exclusions_limit.should eq(5)
     end
   end
 
   describe '#substitutions_limit' do
     it 'returns the substitution limit' do
-      box.stub(:substitutions_limit) { 5 }
+      product.stub(:substitutions_limit) { 5 }
       customise_order.substitutions_limit.should eq(5)
     end
   end
 
   describe '#extras_limit' do
     it 'returns the extras limit' do
-      box.stub(:extras_limit) { 5 }
+      product.stub(:extras_limit) { 5 }
       customise_order.extras_limit.should eq(5)
     end
   end

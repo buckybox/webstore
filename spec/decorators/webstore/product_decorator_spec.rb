@@ -15,12 +15,4 @@ describe Webstore::ProductDecorator do
       product_decorator.price.should { '$1.25' }
     end
   end
-
-  describe '#order_link' do
-    it 'returns the URL path to start an order' do
-      product_decorator.stub(:distributor_parameter_name)
-      helpers.stub(webstore_start_order_path: '/path')
-      product_decorator.order_link.should { '/path' }
-    end
-  end
 end

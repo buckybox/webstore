@@ -5,10 +5,10 @@ describe Webstore::PaymentOptions do
   class PhoneCollection; end
   class PaymentOption; end
 
-  let(:address)         { double('address') }
-  let(:address_class)   { double('address_class', new: address) }
-  let(:customer)        { double('customer', guest?: true) }
-  let(:distributor)     { double('distributor') }
+  let(:address)         { double('address', 'phone=' => nil) }
+  let(:address_class)   { double('address_class', new: address, address_attributes: %w()) }
+  let(:customer)        { double('customer', guest?: true, existing_customer: nil) }
+  let(:distributor)     { double('distributor', city: "Wellington") }
   let(:cart)            { double('cart', distributor: distributor, customer: customer) }
   let(:args)            { { cart: cart, address_class: address_class } }
   let(:payment_options) { Webstore::PaymentOptions.new(args) }
@@ -29,62 +29,6 @@ describe Webstore::PaymentOptions do
         payment_options = Webstore::PaymentOptions.new(args)
         payment_options.name.should eq(customer.name)
       end
-    end
-  end
-
-  describe '#phone_number' do
-    it 'retuns a customer phone number' do
-      number = '123'
-      address.stub(:default_phone_number) { number }
-      payment_options.phone_number.should eq(number)
-    end
-  end
-
-  describe '#phone_type' do
-    it 'retuns a customer phone type' do
-      phone_type = 'mobile'
-      address.stub(:default_phone_type) { phone_type }
-      payment_options.phone_type.should eq(phone_type)
-    end
-  end
-
-  describe '#street_address' do
-    it 'retuns a customer street address' do
-      street_address = '1 St'
-      address.stub(:address_1) { street_address }
-      payment_options.street_address.should eq(street_address)
-    end
-  end
-
-  describe '#street_address_2' do
-    it 'retuns a customer street address 2' do
-      street_address_2 = 'Apt 2'
-      address.stub(:address_2) { street_address_2 }
-      payment_options.street_address_2.should eq(street_address_2)
-    end
-  end
-
-  describe '#suburb' do
-    it 'retuns a customer suburb' do
-      suburb = 'Mt.Vic'
-      address.stub(:suburb) { suburb }
-      payment_options.suburb.should eq(suburb)
-    end
-  end
-
-  describe '#postcode' do
-    it 'retuns a customer postcode' do
-      postcode = '123'
-      address.stub(:postcode) { postcode }
-      payment_options.postcode.should eq(postcode)
-    end
-  end
-
-  describe '#delivery_note' do
-    it 'retuns a customer delivery note' do
-      delivery_note = 'Has dog, will bite.'
-      address.stub(:delivery_note) { delivery_note }
-      payment_options.delivery_note.should eq(delivery_note)
     end
   end
 
@@ -219,14 +163,13 @@ describe Webstore::PaymentOptions do
       payment_options.name           = 'name'
       payment_options.phone_number   = '123'
       payment_options.phone_type     = 'mobile'
-      payment_options.street_address = '12 St'
+      payment_options.address_1      = '12 St'
       payment_options.suburb         = 'burb'
-      payment_options.city           = 'city'
+      payment_options.city           = 'London'
       payment_options.postcode       = '123'
-      payment_options.delivery_note  = 'deliver'
-      payment_options.payment_method = 'COD'
       payment_options.complete       = true
-      payment_options.to_h.should eq({ name: "name", phone_number: "123", phone_type: "mobile", street_address: "12 St", street_address_2: "Apt 2", suburb: "burb", city: "city", postcode: "123", delivery_note: "notes", payment_method: "COD", complete: true })
+
+      payment_options.to_h.should eq({ name: "name", phone_number: "123", phone_type: "mobile", address_1: "12 St", address_2: nil, suburb: "burb", postcode: "123", city: "London", delivery_note: nil, payment_method: nil, complete: true })
     end
   end
 end

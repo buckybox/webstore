@@ -1,13 +1,13 @@
 require_relative '../../../app/models/webstore/cart'
 
 describe Webstore::Cart do
-  Webstore::CartPersistence = Class.new
-  Box = Class.new
-  Route = Class.new
+  class Webstore::CartPersistence; end
+  class Box; end
+  class Route; end
 
   let(:persistence_class) { double('persistence_class') }
   let(:persistence)       { double('persistence') }
-  let(:args)              { { persistence_class: persistence_class } }
+  let(:args)              { { distributor_id: 1, persistence_class: persistence_class } }
   let(:cart)              { Webstore::Cart.new(args) }
 
   describe '.find' do
@@ -30,40 +30,40 @@ describe Webstore::Cart do
 
   describe '#new?' do
     it 'is considered new if the cart does not have an true' do
-      cart_without_id = Webstore::Cart.new
+      cart_without_id = Webstore::Cart.new(args)
       cart_without_id.new?.should be_true
     end
 
     it 'is not considered new if the cart has an true' do
-      cart_without_id = Webstore::Cart.new(id: 1)
+      cart_without_id = Webstore::Cart.new(args.merge(id: 1))
       cart_without_id.new?.should_not be_true
     end
   end
 
   describe '#==' do
     context 'a cart is new' do
-      let(:cart1) { Webstore::Cart.new }
+      let(:cart1) { Webstore::Cart.new(args) }
 
       it 'returns true if the carts are the same objects' do
         cart1.should eq(cart1)
       end
 
       it 'returns false if the carts are diffent objects' do
-        cart2 = Webstore::Cart.new
+        cart2 = Webstore::Cart.new(args)
         cart1.should_not eq(cart2)
       end
     end
 
     context 'a cart has been saved' do
-      let(:cart1) { Webstore::Cart.new(id: 1) }
+      let(:cart1) { Webstore::Cart.new(args.merge(id: 1)) }
 
       it 'returns true if the carts have the same id' do
-        cart2 = Webstore::Cart.new(id: 1)
+        cart2 = Webstore::Cart.new(args.merge(id: 1))
         cart1.should eq(cart2)
       end
 
       it 'returns false if the carts have a different id' do
-        cart2 = Webstore::Cart.new(id: 2)
+        cart2 = Webstore::Cart.new(args.merge(id: 2))
         cart1.should_not eq(cart2)
       end
     end

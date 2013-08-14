@@ -1,7 +1,7 @@
 require_relative "../../support/capybara/select2_helper"
 require_relative "../../support/webstore/webstore_helper"
 
-describe "submitting customisations" do
+describe "submitting customisations", :js do
   include Select2Helper
   include Webstore::StoreHelpers
 

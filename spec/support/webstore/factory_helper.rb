@@ -19,13 +19,13 @@ module Webstore::FactoryHelper
     return @cart if @cart
 
     cart = Webstore::Cart.new(
+      distributor_id: distributor.id,
       customer: {
         cart: double("Cart"),
         existing_customer_id: nil,
-        distributor_id: distributor.id,
       },
       order: {
-        box_id: box.id,
+        product_id: box.id,
         cart: double("Cart"),
         information: {
           :dislikes=>[
@@ -46,10 +46,10 @@ module Webstore::FactoryHelper
           days: { 2 => 1, 5 => 1 },
           extra_frequency: false,
           name: "Bob",
-          phone_number: nil, # FIXME
-          phone_type: nil, # FIXME
-          street_address: "Street 1",
-          street_address_2: "",
+          phone_number: "007",
+          phone_type: "mobile",
+          address_1: "Street 1",
+          address_2: "",
           suburb: "",
           city: "Southwell",
           postcode: "",

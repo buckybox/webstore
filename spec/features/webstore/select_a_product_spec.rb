@@ -1,6 +1,6 @@
 require_relative "../../support/webstore/webstore_helper"
 
-describe "select a product from the webstore" do
+describe "select a product from the webstore", :js do
   include Webstore::StoreHelpers
   include Webstore::CustomiseOrderHelpers
   include Webstore::AuthenticationHelpers
