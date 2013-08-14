@@ -16,7 +16,7 @@
 
 .row-fluid
   .important Order summary
-  = render partial: 'webstore/order', object: completed.cart.order
+  = render partial: 'webstore/order', object: completed.cart.order.decorate
 
 .row-fluid
   #webstore-placed.span12
