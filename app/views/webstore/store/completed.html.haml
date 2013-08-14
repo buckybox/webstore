@@ -3,7 +3,7 @@
 
 .row-fluid.span12
   .important Payment instructions
-  = render partial: 'webstore/payment_instructions', locals: { form_object: completed.cart }
+  = render partial: 'webstore/payment_instructions', locals: { form_object: completed.cart.decorate }
 
 .row-fluid
   #webstore-payment.span12

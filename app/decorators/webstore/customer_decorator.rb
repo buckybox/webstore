@@ -1,10 +1,10 @@
-require 'draper'
-require_relative '../../models/webstore/customer'
+require "draper"
+require_relative "../../models/webstore/customer"
 
 class Webstore::CustomerDecorator < Draper::Decorator
   delegate_all
 
-  GUEST_NAME = 'Guest'
+  GUEST_NAME = "Guest"
 
   def id
     object.existing_customer_id
