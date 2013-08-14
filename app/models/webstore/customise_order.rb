@@ -92,7 +92,7 @@ protected
   end
 
   def number_of_exclusions
-    if !extras_unlimited? && exclusions_count > exclusions_limit
+    if !exclusions_unlimited? && exclusions_count > exclusions_limit
       errors.add(:dislikes, "you have too many exclusions the maximum is #{exclusions_limit}")
     end
   end
