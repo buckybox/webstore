@@ -36,7 +36,10 @@ $(function() {
     dislikes.find('select').select2();//{maximumSelectionSize: dislikes.find('select').data('limits')});
     likes.find('select').select2();//{maximumSelectionSize: likes.find('select').data('limits')});
     likes.hide();
-    $('#webstore-customisations').hide();
+
+    $('#webstore-customisations').toggle(
+      $('#webstore_customise_order_has_customisations').is(":checked")
+    );
 
     $('#webstore_customise_order_has_customisations').click(function() {
       checkbox_toggle(this, $('#webstore-customisations'));
