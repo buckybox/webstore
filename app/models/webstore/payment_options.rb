@@ -16,7 +16,7 @@ class Webstore::PaymentOptions < Webstore::Form
   attribute :complete,        Boolean
 
   validates_presence_of :name
-  validates_presence_of :phone_number,  if: :require_phone
+  validates_presence_of :phone_number,  if: -> { require_phone && !address.valid? }
   validates_presence_of :phone_type,    if: :require_phone
   validates_presence_of :address_1,     if: :require_address_1
   validates_presence_of :address_2,     if: :require_address_2
