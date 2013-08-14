@@ -5,8 +5,8 @@ require_relative '../extra_decorator'
 class Webstore::OrderDecorator < Draper::Decorator
   delegate_all
 
-  def box_price
-    object.box_price.format
+  def product_price
+    object.product_price.format
   end
 
   def extras_price

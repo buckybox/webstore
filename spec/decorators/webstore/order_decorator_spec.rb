@@ -10,10 +10,10 @@ describe Webstore::OrderDecorator do
   let(:object) { double('object') }
   let(:order_decorator) { Webstore::OrderDecorator.new(object) }
 
-  describe '#box_price' do
-    it 'returns a formatted version of the box price' do
-      object.stub(:box_price) { money }
-      order_decorator.box_price.should { '$1.25' }
+  describe '#product_price' do
+    it 'returns a formatted version of the product price' do
+      object.stub(:product_price) { money }
+      order_decorator.product_price.should { '$1.25' }
     end
   end
 
