@@ -41,11 +41,10 @@ describe "authenticate" do
           fill_in "webstore_authentication_password", with: @customer.password
         end
 
-        it "goes to the next step" do
+        it "logs in the customer" do
           submit
 
-          path = webstore_authentication_path(distributor_parameter_name: @distributor.parameter_name)
-          expect(current_path).to_not eq(path)
+          expect(page).to_not have_content("Your email and/or password is incorrect")
         end
       end
 

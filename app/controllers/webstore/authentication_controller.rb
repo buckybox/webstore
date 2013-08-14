@@ -17,11 +17,11 @@ private
   def try_sign_in(authentication)
     customer = attempt_customer_sign_in(authentication.email, authentication.password, no_track: current_admin.present?)
     handle_customer(customer)
-    !!customer ? save_credentials(authentication) : failed_authentication(authentication)
+    customer ? save_credentials(authentication) : failed_authentication(authentication)
   end
 
   def handle_customer(customer)
-    current_webstore_customer.associate_real_customer(customer) if !!customer
+    current_webstore_customer.associate_real_customer(customer) if customer
   end
 
   def save_credentials(authentication)

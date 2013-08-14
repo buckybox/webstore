@@ -69,9 +69,9 @@ describe "submitting customisations" do
     @extra = @extras[0].name
 
     product.dislikes            = true
-    product.exclusions_limit    = -1
+    product.exclusions_limit    = 0
     product.likes               = true
-    product.substitutions_limit = -1
+    product.substitutions_limit = 0
     product.extras_limit        = -1
     product.save
   end
