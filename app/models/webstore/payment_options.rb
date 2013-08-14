@@ -39,10 +39,6 @@ class Webstore::PaymentOptions < Webstore::Form
     phone_type || address.default_phone_type
   end
 
-  def city
-    super || distributor.city
-  end
-
   def existing_customer?
     !customer.guest?
   end
@@ -132,6 +128,8 @@ private
 
     # forward address attributes
     address_class.address_attributes.each do |attribute|
+      address_value = address.public_send(attribute)
+      public_send("#{attribute}=", address_value) unless public_send(attribute)
       address.public_send("#{attribute}=", public_send(attribute))
     end
 
