@@ -6,6 +6,7 @@ class Webstore::BaseController < ApplicationController
   before_filter :cart_present?
   before_filter :distributors_customer?
   before_filter :cart_completed?
+  before_filter :expected_step?
 
 protected
 
@@ -63,6 +64,19 @@ protected
     if !params[:action].in?(%w(store completed)) && current_cart && current_cart.completed?
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
+    end
+  end
+
+  def expected_step?
+    return unless current_cart
+
+    expected_step = current_cart.expected_next_step
+
+    if expected_step && expected_step != request.path
+      redirect_to expected_step,
+        alert: "You cannot skip steps!"
+    else
+      current_cart.expected_next_step = next_step
     end
   end
 end

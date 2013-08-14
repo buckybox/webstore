@@ -17,7 +17,7 @@ class Webstore::DeliveryOptionsController < Webstore::BaseController
 private
 
   def successful_delivery_options
-    redirect_to webstore_payment_options_path
+    redirect_to next_step
   end
 
   def failed_delivery_options(delivery_options)
@@ -27,5 +27,9 @@ private
       routes: Webstore::RouteDecorator.decorate_collection(delivery_options.routes),
       delivery_options: delivery_options,
     }
+  end
+
+  def next_step
+    webstore_payment_options_path
   end
 end
