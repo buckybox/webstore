@@ -35,13 +35,18 @@ class Webstore::StoreController < Webstore::BaseController
   def completed
     cart = flush_current_cart!
 
-    render 'completed', locals: {
-      completed: Webstore::Completed.new(
-        cart: cart,
-        real_order: ::Order.find(cart.real_order_id),
-        real_customer: ::Customer.find(cart.real_customer_id),
-      )
-    }
+    if cart
+      render 'completed', locals: {
+        completed: Webstore::Completed.new(
+          cart: cart,
+          real_order: ::Order.find(cart.real_order_id),
+          real_customer: ::Customer.find(cart.real_customer_id),
+        )
+      }
+
+    else # they likely refreshed the page
+      redirect_to customer_dashboard_path
+    end
   end
 
 private

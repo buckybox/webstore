@@ -17,7 +17,7 @@ protected
   end
 
   def flush_current_cart!
-    cart = current_cart.dup
+    cart = current_cart.dup if current_cart
 
     session.delete(:cart_id)
     @current_cart = nil
