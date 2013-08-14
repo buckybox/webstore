@@ -21,8 +21,8 @@ private
   end
 
   def failed_delivery_options(delivery_options)
-    flash[:alert] = 'We\'re sorry there was an error saving your delivery options.'
-    render 'delivery_options', locals: {
+    flash[:alert] = "Oops there was an issue, please review the error below."
+    render "delivery_options", locals: {
       order: current_order,
       routes: Webstore::RouteDecorator.decorate_collection(delivery_options.routes),
       delivery_options: delivery_options,

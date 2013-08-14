@@ -57,7 +57,7 @@ private
   end
 
   def failed_new_checkout
-    flash[:alert] = "We're sorry there was an error starting your order."
+    flash[:alert] = "Oops there was an issue, please review the error below."
     redirect_to webstore_store_path
   end
 
