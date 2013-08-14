@@ -1,10 +1,13 @@
 #NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
 
-require_relative '../webstore'
-require_relative 'order'
-require_relative 'customer'
+require "draper"
+require_relative "../webstore"
+require_relative "order"
+require_relative "customer"
 
 class Webstore::Cart
+  include Draper::Decoratable
+
   attr_reader :id
   attr_reader :order
   attr_reader :customer
