@@ -21,13 +21,11 @@
       .span12
         .row-fluid
           .span12
-            - if customise_order.extras_unlimited?
-              %h4 
-                %i.icon-plus 
+            %h4
+              %i.icon-plus
+              - if customise_order.extras_unlimited?
                 Add any amount of extra items
-            - else
-              %h4
-                %i.icon-plus 
+              - else
                 Add up to #{customise_order.extras_limit} extra items
 
         .row-fluid
@@ -36,6 +34,7 @@
               = f.simple_fields_for(:extras) do |g|
                 %tbody
                   = render partial: 'extra', collection: customise_order.extras_list, locals: { g: g }
+
             = f.input :add_extra, label: false, collection: customise_order.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }
 
   .row-fluid.webstore-section

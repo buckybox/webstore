@@ -81,11 +81,16 @@ $(function() {
   }
 
   if($('#webstore-extras').length > 0) {
+    var extras_list = $("#webstore-extras .extras-row");
+    extras_list.each(function() {
+      var quantity = $(this).find("input").val();
+      if (quantity > 0) {
+        $(this).show();
+      }
+    });
+
     var extras_input = $('#webstore-extras select');
-
     extras_input.select2();
-    $('#webstore-extras-options').hide();
-
     extras_input.change(function() {
       var extras_input = $(this);
       var selected_extra = $(extras_input.find('option:selected')[0]);
