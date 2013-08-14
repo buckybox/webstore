@@ -92,20 +92,36 @@ protected
   end
 
   def number_of_exclusions
+    if exclusions_count > max_line_items_count
+      errors.add(:dislikes, "you have too many exclusions, the maximum is #{max_line_items_count}")
+    end
+
     if !exclusions_unlimited? && exclusions_count > exclusions_limit
-      errors.add(:dislikes, "you have too many exclusions the maximum is #{exclusions_limit}")
+      errors.add(:dislikes, "you have too many exclusions, the maximum is #{exclusions_limit}")
     end
   end
 
   def number_of_substitutions
+    if substitutions_count > max_line_items_count
+      errors.add(:likes, "you have too many substitutions, the maximum is #{max_line_items_count}")
+    end
+
     if !substitutions_unlimited? && substitutions_count > substitutions_limit
-      errors.add(:likes, "you have too many substitutions the maximum is #{substitutions_limit}")
+      errors.add(:likes, "you have too many substitutions, the maximum is #{substitutions_limit}")
     end
   end
 
   def number_of_extras
-    if !extras_unlimited? && extras_count > extras_limit
-      errors.add(:extras, "you have too many extras the maximum is #{extras_limit}")
+    if extras_count > max_line_items_count
+      errors.add(:extras, "you have too many extras, the maximum is #{max_line_items_count}")
     end
+
+    if !extras_unlimited? && extras_count > extras_limit
+      errors.add(:extras, "you have too many extras, the maximum is #{extras_limit}")
+    end
+  end
+
+  def max_line_items_count
+    1000
   end
 end
