@@ -3,6 +3,7 @@ class Webstore::BaseController < ApplicationController
 
   before_filter :distributor_has_webstore?
   before_filter :setup_by_distributor
+  before_filter :cart_present?
   before_filter :distributors_customer?
   before_filter :cart_completed?
 
@@ -49,6 +50,13 @@ protected
   def setup_by_distributor
     Time.zone = current_distributor.time_zone
     Money.default_currency = Money::Currency.new(current_distributor.currency)
+  end
+
+  def cart_present?
+    if !params[:action].in?(%w(store start_checkout)) && !current_cart
+      redirect_to webstore_store_path,
+        alert: "There is no ongoing order, please start one."
+    end
   end
 
   def cart_completed?
