@@ -32,27 +32,6 @@ describe Webstore::PaymentOptions do
     end
   end
 
-  describe '#city' do
-    let(:city) { 'Wellington' }
-
-    context 'with new customer' do
-      it 'returns the distributor city' do
-        customer.stub(:guest?) { true }
-        distributor.stub(:city) { city }
-        payment_options.city.should eq(city)
-      end
-    end
-
-    context 'with existing customer' do
-      it 'retuns the customer city' do
-        customer.stub(:address) { address }
-        customer.stub(:guest?) { false }
-        address.stub(:city) { city }
-        payment_options.city.should eq(city)
-      end
-    end
-  end
-
   describe '#existing_customer?' do
     context 'with a new customer' do
       it 'returns false' do
