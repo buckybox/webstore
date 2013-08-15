@@ -135,30 +135,13 @@ $(function() {
 
     route_select.change(function() {
       update_route_information(route_select.val());
+      update_days();
       update_day_checkboxes_style();
     });
 
-    $('.route-schedule-frequency').change(function() {
-      var frequency = $(this).val();
-      var weeks = $('.route-schedule-inputs:visible .order-days tr');
-      var week_numbers = weeks.find('td:first-child');
+    update_days();
 
-      if (!frequency || frequency === 'single') {
-        weeks.hide();
-      } else if (frequency === 'monthly') {
-        week_numbers.show();
-        weeks.show();
-      } else {
-        week_numbers.hide();
-        weeks.slice(1).hide();
-        weeks.first().show();
-      }
-
-      weeks.find('input:data(enabled)').removeAttr('disabled');
-      var route_id = $('#route_select').val();
-      var route_schedule = $('#route-schedule-inputs-' + route_id);
-      update_day_checkboxes(route_schedule.find('.schedule-start-date'));
-    });
+    $('.route-schedule-frequency').change(update_days);
 
     $('.order-days input').click({weeks: weeks}, function(event) {
       var checkbox = $(event.target)
@@ -193,6 +176,30 @@ $(function() {
     });
   }
 });
+
+function update_days() {
+  var frequency = $('.route-schedule-frequency:visible').val();
+  var weeks = $('.route-schedule-inputs:visible .order-days tr');
+  var week_numbers = weeks.find('td:first-child');
+  var other_weeks = $('.route-schedule-inputs:not(:visible) .order-days tr')
+  other_weeks.find('input').prop('disabled', 'true').removeAttr('checked');
+
+  if (!frequency || frequency === 'single') {
+    weeks.hide();
+  } else if (frequency === 'monthly') {
+    week_numbers.show();
+    weeks.show();
+  } else {
+    week_numbers.hide();
+    weeks.slice(1).hide();
+    weeks.first().show();
+  }
+
+  weeks.find('input:data(enabled)').removeAttr('disabled');
+  var route_id = $('#route_select').val();
+  var route_schedule = $('#route-schedule-inputs-' + route_id);
+  update_day_checkboxes(route_schedule.find('.schedule-start-date'));
+}
 
 function update_day_checkboxes_style() {
   $('.order-days:visible input[type="checkbox"]').each(function() {
