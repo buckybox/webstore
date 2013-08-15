@@ -10,6 +10,7 @@ class Webstore::DeliveryOptions < Webstore::Form
   attribute :extra_frequency,  Boolean
 
   validates_presence_of :route, :start_date, :frequency
+  validates_presence_of :days, if: -> { frequency != "single" }
 
   ORDER_FREQUENCIES = [
     ['- Select delivery frequency -', nil],
