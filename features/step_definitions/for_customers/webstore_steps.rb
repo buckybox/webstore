@@ -23,7 +23,7 @@ end
 
 When /^I customise the box$/ do
   check "Customise my box"
-  select2("Grapes", from: "webstore_order_customise_dislikes_input")
+  select2("Grapes", from: "webstore_customise_order_dislikes")
   # TODO test subs
   click_button "Next"
 end
@@ -34,7 +34,7 @@ Then "I should be asked to log in or sign up" do
 end
 
 When /^I fill in my email address$/ do
-  fill_in :webstore_authentication_user_email, with: "starving.rabbit+#{SecureRandom.uuid}@example.net"
+  fill_in :webstore_authentication_email, with: "starving.rabbit+#{SecureRandom.uuid}@example.net"
   click_button "Next"
 end
 
@@ -76,7 +76,7 @@ end
 When /^I (fill in|confirm) my delivery address$/ do |action|
   if action == "fill in"
     fill_in :webstore_payment_options_name, with: "Crazy Rabbit"
-    fill_in :webstore_payment_options_street_address, with: "Rabbit Hole"
+    fill_in :webstore_payment_options_address_1, with: "Rabbit Hole"
   end
 
   expect {

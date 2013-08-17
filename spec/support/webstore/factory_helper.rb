@@ -4,7 +4,12 @@ module Webstore::FactoryHelper
   end
 
   def box
-    @box ||= Fabricate(:customisable_box, distributor: distributor)
+    return @box if @box
+
+    box = Fabricate(:customisable_box, distributor: distributor)
+    2.times { Fabricate(:extra, distributor: distributor) }
+
+    @box ||= box
   end
 
   def exclusion
