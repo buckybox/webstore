@@ -14,10 +14,6 @@ class Webstore::Completed < Webstore::Form
     real_customer.address.join('<br>')
   end
 
-  def next_delivery_occurrence
-    real_order.schedule_rule.next_occurrence.to_s(:day_month_date_year)
-  end
-
   def schedule_description
     real_order.schedule_rule
   end
