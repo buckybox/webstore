@@ -1,6 +1,4 @@
 class Webstore::StoreController < Webstore::BaseController
-  skip_before_filter :distributors_customer?
-
   def store
     store = Webstore::Store.new(
       distributor: current_distributor,
@@ -21,8 +19,6 @@ class Webstore::StoreController < Webstore::BaseController
     )
 
     @current_webstore_customer = checkout.customer.decorate
-
-    distributors_customer?
 
     product_id = params[:product_id]
     if checkout.add_product!(product_id)

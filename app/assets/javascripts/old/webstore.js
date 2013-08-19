@@ -53,8 +53,7 @@ $(function() {
 
       if(!dislikes_input.is(':hidden') && dislikes_input.find('option:selected').length > 0) {
         likes_input.show();
-      }
-      else {
+      } else {
         likes_input.find('option:selected').removeAttr('selected');
         likes_input.find('select').trigger('liszt:updated');
         likes_input.find('select').select2("val", "");

@@ -35,9 +35,10 @@ protected
   end
 
   def distributors_customer?
-    if !current_webstore_customer.guest? && current_webstore_customer.distributor != current_distributor
-      redirect_to webstore_store_path,
-        alert: "This account is not for this webstore. Please logout first then try your purchase again."
+    if current_customer && current_customer.distributor != current_distributor
+      redirect_to webstore_store_path(
+        distributor_parameter_name: current_customer.distributor.parameter_name
+      )
     end
   end
 
