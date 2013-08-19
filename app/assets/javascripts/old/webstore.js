@@ -143,6 +143,9 @@ $(function() {
     update_days();
 
     $('.route-schedule-frequency').change(update_days);
+    $('.route-schedule-frequency').change(function() {
+      $("#webstore-extras-frequency").toggle($(this).val() !== "single");
+    });
 
     $('.order-days input').click({weeks: weeks}, function(event) {
       var checkbox = $(event.target)
