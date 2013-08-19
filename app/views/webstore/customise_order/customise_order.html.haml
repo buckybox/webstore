@@ -35,7 +35,7 @@
                 %tbody
                   = render partial: 'extra', collection: customise_order.extras_list, locals: { g: g }
 
-            = f.input :add_extra, label: false, collection: customise_order.extras_list, label_method: :name_with_price, input_html: { data: { placeholder: 'Add an extra item' }, class: 'span12' }
+            = f.input :add_extra, label: false, collection: customise_order.extras_list, label_method: :name_with_price, input_html: { class: 'span12' }
 
   .row-fluid.webstore-section
     .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'

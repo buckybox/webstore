@@ -90,7 +90,9 @@ $(function() {
     });
 
     var extras_input = $('#webstore-extras select');
-    extras_input.select2();
+    extras_input.select2({
+      placeholder: "Add an extra item"
+    });
     extras_input.change(function() {
       var extras_input = $(this);
       var selected_extra = $(extras_input.find('option:selected')[0]);
