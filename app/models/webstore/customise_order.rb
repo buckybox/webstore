@@ -9,9 +9,9 @@ class Webstore::CustomiseOrder < Webstore::Form
   attribute :extras,              Hash[Integer => Integer]
   attribute :add_extra,           Boolean
 
-  validate :number_of_exclusions
-  validate :number_of_substitutions
-  validate :number_of_extras
+  validate :validate_number_of_exclusions
+  validate :validate_number_of_substitutions
+  validate :validate_number_of_extras
 
   def stock_list
     cart.stock_list
@@ -68,10 +68,13 @@ class Webstore::CustomiseOrder < Webstore::Form
 protected
 
   def sanitise_attributes(attributes)
-    attributes.fetch('dislikes', []).delete('')
-    attributes.fetch('likes', []).delete('')
-    extras_check = ->(key, value) { value.to_i.zero? }
-    attributes.fetch('extras', {}).delete_if(&extras_check)
+    attributes.fetch("dislikes", []).delete("")
+    attributes.fetch("likes", []).delete("")
+    attributes.fetch("extras", {}).delete_if do |key, value|
+      value = value.to_i
+      value <= 0 || value > max_line_items_count
+    end
+
     attributes
   end
 
@@ -91,33 +94,27 @@ protected
     extras.values.inject(&:+) || 0
   end
 
-  def number_of_exclusions
-    if exclusions_count > max_line_items_count
-      errors.add(:dislikes, "you have too many exclusions, the maximum is #{max_line_items_count}")
-    end
+private
 
-    if !exclusions_unlimited? && exclusions_count > exclusions_limit
-      errors.add(:dislikes, "you have too many exclusions, the maximum is #{exclusions_limit}")
-    end
+  def validate_number_of_exclusions
+    validate_number_of(:exclusions)
   end
 
-  def number_of_substitutions
-    if substitutions_count > max_line_items_count
-      errors.add(:likes, "you have too many substitutions, the maximum is #{max_line_items_count}")
-    end
-
-    if !substitutions_unlimited? && substitutions_count > substitutions_limit
-      errors.add(:likes, "you have too many substitutions, the maximum is #{substitutions_limit}")
-    end
+  def validate_number_of_substitutions
+    validate_number_of(:substitutions)
   end
 
-  def number_of_extras
-    if extras_count > max_line_items_count
-      errors.add(:extras, "you have too many extras, the maximum is #{max_line_items_count}")
-    end
+  def validate_number_of_extras
+    validate_number_of(:extras)
+  end
 
-    if !extras_unlimited? && extras_count > extras_limit
-      errors.add(:extras, "you have too many extras, the maximum is #{extras_limit}")
+  def validate_number_of(items)
+    items_count     = send("#{items}_count")
+    items_unlimited = send("#{items}_unlimited?")
+    items_limit     = send("#{items}_limit")
+
+    if !items_unlimited && items_count > items_limit
+      errors.add(items, "you have too many #{items}, the maximum is #{items_limit}")
     end
   end
 

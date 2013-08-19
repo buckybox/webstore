@@ -27,7 +27,9 @@ private
   end
 
   def failed_order_customisation(customise_order)
-    flash[:alert] = "Oops there was an issue, please review the error below."
+    flash[:alert] = "Oops there was an issue: " \
+      << customise_order.errors.values.join(", ").downcase
+
     render "customise_order", locals: {
       order: current_order,
       customise_order: customise_order,
