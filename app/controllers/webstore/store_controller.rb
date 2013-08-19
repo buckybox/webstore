@@ -34,7 +34,7 @@ class Webstore::StoreController < Webstore::BaseController
     if cart
       render 'completed', locals: {
         completed: Webstore::Completed.new(
-          cart: cart,
+          cart: cart.decorate,
           real_order: ::Order.find(cart.real_order_id),
           real_customer: ::Customer.find(cart.real_customer_id),
         )

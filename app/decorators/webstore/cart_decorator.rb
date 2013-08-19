@@ -15,4 +15,8 @@ class Webstore::CartDecorator < Draper::Decorator
   def order_price
     object.order_price.format
   end
+
+  def amount_due
+    object.amount_due.format
+  end
 end
