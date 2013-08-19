@@ -21,7 +21,9 @@ private
   end
 
   def failed_delivery_options(delivery_options)
-    flash[:alert] = "Oops there was an issue, please review the error below."
+    flash[:alert] = "Oops there was an issue: " \
+      << delivery_options.errors.full_messages.join(", ").downcase
+
     render "delivery_options", locals: {
       order: current_order,
       routes: Webstore::RouteDecorator.decorate_collection(delivery_options.routes),
