@@ -30,7 +30,8 @@ class Webstore::StoreController < Webstore::BaseController
     if cart
       render 'completed', locals: {
         completed: Webstore::Completed.new(
-          real_order: real_order(cart),
+          cart:          cart,
+          real_order:    real_order(cart),
           real_customer: real_customer(cart),
         ),
         cart: cart.decorate,
