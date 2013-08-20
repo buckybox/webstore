@@ -5,14 +5,15 @@
   .important Payment instructions
   = render partial: 'webstore/payment_instructions', locals: { form_object: completed.cart }
 
-.row-fluid
-  #webstore-payment.span12
-    .row-fluid
-      #payment.span12
-        .row-fluid
-          .span12.text-center.payment-title== Please pay #{completed.cart.amount_due} by #{completed.payment_title}
-        .row-fluid
-          .span9.center-row= render partial: "confirmation_#{completed.payment_method}", locals: { form_object: completed }
+- if completed.cart.amount_due > 0
+  .row-fluid
+    #webstore-payment.span12
+      .row-fluid
+        #payment.span12
+          .row-fluid
+            .span12.text-center.payment-title== Please pay #{completed.cart.amount_due} by #{completed.payment_title}
+          .row-fluid
+            .span9.center-row= render partial: "confirmation_#{completed.payment_method}", locals: { form_object: completed }
 
 .row-fluid
   .important Order summary
