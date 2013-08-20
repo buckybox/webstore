@@ -12,7 +12,6 @@ class Webstore::CustomerFactory
     raise "cart is nil" if @cart.nil?
 
     derive_data
-    # CustomerLogin.track(@webstore_order.customer) unless current_admin.present?
   end
 
   def assemble
