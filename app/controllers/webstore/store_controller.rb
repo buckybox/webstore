@@ -21,11 +21,7 @@ class Webstore::StoreController < Webstore::BaseController
     @current_webstore_customer = checkout.customer.decorate
 
     product_id = params[:product_id]
-    if checkout.add_product!(product_id)
-      successful_new_checkout(checkout)
-    else
-      failed_new_checkout
-    end
+    checkout.add_product!(product_id) ? successful_new_checkout(checkout) : failed_new_checkout
   end
 
   def completed
@@ -68,10 +64,6 @@ private
   def next_step
     return webstore_customise_order_path if current_order.customisable?
 
-    if current_webstore_customer.guest?
-      webstore_authentication_path
-    else
-      webstore_delivery_options_path
-    end
+    current_webstore_customer.guest? ? webstore_authentication_path : webstore_delivery_options_path
   end
 end
