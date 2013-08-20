@@ -5,7 +5,7 @@
   .important Payment instructions
   = render partial: 'webstore/payment_instructions', locals: { form_object: completed.cart }
 
-- if completed.cart.amount_due > 0
+- if completed.cart.payment_required?
   .row-fluid
     #webstore-payment.span12
       .row-fluid
