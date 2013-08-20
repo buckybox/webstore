@@ -34,10 +34,10 @@ class Webstore::StoreController < Webstore::BaseController
     if cart
       render 'completed', locals: {
         completed: Webstore::Completed.new(
-          cart: cart.decorate,
-          real_order: ::Order.find(cart.real_order_id),
-          real_customer: ::Customer.find(cart.real_customer_id),
-        )
+          real_order: real_order(cart),
+          real_customer: real_customer(cart),
+        ),
+        cart: cart.decorate,
       }
 
     else # they likely refreshed the page
@@ -46,6 +46,14 @@ class Webstore::StoreController < Webstore::BaseController
   end
 
 private
+
+  def real_order(cart)
+    ::Order.find(cart.real_order_id)
+  end
+
+  def real_customer(cart)
+    ::Customer.find(cart.real_customer_id)
+  end
 
   def successful_new_checkout(checkout)
     session[:cart_id] = checkout.cart_id

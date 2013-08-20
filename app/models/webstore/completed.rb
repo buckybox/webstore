@@ -2,7 +2,6 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::Completed < Webstore::Form
-  attribute :cart
   attribute :real_order
   attribute :real_customer
 
@@ -16,10 +15,6 @@ class Webstore::Completed < Webstore::Form
 
   def schedule_description
     real_order.schedule_rule
-  end
-
-  def payment_method
-    cart.payment_method
   end
 
   def payment_title
