@@ -33,8 +33,13 @@ $(function() {
     var dislikes = $('#webstore-customise .dislikes_input');
     var likes = $('#webstore-customise .likes_input');
 
-    dislikes.find('select').select2();//{maximumSelectionSize: dislikes.find('select').data('limits')});
-    likes.find('select').select2();//{maximumSelectionSize: likes.find('select').data('limits')});
+    dislikes.find('select').select2({
+      maximumSelectionSize: dislikes.find('select').data('limits')
+    });
+    likes.find('select').select2({
+      maximumSelectionSize: likes.find('select').data('limits')
+    });
+
     likes.hide();
 
     $('#webstore-customisations').toggle(
