@@ -1,6 +1,10 @@
 - title('Webstore - Store', false)
 = render partial: 'webstore/sidebar'
 
+%noscript
+  .alert.alert-error
+    Oops! You must enable JavaScript in your browser to be able to order from this webstore.
+
 .row-fluid
   .span12
     #webstore-items= render partial: 'product', collection: webstore_products
