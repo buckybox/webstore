@@ -14,7 +14,17 @@ protected
   end
 
   def current_cart
-    @current_cart ||= Webstore::Cart.find(session[:cart_id])
+    return @current_cart if @current_cart
+
+    current_cart = Webstore::Cart.find(session[:cart_id])
+
+    if current_cart
+      current_cart = current_cart.decorate(
+        context: { currency: current_distributor.currency }
+      )
+    end
+
+    @current_cart = current_cart
   end
 
   def flush_current_cart!
@@ -27,7 +37,9 @@ protected
   end
 
   def current_order
-    @current_order ||= current_cart.order.decorate
+    @current_order ||= current_cart.order.decorate(
+      context: { currency: current_distributor.currency }
+    )
   end
 
   def current_webstore_customer
@@ -50,7 +62,6 @@ protected
 
   def setup_by_distributor
     Time.zone = current_distributor.time_zone
-    Money.default_currency = Money::Currency.new(current_distributor.currency)
   end
 
   def cart_present?

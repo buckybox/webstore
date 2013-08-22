@@ -5,18 +5,18 @@ class Webstore::CartDecorator < Draper::Decorator
   delegate_all
 
   def current_balance
-    object.current_balance.format
+    object.current_balance
   end
 
   def closing_balance
-    object.closing_balance.format
+    object.closing_balance
   end
 
   def order_price
-    object.order_price.format
+    object.order_price
   end
 
   def amount_due
-    object.amount_due.format
+    object.amount_due.with_currency(context[:currency])
   end
 end

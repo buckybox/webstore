@@ -2,7 +2,7 @@ class Webstore::CustomiseOrderController < Webstore::BaseController
   def customise_order
     render "customise_order", locals: {
       order: current_order,
-      customise_order: Webstore::CustomiseOrder.new(cart: current_cart)
+      customise_order: Webstore::CustomiseOrder.new(cart: current_cart),
     }
   end
 

@@ -6,7 +6,7 @@ Draper::ViewContext.test_strategy :fast
 describe Webstore::OrderDecorator do
   include Draper::ViewHelpers
 
-  let(:money) { double('money', format: '$1.25') }
+  let(:money) { double('money', with_currency: '$1.25') }
   let(:object) { double('object').as_null_object }
   let(:order_decorator) { Webstore::OrderDecorator.new(object) }
 

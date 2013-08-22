@@ -1,4 +1,4 @@
 %tr.extras-row
   %td.information= extra.name_with_price
-  %td.cost.text-right= extra.price.format
+  %td.cost.text-right= extra.price
   %td.quantity.text-right= g.input "#{extra.id}", input_html: { min: 0, value: 0, class: 'input-text span12' }, as: :integer, label: false
