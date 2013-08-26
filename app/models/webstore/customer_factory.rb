@@ -41,11 +41,11 @@ private
   end
 
   def prepare_customer
-    customer.email          = email          if email
-    customer.distributor_id = distributor_id if distributor_id
-    customer.route_id       = route_id       if route_id
-    customer.name           = name           if name
-    customer.address        = address
+    customer.email               = email               if email
+    customer.distributor_id      = distributor_id      if distributor_id
+    customer.delivery_service_id = delivery_service_id if delivery_service_id
+    customer.name                = name                if name
+    customer.address             = address
     customer.via_webstore!
     customer
   end
@@ -90,8 +90,8 @@ private
     cart.distributor.id
   end
 
-  def route_id
-    information[:route_id]
+  def delivery_service_id
+    information[:delivery_service_id]
   end
 
   def name

@@ -15,7 +15,7 @@ private
   def add_required_elements(product = nil)
     product ||= add_a_product
     add_bank_information
-    add_a_route
+    add_a_delivery_service
   end
 
   def add_a_product
@@ -26,7 +26,7 @@ private
     Fabricate(:bank_information, distributor: @distributor)
   end
 
-  def add_a_route
-    Fabricate(:route, distributor: @distributor)
+  def add_a_delivery_service
+    Fabricate(:delivery_service, distributor: @distributor)
   end
 end

@@ -49,7 +49,7 @@
             %td.price= order.extras_price
 
         - if order.is_scheduled?
-          %tr#route
+          %tr#delivery_service
             %td.description
               %h2 Delivery service
               = order.schedule

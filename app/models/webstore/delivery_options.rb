@@ -3,13 +3,13 @@ require_relative '../webstore'
 
 class Webstore::DeliveryOptions < Webstore::Form
   attribute :cart
-  attribute :route,            Integer
+  attribute :delivery_service, Integer
   attribute :start_date,       Date
   attribute :frequency,        String
   attribute :days,             Hash[Integer => Integer]
   attribute :extra_frequency,  Boolean
 
-  validates_presence_of :route, :start_date, :frequency
+  validates_presence_of :delivery_service, :start_date, :frequency
   validates_presence_of :days, if: -> { frequency != "single" }
 
   ORDER_FREQUENCIES = [
@@ -25,20 +25,20 @@ class Webstore::DeliveryOptions < Webstore::Form
     ['Include Extra Items with NEXT delivery only',  true]
   ].freeze
 
-  def existing_route_id
-    customer.route_id
+  def existing_delivery_service_id
+    customer.delivery_service_id
   end
 
-  def can_change_route?
-    !existing_route_id
+  def can_change_delivery_service?
+    !existing_delivery_service_id
   end
 
-  def routes
-    distributor.routes
+  def delivery_services
+    distributor.delivery_services
   end
 
-  def route_list
-    routes.map { |route| route_list_item(route) }
+  def delivery_service_list
+    delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) }
   end
 
   def order_frequencies
@@ -53,8 +53,8 @@ class Webstore::DeliveryOptions < Webstore::Form
     delivery_dates_class.dates_grid
   end
 
-  def start_dates(route, delivery_dates_class = ::Order)
-    delivery_dates_class.start_dates(route)
+  def start_dates(delivery_service, delivery_dates_class = ::Order)
+    delivery_dates_class.start_dates(delivery_service)
   end
 
   def cart_has_extras?
@@ -63,11 +63,11 @@ class Webstore::DeliveryOptions < Webstore::Form
 
   def to_h
     {
-      route_id:         route,
-      start_date:       start_date,
-      frequency:        frequency,
-      days:             days,
-      extra_frequency:  extra_frequency,
+      delivery_service_id: delivery_service,
+      start_date:          start_date,
+      frequency:           frequency,
+      days:                days,
+      extra_frequency:     extra_frequency,
     }
   end
 
@@ -81,7 +81,7 @@ private
     cart.customer
   end
 
-  def route_list_item(route)
-    [ route.name_days_and_fee, route.id ]
+  def delivery_service_list_item(delivery_service)
+    [ delivery_service.name_days_and_fee, delivery_service.id ]
   end
 end

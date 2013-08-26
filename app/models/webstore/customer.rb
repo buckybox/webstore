@@ -54,8 +54,8 @@ class Webstore::Customer
     existing_customer.name unless guest?
   end
 
-  def route_id
-    existing_customer.route.id if active?
+  def delivery_service_id
+    existing_customer.delivery_service.id if active?
   end
 
   def address

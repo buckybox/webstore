@@ -3,7 +3,7 @@ require_relative '../../../app/models/webstore/cart'
 describe Webstore::Cart do
   class Webstore::CartPersistence; end
   class Box; end
-  class Route; end
+  class DeliveryService; end
 
   let(:persistence_class) { double('persistence_class') }
   let(:persistence)       { double('persistence') }

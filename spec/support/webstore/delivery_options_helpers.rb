@@ -1,5 +1,5 @@
 module Webstore::DeliveryOptionsHelpers
-  shared_examples_for "it needs a route" do
+  shared_examples_for "it needs a delivery_service" do
   end
 
   shared_examples_for "it asks for a delivery date" do

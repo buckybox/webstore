@@ -131,24 +131,24 @@ $(function() {
     });
   }
 
-  if($('#webstore-route').length > 0) {
-    var route_select = $('#route_select');
-    var weeks = $('.route-schedule-inputs .order-days tr');
+  if($('#webstore-delivery_service').length > 0) {
+    var delivery_service_select = $('#delivery_service_select');
+    var weeks = $('.delivery_service-schedule-inputs .order-days tr');
 
     weeks.hide();
-    update_route_information(route_select.val());
+    update_delivery_service_information(delivery_service_select.val());
     update_day_checkboxes_style();
 
-    route_select.change(function() {
-      update_route_information(route_select.val());
+    delivery_service_select.change(function() {
+      update_delivery_service_information(delivery_service_select.val());
       update_days();
       update_day_checkboxes_style();
     });
 
     update_days();
 
-    $('.route-schedule-frequency').change(update_days);
-    $('.route-schedule-frequency').change(function() {
+    $('.delivery_service-schedule-frequency').change(update_days);
+    $('.delivery_service-schedule-frequency').change(function() {
       $("#webstore-extras-frequency").toggle($(this).val() !== "single");
     });
 
@@ -170,7 +170,7 @@ $(function() {
     });
 
     $('.schedule-start-date').change(function() {
-      var weeks = $('.route-schedule-inputs:visible .order-days tr');
+      var weeks = $('.delivery_service-schedule-inputs:visible .order-days tr');
       weeks.find('input:data(enabled)').removeAttr('disabled');
       update_day_checkboxes($(this));
     });
@@ -187,10 +187,10 @@ $(function() {
 });
 
 function update_days() {
-  var frequency = $('.route-schedule-frequency:visible').val();
-  var weeks = $('.route-schedule-inputs:visible .order-days tr');
+  var frequency = $('.delivery_service-schedule-frequency:visible').val();
+  var weeks = $('.delivery_service-schedule-inputs:visible .order-days tr');
   var week_numbers = weeks.find('td:first-child');
-  var other_weeks = $('.route-schedule-inputs:not(:visible) .order-days tr')
+  var other_weeks = $('.delivery_service-schedule-inputs:not(:visible) .order-days tr')
   other_weeks.find('input').prop('disabled', 'true').removeAttr('checked');
 
   if (!frequency || frequency === 'single') {
@@ -205,9 +205,9 @@ function update_days() {
   }
 
   weeks.find('input:data(enabled)').removeAttr('disabled');
-  var route_id = $('#route_select').val();
-  var route_schedule = $('#route-schedule-inputs-' + route_id);
-  update_day_checkboxes(route_schedule.find('.schedule-start-date'));
+  var delivery_service_id = $('#delivery_service_select').val();
+  var delivery_service_schedule = $('#delivery_service-schedule-inputs-' + delivery_service_id);
+  update_day_checkboxes(delivery_service_schedule.find('.schedule-start-date'));
 }
 
 function update_day_checkboxes_style() {
@@ -225,12 +225,12 @@ function update_day_checkboxes_style() {
 
 function update_day_checkboxes(start_date) {
   var date = new Date(start_date.val());
-  var route_schedule_inputs = start_date.closest('.route-schedule-inputs');
+  var delivery_service_schedule_inputs = start_date.closest('.delivery_service-schedule-inputs');
 
-  route_schedule_inputs.find('input[type="checkbox"]:not([data-enabled])').prop('checked', false);
+  delivery_service_schedule_inputs.find('input[type="checkbox"]:not([data-enabled])').prop('checked', false);
 
-  var frequency = route_schedule_inputs.find('.route-schedule-frequency').val();
-  var weeks = route_schedule_inputs.find('.order-days tr');
+  var frequency = delivery_service_schedule_inputs.find('.delivery_service-schedule-frequency').val();
+  var weeks = delivery_service_schedule_inputs.find('.order-days tr');
 
   if (frequency !== 'monthly') {
     weeks.slice(1).find('input[type="checkbox"]').prop('checked', false);
@@ -239,29 +239,29 @@ function update_day_checkboxes(start_date) {
   // pre-select first day if none already picked
   if (weeks.find('input[type="checkbox"]:checked').length == 0) {
     var checkbox_selector = '#day-' + date.getDay() + ' input[type="checkbox"]';
-    selected_checkbox = route_schedule_inputs.find(checkbox_selector);
+    selected_checkbox = delivery_service_schedule_inputs.find(checkbox_selector);
     selected_checkbox.prop('checked', true);
   }
 }
 
-function update_route_information(route_id) {
-  $('.route-info').hide();
-  $('#route-info-' + route_id).show();
+function update_delivery_service_information(delivery_service_id) {
+  $('.delivery_service-info').hide();
+  $('#delivery_service-info-' + delivery_service_id).show();
 
-  var all_route_schedule_inputs = $('.route-schedule-inputs');
-  all_route_schedule_inputs.hide();
-  all_route_schedule_inputs.find('select').prop('disabled', true);
-  all_route_schedule_inputs.find('input[type="checkbox"]').prop('disabled', true);
+  var all_delivery_service_schedule_inputs = $('.delivery_service-schedule-inputs');
+  all_delivery_service_schedule_inputs.hide();
+  all_delivery_service_schedule_inputs.find('select').prop('disabled', true);
+  all_delivery_service_schedule_inputs.find('input[type="checkbox"]').prop('disabled', true);
 
-  var route_schedule = $('#route-schedule-inputs-' + route_id);
-  route_schedule.show();
-  route_schedule.find('.order-days').show();
-  route_schedule.find('select').prop('disabled', false);
-  $.each(route_schedule.find('input[type="checkbox"]'), function(index, value) {
+  var delivery_service_schedule = $('#delivery_service-schedule-inputs-' + delivery_service_id);
+  delivery_service_schedule.show();
+  delivery_service_schedule.find('.order-days').show();
+  delivery_service_schedule.find('select').prop('disabled', false);
+  $.each(delivery_service_schedule.find('input[type="checkbox"]'), function(index, value) {
     var day = $(value);
     if(day.data('enabled')) { day.prop('disabled', false); }
   });
-  update_day_checkboxes(route_schedule.find('.schedule-start-date'));
+  update_day_checkboxes(delivery_service_schedule.find('.schedule-start-date'));
 }
 
 function checkbox_toggle(checkbox, div) {

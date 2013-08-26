@@ -4,7 +4,7 @@ describe Webstore::Order do
   class Box; end
   class Distributor; end
   class Customer; end
-  class Route; end
+  class DeliveryService; end
 
   let(:product) { double("product") }
   let(:cart)    { double("cart").as_null_object }
@@ -85,7 +85,7 @@ describe Webstore::Order do
   describe "#delivery_fee" do
     it "return the delivery fee" do
       order_price_class = double("order_price_class", discounted: 5)
-      order.stub(:route) { double("route", fee: 5) }
+      order.stub(:delivery_service) { double("delivery_service", fee: 5) }
       order.delivery_fee(order_price_class).should eq(5)
     end
   end

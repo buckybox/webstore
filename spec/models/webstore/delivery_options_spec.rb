@@ -7,34 +7,34 @@ describe Webstore::DeliveryOptions do
   let(:args)             { { cart: cart } }
   let(:delivery_options) { Webstore::DeliveryOptions.new(args) }
 
-  describe '#existing_route_id' do
-    it 'returns a route id' do
-      customer.stub(:route_id) { 3 }
-      delivery_options.existing_route_id.should eq(3)
+  describe '#existing_delivery_service_id' do
+    it 'returns a delivery_service id' do
+      customer.stub(:delivery_service_id) { 3 }
+      delivery_options.existing_delivery_service_id.should eq(3)
     end
   end
 
-  describe '#can_change_route?' do
-    it 'returns true if the there is not an existing route' do
-      delivery_options.stub(:existing_route_id) { 3 }
-      delivery_options.can_change_route?.should be_false
+  describe '#can_change_delivery_service?' do
+    it 'returns true if the there is not an existing delivery_service' do
+      delivery_options.stub(:existing_delivery_service_id) { 3 }
+      delivery_options.can_change_delivery_service?.should be_false
     end
   end
 
-  describe '#routes' do
-    it 'returns an array of routes' do
-      expected_routes = [double('route')]
-      distributor.stub(:routes) { expected_routes }
-      delivery_options.routes.should eq(expected_routes)
+  describe '#delivery_services' do
+    it 'returns an array of delivery_services' do
+      expected_delivery_services = [double('delivery_service')]
+      distributor.stub(:delivery_services) { expected_delivery_services }
+      delivery_options.delivery_services.should eq(expected_delivery_services)
     end
   end
 
-  describe '#route_list' do
-    it 'returns a list of route options for selection' do
-      route = double('route', id: 3, name_days_and_fee: 'route wed $5.00')
-      distributor.stub(:routes) { [route] }
+  describe '#delivery_service_list' do
+    it 'returns a list of delivery_service options for selection' do
+      delivery_service = double('delivery_service', id: 3, name_days_and_fee: 'delivery_service wed $5.00')
+      distributor.stub(:delivery_services) { [delivery_service] }
 
-      delivery_options.route_list.should eq([["route wed $5.00", 3]])
+      delivery_options.delivery_service_list.should eq([["delivery_service wed $5.00", 3]])
     end
   end
 
@@ -71,8 +71,8 @@ describe Webstore::DeliveryOptions do
     it 'returns a list of start dates' do
       start_dates = [double('date_tuple_1'), double('date_tuple_2')]
       delivery_dates_class = double('delivery_dates_class', start_dates: start_dates)
-      route = double('route')
-      delivery_options.start_dates(route, delivery_dates_class).should eq(start_dates)
+      delivery_service = double('delivery_service')
+      delivery_options.start_dates(delivery_service, delivery_dates_class).should eq(start_dates)
     end
   end
 
@@ -86,12 +86,12 @@ describe Webstore::DeliveryOptions do
   describe '#to_h' do
     it 'returns a hash of the important form data' do
       start_date = Date.parse('2013-02-03')
-      delivery_options.route           = 3
+      delivery_options.delivery_service           = 3
       delivery_options.start_date      = start_date
       delivery_options.frequency       = 'single'
       delivery_options.days            = { 1 => 2 }
       delivery_options.extra_frequency = true
-      delivery_options.to_h.should eq({ route_id: 3, start_date: start_date, frequency: "single", days: { 1 => 2 }, extra_frequency: true })
+      delivery_options.to_h.should eq({ delivery_service_id: 3, start_date: start_date, frequency: "single", days: { 1 => 2 }, extra_frequency: true })
     end
   end
 end

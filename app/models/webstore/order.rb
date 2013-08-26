@@ -15,7 +15,7 @@ class Webstore::Order
     @cart          = args.fetch(:cart)
     @information   = args.fetch(:information, {})
     @product_id    = args.fetch(:product_id, nil)
-    @route_class   = args.fetch(:route_class, ::Route)
+    @delivery_service_class   = args.fetch(:delivery_service_class, ::DeliveryService)
     @product_class = args.fetch(:product_class, ::Box)
   end
 
@@ -96,7 +96,7 @@ class Webstore::Order
   end
 
   def delivery_fee(order_price_class = ::OrderPrice)
-    order_price_class.discounted(route_fee, existing_customer)
+    order_price_class.discounted(delivery_service_fee, existing_customer)
   end
 
   def bucky_fee
@@ -165,7 +165,7 @@ class Webstore::Order
 
 private
 
-  attr_reader :route_class
+  attr_reader :delivery_service_class
   attr_reader :product_class
 
   attr_writer :product
@@ -175,16 +175,16 @@ private
     cart.distributor ? cart.distributor : ::Distributor.new
   end
 
-  def route
-    route_class.where(id: route_id).first
+  def delivery_service
+    delivery_service_class.where(id: delivery_service_id).first
   end
 
   def customer
     cart ? cart.customer : Webstore::Customer.new
   end
 
-  def route_fee
-    route.fee if route
+  def delivery_service_fee
+    delivery_service.fee if delivery_service
   end
 
   def existing_customer
@@ -218,7 +218,7 @@ private
     information[:days]
   end
 
-  def route_id
-    information[:route_id]
+  def delivery_service_id
+    information[:delivery_service_id]
   end
 end

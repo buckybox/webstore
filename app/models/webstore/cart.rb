@@ -82,8 +82,8 @@ class Webstore::Cart
     order.product
   end
 
-  def route
-    customer.route
+  def delivery_service
+    customer.delivery_service
   end
 
   def has_extras?

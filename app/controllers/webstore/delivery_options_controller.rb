@@ -3,7 +3,7 @@ class Webstore::DeliveryOptionsController < Webstore::BaseController
     delivery_options = Webstore::DeliveryOptions.new(cart: current_cart)
     render 'delivery_options', locals: {
       order: current_order,
-      routes: Webstore::RouteDecorator.decorate_collection(delivery_options.routes),
+      delivery_services: Webstore::DeliveryServiceDecorator.decorate_collection(delivery_options.delivery_services),
       delivery_options: delivery_options,
     }
   end
@@ -26,7 +26,7 @@ private
 
     render "delivery_options", locals: {
       order: current_order,
-      routes: Webstore::RouteDecorator.decorate_collection(delivery_options.routes),
+      delivery_services: Webstore::DeliveryServiceDecorator.decorate_collection(delivery_options.delivery_services),
       delivery_options: delivery_options,
     }
   end

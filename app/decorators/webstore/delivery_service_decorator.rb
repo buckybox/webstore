@@ -1,7 +1,7 @@
 require 'draper'
-require_relative '../../models/route'
+require_relative '../../models/delivery_service'
 
-class Webstore::RouteDecorator < Draper::Decorator
+class Webstore::DeliveryServiceDecorator < Draper::Decorator
   delegate_all
 
   def area_of_service
@@ -19,6 +19,6 @@ class Webstore::RouteDecorator < Draper::Decorator
   end
 
   def schedule_input_id
-    "route-schedule-inputs-#{object.id}"
+    "delivery_service-schedule-inputs-#{object.id}"
   end
 end

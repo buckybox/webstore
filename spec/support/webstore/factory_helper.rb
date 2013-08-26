@@ -45,7 +45,7 @@ module Webstore::FactoryHelper
           },
           email: "test@example.net",
           password: "",
-          route_id: 1,
+          delivery_service_id: 1,
           start_date: "Fri, 02 Aug 2013",
           frequency: "weekly",
           days: { 2 => 1, 5 => 1 },
