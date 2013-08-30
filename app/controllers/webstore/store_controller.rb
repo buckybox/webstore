@@ -34,7 +34,12 @@ class Webstore::StoreController < Webstore::BaseController
           real_order:    real_order(cart),
           real_customer: real_customer(cart),
         ),
-        cart: cart.decorate,
+        cart: cart.decorate(
+          context: { currency: current_distributor.currency }
+        ),
+        order: cart.order.decorate(
+          context: { currency: current_distributor.currency }
+        )
       }
 
     else # they likely refreshed the page
