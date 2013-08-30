@@ -56,7 +56,7 @@ class Webstore::Customer
   end
 
   def delivery_service_id
-    existing_customer.delivery_service.id
+    existing_customer.delivery_service.id if existing_customer.present? && existing_customer.delivery_service.present?
   end
 
   def address
