@@ -1,16 +1,19 @@
-require_relative '../../../app/models/webstore/customer'
+require_relative "../../../app/models/webstore/customer"
 
 describe Webstore::Customer do
-  let(:distributor)      { double('distributor') }
-  let(:existing_customer){ double('existing_customer') }
-  let(:customer)         { Webstore::Customer.new }
+  class Customer; end
 
-  describe '#existing_delivery_service_id' do
-    it 'returns a delivery_service id' do
-      customer.stub(:existing_customer).and_return(existing_customer)
-      existing_customer.stub_chain(:delivery_service, :id).and_return(3)
-      existing_customer.stub(:active?).and_return(false)
-      customer.delivery_service_id.should eq(3)
+  let(:cart)              { double("cart") }
+  let(:existing_customer) { double("existing_customer") }
+  let(:customer_class)    { double("customer_class", find: existing_customer) }
+  let(:args)              { { cart: cart, existing_customer_id: 1, customer_class: customer_class } }
+  let(:customer)          { Webstore::Customer.new(args) }
+
+  describe "#delivery_service_id" do
+    it "returns a delivery service id" do
+      delivery_service = double("delivery_service", id: 3)
+      existing_customer.stub(:delivery_service) { delivery_service }
+      expect(customer.delivery_service_id).to eq(3)
     end
   end
 end

@@ -16,6 +16,7 @@ class Webstore::Customer
   def initialize(args = {})
     @cart                 = args.fetch(:cart, nil)
     @existing_customer_id = args.fetch(:existing_customer_id, nil)
+    @customer_class       = args.fetch(:customer_class, ::Customer)
   end
 
   def fetch(key, default_value = nil)
@@ -27,7 +28,7 @@ class Webstore::Customer
   end
 
   def existing_customer
-    Customer.find(existing_customer_id) if existing_customer_id
+    customer_class.find(existing_customer_id) if existing_customer_id
   end
 
   def distributor
@@ -69,4 +70,8 @@ class Webstore::Customer
   def balance_threshold
     existing_customer.balance_threshold
   end
+
+private
+
+  attr_reader :customer_class
 end
