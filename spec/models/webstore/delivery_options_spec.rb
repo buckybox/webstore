@@ -15,18 +15,14 @@ describe Webstore::DeliveryOptions do
   end
 
   describe '#can_change_delivery_service?' do
-    context :existing_customer do
-      it 'returns true if the there is not an existing delivery_service' do
-        delivery_options.stub(:existing_delivery_service_id) { 3 }
-        delivery_options.can_change_delivery_service?.should be_false
-      end
+    it 'returns true if the there is not an existing delivery service' do
+      customer.stub(:delivery_service_id) { nil }
+      delivery_options.can_change_delivery_service?.should be_true
     end
 
-    context :new_customer do
-      it 'returns true if the there is not an existing delivery_service' do
-        delivery_options.stub(:existing_delivery_service_id) { nil }
-        delivery_options.can_change_delivery_service?.should be_true
-      end
+    it 'returns false if the there is an existing delivery service' do
+      customer.stub(:delivery_service_id) { 3 }
+      delivery_options.can_change_delivery_service?.should be_false
     end
   end
 
