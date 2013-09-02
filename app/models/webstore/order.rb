@@ -192,7 +192,7 @@ private
   end
 
   def extras_as_hashes
-    extras_as_objects.each_with_object({}) { |extra, hash| hash[extra] = extra_quantity(extra) }
+    extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count:extra_quantity(extra)) }
   end
 
   def frequency
