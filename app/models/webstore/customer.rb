@@ -16,7 +16,7 @@ class Webstore::Customer
   def initialize(args = {})
     @cart                 = args.fetch(:cart, nil)
     @existing_customer_id = args.fetch(:existing_customer_id, nil)
-    @customer_class       = args.fetch(:customer_class, ::Customer)
+    @customer_class       = args[:customer_class] || ::Customer
   end
 
   def fetch(key, default_value = nil)

@@ -16,4 +16,12 @@ describe Webstore::Customer do
       expect(customer.delivery_service_id).to eq(3)
     end
   end
+
+  describe "#customer_class" do
+    it "defaults to Customer if nil" do
+      customer = Webstore::Customer.new(customer_class: nil)
+
+      expect(customer.send(:customer_class)).to eq(::Customer)
+    end
+  end
 end
