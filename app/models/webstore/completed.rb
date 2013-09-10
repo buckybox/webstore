@@ -43,10 +43,6 @@ class Webstore::Completed < Webstore::Form
     distributor.bank_information.account_name
   end
 
-  def bank_bsb_number
-    distributor.bank_information.bsb_number
-  end
-
   def bank_account_number
     distributor.bank_information.account_number
   end
