@@ -48,7 +48,11 @@ class Webstore::Completed < Webstore::Form
   end
 
   def customer_number
-    real_customer.number
+    real_customer.formated_number
+  end
+
+  def note
+    distributor.bank_information.customer_message
   end
 
   def distributor
