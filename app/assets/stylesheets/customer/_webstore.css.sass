@@ -253,27 +253,17 @@ $webstore-item-padding: 8px
     font-size: 19px
     margin-top: 40px
     margin-bottom: 30px
-  color: #333333
+  .payment-message
+    text-align: center
+    .note
+      color: #333
+      font-style: italic
   .center-row
     float: none
     margin-left: auto
     margin-right: auto
   .form-horizontal .control-label
     text-align: left
-  .payment-message
-    color: #333333
-    text-align: center
-    padding: 25px 20px
-    font-size: 13px
-    .row-fluid
-      margin-top: 15px
-      &:last-child
-        margin-top: 30px
-      &:first-child
-        margin-bottom: 0
-      &:only-child
-        margin-top: 30px
-        margin-bottom: 40px
   #payment-options
     padding: 30px 0 20px
     .form-horizontal
@@ -285,33 +275,19 @@ $webstore-item-padding: 8px
         width: 100px
 
 
-//----- Webstore Placed
+//----- Webstore Completed
 
-#webstore-placed
+#webstore-completed
   +webstore-divider('box')
 
 .emphasised-label
   font-weight: bold
 
 form.payments
-  select.credit-card
-    width: 350px
-  input.credit-card
-    width: 336px
-  .credit-card-expiry
-    select
-      width: 100px
   .input-small
     width: 86px
   label
     font-weight: bold
     &.checkbox
       font-weight: normal
-
-.controls.credit-card-expiry
-  & > .control-group, .controls
-    margin: 0
-    display: inline-block
-    select
-      margin-right: 10px
 

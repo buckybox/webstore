@@ -13,14 +13,14 @@
           .row-fluid
             .span12.text-center.payment-title== Please pay #{cart.amount_due} by #{completed.payment_title}
           .row-fluid
-            .span9.center-row= render partial: "confirmation_#{cart.payment_method}", locals: { form_object: completed }
+            .span9.center-row= render partial: "partials/payments/#{cart.payment_method}", locals: { form_object: completed }
 
 .row-fluid
   .important Order summary
   = render partial: 'webstore/order', object: cart.order.decorate
 
 .row-fluid
-  #webstore-placed.span12
+  #webstore-completed.span12
     .row-fluid
       .span6
         .important Deliver to
