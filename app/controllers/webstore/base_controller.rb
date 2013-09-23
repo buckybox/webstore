@@ -3,8 +3,9 @@ class Webstore::BaseController < ApplicationController
 
   before_filter :distributor_has_webstore?
   before_filter :setup_by_distributor
-  before_filter :cart_present?
   before_filter :distributors_customer?
+  before_filter :cart_missing?
+  before_filter :cart_present?
   before_filter :cart_completed?
 
 protected
@@ -53,17 +54,37 @@ protected
     Money.default_currency = Money::Currency.new(current_distributor.currency)
   end
 
+  def cart_missing?
+    return if current_cart
+
+    if !action.in?(%w(store start_checkout))
+      redirect_to webstore_store_path, alert: "There is no ongoing order, please start one."
+    end
+  end
+
   def cart_present?
-    if !params[:action].in?(%w(store start_checkout)) && !current_cart
-      redirect_to webstore_store_path,
-        alert: "There is no ongoing order, please start one."
+    return unless current_cart
+
+    expected_step = current_cart.expected_next_step
+
+    if expected_step && expected_step != request.path && action == "store"
+      redirect_to expected_step,
+        alert: "Please complete your current order before starting a new one."
+    else
+      current_cart.expected_next_step = next_step
     end
   end
 
   def cart_completed?
-    if !params[:action].in?(%w(store completed)) && current_cart && current_cart.completed?
+    if !action.in?(%w(store completed)) && current_cart && current_cart.completed?
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
     end
+  end
+
+private
+
+  def action
+    params[:action]
   end
 end

@@ -29,7 +29,7 @@ private
   end
 
   def successful_authentication
-    redirect_to webstore_delivery_options_path
+    redirect_to next_step
   end
 
   def failed_authentication(authentication)
@@ -38,5 +38,9 @@ private
       order: current_order,
       authentication: authentication,
     }
+  end
+
+  def next_step
+    webstore_delivery_options_path
   end
 end

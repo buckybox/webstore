@@ -14,6 +14,7 @@ class Webstore::Cart
   attr_reader :distributor_id
   attr_reader :real_order_id # from factory
   attr_reader :real_customer_id # from factory
+  attr_accessor :expected_next_step
 
   def self.find(id, persistence_class = Webstore::CartPersistence)
     persistence = persistence_class.find_by(id: id)
