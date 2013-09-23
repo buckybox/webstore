@@ -19,9 +19,7 @@ protected
     current_cart = Webstore::Cart.find(session[:cart_id])
 
     if current_cart
-      current_cart = current_cart.decorate(
-        context: { currency: current_distributor.currency }
-      )
+      current_cart = current_cart.decorate(decorator_context)
     end
 
     @current_cart = current_cart
@@ -37,9 +35,7 @@ protected
   end
 
   def current_order
-    @current_order ||= current_cart.order.decorate(
-      context: { currency: current_distributor.currency }
-    )
+    @current_order ||= current_cart.order.decorate(decorator_context)
   end
 
   def current_webstore_customer
@@ -76,5 +72,13 @@ protected
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
     end
+  end
+
+private
+
+  def decorator_context
+    {
+      context: { currency: current_distributor.currency }
+    }
   end
 end
