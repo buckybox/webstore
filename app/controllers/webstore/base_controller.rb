@@ -65,13 +65,9 @@ protected
   def cart_present?
     return unless current_cart
 
-    expected_step = current_cart.expected_next_step
-
-    if expected_step && expected_step != request.path && action == "store"
-      redirect_to expected_step,
-        alert: "Please complete your current order before starting a new one."
-    else
-      current_cart.expected_next_step = next_step
+    if action == "store"
+      flush_current_cart!
+      flash[:notice] = "Your previous order has been cancelled, you can start a new one."
     end
   end
 

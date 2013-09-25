@@ -6,12 +6,12 @@ describe Webstore::StoreController do
       @distributor = Fabricate(:distributor_with_everything)
     end
 
-    it "redirects to the expected step if cart is present" do
-      controller.stub(:current_cart) { double(expected_next_step: "/whatever") }
+    it "notifies that the cart has been reseted if present" do
+      controller.stub(:current_cart) { double("cart") }
 
       get :store, distributor_parameter_name: @distributor.parameter_name
 
-      expect(response).to redirect_to "/whatever"
+      expect(flash[:notice]).to_not be_nil
     end
   end
 end
