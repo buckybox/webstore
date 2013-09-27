@@ -6,7 +6,7 @@ module Webstore
     delegate_all
 
     def price
-      object.price.format
+      object.price.with_currency(object.distributor.currency)
     end
 
     def order_link
