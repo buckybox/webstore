@@ -64,7 +64,7 @@ class Webstore::Customer
   end
 
   def account_balance
-    existing_customer ? existing_customer.account_balance : EasyMoney.new(0)
+    existing_customer ? existing_customer.account_balance : EasyMoney.zero
   end
 
   def balance_threshold

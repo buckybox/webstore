@@ -111,7 +111,7 @@ class Webstore::Cart
   end
 
   def amount_due
-    [order_price - current_balance, EasyMoney.new(0)].max
+    [order_price - current_balance, EasyMoney.zero].max
   end
 
   def run_factory(factory_class = Webstore::Factory)
