@@ -3,8 +3,9 @@ class Webstore::BaseController < ApplicationController
 
   before_filter :distributor_has_webstore?
   before_filter :setup_by_distributor
-  before_filter :cart_present?
   before_filter :distributors_customer?
+  before_filter :cart_missing?
+  before_filter :cart_present?
   before_filter :cart_completed?
 
 protected
@@ -14,7 +15,15 @@ protected
   end
 
   def current_cart
-    @current_cart ||= Webstore::Cart.find(session[:cart_id])
+    return @current_cart if @current_cart
+
+    current_cart = Webstore::Cart.find(session[:cart_id])
+
+    if current_cart
+      current_cart = current_cart.decorate(decorator_context)
+    end
+
+    @current_cart = current_cart
   end
 
   def flush_current_cart!
@@ -27,7 +36,7 @@ protected
   end
 
   def current_order
-    @current_order ||= current_cart.order.decorate
+    @current_order ||= current_cart.order.decorate(decorator_context)
   end
 
   def current_webstore_customer
@@ -50,20 +59,41 @@ protected
 
   def setup_by_distributor
     Time.zone = current_distributor.time_zone
-    Money.default_currency = Money::Currency.new(current_distributor.currency)
+  end
+
+  def cart_missing?
+    return if current_cart
+
+    if !action.in?(%w(store start_checkout))
+      redirect_to webstore_store_path, alert: "There is no ongoing order, please start one."
+    end
   end
 
   def cart_present?
-    if !params[:action].in?(%w(store start_checkout)) && !current_cart
-      redirect_to webstore_store_path,
-        alert: "There is no ongoing order, please start one."
+    return unless current_cart
+
+    if action == "store"
+      flush_current_cart!
+      flash[:notice] = "Your previous order has been cancelled, you can start a new one."
     end
   end
 
   def cart_completed?
-    if !params[:action].in?(%w(store completed)) && current_cart && current_cart.completed?
+    if !action.in?(%w(store completed)) && current_cart && current_cart.completed?
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
     end
+  end
+
+private
+
+  def action
+    params[:action]
+  end
+
+  def decorator_context
+    {
+      context: { currency: current_distributor.currency }
+    }
   end
 end
