@@ -192,18 +192,7 @@ private
   end
 
   def extras_as_hashes
-    extras_hash  = extras_as_objects.each_with_object({}) { |extra, hash| hash[extra] = extra_quantity(extra) }
-    extras_hash.map { |extra, count| extra_as_hash(extra, count) }
-  end
-
-  def extra_as_hash(extra, count)
-    {
-      name:         extra.name,
-      unit:         extra.unit,
-      price_cents:  extra.price_cents,
-      currency:     extra.currency,
-      count:        count
-    }
+    extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count:extra_quantity(extra)) }
   end
 
   def frequency
