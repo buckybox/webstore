@@ -20,24 +20,24 @@
     margin-left: 9px
     font-size: 22px
     line-height: 22px
-  a#facebook-link
-    display: block
+
+  .webstore-information-section > div
     color: $black
     opacity: 0.5
-    +clearfix
-    div
-      float: left
-      padding: 14px 0px 0px 17px
-      font-weight: bold
-      font-size: 110%
+    line-height: 24px
     i
       display: block
-      float: left
       background: transparent url('facebook-icon.png') no-repeat right top
-      width: 48px
-      height: 48px
+      background-size: 100%
+      width: 24px
+      height: 24px
     &:hover
       opacity: 1
+    &.phone
+      i.phone-icon
+        background: transparent url('phone-icon.png') no-repeat right top
+        background-size: 100%
+
 
 //----- Store
 

@@ -8,16 +8,22 @@
       %h1#distributor-name= @distributor.name
       .webstore-information-section
         %h4= @distributor.city
-        - unless @distributor.about.blank?
-          = simple_format(@distributor.about)
 
-      - unless @distributor.details.blank?
+      - unless @distributor.sidebar_description.blank?
         .webstore-information-section
-          %h4 Details
-          = simple_format(@distributor.details)
+          = simple_format(@distributor.sidebar_description)
 
-      - unless @distributor.facebook_url.blank?
-        .webstore-information-section
-          = link_to @distributor.facebook_url, id: 'facebook-link' do
-            %i.facebook-icon
-            %div Find us on Facebook
+      .webstore-information-section
+        - unless @distributor.facebook_url.blank?
+          .row-fluid.facebook
+            = link_to @distributor.facebook_url, id: 'facebook-link' do
+              .span2
+                %i.facebook-icon
+              .span10
+                %div Find us on Facebook
+        - unless @distributor.phone.blank?
+          .row-fluid.phone
+            .span2
+              %i.phone-icon
+            .span10
+              %div= @distributor.phone
