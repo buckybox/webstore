@@ -7,7 +7,7 @@ Feature: Authenticated customer places an order
   I want to be able to order via the webstore
 
 Background:
-  Given I am a customer
+  Given I am logged in as a customer
 
 Scenario: Select a box
   Given I am on the webstore
