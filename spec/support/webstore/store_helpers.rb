@@ -1,18 +1,16 @@
 module Webstore::StoreHelpers
   def self.included(base)
-    base.let(:distributor_name)         { 'Local Veg' }
-    base.let(:distributor_city)         { 'Wellington' }
-    base.let(:distributor_about)        { 'Local farm.' }
-    base.let(:distributor_details)      { 'Sells veg.' }
-    base.let(:distributor_facebook_url) { 'http://fb.com' }
+    base.let(:distributor_name)                { 'Local Veg' }
+    base.let(:distributor_city)                { 'Wellington' }
+    base.let(:distributor_sidebar_description) { 'Local farm.' }
+    base.let(:distributor_facebook_url)        { 'http://fb.com' }
 
     base.let(:distributor) do
       Fabricate(:distributor,
-        name:          distributor_name,
-        city:          distributor_city,
-        about:         distributor_about,
-        details:       distributor_details,
-        facebook_url:  distributor_facebook_url
+        name:                 distributor_name,
+        city:                 distributor_city,
+        sidebar_description:  distributor_sidebar_description,
+        facebook_url:         distributor_facebook_url
       )
     end
 
@@ -46,6 +44,6 @@ module Webstore::StoreHelpers
 
   def make_a_webstore_with_products
     @distributor ||= distributor
-    setup_a_webstore(product) # Send at least one product so it doesn't make it's own
+    setup_a_webstore(product) # Send at least one product so it doesn't make its own
   end
 end

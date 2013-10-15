@@ -11,9 +11,9 @@ describe "visit the webstore homepage", :js do
   it "shows the distributor information" do
     expect(page).to have_content(distributor_name)
     expect(page).to have_content(distributor_city)
-    expect(page).to have_content(distributor_about)
-    expect(page).to have_content(distributor_details)
+    expect(page).to have_content(distributor_sidebar_description)
     expect(page).to have_content("Find us on Facebook")
+    expect(page).to have_content(distributor.phone)
   end
 
   describe "products" do
