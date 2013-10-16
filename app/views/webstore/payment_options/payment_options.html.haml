@@ -2,7 +2,7 @@
 = render partial: 'webstore/sidebar'
 = render partial: 'webstore/order', object: order
 
-= simple_form_for(payment_options) do |f|
+= simple_form_for(payment_options, html: { novalidate: false }) do |f|
   #webstore-address.row-fluid.webstore-section
     .span12
       #existing-address.row-fluid{ :class => ("hide" unless payment_options.address.valid? ) }
@@ -21,32 +21,32 @@
             .span12
               %h4 Your name
           .row-fluid
-            .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12' }
+            .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12', required: true }
           - if payment_options.collect_phone?
             .row-fluid
               .span12
                 %h4 Your phone number
             .row-fluid
-              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number }, required: payment_options.require_phone
-              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12' }, include_blank: false, required: payment_options.require_phone, selected: payment_options.default_phone_type
+              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, selected: payment_options.default_phone_type
           .row-fluid
             .span12
               %h4 Deliver to
           .row-fluid
             .span12
-              = f.input :address_1, label: false, placeholder: 'Street', input_html: { class: 'span12' }, required: payment_options.require_address_1
-              = f.input :address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12' }, required: payment_options.require_address_2
-              = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12' }, required: payment_options.require_suburb
+              = f.input :address_1, label: false, placeholder: 'Street', input_html: { class: 'span12', required: payment_options.require_address_1 }
+              = f.input :address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12', required: payment_options.require_address_2 }
+              = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12', required: payment_options.require_suburb }
           .row-fluid
-            .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city' }, required: payment_options.require_city
-            .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12' }, wrapper_html: { id: 'postal_code' }, required: payment_options.require_postcode
+            .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city', required: payment_options.require_city }
+            .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12', required: payment_options.require_postcode }, wrapper_html: { id: 'postal_code' }
 
           .row-fluid
             .span12
               %h4 Delivery note
           .row-fluid
             .span12
-              = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3 }
+              = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
 
   - if payment_options.existing_customer?
     .row-fluid.webstore-section
