@@ -2,6 +2,8 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::PaymentOptions < Webstore::Form
+  extend Forwardable
+
   attribute :cart
   attribute :name,            String
   attribute :phone_number,    String
@@ -23,9 +25,19 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :suburb,        if: :require_suburb
   validates_presence_of :city,          if: :require_city
   validates_presence_of :postcode,      if: :require_postcode
+  validates_presence_of :delivery_note, if: :require_delivery_note
   validates_presence_of :payment_method
 
   attr_reader :address
+
+  def_delegators :distributor,
+    :require_phone,
+    :require_address_1,
+    :require_address_2,
+    :require_suburb,
+    :require_city,
+    :require_postcode,
+    :require_delivery_note
 
   def name
     super || customer.name
@@ -57,30 +69,6 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def payment_list(payment_options_class = ::PaymentOption)
     payment_options_class.options(distributor)
-  end
-
-  def require_phone
-    distributor.require_phone
-  end
-
-  def require_address_1
-    distributor.require_address_1
-  end
-
-  def require_address_2
-    distributor.require_address_2
-  end
-
-  def require_suburb
-    distributor.require_suburb
-  end
-
-  def require_city
-    distributor.require_city
-  end
-
-  def require_postcode
-    distributor.require_postcode
   end
 
   def customer_address
