@@ -22,7 +22,7 @@
               %h4 Your name
           .row-fluid
             .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12', required: true }
-          - if payment_options.collect_phone?
+          - if payment_options.collect_phone
             .row-fluid
               .span12
                 %h4 Your phone number
@@ -41,12 +41,13 @@
             .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city', required: payment_options.require_city }
             .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12', required: payment_options.require_postcode }, wrapper_html: { id: 'postal_code' }
 
-          .row-fluid
-            .span12
-              %h4 Delivery note
-          .row-fluid
-            .span12
-              = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
+          - if payment_options.collect_delivery_note
+            .row-fluid
+              .span12
+                %h4 Delivery note
+            .row-fluid
+              .span12
+                = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
 
   - if payment_options.existing_customer?
     .row-fluid.webstore-section

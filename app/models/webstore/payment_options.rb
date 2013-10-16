@@ -31,12 +31,14 @@ class Webstore::PaymentOptions < Webstore::Form
   attr_reader :address
 
   def_delegators :distributor,
+    :collect_phone,
     :require_phone,
     :require_address_1,
     :require_address_2,
     :require_suburb,
     :require_city,
     :require_postcode,
+    :collect_delivery_note,
     :require_delivery_note
 
   def name
@@ -57,10 +59,6 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def only_one_payment_option?
     distributor.only_one_payment_option?
-  end
-
-  def collect_phone?
-    distributor.collect_phone?
   end
 
   def phone_types(phone_collection_class = ::PhoneCollection)
