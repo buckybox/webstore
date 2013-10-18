@@ -47,7 +47,7 @@
                 %h4 Delivery note
             .row-fluid
               .span12
-                = f.input :delivery_note, as: :text, label: false, placeholder: 'e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
+                = f.input :delivery_note, as: :text, label: false, placeholder: 'Delivery instructions such as where to place the package, e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
 
   - if payment_options.existing_customer?
     .row-fluid.webstore-section
