@@ -5,7 +5,7 @@
 = simple_form_for(payment_options, html: { novalidate: false }) do |f|
   #webstore-address.row-fluid.webstore-section
     .span12
-      #existing-address.row-fluid{ :class => ("hide" unless payment_options.address.valid? ) }
+      #existing-address.row-fluid{ :class => ("hide" unless payment_options.address_complete? ) }
         .span12
           .row-fluid
             .span12
@@ -15,7 +15,7 @@
               = payment_options.address.join('<br>')
               %br
             = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
-      #update-address.row-fluid{ :class => ("hide" if payment_options.address.valid?) }
+      #update-address.row-fluid{ :class => ("hide" if payment_options.address_complete?) }
         .span12
           .row-fluid
             .span12

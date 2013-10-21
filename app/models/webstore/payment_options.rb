@@ -73,6 +73,20 @@ class Webstore::PaymentOptions < Webstore::Form
     customer.address
   end
 
+  # Returns whether the address is valid or not so we can hide the edit form when it is valid
+  def address_complete?
+    previous_errors = errors.dup
+
+    begin
+      valid? # populate `errors`
+      (errors.keys - [:phone_type, :payment_method]).empty?
+    ensure
+      # make sure we reset `errors` to its previous value for SimpleForm
+      # kinda hackish but does the trick until we split up the models
+      @errors = previous_errors
+    end
+  end
+
   def to_h
     {
       name:            name,
@@ -136,5 +150,4 @@ private
   def customer
     cart.customer
   end
-
 end
