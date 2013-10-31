@@ -26,7 +26,7 @@ Scenario: Choose my delivery frequency
 
 Scenario: Order a box
   Given I am asked for my delivery address
-  When I select the payment option "Cash on delivery"
+  When I select the payment option "Cash on Delivery"
   And I confirm my delivery address
   Then My order should be placed
   And I should see the details of my order
