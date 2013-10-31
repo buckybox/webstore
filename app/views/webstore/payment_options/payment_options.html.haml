@@ -73,7 +73,7 @@
                 = f.input :payment_method, as: :radio_buttons, collection: payment_options.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
           - else
             .span12.text-center No payment necessary
-            = f.input :payment_method, as: :hidden, input_html: {value: 'paid'}
+            = f.input :payment_method, as: :hidden, input_html: { value: PaymentOption::PAID }
 
   .row-fluid
     .span12.text-center

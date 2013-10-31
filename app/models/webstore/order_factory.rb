@@ -1,5 +1,6 @@
 require_relative '../webstore'
 require_relative '../order'
+require_relative '../event'
 
 class Webstore::OrderFactory
   def self.assemble(args)
@@ -17,6 +18,7 @@ class Webstore::OrderFactory
   def assemble
     prepare_order
     order.save!
+    run_after_commit_actions
     order
   end
 
@@ -73,11 +75,21 @@ private
     webstore_order.substitutions
   end
 
+  def payment_method
+    webstore_order.payment_method
+  end
+
   def derive_data
     @webstore_order = get_webstore_order
   end
 
   def get_webstore_order
     cart.order
+  end
+
+  def run_after_commit_actions
+    account.update_attributes!(default_payment_method: payment_method)
+
+    Event.new_webstore_order(order) if account.distributor.notify_for_new_webstore_order
   end
 end
