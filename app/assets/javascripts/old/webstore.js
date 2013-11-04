@@ -179,6 +179,16 @@ $(function() {
   if($('#webstore-address').length > 0) {
     var webstore_address = $('#webstore-address');
 
+    // Force form to show if there are any fields that are invalid so HTML5 validation can point
+    // them out instead of sighlently failing because it can't focus on the input
+    // http://stackoverflow.com/questions/6944783/does-the-handling-of-hidden-form-controls-in-html5-make-sense
+    $.each($("#new_webstore_payment_options :required"), function( index, value ) {
+      if(value.checkValidity()) {
+        $("#existing-address").hide();
+        $("#update-address").show();
+      }
+    });
+
     $('#webstore-address #edit-address').click(function() {
       $("#existing-address").hide();
       $("#update-address").show();
