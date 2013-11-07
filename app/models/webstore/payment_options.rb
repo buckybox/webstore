@@ -16,8 +16,8 @@ class Webstore::PaymentOptions < Webstore::Form
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
-  validates_presence_of :name
-  validates_presence_of :phone_number,  if: -> { require_phone && !address.valid? }
+  validates_presence_of :name,          if: :require_name
+  validates_presence_of :phone_number,  if: :require_phone
   validates_presence_of :phone_type,    if: :require_phone
   validates_presence_of :address_1,     if: :require_address_1
   validates_presence_of :address_2,     if: :require_address_2
@@ -31,12 +31,6 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def_delegators :distributor,
     :collect_phone,
-    :require_phone,
-    :require_address_1,
-    :require_address_2,
-    :require_suburb,
-    :require_city,
-    :require_postcode,
     :collect_delivery_note,
     :require_delivery_note
 
@@ -70,6 +64,14 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def customer_address
     customer.address
+  end
+
+  def pickup_point?
+    delivery_service.pickup_point?
+  end
+
+  def pickup_point_name
+    delivery_service.name
   end
 
   # Returns whether the address is valid or not so we can hide the edit form when it is valid
@@ -148,5 +150,45 @@ private
 
   def customer
     cart.customer
+  end
+
+  def order
+    cart.order
+  end
+
+  def delivery_service
+    order.delivery_service
+  end
+
+  def require_name
+    !pickup_point?
+  end
+
+  def require_phone
+    !pickup_point? && distributor.require_phone && !address.valid?
+  end
+
+  def require_address_1
+    !pickup_point? && distributor.require_address_1
+  end
+
+  def require_address_2
+    !pickup_point? && distributor.require_address_2
+  end
+
+  def require_suburb
+    !pickup_point? && distributor.require_suburb
+  end
+
+  def require_city
+    !pickup_point? && distributor.require_city
+  end
+
+  def require_postcode
+    !pickup_point? && distributor.require_postcode
+  end
+
+  def require_delivery_note
+    !pickup_point? && distributor.require_delivery_note
   end
 end

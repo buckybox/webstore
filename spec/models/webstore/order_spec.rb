@@ -1,23 +1,18 @@
 require_relative "../../../app/models/webstore/order"
 
 describe Webstore::Order do
+  class DeliveryService; end
   class Box; end
   class Distributor; end
   class Customer; end
-  class DeliveryService; end
 
-  let(:product) { double("product") }
-  let(:cart)    { double("cart").as_null_object }
-  let(:args)    { { cart: cart } }
-  let(:order) do
-    order = Webstore::Order.new(args)
-
-    order.stub(:product_class) do
-      double("product_class", find: product)
-    end
-
-    order
-  end
+  let(:delivery_service)       { double("delivery_service") }
+  let(:delivery_service_class) { double("delivery_service_class") }
+  let(:product)                { double("product") }
+  let(:product_class)          { double("product_class", find: product) }
+  let(:cart)                   { double("cart").as_null_object }
+  let(:args)                   { { cart: cart, delivery_service_class: delivery_service_class, product_class: product_class } }
+  let(:order)                  { Webstore::Order.new(args) }
 
   describe "#product_image" do
     it "returns a product image" do
@@ -152,6 +147,18 @@ describe Webstore::Order do
       order.stub(:has_bucky_fee?) { true }
       order.stub(:has_discount?)     { true }
       order.total.should eq(5)
+    end
+  end
+
+  describe "#delivery_service" do
+    it "returns nil if there is no delivery service found" do
+      delivery_service_class.stub(:find_by) { nil }
+      expect(order.delivery_service).to be_nil
+    end
+
+    it "returns a delivery service if one is found" do
+      delivery_service_class.stub(:find_by) { delivery_service }
+      expect(order.delivery_service).to eq(delivery_service)
     end
   end
 end
