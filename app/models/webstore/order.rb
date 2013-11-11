@@ -15,7 +15,7 @@ class Webstore::Order
     @cart          = args.fetch(:cart)
     @information   = args.fetch(:information, {})
     @product_id    = args.fetch(:product_id, nil)
-    @delivery_service_class   = args.fetch(:delivery_service_class, ::DeliveryService)
+    @delivery_service_class = args.fetch(:delivery_service_class, ::DeliveryService)
     @product_class = args.fetch(:product_class, ::Box)
   end
 

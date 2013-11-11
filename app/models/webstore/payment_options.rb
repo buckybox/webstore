@@ -2,6 +2,8 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::PaymentOptions < Webstore::Form
+  extend Forwardable
+
   attribute :cart
   attribute :name,            String
   attribute :phone_number,    String
@@ -23,9 +25,21 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :suburb,        if: :require_suburb
   validates_presence_of :city,          if: :require_city
   validates_presence_of :postcode,      if: :require_postcode
+  validates_presence_of :delivery_note, if: :require_delivery_note
   validates_presence_of :payment_method
 
   attr_reader :address
+
+  def_delegators :distributor,
+    :collect_phone,
+    :require_phone,
+    :require_address_1,
+    :require_address_2,
+    :require_suburb,
+    :require_city,
+    :require_postcode,
+    :collect_delivery_note,
+    :require_delivery_note
 
   def name
     super || customer.name
@@ -47,10 +61,6 @@ class Webstore::PaymentOptions < Webstore::Form
     distributor.only_one_payment_option?
   end
 
-  def collect_phone?
-    distributor.collect_phone?
-  end
-
   def phone_types(phone_collection_class = ::PhoneCollection)
     phone_collection_class.types_as_options
   end
@@ -59,32 +69,22 @@ class Webstore::PaymentOptions < Webstore::Form
     payment_options_class.options(distributor)
   end
 
-  def require_phone
-    distributor.require_phone
-  end
-
-  def require_address_1
-    distributor.require_address_1
-  end
-
-  def require_address_2
-    distributor.require_address_2
-  end
-
-  def require_suburb
-    distributor.require_suburb
-  end
-
-  def require_city
-    distributor.require_city
-  end
-
-  def require_postcode
-    distributor.require_postcode
-  end
-
   def customer_address
     customer.address
+  end
+
+  # Returns whether the address is valid or not so we can hide the edit form when it is valid
+  def address_complete?
+    previous_errors = errors.dup
+
+    begin
+      valid? # populate `errors`
+      (errors.keys - [:phone_type, :payment_method]).empty?
+    ensure
+      # make sure we reset `errors` to its previous value for SimpleForm
+      # kinda hackish but does the trick until we split up the models
+      @errors = previous_errors
+    end
   end
 
   def to_h
@@ -150,5 +150,4 @@ private
   def customer
     cart.customer
   end
-
 end

@@ -56,10 +56,10 @@ describe Webstore::PaymentOptions do
     end
   end
 
-  describe '#collect_phone?' do
+  describe '#collect_phone' do
     it 'returns true if the distributor requires a phone number' do
-      distributor.stub(:collect_phone?) { true }
-      payment_options.collect_phone?.should be_true
+      distributor.stub(:collect_phone) { true }
+      payment_options.collect_phone.should be_true
     end
   end
 

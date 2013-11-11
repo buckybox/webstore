@@ -104,7 +104,7 @@ end
 Given "I have just ordered a box" do
   steps %Q{
     Given I am asked for my delivery address
-    When I select the payment option "Cash on delivery"
+    When I select the payment option "Cash on Delivery"
     And I fill in my delivery address
   }
 end
