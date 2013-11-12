@@ -8,7 +8,7 @@ require_relative '../webstore'
 class Webstore::Form
   extend ActiveModel::Naming
 
-  include Virtus
+  include Virtus.model
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
