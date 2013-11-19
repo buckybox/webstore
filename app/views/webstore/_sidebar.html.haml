@@ -16,7 +16,7 @@
       .webstore-information-section
         - unless @distributor.facebook_url.blank?
           .row-fluid.facebook
-            = link_to @distributor.facebook_url, id: 'facebook-link' do
+            = link_to "https://#{@distributor.facebook_url}", id: 'facebook-link', target: "_blank" do
               .span2
                 %i.facebook-icon
               .span10
