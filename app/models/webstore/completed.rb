@@ -29,22 +29,22 @@ class Webstore::Completed < Webstore::Form
   def payment_message
     case payment_method
     when "bank_deposit"
-      distributor.bank_information.customer_message
+      bank_information.customer_message
     when "cash_on_delivery"
-      distributor.bank_information.cod_payment_message
+      bank_information.cod_payment_message
     end
   end
 
   def bank_name
-    distributor.bank_information.name
+    bank_information.bank_name
   end
 
   def bank_account_name
-    distributor.bank_information.account_name
+    bank_information.bank_account_name
   end
 
   def bank_account_number
-    distributor.bank_information.account_number
+    bank_information.bank_account_number
   end
 
   def customer_number
@@ -52,10 +52,14 @@ class Webstore::Completed < Webstore::Form
   end
 
   def note
-    distributor.bank_information.customer_message
+    bank_information.customer_message
   end
 
   def distributor
     real_customer.distributor
+  end
+
+  def bank_information
+    distributor.bank_information.decorate
   end
 end
