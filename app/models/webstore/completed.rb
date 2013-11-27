@@ -2,7 +2,6 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::Completed < Webstore::Form
-  attribute :cart
   attribute :real_order
   attribute :real_customer
 

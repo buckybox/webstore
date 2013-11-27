@@ -4,7 +4,6 @@ require_relative '../webstore'
 class Webstore::PaymentOptions < Webstore::Form
   extend Forwardable
 
-  attribute :cart
   attribute :name,            String
   attribute :phone_number,    String
   attribute :phone_type,      String
