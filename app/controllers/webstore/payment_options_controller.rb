@@ -9,6 +9,7 @@ class Webstore::PaymentOptionsController < Webstore::BaseController
 
   def save_payment_options
     args = { cart: current_cart }.merge(params[:webstore_payment_options])
+    return if cart_expired?(args)
     payment_options = Webstore::PaymentOptions.new(args)
     payment_options.save ? successful_payment_options : failed_payment_options(payment_options)
   end

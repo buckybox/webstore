@@ -10,6 +10,7 @@ class Webstore::DeliveryOptionsController < Webstore::BaseController
 
   def save_delivery_options
     args = { cart: current_cart }.merge(params[:webstore_delivery_options])
+    return if cart_expired?(args)
     delivery_options = Webstore::DeliveryOptions.new(args)
     delivery_options.save ? successful_delivery_options : failed_delivery_options(delivery_options)
   end

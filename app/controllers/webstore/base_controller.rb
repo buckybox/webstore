@@ -18,10 +18,7 @@ protected
     return @current_cart if @current_cart
 
     current_cart = Webstore::Cart.find(session[:cart_id])
-
-    if current_cart
-      current_cart = current_cart.decorate(decorator_context)
-    end
+    current_cart = current_cart.decorate(decorator_context) if current_cart
 
     @current_cart = current_cart
   end
@@ -30,6 +27,7 @@ protected
     cart = current_cart.dup if current_cart
 
     session.delete(:cart_id)
+    session.delete(:form_cart_id)
     @current_cart = nil
 
     cart
@@ -83,6 +81,26 @@ protected
       redirect_to webstore_store_path,
         alert: "This order has been completed, please start a new one."
     end
+  end
+
+  def cart_expired?(args)
+    current_form_cart_id = args.fetch("cart_id").to_i
+
+    if !form_cart_id
+      session[:form_cart_id] = current_form_cart_id
+
+    elsif form_cart_id != current_form_cart_id
+      flush_current_cart!
+
+      redirect_to webstore_store_path,
+        alert: "Sorry, this order has expired, please start a new one." and return true
+    end
+
+    false
+  end
+
+  def form_cart_id
+    session[:form_cart_id]
   end
 
 private
