@@ -120,8 +120,9 @@ class Webstore::Cart
     @real_order_id = factory.order.id
     @real_customer_id = factory.customer.id
     customer.associate_real_customer(@real_customer_id)
-
     completed!
+
+    factory.customer.add_activity(:order_create, order: factory.order)
 
     factory
   end
