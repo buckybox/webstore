@@ -123,6 +123,7 @@ class Webstore::Cart
     completed!
 
     factory.customer.add_activity(:order_create, order: factory.order)
+    send_confirmation_email(factory.order) if distributor.email_customer_on_new_webstore_order
 
     factory
   end
@@ -153,5 +154,12 @@ private
   def completed!
     @completed = true
     save
+  end
+
+  def send_confirmation_email(order)
+    CustomerMailer.delay(
+      priority: Figaro.env.delayed_job_priority_high,
+      queue: "#{__FILE__}:#{__LINE__}",
+    ).order_confirmation(order)
   end
 end
