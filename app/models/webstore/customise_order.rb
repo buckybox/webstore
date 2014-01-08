@@ -2,7 +2,6 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::CustomiseOrder < Webstore::Form
-  attribute :cart
   attribute :has_customisations,  Boolean
   attribute :dislikes,            Array[Integer]
   attribute :likes,               Array[Integer]

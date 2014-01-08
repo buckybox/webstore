@@ -12,6 +12,8 @@ class Webstore::Form
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
+  attribute :cart
+
   def initialize(attributes = {})
     attributes = sanitise_attributes(attributes)
     before_standard_initialize(attributes)
@@ -42,6 +44,10 @@ class Webstore::Form
   end
 
 protected
+
+  def cart_id
+    cart.id
+  end
 
   def sanitise_attributes(attributes)
     attributes

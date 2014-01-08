@@ -3,6 +3,8 @@
 = render partial: 'webstore/order', object: order
 
 = simple_form_for(delivery_options) do |f|
+  = f.input :cart_id, as: :hidden
+
   #webstore-delivery_service.row-fluid.webstore-section{ style: "display: #{delivery_options.can_change_delivery_service? ? 'block' : 'none'}" }
     .span12
       .row-fluid

@@ -18,6 +18,8 @@ class Webstore::StoreController < Webstore::BaseController
       existing_customer: current_customer,
     )
 
+    return if cart_expired?("cart_id" => checkout.cart_id)
+
     @current_webstore_customer = checkout.customer.decorate
 
     product_id = params[:product_id]

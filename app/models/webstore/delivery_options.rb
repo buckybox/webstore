@@ -2,7 +2,6 @@ require_relative 'form'
 require_relative '../webstore'
 
 class Webstore::DeliveryOptions < Webstore::Form
-  attribute :cart
   attribute :delivery_service, Integer
   attribute :start_date,       Date
   attribute :frequency,        String

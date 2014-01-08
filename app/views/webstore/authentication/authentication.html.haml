@@ -3,6 +3,8 @@
 = render partial: 'webstore/order', object: order
 
 = simple_form_for(authentication) do |f|
+  = f.input :cart_id, as: :hidden
+
   #webstore-login.row-fluid.webstore-section
     .span12
       .row-fluid

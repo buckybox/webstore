@@ -9,7 +9,6 @@ class Webstore::Authentication < Webstore::Form
     ["I'm a returning customer",  EXISTING_CUSTOMER],
   ].freeze
 
-  attribute :cart
   attribute :email,       String
   attribute :registered,  String, default: NEW_CUSTOMER
   attribute :password,    String
