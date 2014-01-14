@@ -37,7 +37,7 @@ describe "visit the webstore homepage", :js do
     end
 
     it "logs in the customer automatically" do
-      expect(page).to have_content("My account (#{@customer.name})")
+      expect(page).to have_content("My Account (#{@customer.name})")
     end
   end
 end
