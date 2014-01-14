@@ -22,6 +22,7 @@ protected
 
     @current_cart = current_cart
   end
+  helper_method :current_cart
 
   def flush_current_cart!
     cart = current_cart.dup if current_cart
@@ -43,9 +44,9 @@ protected
 
   def distributors_customer?
     if current_customer && current_customer.distributor != current_distributor
-      redirect_to webstore_store_path(
-        distributor_parameter_name: current_customer.distributor.parameter_name
-      )
+      unless current_customers.keys.include?(current_distributor.parameter_name)
+        sign_out :customer
+      end
     end
   end
 
