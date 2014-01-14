@@ -19,7 +19,7 @@ describe "authenticate", :js do
 
   context "as an existing customer" do
     before do
-      @customer = Fabricate(:customer, password: "PASSWORD")
+      @customer = Fabricate(:customer, password: "PASSWORD", distributor: @distributor)
       fill_in "webstore_authentication_email", with: @customer.email
     end
 
