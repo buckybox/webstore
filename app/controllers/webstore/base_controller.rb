@@ -44,7 +44,7 @@ protected
 
   def distributors_customer?
     if current_customer && current_customer.distributor != current_distributor
-      unless current_customers.keys.include?(current_distributor.parameter_name)
+      unless current_customers.map(&:distributor).include?(current_distributor)
         sign_out :customer
       end
     end
