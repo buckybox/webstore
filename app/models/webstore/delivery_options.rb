@@ -37,7 +37,8 @@ class Webstore::DeliveryOptions < Webstore::Form
   end
 
   def delivery_service_list
-    delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) }
+    delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) }. \
+      unshift(['- Select delivery service -', nil])
   end
 
   def order_frequencies

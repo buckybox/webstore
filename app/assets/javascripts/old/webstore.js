@@ -272,6 +272,9 @@ function update_delivery_service_information(delivery_service_id) {
     var day = $(value);
     if(day.data('enabled')) { day.prop('disabled', false); }
   });
+
+  $("#webstore-schedule").toggle(!!delivery_service_id);
+
   update_day_checkboxes(delivery_service_schedule.find('.schedule-start-date'));
 }
 

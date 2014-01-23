@@ -39,7 +39,10 @@ describe Webstore::DeliveryOptions do
       delivery_service = double('delivery_service', id: 3, name_days_and_fee: 'delivery_service wed $5.00')
       distributor.stub(:delivery_services) { [delivery_service] }
 
-      delivery_options.delivery_service_list.should eq([["delivery_service wed $5.00", 3]])
+      delivery_options.delivery_service_list.should eq([
+        ["- Select delivery service -", nil],
+        ["delivery_service wed $5.00",  3]
+      ])
     end
   end
 

@@ -52,6 +52,15 @@ Given "I am asked to select my delivery frequency" do
   if page.has_link? "Login" # we need to log in
     step "I fill in my email address"
   end
+
+  if page.has_selector? "#delivery_service_select"
+    step "I select the last delivery service"
+  end
+end
+
+When /^I select the last delivery service$/ do
+  last_delivery_service = find("#delivery_service_select option:last-child")
+  select last_delivery_service.text, from: :delivery_service_select
 end
 
 When /^I select a (.*) delivery frequency$/ do |frequency|
