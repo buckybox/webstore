@@ -6,11 +6,11 @@ class Webstore::OrderDecorator < Draper::Decorator
   delegate_all
 
   def product_price
-    object.product_price.with_currency(context[:currency])
+    object.product_price(with_discount: false).with_currency(context[:currency])
   end
 
   def extras_price
-    object.extras_price.with_currency(context[:currency])
+    object.extras_price(with_discount: false).with_currency(context[:currency])
   end
 
   def delivery_service_fee

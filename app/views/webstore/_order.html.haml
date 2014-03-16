@@ -65,15 +65,14 @@
               support local food and organic farming worldwide.
             %td.price= order.bucky_fee
 
-        - if order.has_total?
-          - if order.has_discount?
-            %tr#discount
-              %td.description
-                %h2 Your discount (included)
-              %td.price= order.discount
-
-          %tr#total
+        - if order.has_discount?
+          %tr#discount
             %td.description
-              %h1 Total:
-            %td.price
-              %span= order.total
+              %h2 Your discount
+            %td.price= order.discount
+
+        %tr#total
+          %td.description
+            %h1 Total:
+          %td.price
+            %span= order.total
