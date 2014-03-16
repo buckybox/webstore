@@ -69,42 +69,37 @@ class Webstore::Order
   end
 
   def extras_as_objects(extra_class = Extra)
-    extra_ids = extras.keys
+    extra_ids = extras ? extras.keys : []
     extra_class.where(id: extra_ids)
   end
 
-  def total
-    result = pre_discount_total
-    result += discount if has_discount?
-    result
+  def total(with_discount: true)
+    product_price(with_discount: with_discount) +
+    extras_price(with_discount: with_discount) +
+    delivery_service_fee +
+    bucky_fee
   end
 
-  def pre_discount_total
-    result = product_price
-    result += extras_price if has_extras?
-    result += delivery_fee if is_scheduled?
-    result += bucky_fee    if has_bucky_fee?
-    result
+  def discount
+    total(with_discount: false) - total(with_discount: true)
   end
 
-  def product_price(order_price_class = ::OrderPrice)
-     order_price_class.discounted(product.price, existing_customer)
+  def product_price(order_price_class = ::OrderPrice, with_discount: true)
+    customer = with_discount ? existing_customer : nil
+    order_price_class.discounted(product.price, customer)
   end
 
-  def extras_price(order_price_class = ::OrderPrice)
-    order_price_class.extras_price(extras_as_hashes, existing_customer)
+  def extras_price(order_price_class = ::OrderPrice, with_discount: true)
+    customer = with_discount ? existing_customer : nil
+    order_price_class.extras_price(extras_as_hashes, customer)
   end
 
-  def delivery_fee(order_price_class = ::OrderPrice)
-    order_price_class.discounted(delivery_service_fee, existing_customer)
+  def delivery_service_fee
+    delivery_service ? delivery_service.fee : 0
   end
 
   def bucky_fee
     distributor.consumer_delivery_fee
-  end
-
-  def discount(order_price_class = ::OrderPrice)
-    order_price_class.discounted(pre_discount_total, existing_customer) - pre_discount_total
   end
 
   def product
@@ -181,10 +176,6 @@ private
 
   def customer
     cart ? cart.customer : Webstore::Customer.new
-  end
-
-  def delivery_service_fee
-    delivery_service.fee if delivery_service
   end
 
   def existing_customer
