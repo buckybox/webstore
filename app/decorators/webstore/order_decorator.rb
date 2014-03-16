@@ -22,7 +22,7 @@ class Webstore::OrderDecorator < Draper::Decorator
   end
 
   def discount
-    object.discount.with_currency(context[:currency])
+    object.discount.opposite.with_currency(context[:currency])
   end
 
   def total
