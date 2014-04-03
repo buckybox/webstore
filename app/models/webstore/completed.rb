@@ -9,6 +9,10 @@ class Webstore::Completed < Webstore::Form
     real_customer.name
   end
 
+  def customer_email
+    real_customer.email
+  end
+
   def customer_address
     real_customer.address.join('<br>')
   end
@@ -17,8 +21,16 @@ class Webstore::Completed < Webstore::Form
     real_order.schedule_rule
   end
 
+  def product_name
+    real_order.product.name
+  end
+
   def payment_method
     cart.payment_method
+  end
+
+  def amount_due
+    cart.amount_due
   end
 
   def payment_title
