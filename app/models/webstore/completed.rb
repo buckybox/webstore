@@ -22,7 +22,7 @@ class Webstore::Completed < Webstore::Form
   end
 
   def product_name
-    real_order.product.name
+    real_order.box.name
   end
 
   def payment_method
