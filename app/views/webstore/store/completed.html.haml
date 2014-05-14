@@ -1,23 +1,23 @@
 - title('Webstore - Completed Order', false)
 = render partial: 'webstore/sidebar'
 
-.row-fluid.span12
-  .important Payment instructions
-  = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
+= render partial: 'webstore/order', object: order
 
 - if cart.payment_required?
-  .row-fluid
+  .row-fluid.spacer
     #webstore-payment.span12
       .row-fluid
         #payment.span12
           .row-fluid
-            .span12.text-center.payment-title== Please pay #{cart.amount_due} by #{completed.payment_title}
+            .span12.completed-header.important
+              %span Total amount due:
+              %span.pull-right= cart.amount_due
+          .row-fluid
+            .span12.text-center.payment-title== Pay by #{completed.payment_title}
           .row-fluid
             .span9.center-row= render partial: "partials/payments/#{cart.payment_method}", locals: { form_object: completed }
 
-.row-fluid
-  .important Order summary
-  = render partial: 'webstore/order', object: order
+= render partial: 'webstore/payment_instructions', locals: { form_object: cart }
 
 .row-fluid
   #webstore-completed.span12
