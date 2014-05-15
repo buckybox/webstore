@@ -1,7 +1,9 @@
 - title('Webstore - Completed Order', false)
 = render partial: 'webstore/sidebar'
 
-= render partial: 'webstore/order', object: order
+= render partial: 'webstore/order', locals: { order: order, completed: completed }
+
+= render partial: 'webstore/payment_instructions', locals: { form_object: cart }
 
 - if cart.payment_required?
   .row-fluid.spacer
@@ -17,21 +19,10 @@
           .row-fluid
             .span9.center-row= render partial: "partials/payments/#{cart.payment_method}", locals: { form_object: completed }
 
-= render partial: 'webstore/payment_instructions', locals: { form_object: cart }
-
-.row-fluid
-  #webstore-completed.span12
-    .row-fluid
-      .span6
-        .important Deliver to
-        = completed.customer_name
-        %br
-        = completed.customer_address
-      .span6
-        .important Delivery date
-        = completed.schedule_description
-
 .row-fluid
   .span12.text-center
     = link_to 'Back to webstore', webstore_store_path(completed.distributor.parameter_name), class: 'btn btn-process', id: 'webstore'
     = link_to 'My account', customer_root_path, class: 'btn btn-process', id: 'webstore-my-account'
+
+.spacer
+

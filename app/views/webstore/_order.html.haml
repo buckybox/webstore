@@ -6,7 +6,11 @@
 .row-fluid
   #current-order.span12
     .row-fluid
-      .span12.completed-header.important Order summary
+      .span12.completed-header.important
+        - if request.fullpath == webstore_completed_path
+          Order completed
+        - else
+          Order summary
 
     .row-fluid{style: "margin-top: 1em"}
       .span12
@@ -57,7 +61,11 @@
               %tr#delivery_service
                 %td.description
                   %h2 Delivery service
-                  = order.schedule
+                  = completed.schedule_description
+                  %br
+                  = completed.customer_name
+                  %br
+                  = completed.customer_address
                 %td.price= order.delivery_service_fee
 
             - if order.has_bucky_fee?
