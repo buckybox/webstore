@@ -61,11 +61,11 @@
               %tr#delivery_service
                 %td.description
                   %h2 Delivery service
-                  = completed.schedule_description
+                  = order.schedule
                   %br
-                  = completed.customer_name
+                  = order.customer.name
                   %br
-                  = completed.customer_address
+                  = order.customer.address.join('<br>')
                 %td.price= order.delivery_service_fee
 
             - if order.has_bucky_fee?

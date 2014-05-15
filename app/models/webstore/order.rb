@@ -158,6 +158,10 @@ class Webstore::Order
     product.customisable?
   end
 
+  def customer
+    cart ? cart.customer : Webstore::Customer.new
+  end
+
 private
 
   attr_reader :delivery_service_class
@@ -172,10 +176,6 @@ private
 
   def delivery_service
     delivery_service_class.where(id: delivery_service_id).first
-  end
-
-  def customer
-    cart ? cart.customer : Webstore::Customer.new
   end
 
   def existing_customer
