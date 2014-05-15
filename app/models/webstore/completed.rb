@@ -13,6 +13,10 @@ class Webstore::Completed < Webstore::Form
     real_customer.email
   end
 
+  def distributor_email
+    distributor.email
+  end
+
   def customer_address
     real_customer.address.join('<br>')
   end
@@ -72,5 +76,9 @@ class Webstore::Completed < Webstore::Form
 
   def bank_information
     distributor.bank_information.decorate
+  end
+
+  def currency
+    distributor.currency
   end
 end
