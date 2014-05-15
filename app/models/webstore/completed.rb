@@ -37,6 +37,11 @@ class Webstore::Completed < Webstore::Form
     cart.amount_due
   end
 
+  def amount_due_without_symbol
+    undecorated_cart = cart.decorated? ? cart.object : cart
+    undecorated_cart.amount_due
+  end
+
   def payment_title
     payment_method.titleize
   end
