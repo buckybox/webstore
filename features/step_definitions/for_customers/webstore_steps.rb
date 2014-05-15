@@ -104,7 +104,7 @@ Then /^My order should be placed$/ do
 end
 
 Then /^I should see the details of my order$/ do
-  page.should have_content "Payment instructions",
+  page.should have_content "Payment details",
     "Pay by Cash On Delivery",
     "Order summary",
     "Deliver to"
