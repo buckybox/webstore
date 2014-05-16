@@ -44,7 +44,7 @@ class Webstore::Completed < Webstore::Form
 
   def payment_title
     title = payment_method.titleize
-    title = "PayPal" if title == "Paypal" # XXX: terrible hack, can't be fucked with that now
+    title = "PayPal / Credit Card" if title == "Paypal" # XXX: terrible hack, can't be fucked with that now
     title
   end
 
