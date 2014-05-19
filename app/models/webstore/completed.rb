@@ -21,6 +21,10 @@ class Webstore::Completed < Webstore::Form
     real_customer.address.join('<br>')
   end
 
+  def customer_number
+    real_customer.formated_number
+  end
+
   def schedule_description
     real_order.schedule_rule
   end
