@@ -13,8 +13,8 @@ class Webstore::Completed < Webstore::Form
     real_customer.email
   end
 
-  def distributor_email
-    distributor.email
+  def distributor_paypal_email
+    distributor.paypal_email
   end
 
   def customer_address
