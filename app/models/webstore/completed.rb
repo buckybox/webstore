@@ -92,4 +92,8 @@ class Webstore::Completed < Webstore::Form
   def currency
     distributor.currency
   end
+
+  def top_up_amount
+    nil # cannot top up from the web store checkout
+  end
 end
