@@ -16,7 +16,7 @@ describe Webstore::Cart do
         cart.stub(:id) { 1 }
         persistence.stub(:collected_data) { cart }
         persistence_class.stub(:find_by) { persistence }
-        Webstore::Cart.find(1, persistence_class).new?.should be_false
+        Webstore::Cart.find(1, persistence_class).new?.should be false
       end
     end
 
@@ -31,12 +31,12 @@ describe Webstore::Cart do
   describe '#new?' do
     it 'is considered new if the cart does not have an true' do
       cart_without_id = Webstore::Cart.new(args)
-      cart_without_id.new?.should be_true
+      cart_without_id.new?.should be true
     end
 
     it 'is not considered new if the cart has an true' do
       cart_without_id = Webstore::Cart.new(args.merge(id: 1))
-      cart_without_id.new?.should_not be_true
+      cart_without_id.new?.should_not be true
     end
   end
 
@@ -80,14 +80,14 @@ describe Webstore::Cart do
       context 'when save works' do
         it 'saves a cart and returns an true' do
           persistence.stub(:update_attributes) { true }
-          cart.save.should be_true
+          cart.save.should be true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
           persistence.stub(:update_attributes) { false }
-          cart.save.should be_false
+          cart.save.should be false
         end
       end
     end
@@ -101,14 +101,14 @@ describe Webstore::Cart do
       context 'when save works' do
         it 'saves a cart and returns an true' do
           persistence.stub(:update_attributes) { true }
-          cart.save.should be_true
+          cart.save.should be true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
           persistence.stub(:update_attributes) { false }
-          cart.save.should be_false
+          cart.save.should be false
         end
       end
     end
@@ -117,7 +117,7 @@ describe Webstore::Cart do
   describe '#add_product' do
     it 'returns true if the product is successfully added to the order' do
       cart.order.stub(:add_product) { true }
-      cart.add_product(product_id: 1).should be_true
+      cart.add_product(product_id: 1).should be true
     end
   end
 end

@@ -17,12 +17,12 @@ describe Webstore::DeliveryOptions do
   describe '#can_change_delivery_service?' do
     it 'returns true if the there is not an existing delivery service' do
       customer.stub(:delivery_service_id) { nil }
-      delivery_options.can_change_delivery_service?.should be_true
+      delivery_options.can_change_delivery_service?.should be true
     end
 
     it 'returns false if the there is an existing delivery service' do
       customer.stub(:delivery_service_id) { 3 }
-      delivery_options.can_change_delivery_service?.should be_false
+      delivery_options.can_change_delivery_service?.should be false
     end
   end
 
@@ -87,7 +87,7 @@ describe Webstore::DeliveryOptions do
   describe '#cart_has_extras' do
     it 'returns true if this cart allows extras' do
       cart.stub(:has_extras?) { true }
-      delivery_options.cart_has_extras?.should be_true
+      delivery_options.cart_has_extras?.should be true
     end
   end
 

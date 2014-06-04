@@ -27,7 +27,7 @@ describe Webstore::Checkout do
   describe '#add_product!' do
     it 'returns true if the product is added to the cart' do
       cart.stub(:add_product)
-      checkout.add_product!(3).should be_true
+      checkout.add_product!(3).should be_truthy
     end
   end
 
