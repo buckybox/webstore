@@ -31,8 +31,7 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def_delegators :distributor,
     :collect_phone,
-    :collect_delivery_note,
-    :require_delivery_note
+    :collect_delivery_note
 
   def name
     super || customer.name
