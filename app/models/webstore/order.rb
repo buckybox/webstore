@@ -178,8 +178,6 @@ private
     cart.distributor ? cart.distributor : ::Distributor.new
   end
 
-  end
-
   def existing_customer
     cart ? cart.existing_customer : nil
   end
