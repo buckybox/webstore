@@ -73,6 +73,38 @@ class Webstore::PaymentOptions < Webstore::Form
     delivery_service.name
   end
 
+  def require_name
+    !pickup_point?
+  end
+
+  def require_phone
+    !pickup_point? && distributor.require_phone
+  end
+
+  def require_address_1
+    !pickup_point? && distributor.require_address_1
+  end
+
+  def require_address_2
+    !pickup_point? && distributor.require_address_2
+  end
+
+  def require_suburb
+    !pickup_point? && distributor.require_suburb
+  end
+
+  def require_city
+    !pickup_point? && distributor.require_city
+  end
+
+  def require_postcode
+    !pickup_point? && distributor.require_postcode
+  end
+
+  def require_delivery_note
+    !pickup_point? && distributor.require_delivery_note
+  end
+
   # Returns whether the address is valid or not so we can hide the edit form when it is valid
   def address_complete?
     previous_errors = errors.dup
@@ -157,37 +189,5 @@ private
 
   def delivery_service
     order.delivery_service
-  end
-
-  def require_name
-    !pickup_point?
-  end
-
-  def require_phone
-    !pickup_point? && distributor.require_phone && !address.valid?
-  end
-
-  def require_address_1
-    !pickup_point? && distributor.require_address_1
-  end
-
-  def require_address_2
-    !pickup_point? && distributor.require_address_2
-  end
-
-  def require_suburb
-    !pickup_point? && distributor.require_suburb
-  end
-
-  def require_city
-    !pickup_point? && distributor.require_city
-  end
-
-  def require_postcode
-    !pickup_point? && distributor.require_postcode
-  end
-
-  def require_delivery_note
-    !pickup_point? && distributor.require_delivery_note
   end
 end
