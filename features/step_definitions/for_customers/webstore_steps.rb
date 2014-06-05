@@ -49,7 +49,7 @@ Given "I am asked to select my delivery frequency" do
     When I customise the box
   }
 
-  if page.has_link? "Login" # we need to log in
+  if page.has_link? "Log in" # we need to log in
     step "I fill in my email address"
   end
 
@@ -104,7 +104,7 @@ Then /^My order should be placed$/ do
 end
 
 Then /^I should see the details of my order$/ do
-  page.should have_content "Payment instructions",
+  page.should have_content "Payment details",
     "Pay by Cash On Delivery",
     "Order summary",
     "Deliver to"

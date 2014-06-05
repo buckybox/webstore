@@ -25,48 +25,48 @@ describe Webstore::CustomiseOrder do
   describe '#exclusions?' do
     it 'returns true if a product allows exclusions' do
       product.stub(:dislikes?) { true }
-      customise_order.exclusions?.should be_true
+      customise_order.exclusions?.should be true
     end
 
     it 'returns true if a product allows exclusions' do
       product.stub(:dislikes?) { false }
-      customise_order.exclusions?.should be_false
+      customise_order.exclusions?.should be false
     end
   end
 
   describe '#substitutions?' do
     it 'returns true if a product allows substitutions' do
       product.stub(:likes?) { true }
-      customise_order.substitutions?.should be_true
+      customise_order.substitutions?.should be true
     end
 
     it 'returns false if a product allows substitutions' do
       product.stub(:likes?) { false }
-      customise_order.substitutions?.should be_false
+      customise_order.substitutions?.should be false
     end
   end
 
   describe '#extras_allowed?' do
     it 'returns true if a product allows extras' do
       product.stub(:extras_allowed?) { true }
-      customise_order.extras_allowed?.should be_true
+      customise_order.extras_allowed?.should be true
     end
 
     it 'returns false if a product allows extras' do
       product.stub(:extras_allowed?) { false }
-      customise_order.extras_allowed?.should be_false
+      customise_order.extras_allowed?.should be false
     end
   end
 
   describe '#extras_unlimited?' do
     it 'returns true if a product allows unlimited extras' do
       product.stub(:extras_unlimited?) { true }
-      customise_order.extras_unlimited?.should be_true
+      customise_order.extras_unlimited?.should be true
     end
 
     it 'returns false if a product allows unlimited extras' do
       product.stub(:extras_unlimited?) { false }
-      customise_order.extras_unlimited?.should be_false
+      customise_order.extras_unlimited?.should be false
     end
   end
 

@@ -77,11 +77,10 @@ describe Webstore::Order do
     end
   end
 
-  describe "#delivery_fee" do
+  describe "#delivery_service_fee" do
     it "return the delivery fee" do
-      order_price_class = double("order_price_class", discounted: 5)
       order.stub(:delivery_service) { double("delivery_service", fee: 5) }
-      order.delivery_fee(order_price_class).should eq(5)
+      order.delivery_service_fee.should eq(5)
     end
   end
 
@@ -108,45 +107,14 @@ describe Webstore::Order do
 
   describe "#total" do
     before do
-      order.stub(:product_price)  { 1 }
-      order.stub(:extras_price)   { 1 }
-      order.stub(:delivery_fee)   { 1 }
+      order.stub(:product_price)  { 10 }
+      order.stub(:extras_price)   { 10 }
+      order.stub(:delivery_service_fee) { 5 }
       order.stub(:bucky_fee)      { 1 }
-      order.stub(:discount)       { 1 }
-      order.stub(:has_extras?)    { false }
-      order.stub(:is_scheduled?)  { false }
-      order.stub(:has_bucky_fee?) { false }
-      order.stub(:has_discount?)  { false }
     end
 
-    it "returns the total cost of the order with only product price" do
-      order.total.should eq(1)
-    end
-
-    it "returns the total cost of the order with only product price" do
-      order.stub(:has_extras?) { true }
-      order.total.should eq(2)
-    end
-
-    it "returns the total cost of the order with only product price" do
-      order.stub(:has_extras?)   { true }
-      order.stub(:is_scheduled?) { true }
-      order.total.should eq(3)
-    end
-
-    it "returns the total cost of the order with only product price" do
-      order.stub(:has_extras?)    { true }
-      order.stub(:is_scheduled?)  { true }
-      order.stub(:has_bucky_fee?) { true }
-      order.total.should eq(4)
-    end
-
-    it "returns the total cost of the order with only product price" do
-      order.stub(:has_extras?)    { true }
-      order.stub(:is_scheduled?)  { true }
-      order.stub(:has_bucky_fee?) { true }
-      order.stub(:has_discount?)     { true }
-      order.total.should eq(5)
+    it "returns the total cost of the order" do
+      order.total.should eq(10 + 10 + 5 + 1)
     end
   end
 

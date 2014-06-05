@@ -5,14 +5,14 @@ module Webstore::DeliveryOptionsHelpers
   shared_examples_for "it asks for a delivery date" do
     it "has a delivey date field" do
       expect(page).to have_content("When would you like it?")
-      expect(page.has_selector?("#webstore_delivery_options_start_date")).to be_true
+      expect(page.has_selector?("#webstore_delivery_options_start_date")).to be true
     end
   end
 
   shared_examples_for "it asks for a delivery frequency" do
     it "has a frequency field" do
       expect(page).to have_content("Repeat delivery?")
-      expect(page.has_selector?("#webstore_delivery_options_frequency")).to be_true
+      expect(page.has_selector?("#webstore_delivery_options_frequency")).to be true
     end
 
     it "has a date selector" do

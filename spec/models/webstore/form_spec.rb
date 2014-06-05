@@ -11,21 +11,21 @@ describe Webstore::Form do
     context 'successfully' do
       it 'returns true' do
         cart.stub(:save) { true }
-        form.save.should be_true
+        form.save.should be true
       end
     end
 
     context 'unsuccessfully' do
       it 'returns false' do
         cart.stub(:save) { false }
-        form.save.should be_false
+        form.save.should be false
       end
     end
   end
 
   describe '#persisted?' do
     it 'is false' do
-      form.persisted?.should be_false
+      form.persisted?.should be false
     end
   end
 end

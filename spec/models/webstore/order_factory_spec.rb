@@ -12,8 +12,8 @@ describe Webstore::OrderFactory do
       @new_order = @factory.assemble
     end
 
-    specify { expect(@new_order.completed).to be_true }
-    specify { expect(@new_order.active).to be_true }
+    specify { expect(@new_order.completed).to be true }
+    specify { expect(@new_order.active).to be true }
 
     it "sets the right quantity" do
       expect(@new_order.quantity).to eq(Order::QUANTITY)

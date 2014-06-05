@@ -9,20 +9,47 @@ class Webstore::Completed < Webstore::Form
     real_customer.name
   end
 
+  def customer_email
+    real_customer.email
+  end
+
+  def distributor_paypal_email
+    distributor.paypal_email
+  end
+
   def customer_address
     real_customer.address.join('<br>')
+  end
+
+  def customer_number
+    real_customer.formated_number
   end
 
   def schedule_description
     real_order.schedule_rule
   end
 
+  def product_name
+    real_order.box.name
+  end
+
   def payment_method
     cart.payment_method
   end
 
+  def amount_due
+    cart.amount_due
+  end
+
+  def amount_due_without_symbol
+    undecorated_cart = cart.decorated? ? cart.object : cart
+    undecorated_cart.amount_due
+  end
+
   def payment_title
-    payment_method.titleize
+    title = payment_method.titleize
+    title = "PayPal / Credit Card" if title == "Paypal" # XXX: terrible hack, can't be fucked with that now
+    title
   end
 
   def payment_message
@@ -60,5 +87,13 @@ class Webstore::Completed < Webstore::Form
 
   def bank_information
     distributor.bank_information.decorate
+  end
+
+  def currency
+    distributor.currency
+  end
+
+  def top_up_amount
+    nil # cannot top up from the web store checkout
   end
 end

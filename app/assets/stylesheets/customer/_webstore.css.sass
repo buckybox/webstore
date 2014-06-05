@@ -90,8 +90,8 @@ $webstore-item-padding: 8px
   +order-frame
   img
     float: left
-    width: 28%
-    padding-right: 2%
+    width: 26%
+    padding: 0 2%
   table.section-info
     float: right
     width: 70%
@@ -111,6 +111,8 @@ $webstore-item-padding: 8px
           .label
             padding-left: 8px
             padding-right: 8px
+        &.price
+          padding-right: .5em
       &#description
         td
           padding-top: 0px
@@ -212,6 +214,14 @@ $webstore-item-padding: 8px
 
 //----- Webstore Complete
 
+#content-body .completed-header
+  font-weight: bold
+  padding: .5em
+  background: #F1F2E8
+  position: relative
+  z-index: 1
+  font-size: 22px
+
 #webstore-address
   #update-address
     input
@@ -245,9 +255,7 @@ $webstore-item-padding: 8px
     border-bottom-width: 0px
   #payment, #payment-options
     background-color: $white
-    padding: $section-padding
     border: 1px solid $section-border-color
-    border-top-width: 0px
   .payment-title
     font-weight: bold
     font-size: 19px
@@ -276,9 +284,6 @@ $webstore-item-padding: 8px
 
 
 //----- Webstore Completed
-
-#webstore-completed
-  +webstore-divider('box')
 
 .emphasised-label
   font-weight: bold
