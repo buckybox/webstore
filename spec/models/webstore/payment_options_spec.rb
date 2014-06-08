@@ -9,7 +9,8 @@ describe Webstore::PaymentOptions do
   let(:address_class)   { double('address_class', new: address, address_attributes: %w()) }
   let(:customer)        { double('customer', guest?: true, existing_customer: nil) }
   let(:distributor)     { double('distributor', city: "Wellington") }
-  let(:cart)            { double('cart', distributor: distributor, customer: customer) }
+  let(:order)           { double('order', delivery_service: double(pickup_point?: false)) }
+  let(:cart)            { double('cart', distributor: distributor, customer: customer, order: order) }
   let(:args)            { { cart: cart, address_class: address_class } }
   let(:payment_options) { Webstore::PaymentOptions.new(args) }
 
