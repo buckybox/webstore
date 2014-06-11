@@ -4,27 +4,17 @@ require_relative '../webstore'
 class Webstore::PaymentOptions < Webstore::Form
   extend Forwardable
 
+  include Customer::AddressValidations
+
   attribute :name,            String
   attribute :phone_number,    String
   attribute :phone_type,      String
-  attribute :address_1,       String
-  attribute :address_2,       String
-  attribute :suburb,          String
-  attribute :city,            String
-  attribute :postcode,        String
-  attribute :delivery_note,   String
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
   validates_presence_of :name,          if: :require_name
   validates_presence_of :phone_number,  if: :require_phone
   validates_presence_of :phone_type,    if: :require_phone
-  validates_presence_of :address_1,     if: :require_address_1
-  validates_presence_of :address_2,     if: :require_address_2
-  validates_presence_of :suburb,        if: :require_suburb
-  validates_presence_of :city,          if: :require_city
-  validates_presence_of :postcode,      if: :require_postcode
-  validates_presence_of :delivery_note, if: :require_delivery_note
   validates_presence_of :payment_method
 
   attr_reader :address
@@ -65,10 +55,6 @@ class Webstore::PaymentOptions < Webstore::Form
     customer.address
   end
 
-  def pickup_point?
-    delivery_service.pickup_point?
-  end
-
   def pickup_point_name
     delivery_service.name
   end
@@ -79,30 +65,6 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def require_phone
     !pickup_point? && distributor.require_phone
-  end
-
-  def require_address_1
-    !pickup_point? && distributor.require_address_1
-  end
-
-  def require_address_2
-    !pickup_point? && distributor.require_address_2
-  end
-
-  def require_suburb
-    !pickup_point? && distributor.require_suburb
-  end
-
-  def require_city
-    !pickup_point? && distributor.require_city
-  end
-
-  def require_postcode
-    !pickup_point? && distributor.require_postcode
-  end
-
-  def require_delivery_note
-    !pickup_point? && distributor.require_delivery_note
   end
 
   # Returns whether the address is valid or not so we can hide the edit form when it is valid
