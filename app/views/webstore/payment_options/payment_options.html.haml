@@ -7,36 +7,35 @@
 
   #webstore-address.row-fluid.webstore-section
     .span12
-      - if payment_options.pickup_point?
-        #pickup-point.row-fulid
-          .span12
-            %h4 Your order will be delivered to the pickup point:
-            == #{payment_options.pickup_point_name}
-      - else
-        #existing-address.row-fluid{ :class => ("hide" unless payment_options.address_complete? ) }
-          .span12
+      - show_address_form = !payment_options.address_complete? || payment_options.pickup_point?
+
+      #existing-address.row-fluid{ :class => ("hide" if show_address_form) }
+        .span12
+          .row-fluid
+            .span12
+              %h4 Deliver to:
+          .row-fluid
+            .span12
+              = payment_options.address.join('<br>')
+              %br
+            = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
+      #update-address.row-fluid{ :class => ("hide" unless show_address_form) }
+        .span12
+          .row-fluid
+            .span12
+              %h4 Your name
+          .row-fluid
+            .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12', required: true }
+
+          - if payment_options.collect_phone
             .row-fluid
               .span12
-                %h4 Deliver to:
+                %h4 Your phone number
             .row-fluid
-              .span12
-                = payment_options.address.join('<br>')
-                %br
-              = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
-        #update-address.row-fluid{ :class => ("hide" if payment_options.address_complete?) }
-          .span12
-            .row-fluid
-              .span12
-                %h4 Your name
-            .row-fluid
-              .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12', required: true }
-            - if payment_options.collect_phone
-              .row-fluid
-                .span12
-                  %h4 Your phone number
-              .row-fluid
-                .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
-                .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, selected: payment_options.default_phone_type
+              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, selected: payment_options.default_phone_type
+
+          - unless payment_options.pickup_point?
             .row-fluid
               .span12
                 %h4 Deliver to
