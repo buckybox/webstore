@@ -55,10 +55,6 @@ class Webstore::PaymentOptions < Webstore::Form
     customer.address
   end
 
-  def pickup_point_name
-    delivery_service.name
-  end
-
   def require_name
     !pickup_point?
   end

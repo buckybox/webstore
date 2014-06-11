@@ -166,6 +166,10 @@ class Webstore::Order
     delivery_service.pickup_point
   end
 
+  def delivery_service_name
+    delivery_service.name
+  end
+
   def customer
     cart ? cart.customer : Webstore::Customer.new
   end
