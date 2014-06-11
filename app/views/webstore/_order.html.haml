@@ -62,8 +62,9 @@
                 %td.description
                   %h2 Delivery service
                   = order.schedule
-                  %br
-                  = order.customer.address.join('<br>')
+                  - unless order.pickup_point?
+                    %br
+                    = order.customer.address.join('<br>')
                 %td.price= order.delivery_service_fee
 
             - if order.has_bucky_fee?

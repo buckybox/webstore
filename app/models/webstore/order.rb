@@ -162,6 +162,10 @@ class Webstore::Order
     delivery_service_class.find_by(id: delivery_service_id)
   end
 
+  def pickup_point?
+    delivery_service.pickup_point
+  end
+
   def customer
     cart ? cart.customer : Webstore::Customer.new
   end

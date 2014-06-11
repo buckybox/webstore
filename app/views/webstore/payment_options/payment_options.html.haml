@@ -10,7 +10,7 @@
       - if payment_options.pickup_point?
         #pickup-point.row-fulid
           .span12
-            %h4 Your order will be delivered to the pick up point:
+            %h4 Your order will be delivered to the pickup point:
             == #{payment_options.pickup_point_name}
       - else
         #existing-address.row-fluid{ :class => ("hide" unless payment_options.address_complete? ) }
