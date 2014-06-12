@@ -9,10 +9,17 @@
     .span12
       .row-fluid
         .span12
-          %h4 Pick A Delivery Service
+          - if delivery_options.single_delivery_service?
+            %h4 #{delivery_options.single_delivery_service.pickup_point ? "Pickup" : "Delivery"} Details
+          - else
+            %h4 Pick A Delivery Service
       .row-fluid
         .span12
-          = f.input :delivery_service, collection: delivery_options.delivery_service_list, selected: delivery_options.existing_delivery_service_id, label: 'Select the one that best services your location', include_blank: false, input_html: { id: 'delivery_service_select', class: 'span12' }
+          - if delivery_options.single_delivery_service?
+            = f.input :delivery_service, as: :hidden, input_html: { id: 'delivery_service_select', value: delivery_options.single_delivery_service.id}
+            %strong= delivery_options.single_delivery_service.name
+          - else
+            = f.input :delivery_service, collection: delivery_options.delivery_service_list, selected: delivery_options.existing_delivery_service_id, label: 'Select the one that best services your location', include_blank: false, input_html: { id: 'delivery_service_select', class: 'span12' }
       .row-fluid
         .span12
           - delivery_services.each do |delivery_service|

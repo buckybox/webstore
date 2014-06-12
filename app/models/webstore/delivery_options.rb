@@ -41,6 +41,14 @@ class Webstore::DeliveryOptions < Webstore::Form
       unshift(['- Select delivery service -', nil])
   end
 
+  def single_delivery_service?
+    delivery_services.one?
+  end
+
+  def single_delivery_service
+    delivery_services.last
+  end
+
   def order_frequencies
     ORDER_FREQUENCIES
   end
