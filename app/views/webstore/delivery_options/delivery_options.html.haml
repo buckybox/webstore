@@ -16,7 +16,7 @@
       .row-fluid
         .span12
           - delivery_services.each do |delivery_service|
-            .delivery_service-info{ id: "delivery_service-info-#{delivery_service.id}" }= delivery_service.description
+            .delivery_service-info{ id: "delivery_service-info-#{delivery_service.id}" }= delivery_service.instructions
 
   #webstore-schedule.row-fluid{ class: "#{delivery_options.can_change_delivery_service? ? '' : 'webstore-section'}" }
     .span12
