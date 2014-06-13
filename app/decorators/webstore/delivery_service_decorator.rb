@@ -5,7 +5,8 @@ class Webstore::DeliveryServiceDecorator < Draper::Decorator
   delegate_all
 
   def instructions
-    h.simple_format(object.instructions)
+    text = object.instructions.gsub(/\r/, "").gsub(/\n+/, "\n") # we don't want multiple <p>
+    h.simple_format(text)
   end
 
   def schedule_input_id
