@@ -15,7 +15,6 @@ class Webstore::PaymentOptions < Webstore::Form
   validates_presence_of :name,          if: :require_name
   validates_presence_of :phone_number,  if: :require_phone
   validates_presence_of :phone_type,    if: :require_phone
-  validates_presence_of :payment_method
 
   attr_reader :address
 
