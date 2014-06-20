@@ -56,31 +56,32 @@
                 .span12
                   = f.input :delivery_note, as: :text, label: false, placeholder: 'Delivery instructions such as where to place the package, e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
 
-  - if payment_options.existing_customer?
+  - if cart.has_payment_options?
+    - if payment_options.existing_customer?
+      .row-fluid.webstore-section
+        = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
+
     .row-fluid.webstore-section
-      = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
+      #webstore-payment.span12
+        .row-fluid
+          #amount-due.span12
+            .row-fluid.important
+              - if cart.negative_closing_balance?
+                .span10 Total amount due
+                .span2.text-right.total_price
+                  = cart.amount_due
+              - else
+                .span10 Your account is in credit
 
-  .row-fluid.webstore-section
-    #webstore-payment.span12
-      .row-fluid
-        #amount-due.span12
-          .row-fluid.important
-            - if cart.payment_required?
-              .span10 Total amount due
-              .span2.text-right.total_price
-                = cart.amount_due
+        .row-fluid
+          #payment-options.span12
+            - if cart.negative_closing_balance?
+              .row-fluid
+                .form-horizontal.span6.center-row
+                  = f.input :payment_method, as: :radio_buttons, collection: cart.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
             - else
-              .span10 Your account is in credit
-
-      .row-fluid
-        #payment-options.span12
-          - if cart.payment_required?
-            .row-fluid
-              .form-horizontal.span6.center-row
-                = f.input :payment_method, as: :radio_buttons, collection: payment_options.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
-          - else
-            .span12.text-center No payment necessary
-            = f.input :payment_method, as: :hidden, input_html: { value: PaymentOption::PAID }
+              .span12.text-center No payment necessary
+              = f.input :payment_method, as: :hidden, input_html: { value: PaymentOption::PAID }
 
   .row-fluid
     .span12.text-center

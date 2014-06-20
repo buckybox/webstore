@@ -5,7 +5,7 @@
 
 = render partial: 'webstore/payment_instructions', locals: { form_object: cart }
 
-- if cart.payment_required?
+- if cart.negative_closing_balance? && cart.has_payment_options?
   .row-fluid.spacer
     #webstore-payment.span12
       .row-fluid

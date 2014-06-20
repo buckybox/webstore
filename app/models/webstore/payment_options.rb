@@ -46,10 +46,6 @@ class Webstore::PaymentOptions < Webstore::Form
     phone_collection_class.types_as_options
   end
 
-  def payment_list(payment_options_class = ::PaymentOption)
-    payment_options_class.options(distributor)
-  end
-
   def customer_address
     customer.address
   end

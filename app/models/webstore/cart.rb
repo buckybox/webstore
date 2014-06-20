@@ -94,7 +94,15 @@ class Webstore::Cart
     order.payment_method
   end
 
-  def payment_required?
+  def payment_list(payment_options_class = ::PaymentOption)
+    payment_options_class.options(distributor)
+  end
+
+  def has_payment_options?
+    payment_list.present?
+  end
+
+  def negative_closing_balance?
     closing_balance.negative?
   end
 
