@@ -72,14 +72,6 @@ describe Webstore::PaymentOptions do
     end
   end
 
-  describe '#payment_list' do
-    it 'returns a lit of payment options' do
-      expected_options = [double('tuple1'), double('tuple2')]
-      payment_options_class = double('payment_options_class', options: expected_options)
-      payment_options.payment_list(payment_options_class).should eq(expected_options)
-    end
-  end
-
   describe '#require_phone' do
     it 'returns true if a phone number is required' do
       distributor.stub(:require_phone) { true }
