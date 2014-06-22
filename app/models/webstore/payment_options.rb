@@ -12,9 +12,10 @@ class Webstore::PaymentOptions < Webstore::Form
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
-  validates_presence_of :name,          if: :require_name
-  validates_presence_of :phone_number,  if: :require_phone
-  validates_presence_of :phone_type,    if: :require_phone
+  validates_presence_of :name,           if: :require_name
+  validates_presence_of :phone_number,   if: :require_phone
+  validates_presence_of :phone_type,     if: :require_phone
+  validates_presence_of :payment_method, if: :has_payment_options?
 
   attr_reader :address
 
@@ -44,6 +45,10 @@ class Webstore::PaymentOptions < Webstore::Form
 
   def phone_types(phone_collection_class = ::PhoneCollection)
     phone_collection_class.types_as_options
+  end
+
+  def has_payment_options?
+    cart.has_payment_options?
   end
 
   def customer_address
