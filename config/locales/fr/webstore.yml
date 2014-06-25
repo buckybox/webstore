@@ -4,9 +4,9 @@ fr:
     cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
     order_placed: Votre commande a été passée.
     product:
-      order: "Commander"
+      order: Commander
     order:
-      summary: "Récapitulatif de la commande"
+      summary: Récapitulatif de la commande
     customise_order:
       add_unlimited_extras: Add any amount of extra items
     authentication:

@@ -4,13 +4,13 @@ en:
     cancelled_order: Your previous order has been cancelled, you can start a new one.
     order_placed: Your order has been placed.
     product:
-      order: "Order"
+      order: Order
     order:
-      summary: "Order summary"
+      summary: Order summary
     customise_order:
       add_unlimited_extras: Add any amount of extra items
     authentication:
-      enter_password: "Enter your password"
+      enter_password: Enter your password
     delivery_options:
       pick_delivery_service: Pick A Delivery Service
     payment_options:
