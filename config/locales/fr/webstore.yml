@@ -1,0 +1,15 @@
+fr:
+  webstore:
+    cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
+    hello: "Salut toi !"
+    product:
+      order: "Commander"
+    order:
+      summary: "Récapitulatif de la commande"
+    customise_order:
+      add_unlimited_extras: Add any amount of extra items
+    authentication:
+      enter_password: Entrez votre mot de passe
+    payment_options:
+      pay_by: Payer par
+      complete_order: Completer la commande

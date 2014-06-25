@@ -26,7 +26,7 @@
             %h4
               %i.icon-plus
               - if customise_order.extras_unlimited?
-                Add any amount of extra items
+                = t 'webstore.customise_order.add_unlimited_extras'
               - else
                 Add up to #{customise_order.extras_limit} extra items
 
@@ -40,4 +40,4 @@
             = f.input :add_extra, label: false, collection: extras_list, label_method: :with_price_per_unit, input_html: { class: 'span12' }
 
   .row-fluid.webstore-section
-    .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
+    .span12= f.button :submit, t('next'), class: 'pull-right btn btn-process'

@@ -64,7 +64,7 @@ protected
     return if current_cart
 
     if !action.in?(%w(store start_checkout))
-      redirect_to webstore_store_path, alert: "There is no ongoing order, please start one."
+      redirect_to webstore_store_path, alert: t('webstore.no_ongoing_order')
     end
   end
 
@@ -73,7 +73,7 @@ protected
 
     if action == "store"
       flush_current_cart!
-      flash[:notice] = "Your previous order has been cancelled, you can start a new one."
+      flash[:notice] = t('webstore.cancelled_order')
     end
   end
 

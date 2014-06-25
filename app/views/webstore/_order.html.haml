@@ -8,9 +8,9 @@
     .row-fluid
       .span12.completed-header.important
         - if request.fullpath == webstore_completed_path
-          Order completed
+          = t 'webstore.order.completed'
         - else
-          Order summary
+          = t 'webstore.order.summary'
 
     .row-fluid{style: "margin-top: 1em"}
       .span12
@@ -60,7 +60,7 @@
             - if order.is_scheduled?
               %tr#delivery_service
                 %td.description
-                  %h2 Delivery service
+                  %h2= t('delivery_service')
                   = order.schedule
                   %br
                   - if order.pickup_point?

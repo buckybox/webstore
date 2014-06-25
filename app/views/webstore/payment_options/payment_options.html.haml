@@ -78,7 +78,7 @@
             - if cart.negative_closing_balance?
               .row-fluid
                 .form-horizontal.span6.center-row
-                  = f.input :payment_method, as: :radio_buttons, collection: cart.payment_list, checked: payment_options.payment_method, label: 'Pay by:', label_html: { class: 'emphasised-label' }
+                  = f.input :payment_method, as: :radio_buttons, collection: cart.payment_list, checked: payment_options.payment_method, label: t('webstore.payment_options.pay_by') << ":", label_html: { class: 'emphasised-label' }
             - else
               .span12.text-center No payment necessary
               = f.input :payment_method, as: :hidden, input_html: { value: PaymentOption::PAID }
@@ -86,4 +86,4 @@
   .row-fluid
     .span12.text-center
       = f.input :complete, as: :hidden, input_html: { value: true }
-      = f.button :submit, 'Complete Order', class: 'btn btn-process'
+      = f.button :submit, t('webstore.payment_options.complete_order'), class: 'btn btn-process'

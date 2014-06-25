@@ -20,7 +20,7 @@ private
     webstore_factory = current_cart.run_factory
     customer_sign_in(webstore_factory.customer, no_track: current_admin.present?)
 
-    redirect_to next_step, notice: "Your order has been placed."
+    redirect_to next_step, notice: t('webstore.order_placed')
   end
 
   def failed_payment_options(payment_options)

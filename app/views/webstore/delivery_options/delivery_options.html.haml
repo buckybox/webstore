@@ -12,7 +12,7 @@
           - if delivery_options.single_delivery_service?
             %h4 #{delivery_options.single_delivery_service.pickup_point ? "Pickup" : "Delivery"} Details
           - else
-            %h4 Pick A Delivery Service
+            %h4= t 'webstore.delivery_options.pick_delivery_service'
       .row-fluid
         .span12
           - if delivery_options.single_delivery_service?
@@ -46,4 +46,4 @@
               .span12= f.input :extra_frequency, label: false, collection: delivery_options.extra_frequencies, include_blank: false, input_html: { class: 'span12' }
 
   .row-fluid.webstore-section
-    .span12= f.button :submit, 'Next', class: 'pull-right btn btn-process'
+    .span12= f.button :submit, t('next'), class: 'pull-right btn btn-process'
