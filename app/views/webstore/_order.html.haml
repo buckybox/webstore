@@ -1,7 +1,6 @@
 - if order.for_halted_customer?
   .alert.alert-error
-    Your account is under the minimum balance and will not recieve new orders unless
-    payment is cleared before the packing date.
+    = t 'webstore.halted_customer'
 
 .row-fluid
   #current-order.span12
@@ -29,7 +28,7 @@
             - if order.has_exclusions?
               %tr#customisation
                 %td.description
-                  %h2== Exclude & substitute
+                  %h2= t('webstore.order.exclude_and_substitute')
                   %table.sub-section-info
                     %tr
                       %td.icon
@@ -46,7 +45,7 @@
             - if order.has_extras?
               %tr#extras
                 %td.description
-                  %h2 Extra items
+                  %h2= t 'webstore.order.extras'
                   %table.sub-section-info
                     - order.extras.each do |extra|
                       %tr
@@ -82,11 +81,11 @@
             - if order.has_discount?
               %tr#discount
                 %td.description
-                  %h2 Your discount
+                  %h2= t 'webstore.order.discount'
                 %td.price= order.discount
 
             %tr#total
               %td.description
-                %h1 Total:
+                %h1= t 'webstore.order.total'
               %td.price
                 %span= order.total

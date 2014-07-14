@@ -4,12 +4,21 @@ en:
     no_ongoing_order: There is no ongoing order, please start one.
     cancelled_order: Your previous order has been cancelled, you can start a new one.
     order_placed: Your order has been placed.
+    halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
     product:
       order: Order
     order:
       summary: Order summary
+      exclude_and_substitute: Exclude & substitute
+      extras: Extra items
+      discount: Your discount
+      total: Total
     customise_order:
+      customise_product: Customise my product
+      exclude_items: Exclude these items...
+      substitute_with_items: Substitute for these items...
       add_unlimited_extras: Add any amount of extra items
+      add_n_extras: Add up to %{limit} extra items
     authentication:
       enter_password: Enter your password
     delivery_options:

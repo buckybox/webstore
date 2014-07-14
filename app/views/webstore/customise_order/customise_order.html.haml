@@ -8,14 +8,14 @@
     #webstore-customise.row-fluid.webstore-section
       .span12
         .row-fluid
-          .span12= f.input :has_customisations, as: :boolean, label: 'Customise my box', wrapper: :inline_checkbox, wrapper_html: { class: 'checkbox-header' }
+          .span12= f.input :has_customisations, as: :boolean, label: t('webstore.customise_order.customise_product'), wrapper: :inline_checkbox, wrapper_html: { class: 'checkbox-header' }
         #webstore-customisations.row-fluid
           .span12
             .dislikes_input.clearfix
-              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>".html_safe, collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Exclude these items...' , limits: customise_order.exclusions_limit} }, wrapper: :inline
+              = f.input :dislikes, label: "<i class='icon-minus-sign'></i>".html_safe, collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: t('webstore.customise_order.exclude_items'), limits: customise_order.exclusions_limit} }, wrapper: :inline
             - if customise_order.substitutions?
               .likes_input.clearfix
-                = f.input :likes, label:  "<i class='icon-plus-sign'></i>".html_safe, collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: 'Substitute for these items...' , limits: customise_order.substitutions_limit} }, wrapper: :inline
+                = f.input :likes, label:  "<i class='icon-plus-sign'></i>".html_safe, collection: customise_order.stock_list, input_html: { multiple: true, data: { placeholder: t('webstore.customise_order.substitute_with_items'), limits: customise_order.substitutions_limit} }, wrapper: :inline
 
   - if customise_order.extras_allowed?
     #webstore-extras.row-fluid.webstore-section
@@ -27,7 +27,7 @@
               - if customise_order.extras_unlimited?
                 = t 'webstore.customise_order.add_unlimited_extras'
               - else
-                Add up to #{customise_order.extras_limit} extra items
+                = t 'webstore.customise_order.add_n_extras', limit: customise_order.extras_limit
 
         .row-fluid
           .span12

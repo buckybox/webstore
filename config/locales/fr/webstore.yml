@@ -4,12 +4,21 @@ fr:
     no_ongoing_order: Il n'y a pas de commande en cours, veuillez en passer une nouvelle.
     cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
     order_placed: Votre commande a été passée.
+    halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
     product:
       order: Commander
     order:
       summary: Récapitulatif de la commande
+      exclude_and_substitute: Exclude & substitute
+      extras: Extra items
+      discount: Your discount
+      total: Total
     customise_order:
+      customise_product: Customise my product
+      exclude_items: Exclure ces éléments...
+      substitute_with_items: Et les remplacer par...
       add_unlimited_extras: Add any amount of extra items
+      add_n_extras: Add up to %{limit} extra items
     authentication:
       enter_password: Entrez votre mot de passe
     delivery_options:
