@@ -5,8 +5,8 @@ class Webstore::Authentication < Webstore::Form
   NEW_CUSTOMER = 'new'
   EXISTING_CUSTOMER = 'returning'
   AUTHORISATION_OPTIONS = [
-    ["I'm a new customer",        NEW_CUSTOMER],
-    ["I'm a returning customer",  EXISTING_CUSTOMER],
+    [I18n.t('models.webstore.authentication.new_customer'),      NEW_CUSTOMER],
+    [I18n.t('models.webstore.authentication.existing_customer'), EXISTING_CUSTOMER],
   ].freeze
 
   attribute :email,       String

@@ -20,7 +20,9 @@ fr:
       add_unlimited_extras: Add any amount of extra items
       add_n_extras: Add up to %{limit} extra items
     authentication:
+      enter_email: Entrez votre adresse email
       enter_password: Entrez votre mot de passe
+      bad_email_password: Votre email et/ou mot de passe est incorrect.
     delivery_options:
       pick_delivery_service: Veuillez choisir un service de livraison
     payment_options:
