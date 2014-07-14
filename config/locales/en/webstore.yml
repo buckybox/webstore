@@ -1,5 +1,6 @@
 en:
   webstore:
+    web_store: "%{distributor} - Web Store"
     no_ongoing_order: There is no ongoing order, please start one.
     cancelled_order: Your previous order has been cancelled, you can start a new one.
     order_placed: Your order has been placed.

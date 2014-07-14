@@ -1,5 +1,6 @@
 fr:
   webstore:
+    web_store: "%{distributor} - Boutique en ligne"
     no_ongoing_order: Il n'y a pas de commande en cours, veuillez en passer une nouvelle.
     cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
     order_placed: Votre commande a été passée.
