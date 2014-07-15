@@ -12,32 +12,32 @@
         .span12
           .row-fluid
             .span12
-              %h4 Deliver to:
+              %h4= t 'webstore.payment_options.deliver_to'
           .row-fluid
             .span12
               = payment_options.address.join('<br>')
               %br
-            = link_to 'Change my delivery address', 'javascript:void(0)', id: 'edit-address'
+            = link_to t('webstore.payment_options.change_delivery_address'), 'javascript:void(0)', id: 'edit-address'
       #update-address.row-fluid{ :class => ("hide" unless show_address_form) }
         .span12
           .row-fluid
             .span12
-              %h4 Your name
+              %h4= t 'webstore.payment_options.name'
           .row-fluid
-            .span12= f.input :name, label: false, placeholder: 'Enter your name', input_html: { class: 'span12', required: true }
+            .span12= f.input :name, label: false, placeholder: t('webstore.payment_options.enter_name'), input_html: { class: 'span12', required: true }
 
           - if payment_options.collect_phone
             .row-fluid
               .span12
-                %h4 Your phone number
+                %h4= t 'webstore.payment_options.phone'
             .row-fluid
-              .span9= f.input :phone_number, label: false, placeholder: 'Enter your phone number', input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
+              .span9= f.input :phone_number, label: false, placeholder: t('webstore.payment_options.enter_phone'), input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
               .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, selected: payment_options.default_phone_type
 
           - unless payment_options.pickup_point?
             .row-fluid
               .span12
-                %h4 Deliver to
+                %h4= t 'webstore.payment_options.deliver_to'
             .row-fluid
               .span12
                 = f.input :address_1, label: false, placeholder: 'Street', input_html: { class: 'span12', required: payment_options.require_address_1 }
@@ -66,23 +66,24 @@
           #amount-due.span12
             .row-fluid.important
               - if cart.negative_closing_balance?
-                .span10 Total amount due
+                .span10= t 'webstore.payment_options.amount_due'
                 .span2.text-right.total_price
                   = cart.amount_due
               - else
-                .span10 Your account is in credit
+                .span10= t 'webstore.payment_options.in_credit'
 
         .row-fluid
           #payment-options.span12
             - if cart.negative_closing_balance?
               .row-fluid
                 .form-horizontal.span6.center-row
-                  = f.input :payment_method, as: :radio_buttons, collection: cart.payment_list, checked: payment_options.payment_method, label: t('webstore.payment_options.pay_by') << ":", label_html: { class: 'emphasised-label' }
+                  = f.input :payment_method, as: :radio_buttons, collection: cart.payment_list, checked: payment_options.payment_method, label: t('webstore.payment_options.pay_by') << t('colon'), label_html: { class: 'emphasised-label' }
             - else
-              .span12.text-center No payment necessary
+              .span12.text-center= t 'webstore.payment_options.no_payment'
               = f.input :payment_method, as: :hidden, input_html: { value: PaymentOption::PAID }
 
   .row-fluid
     .span12.text-center
       = f.input :complete, as: :hidden, input_html: { value: true }
       = f.button :submit, t('webstore.payment_options.complete_order'), class: 'btn btn-process'
+
