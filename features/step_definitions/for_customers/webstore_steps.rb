@@ -22,7 +22,7 @@ Given /^I am asked to customise the box$/ do
 end
 
 When /^I customise the box$/ do
-  check "Customise my box"
+  check "Customise my product"
   select2("Grapes", from: "webstore_customise_order_dislikes")
   # TODO test subs
   click_button "Next"
@@ -128,13 +128,8 @@ Then /^I should be viewing the (.*) step$/ do |step|
   expected_path = webstore_step_path(step)
   current_path.should eq expected_path
 
-  titles = {
-    "payment_options" => "Address and Payment"
-  }
+  expect(page.title).to start_with "Bucky Box - "
 
-  title = titles.fetch(step, step.titleize)
-
-  page.should have_title "Bucky Box - Webstore - #{title}"
   step "I should not see an failure message"
 end
 
