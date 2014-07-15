@@ -9,7 +9,7 @@
       .row-fluid
         .span12
           - if delivery_options.single_delivery_service?
-            %h4 #{delivery_options.single_delivery_service.pickup_point ? "Pickup" : "Delivery"} Details
+            %h4= t("webstore.delivery_options.#{delivery_options.single_delivery_service.pickup_point ? 'pickup' : 'delivery'}_details")
           - else
             %h4= t 'webstore.delivery_options.pick_delivery_service'
       .row-fluid
@@ -18,7 +18,7 @@
             = f.input :delivery_service, as: :hidden, input_html: { id: 'delivery_service_select', value: delivery_options.single_delivery_service.id}
             %strong= delivery_options.single_delivery_service.name
           - else
-            = f.input :delivery_service, collection: delivery_options.delivery_service_list, selected: delivery_options.existing_delivery_service_id, label: 'Select the one that best services your location', include_blank: false, input_html: { id: 'delivery_service_select', class: 'span12' }
+            = f.input :delivery_service, collection: delivery_options.delivery_service_list, selected: delivery_options.existing_delivery_service_id, label: t('webstore.delivery_options.select_best'), include_blank: false, input_html: { id: 'delivery_service_select', class: 'span12' }
       .row-fluid
         .span12
           - delivery_services.each do |delivery_service|
@@ -30,7 +30,7 @@
         .span12
           .row-fluid
             .span12
-              %h4 When would you like it?
+              %h4= t 'webstore.delivery_options.when'
           = render partial: 'delivery_service', collection: delivery_services, locals: { f: f, form_object: delivery_options }
 
   - if delivery_options.cart_has_extras?
@@ -40,9 +40,10 @@
           .span12
             .row-fluid
               .span12
-                %h4 What about those extra items?
+                %h4= t 'webstore.delivery_options.extra_frequency'
             .row-fluid
               .span12= f.input :extra_frequency, label: false, collection: delivery_options.extra_frequencies, include_blank: false, input_html: { class: 'span12' }
 
   .row-fluid.webstore-section
     .span12= f.button :submit, t('next'), class: 'pull-right btn btn-process'
+

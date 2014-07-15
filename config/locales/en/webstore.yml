@@ -25,6 +25,11 @@ en:
       bad_email_password: Your email and/or password is incorrect.
     delivery_options:
       pick_delivery_service: Pick A Delivery Service
+      delivery_details: Delivery Details
+      pickup_details: Pickup Details
+      select_best: Select the one that best services your location
+      when: When would you like it?
+      extra_frequency: What about those extra items?
     payment_options:
       pay_by: Pay by
       complete_order: Complete Order

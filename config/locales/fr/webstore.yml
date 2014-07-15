@@ -25,6 +25,11 @@ fr:
       bad_email_password: Votre email et/ou mot de passe est incorrect.
     delivery_options:
       pick_delivery_service: Veuillez choisir un service de livraison
+      delivery_details: Delivery Details
+      pickup_details: Pickup Details
+      select_best: Select the one that best services your location
+      when: When would you like it?
+      extra_frequency: What about those extra items?
     payment_options:
       pay_by: Payer par
       complete_order: Completer la commande
