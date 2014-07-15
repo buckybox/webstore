@@ -11,7 +11,7 @@ describe "submitting customisations", :js do
 
   context "with exclusions" do
     before do
-      check "Customise my box"
+      check "Customise my product"
       select2 @dislike, from: "webstore_customise_order_dislikes"
     end
 
@@ -36,7 +36,7 @@ describe "submitting customisations", :js do
 
   context "with extras" do
     before do
-      check "Customise my box"
+      check "Customise my product"
       select2 /^#{@extra}/, from: "webstore_customise_order_add_extra"
     end
 

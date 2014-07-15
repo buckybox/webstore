@@ -1,7 +1,7 @@
 module Webstore::CustomiseOrderHelpers
   shared_examples_for 'it has exclusions' do
     it 'can be customised' do
-      expect(page).to have_content('Customise my box')
+      expect(page).to have_content('Customise my product')
     end
   end
 
