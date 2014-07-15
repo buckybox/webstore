@@ -31,7 +31,7 @@ en:
       when: When would you like it?
       extra_frequency: What about those extra items?
     payment_options:
-      deliver_to: Delivery to
+      deliver_to: Deliver to
       change_delivery_address: Change my delivery address
       name: Your name
       enter_name: Enter your name
@@ -47,4 +47,9 @@ en:
       pay_by: Pay by
       back_to_webstore: Back to web store
       my_account: My account
+    payment_instructions:
+      account_details: Account details
+      existing_balance: Your existing account balance with us
+      this_order: This order
+      closing_balance: Closing balance
 

@@ -14,7 +14,7 @@
               %span.pull-right= cart.amount_due
           .row-fluid
             .span12.text-center.payment-title
-              = t('websotre.completed.pay_by')
+              = t('webstore.completed.pay_by')
               = completed.payment_title
           .row-fluid
             .span9.center-row= render partial: "partials/payments/#{cart.payment_method}", locals: { form_object: completed }

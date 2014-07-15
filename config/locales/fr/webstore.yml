@@ -31,21 +31,26 @@ fr:
       when: When would you like it?
       extra_frequency: What about those extra items?
     payment_options:
-      deliver_to: Delivery to
-      change_delivery_address: Change my delivery address
-      name: Your name
-      enter_name: Enter your name
-      phone: Your phone number
-      enter_phone: Enter your phone number
+      deliver_to: Livrer à
+      change_delivery_address: Modifier mon adresse de livraison
+      name: Votre nom
+      enter_name: Entrez votre nom
+      phone: Votre numéro de téléphone
+      enter_phone: Entrez votre numéro
       amount_due: Montant total
       in_credit: Your account is in credit
       pay_by: Payer par
-      no_payment: No payment necessary
+      no_payment: Pas de paiement nécessaire
       complete_order: Completer la commande
     completed:
-      amount_due: Total amount due
+      amount_due: Montant total
       pay_by: Payer par
       back_to_webstore: Retour à la boutique en ligne
       my_account: Mon compte
+    payment_instructions:
+      account_details: Détails de votre compte
+      existing_balance: Votre solde actuel
+      this_order: Cette commande
+      closing_balance: Solde final
 
 
