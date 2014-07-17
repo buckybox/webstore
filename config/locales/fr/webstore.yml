@@ -9,27 +9,28 @@ fr:
       order: Commander
     order:
       summary: Récapitulatif de la commande
-      exclude_and_substitute: Exclude & substitute
-      extras: Extra items
-      discount: Your discount
+      exclude_and_substitute: Exclusions et subsitutions
+      extras: Extras
+      discount: Votre remise
       total: Total
     customise_order:
-      customise_product: Customise my product
+      customise_product: Personaliser mon produit
       exclude_items: Exclure ces éléments...
       substitute_with_items: Et les remplacer par...
-      add_unlimited_extras: Add any amount of extra items
-      add_n_extras: Add up to %{limit} extra items
+      add_unlimited_extras: Ajouter des extras
+      add_n_extras: Ajouter jusqu'à %{limit} extras
     authentication:
       enter_email: Entrez votre adresse email
       enter_password: Entrez votre mot de passe
       bad_email_password: Votre email et/ou mot de passe est incorrect.
     delivery_options:
       pick_delivery_service: Veuillez choisir un service de livraison
-      delivery_details: Delivery Details
-      pickup_details: Pickup Details
-      select_best: Select the one that best services your location
-      when: When would you like it?
-      extra_frequency: What about those extra items?
+      delivery_details: Détails de livraison
+      pickup_details: Détails du point relai
+      select_best: Choisissez le service qui vous convient le mieux
+      when: Quand désirez vous recevoir cette commande ?
+      repeat_deliery: Renouvellement automatique de la commande ?
+      extra_frequency: À propos de vos extras
     payment_options:
       deliver_to: Livrer à
       change_delivery_address: Modifier mon adresse de livraison

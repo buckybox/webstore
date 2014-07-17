@@ -28,6 +28,7 @@ en:
       delivery_details: Delivery Details
       pickup_details: Pickup Details
       select_best: Select the one that best services your location
+      repeat_deliery: Repeat delivery?
       when: When would you like it?
       extra_frequency: What about those extra items?
     payment_options:
