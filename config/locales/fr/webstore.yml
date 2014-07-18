@@ -13,6 +13,8 @@ fr:
       extras: Extras
       discount: Votre remise
       total: Total
+    sidebar:
+      find_us_on_facebook: Retrouvez nous sur Facebook
     customise_order:
       customise_product: Personaliser mon produit
       exclude_items: Exclure ces éléments...
@@ -33,6 +35,7 @@ fr:
       extra_frequency: À propos de vos extras
     payment_options:
       deliver_to: Livrer à
+      delivery_note: Note pour la livraison
       change_delivery_address: Modifier mon adresse de livraison
       name: Votre nom
       enter_name: Entrez votre nom

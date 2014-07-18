@@ -22,7 +22,7 @@
               .span2
                 %i.facebook-icon
               .span10
-                %div Find us on Facebook
+                %div= I18n.t("webstore.sidebar.find_us_on_facebook")
         - unless @distributor.phone.blank?
           .row-fluid.phone
             = link_to "tel:#{@distributor.phone.gsub(/[^\d\+]/ , '')}" do

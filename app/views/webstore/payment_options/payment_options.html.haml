@@ -50,7 +50,7 @@
             - if payment_options.collect_delivery_note
               .row-fluid
                 .span12
-                  %h4 Delivery note
+                  %h4= t 'webstore.payment_options.delivery_note'
               .row-fluid
                 .span12
                   = f.input :delivery_note, as: :text, label: false, placeholder: 'Delivery instructions such as where to place the package, e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }

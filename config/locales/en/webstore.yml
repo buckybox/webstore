@@ -13,6 +13,8 @@ en:
       extras: Extra items
       discount: Your discount
       total: Total
+    sidebar:
+      find_us_on_facebook: Find us on Facebook
     customise_order:
       customise_product: Customise my product
       exclude_items: Exclude these items...
@@ -33,6 +35,7 @@ en:
       extra_frequency: What about those extra items?
     payment_options:
       deliver_to: Deliver to
+      delivery_note: Delivery note
       change_delivery_address: Change my delivery address
       name: Your name
       enter_name: Enter your name
