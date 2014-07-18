@@ -68,16 +68,6 @@
                     = order.customer.address.join('<br>')
                 %td.price= order.delivery_service_fee
 
-            - if order.has_bucky_fee?
-              %tr#bucky-fee
-                %td.description
-                  %h2 Bucky Box transaction fee
-                  We're using
-                  = link_to 'Bucky Box', Figaro.env.mission_site_url, target: '_blank'
-                  to take orders, Bucky Box is a social enterprise with a mission to 
-                  support local food and organic farming worldwide.
-                %td.price= order.bucky_fee
-
             - if order.has_discount?
               %tr#discount
                 %td.description
