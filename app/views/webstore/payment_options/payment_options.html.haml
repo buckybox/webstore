@@ -40,20 +40,20 @@
                 %h4= t 'webstore.payment_options.deliver_to'
             .row-fluid
               .span12
-                = f.input :address_1, label: false, placeholder: 'Street', input_html: { class: 'span12', required: payment_options.require_address_1 }
-                = f.input :address_2, label: false, placeholder: 'Street', label: false, input_html: { class: 'span12', required: payment_options.require_address_2 }
-                = f.input :suburb, label: false, placeholder: 'Suburb', input_html: { class: 'span12', required: payment_options.require_suburb }
+                = f.input :address_1, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.address_1'), input_html: { class: 'span12', required: payment_options.require_address_1 }
+                = f.input :address_2, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.address_2'), label: false, input_html: { class: 'span12', required: payment_options.require_address_2 }
+                = f.input :suburb, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.suburb'), input_html: { class: 'span12', required: payment_options.require_suburb }
             .row-fluid
-              .span9= f.input :city, label: false, placeholder: 'City', input_html: { class: 'span12' }, wrapper_html: { id: 'city', required: payment_options.require_city }
-              .span3= f.input :postcode, label: false, placeholder: 'Postcode', input_html: { class: 'span12', required: payment_options.require_postcode }, wrapper_html: { id: 'postal_code' }
+              .span9= f.input :city, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.city'), input_html: { class: 'span12' }, wrapper_html: { id: 'city', required: payment_options.require_city }
+              .span3= f.input :postcode, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.postcode'), input_html: { class: 'span12', required: payment_options.require_postcode }, wrapper_html: { id: 'postal_code' }
 
             - if payment_options.collect_delivery_note
               .row-fluid
                 .span12
-                  %h4= t 'webstore.payment_options.delivery_note'
+                  %h4= t('virtus.attributes.customer/form/update_delivery_address.delivery_note')
               .row-fluid
                 .span12
-                  = f.input :delivery_note, as: :text, label: false, placeholder: 'Delivery instructions such as where to place the package, e.g. Place on back porch', input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
+                  = f.input :delivery_note, as: :text, label: false, placeholder: t('virtus.attributes.customer/form/update_delivery_address.placeholders.delivery_note'), input_html: { class: 'span12', rows: 3, required: payment_options.require_delivery_note }
 
   - if cart.has_payment_options?
     - if payment_options.existing_customer?

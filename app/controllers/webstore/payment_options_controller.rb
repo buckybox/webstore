@@ -24,7 +24,7 @@ private
   end
 
   def failed_payment_options(payment_options)
-    flash[:alert] = "Oops there was an issue: " \
+    flash[:alert] = t('oops') << t('colon') \
       << payment_options.errors.full_messages.join(", ").downcase
 
     render "payment_options", locals: {
