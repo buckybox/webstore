@@ -13,6 +13,7 @@ en:
       extras: Extra items
       discount: Your discount
       total: Total
+      completed: Order completed
     sidebar:
       find_us_on_facebook: Find us on Facebook
     customise_order:
