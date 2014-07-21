@@ -4,10 +4,6 @@ require_relative '../webstore'
 class Webstore::Authentication < Webstore::Form
   NEW_CUSTOMER = 'new'
   EXISTING_CUSTOMER = 'returning'
-  AUTHORISATION_OPTIONS = [
-    [I18n.t('models.webstore.authentication.new_customer'),      NEW_CUSTOMER],
-    [I18n.t('models.webstore.authentication.existing_customer'), EXISTING_CUSTOMER],
-  ].freeze
 
   attribute :email,       String
   attribute :registered,  String, default: NEW_CUSTOMER
@@ -17,7 +13,10 @@ class Webstore::Authentication < Webstore::Form
   validates_format_of :email, with: /.+@.+\..+/i
 
   def options
-    AUTHORISATION_OPTIONS
+    [
+      [I18n.t('models.webstore.authentication.new_customer'),      NEW_CUSTOMER],
+      [I18n.t('models.webstore.authentication.existing_customer'), EXISTING_CUSTOMER],
+    ]
   end
 
   def sign_in_attempt?
