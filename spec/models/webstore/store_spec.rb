@@ -19,7 +19,7 @@ describe Webstore::Store do
     it 'returns an array of products' do
       products = [double('products')]
       product_class = double('product_class', build_distributors_products: products)
-      store.products(product_class).should eq(products)
+      expect(store.products(product_class)).to eq(products)
     end
   end
 
@@ -27,7 +27,7 @@ describe Webstore::Store do
     it 'returns a webstore customer' do
       customer = double('customer')
       customer_class = double('customer_class', new: customer)
-      store.customer(customer_class).should eq(customer)
+      expect(store.customer(customer_class)).to eq(customer)
     end
   end
 end

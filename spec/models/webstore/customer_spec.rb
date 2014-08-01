@@ -12,7 +12,7 @@ describe Webstore::Customer do
   describe "#delivery_service_id" do
     it "returns a delivery service id" do
       delivery_service = double("delivery_service", id: 3)
-      existing_customer.stub(:delivery_service) { delivery_service }
+      allow(existing_customer).to receive(:delivery_service) { delivery_service }
       expect(customer.delivery_service_id).to eq(3)
     end
   end

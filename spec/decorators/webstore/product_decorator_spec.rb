@@ -11,8 +11,8 @@ describe Webstore::ProductDecorator do
   describe '#price' do
     it 'returns a formatted version of the product price' do
       money = double('money', with_currency: '$1.25')
-      object.stub(:price) { money }
-      product_decorator.price.should { '$1.25' }
+      allow(object).to receive(:price) { money }
+      expect(product_decorator.price).to eq '$1.25'
     end
   end
 end

@@ -19,22 +19,22 @@ describe Webstore::Checkout do
 
   describe '#customer' do
     it 'returns a customer' do
-      cart.stub(:customer) { logged_in_customer }
-      checkout.customer.should eq(logged_in_customer)
+      allow(cart).to receive(:customer) { logged_in_customer }
+      expect(checkout.customer).to eq(logged_in_customer)
     end
   end
 
   describe '#add_product!' do
     it 'returns true if the product is added to the cart' do
-      cart.stub(:add_product)
-      checkout.add_product!(3).should be_truthy
+      allow(cart).to receive(:add_product)
+      expect(checkout.add_product!(3)).to be_truthy
     end
   end
 
   describe '#cart_id' do
     it 'returns the id of the cart' do
-      cart.stub(:id) { 3 }
-      checkout.cart_id.should eq(3)
+      allow(cart).to receive(:id) { 3 }
+      expect(checkout.cart_id).to eq(3)
     end
   end
 end

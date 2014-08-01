@@ -18,7 +18,7 @@ describe "submitting customisations", :js do
     it "displays them" do
       submit
 
-      page.should have_content @dislike
+      expect(page).to have_content @dislike
     end
 
     context "with substitutes" do
@@ -29,7 +29,7 @@ describe "submitting customisations", :js do
       it "displays them" do
         submit
 
-        page.should have_content @like
+        expect(page).to have_content @like
       end
     end
   end
@@ -43,7 +43,7 @@ describe "submitting customisations", :js do
     it "displays them" do
       submit
 
-      page.should have_content @extra
+      expect(page).to have_content @extra
     end
   end
 

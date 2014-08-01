@@ -7,7 +7,7 @@ describe Webstore::StoreController do
     end
 
     it "notifies that the cart has been reseted if present" do
-      controller.stub(:current_cart) { double("cart") }
+      allow(controller).to receive(:current_cart) { double("cart") }
 
       get :store, distributor_parameter_name: @distributor.parameter_name
 

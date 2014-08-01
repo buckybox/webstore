@@ -6,26 +6,26 @@ describe Webstore::Form do
   describe '#save' do
     let(:cart) { double('cart', add_order_information: true) }
 
-    before { form.stub(:cart) { cart } }
+    before { allow(form).to receive(:cart) { cart } }
 
     context 'successfully' do
       it 'returns true' do
-        cart.stub(:save) { true }
-        form.save.should be true
+        allow(cart).to receive(:save) { true }
+        expect(form.save).to be true
       end
     end
 
     context 'unsuccessfully' do
       it 'returns false' do
-        cart.stub(:save) { false }
-        form.save.should be false
+        allow(cart).to receive(:save) { false }
+        expect(form.save).to be false
       end
     end
   end
 
   describe '#persisted?' do
     it 'is false' do
-      form.persisted?.should be false
+      expect(form.persisted?).to be false
     end
   end
 end

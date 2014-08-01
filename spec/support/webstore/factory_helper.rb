@@ -65,8 +65,8 @@ module Webstore::FactoryHelper
       }
     )
 
-    cart.customer.stub(:cart) { cart }
-    cart.order.stub(:cart) { cart }
+    allow(cart.customer).to receive(:cart) { cart }
+    allow(cart.order).to receive(:cart) { cart }
 
     @cart ||= cart
   end
