@@ -6,10 +6,7 @@
   #current-order.span12
     .row-fluid
       .span12.completed-header.important
-        - if request.fullpath == webstore_completed_path
-          = t 'webstore.order.completed'
-        - else
-          = t 'webstore.order.summary'
+        = t 'webstore.order.summary'
 
     .row-fluid{style: "margin-top: 1em"}
       .span12

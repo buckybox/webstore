@@ -13,7 +13,6 @@ fr:
       extras: Extras
       discount: Votre remise
       total: Total
-      completed: Commande validée
     sidebar:
       find_us_on_facebook: Retrouvez nous sur Facebook
     customise_order:
