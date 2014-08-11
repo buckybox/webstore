@@ -25,7 +25,8 @@ class Webstore::Completed < Webstore::Form
     real_customer.formated_number
   end
 
-  def schedule_description
+  alias_method :schedule_description, \
+  def schedule_rule
     real_order.schedule_rule
   end
 
@@ -35,6 +36,10 @@ class Webstore::Completed < Webstore::Form
 
   def payment_method
     cart.payment_method
+  end
+
+  def payment_recurring?
+    !schedule_rule.one_off?
   end
 
   def amount_due
