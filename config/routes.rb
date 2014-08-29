@@ -2,55 +2,42 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  scope ":webstore_id" do
+    # get "/fruits", action: "fruits", controller: "store" # TODO: categories using box tags
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    # NOTE: future URLs for reference
+    # scope "/account", module: :account do
+    #   get "/", action: "dashboard", as: "customer_dashboard"
+    #   get "/sign_in", action: "sign_in", as: "customer_sign_in"
+    # end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    get "/", to: "store#home", as: "webstore"
+    get "/admin", to: redirect("/distributors/sign_in") # NOTE: temporary redirect
+    match "/start_checkout/:product_id", to: "store#start_checkout", via: [:get, :post], as: "start_checkout" # FIXME: do we need POST?
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    scope module: :customise_order do
+      get  "/customise_order", action: "customise_order"
+      post "/customise_order", action: "save_order_customisation"
+    end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+    scope module: :authentication do
+      get  "/authentication", action: "authentication"
+      post "/authentication", action: "save_authentication"
+    end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+    scope module: :delivery_options do
+      get  "/delivery_options", action: "delivery_options"
+      post "/delivery_options", action: "save_delivery_options"
+    end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+    scope module: :payment_options do
+      get  "/payment_options", action: "payment_options"
+      post "/payment_options", action: "save_payment_options"
+    end
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    scope module: :completed do
+      get "/completed", action: "completed"
+    end
+  end
 end
+
