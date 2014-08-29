@@ -1,9 +1,9 @@
-require_relative '../../../app/models/store'
+require_relative '../../app/models/home'
 
-describe Store do
+describe Home do
   let(:distributor) { double('distributor') }
   let(:logged_in_customer) { double('logged_in_customer') }
-  let(:store) { Store.new(args) }
+  let(:home) { Home.new(args) }
   let(:args) do
     {
       distributor: distributor,
@@ -19,7 +19,7 @@ describe Store do
     it 'returns an array of products' do
       products = [double('products')]
       product_class = double('product_class', build_distributors_products: products)
-      expect(store.products(product_class)).to eq(products)
+      expect(home.products(product_class)).to eq(products)
     end
   end
 
@@ -27,7 +27,7 @@ describe Store do
     it 'returns a webstore customer' do
       customer = double('customer')
       customer_class = double('customer_class', new: customer)
-      expect(store.customer(customer_class)).to eq(customer)
+      expect(home.customer(customer_class)).to eq(customer)
     end
   end
 end

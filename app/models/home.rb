@@ -1,7 +1,7 @@
 require_relative 'product'
 require_relative 'customer'
 
-class Store
+class Home
   def initialize(args = {})
     @distributor       = args.fetch(:distributor)
     @existing_customer = args.fetch(:existing_customer)

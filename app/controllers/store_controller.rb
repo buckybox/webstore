@@ -1,14 +1,14 @@
 class StoreController < BaseController
-  def store
-    store = Store.new(
+  def home
+    home = Home.new(
       distributor: current_distributor,
       existing_customer: current_customer,
     )
 
-    @current_webstore_customer = store.customer.decorate
+    @current_webstore_customer = home.customer.decorate
 
-    render 'store', locals: {
-      webstore_products: ProductDecorator.decorate_collection(store.products)
+    render 'home', locals: {
+      webstore_products: ProductDecorator.decorate_collection(home.products)
     }
   end
 
