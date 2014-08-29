@@ -1,60 +1,57 @@
 fr:
-  webstore:
-    web_store: "%{distributor} - Boutique en ligne"
-    no_ongoing_order: Il n'y a pas de commande en cours, veuillez en passer une nouvelle.
-    cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
-    order_placed: Votre commande a été passée.
-    halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
-    product:
-      order: Commander
-    order:
-      summary: Récapitulatif de la commande
-      exclude_and_substitute: Exclusions et subsitutions
-      extras: Extras
-      discount: Votre remise
-      total: Total
-    sidebar:
-      find_us_on_facebook: Retrouvez nous sur Facebook
-    customise_order:
-      customise_product: Personaliser mon produit
-      exclude_items: Exclure ces éléments...
-      substitute_with_items: Et les remplacer par...
-      add_unlimited_extras: Ajouter des extras
-      add_n_extras: Ajouter jusqu'à %{limit} extras
-    authentication:
-      enter_email: Entrez votre adresse email
-      enter_password: Entrez votre mot de passe
-      bad_email_password: Votre email et/ou mot de passe est incorrect.
-    delivery_options:
-      pick_delivery_service: Veuillez choisir un service de livraison
-      delivery_details: Détails de livraison
-      pickup_details: Détails du point relai
-      select_best: Choisissez le service qui vous convient le mieux
-      when: Quand désirez vous recevoir cette commande ?
-      repeat_deliery: Renouvellement automatique de la commande ?
-      extra_frequency: À propos de vos extras
-    payment_options:
-      deliver_to: Livrer à
-      delivery_note: Note pour la livraison
-      change_delivery_address: Modifier mon adresse de livraison
-      name: Votre nom
-      enter_name: Entrez votre nom
-      phone: Votre numéro de téléphone
-      enter_phone: Entrez votre numéro
-      amount_due: Montant total
-      in_credit: Your account is in credit
-      pay_by: Payer par
-      no_payment: Pas de paiement nécessaire
-      complete_order: Completer la commande
-    completed:
-      amount_due: Montant total
-      pay_by: Payer par
-      back_to_webstore: Retour à la boutique en ligne
-      my_account: Mon compte
-    payment_instructions:
-      account_details: Détails de votre compte
-      existing_balance: Votre solde actuel
-      this_order: Cette commande
-      closing_balance: Solde final
-
-
+  web_store: "%{distributor} - Boutique en ligne"
+  no_ongoing_order: Il n'y a pas de commande en cours, veuillez en passer une nouvelle.
+  cancelled_order: Votre commande précédente a été annulée, vous pouvez en passer une nouvelle.
+  order_placed: Votre commande a été passée.
+  halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
+  product:
+    order: Commander
+  order:
+    summary: Récapitulatif de la commande
+    exclude_and_substitute: Exclusions et subsitutions
+    extras: Extras
+    discount: Votre remise
+    total: Total
+  sidebar:
+    find_us_on_facebook: Retrouvez nous sur Facebook
+  customise_order:
+    customise_product: Personaliser mon produit
+    exclude_items: Exclure ces éléments...
+    substitute_with_items: Et les remplacer par...
+    add_unlimited_extras: Ajouter des extras
+    add_n_extras: Ajouter jusqu'à %{limit} extras
+  authentication:
+    enter_email: Entrez votre adresse email
+    enter_password: Entrez votre mot de passe
+    bad_email_password: Votre email et/ou mot de passe est incorrect.
+  delivery_options:
+    pick_delivery_service: Veuillez choisir un service de livraison
+    delivery_details: Détails de livraison
+    pickup_details: Détails du point relai
+    select_best: Choisissez le service qui vous convient le mieux
+    when: Quand désirez vous recevoir cette commande ?
+    repeat_deliery: Renouvellement automatique de la commande ?
+    extra_frequency: À propos de vos extras
+  payment_options:
+    deliver_to: Livrer à
+    delivery_note: Note pour la livraison
+    change_delivery_address: Modifier mon adresse de livraison
+    name: Votre nom
+    enter_name: Entrez votre nom
+    phone: Votre numéro de téléphone
+    enter_phone: Entrez votre numéro
+    amount_due: Montant total
+    in_credit: Your account is in credit
+    pay_by: Payer par
+    no_payment: Pas de paiement nécessaire
+    complete_order: Completer la commande
+  completed:
+    amount_due: Montant total
+    pay_by: Payer par
+    back_to_webstore: Retour à la boutique en ligne
+    my_account: Mon compte
+  payment_instructions:
+    account_details: Détails de votre compte
+    existing_balance: Votre solde actuel
+    this_order: Cette commande
+    closing_balance: Solde final

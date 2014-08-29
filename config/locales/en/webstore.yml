@@ -1,59 +1,57 @@
 en:
-  webstore:
-    web_store: "%{distributor} - Web Store"
-    no_ongoing_order: There is no ongoing order, please start one.
-    cancelled_order: Your previous order has been cancelled, you can start a new one.
-    order_placed: Your order has been placed.
-    halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
-    product:
-      order: Order
-    order:
-      summary: Order summary
-      exclude_and_substitute: Exclude & substitute
-      extras: Extra items
-      discount: Your discount
-      total: Total
-    sidebar:
-      find_us_on_facebook: Find us on Facebook
-    customise_order:
-      customise_product: Customise my product
-      exclude_items: Exclude these items...
-      substitute_with_items: Substitute for these items...
-      add_unlimited_extras: Add any amount of extra items
-      add_n_extras: Add up to %{limit} extra items
-    authentication:
-      enter_email: Enter your email address
-      enter_password: Enter your password
-      bad_email_password: Your email and/or password is incorrect.
-    delivery_options:
-      pick_delivery_service: Pick A Delivery Service
-      delivery_details: Delivery Details
-      pickup_details: Pickup Details
-      select_best: Select the one that best services your location
-      repeat_deliery: Repeat delivery?
-      when: When would you like it?
-      extra_frequency: What about those extra items?
-    payment_options:
-      deliver_to: Deliver to
-      delivery_note: Delivery note
-      change_delivery_address: Change my delivery address
-      name: Your name
-      enter_name: Enter your name
-      phone: Your phone number
-      enter_phone: Enter your phone number
-      amount_due: Total amount due
-      in_credit: Your account is in credit
-      pay_by: Pay by
-      no_payment: No payment necessary
-      complete_order: Complete Order
-    completed:
-      amount_due: Total amount due
-      pay_by: Pay by
-      back_to_webstore: Back to web store
-      my_account: My account
-    payment_instructions:
-      account_details: Account details
-      existing_balance: Your existing account balance with us
-      this_order: This order
-      closing_balance: Closing balance
-
+  web_store: "%{distributor} - Web Store"
+  no_ongoing_order: There is no ongoing order, please start one.
+  cancelled_order: Your previous order has been cancelled, you can start a new one.
+  order_placed: Your order has been placed.
+  halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
+  product:
+    order: Order
+  order:
+    summary: Order summary
+    exclude_and_substitute: Exclude & substitute
+    extras: Extra items
+    discount: Your discount
+    total: Total
+  sidebar:
+    find_us_on_facebook: Find us on Facebook
+  customise_order:
+    customise_product: Customise my product
+    exclude_items: Exclude these items...
+    substitute_with_items: Substitute for these items...
+    add_unlimited_extras: Add any amount of extra items
+    add_n_extras: Add up to %{limit} extra items
+  authentication:
+    enter_email: Enter your email address
+    enter_password: Enter your password
+    bad_email_password: Your email and/or password is incorrect.
+  delivery_options:
+    pick_delivery_service: Pick A Delivery Service
+    delivery_details: Delivery Details
+    pickup_details: Pickup Details
+    select_best: Select the one that best services your location
+    repeat_deliery: Repeat delivery?
+    when: When would you like it?
+    extra_frequency: What about those extra items?
+  payment_options:
+    deliver_to: Deliver to
+    delivery_note: Delivery note
+    change_delivery_address: Change my delivery address
+    name: Your name
+    enter_name: Enter your name
+    phone: Your phone number
+    enter_phone: Enter your phone number
+    amount_due: Total amount due
+    in_credit: Your account is in credit
+    pay_by: Pay by
+    no_payment: No payment necessary
+    complete_order: Complete Order
+  completed:
+    amount_due: Total amount due
+    pay_by: Pay by
+    back_to_webstore: Back to web store
+    my_account: My account
+  payment_instructions:
+    account_details: Account details
+    existing_balance: Your existing account balance with us
+    this_order: This order
+    closing_balance: Closing balance
