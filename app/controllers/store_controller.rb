@@ -26,38 +26,7 @@ class StoreController < BaseController
     checkout.add_product!(product_id) ? successful_new_checkout(checkout) : failed_new_checkout
   end
 
-  def completed
-    cart = flush_current_cart!
-
-    if cart
-      render 'completed', locals: {
-        completed: Completed.new(
-          cart:          cart,
-          real_order:    real_order(cart),
-          real_customer: real_customer(cart),
-        ),
-        cart: cart.decorate(
-          context: { currency: current_distributor.currency }
-        ),
-        order: cart.order.decorate(
-          context: { currency: current_distributor.currency }
-        )
-      }
-
-    else # they likely refreshed the page
-      redirect_to customer_dashboard_path
-    end
-  end
-
 private
-
-  def real_order(cart)
-    ::Order.find(cart.real_order_id)
-  end
-
-  def real_customer(cart)
-    ::Customer.find(cart.real_customer_id)
-  end
 
   def successful_new_checkout(checkout)
     session[:cart_id] = checkout.cart_id
