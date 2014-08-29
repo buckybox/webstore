@@ -1,9 +1,0 @@
-= render partial: 'webstore/sidebar'
-
-%noscript
-  .alert.alert-error
-    = t('no_js')
-
-.row-fluid
-  .span12
-    #webstore-items= render partial: 'product', collection: webstore_products
