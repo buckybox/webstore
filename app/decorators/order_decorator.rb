@@ -1,5 +1,5 @@
 require 'draper'
-require_relative '../../models/webstore/order'
+require_relative '../models/order'
 # require_relative '../extra_decorator'
 
 class OrderDecorator < Draper::Decorator

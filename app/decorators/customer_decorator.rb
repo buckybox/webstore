@@ -1,5 +1,5 @@
 require "draper"
-require_relative "../../models/webstore/customer"
+require_relative "../models/customer"
 
 class CustomerDecorator < Draper::Decorator
   delegate_all

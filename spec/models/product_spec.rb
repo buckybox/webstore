@@ -1,4 +1,4 @@
-require_relative '../../../app/models/webstore/product'
+require_relative '../../app/models/product'
 
 describe Product do
   let(:distributor) { double('distributor') }

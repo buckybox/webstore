@@ -1,4 +1,4 @@
-require_relative '../../../app/models/cart'
+require_relative '../../app/models/cart'
 
 describe Cart do
   class CartPersistence; end

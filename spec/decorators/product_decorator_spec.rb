@@ -1,4 +1,4 @@
-require_relative '../../../app/decorators/webstore/product_decorator'
+require_relative '../../app/decorators/product_decorator'
 Draper::ViewContext.test_strategy :fast
 
 describe ProductDecorator do

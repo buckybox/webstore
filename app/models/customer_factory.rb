@@ -1,4 +1,4 @@
-require_relative '../customer'
+# require_relative '../customer'
 
 class CustomerFactory
   def self.assemble(args)

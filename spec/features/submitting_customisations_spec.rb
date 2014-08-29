@@ -1,5 +1,5 @@
-require_relative "../../support/capybara/select2_helper"
-require_relative "../../support/webstore/webstore_helper"
+require_relative "../support/capybara/select2_helper"
+require_relative "../support/webstore_helper"
 
 describe "submitting customisations", :js do
   include Select2Helper

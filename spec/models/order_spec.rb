@@ -1,4 +1,4 @@
-require_relative "../../../app/models/order"
+require_relative "../../app/models/order"
 
 describe Order do
   class DeliveryService; end

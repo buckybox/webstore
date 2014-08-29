@@ -1,4 +1,4 @@
-require_relative '../../../app/models/form'
+require_relative '../../app/models/form'
 
 describe Form do
   let(:form) { Form.new }

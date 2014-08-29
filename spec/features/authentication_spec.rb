@@ -1,4 +1,4 @@
-require_relative "../../support/webstore/webstore_helper"
+require_relative "../support/webstore_helper"
 
 describe "authenticate", :js do
   include StoreHelpers

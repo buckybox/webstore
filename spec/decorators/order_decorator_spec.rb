@@ -1,6 +1,6 @@
 require 'fast_spec_helper'
 stub_constants %w(Extra)
-require_relative '../../../app/decorators/webstore/order_decorator'
+require_relative '../../app/decorators/order_decorator'
 Draper::ViewContext.test_strategy :fast
 
 describe OrderDecorator do

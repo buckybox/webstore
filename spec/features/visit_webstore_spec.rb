@@ -1,4 +1,4 @@
-require_relative "../../support/webstore/webstore_helper"
+require_relative "../support/webstore_helper"
 
 describe "visit the webstore homepage", :js do
   include StoreHelpers

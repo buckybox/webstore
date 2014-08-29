@@ -1,5 +1,5 @@
 require 'draper'
-require_relative '../../models/webstore/product'
+require_relative '../models/product'
 
 class ProductDecorator < Draper::Decorator
   delegate_all

@@ -1,4 +1,4 @@
-require_relative '../../../app/models/authentication'
+require_relative '../../app/models/authentication'
 
 describe Authentication < Form do
   let(:cart)                   { double('cart') }

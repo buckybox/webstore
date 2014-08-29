@@ -1,4 +1,4 @@
-require_relative "../../../app/models/customer"
+require_relative "../../app/models/customer"
 
 describe Customer do
   class Customer; end
