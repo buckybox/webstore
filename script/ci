@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+export CI=1
+export RAILS_ENV=test
+export COVERAGE=1
+export SPEC_OPTS="--format p"
+
+bundle install
+
+bundle exec bundle-audit update
+bundle exec bundle-audit check
+
+# bundle exec rubocop --rails --display-cop-names FIXME
+$(dirname $0)/check_i18n
+bundle exec rake
+
+bundle exec discover-unused-partials
+bundle exec brakeman -qz --no-progress -w3
+bundle exec cane --no-doc --style-measure 160 --abc-max 30
+

@@ -1,0 +1,25 @@
+#!/bin/bash -eu
+
+function check_completeness() {
+  local from=$1
+  local to=$2
+
+  echo -e "\nChecking completeness from ${from} to ${to}..."
+
+  for file in $(ls -r1 config/locales/${from}/); do
+    output="$(bundle exec rake --verbose -r 'rspec/expectations' -r 'i18n-spec/tasks' i18n-spec:completeness config/locales/${from}/${file} config/locales/${to}/${file})"
+
+    echo "$output"
+    echo "$output" | grep COMPLETE > /dev/null # will exit non-zero if missing
+  done
+}
+
+locales=$(find config/locales/ -type d -printf "%f\n" | grep -v "locales/")
+
+for locale in $locales; do
+  if [ $locale != "en" ]; then
+    check_completeness "en" $locale
+    check_completeness $locale "en"
+  fi
+done
+
