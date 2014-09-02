@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
     get "/", to: "store#home", as: "webstore"
     get "/admin", to: redirect("/distributors/sign_in") # NOTE: temporary redirect
-    match "/start_checkout/:product_id", to: "store#start_checkout", via: [:get, :post], as: "start_checkout" # FIXME: do we need POST?
+    # match "/start_checkout/:product_id", to: "store#start_checkout", via: [:get, :post], as: "start_checkout" # FIXME: do we need POST?
+    get "/start_checkout/:product_id", to: "store#start_checkout", as: "start_checkout"
 
     scope module: :customise_order do
       get  "/customise_order", action: "customise_order"
