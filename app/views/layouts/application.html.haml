@@ -59,7 +59,7 @@
     = render partial: 'layouts/banner', locals: { distributor: @distributor }
 
     .container
-      -# #customer-messages= render_site_messages(flash)
+      #customer-messages= render_flash_messages(flash)
 
       .row
         #content-information.span3
