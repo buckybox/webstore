@@ -1,3 +1,148 @@
+$section-border-color: #CBCBCB
+$section-info: #eceae3
+$section-spacing: 25px
+$section-padding: 10px
+$btnProcessBackground: #ab8a81 !default
+$btnProcessBackgroundHighlight: darken($btnProcessBackground, 10%) !default
+
+=order-frame
+  background-color: $white
+  border: 1px solid $section-border-color
+  overflow: hidden
+  position: relative
+  +box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+  .section-info-background
+    background-color: $section-info
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 0
+    height: 100%
+    width: 17%
+    @media (min-width: 1200px)
+      width: 14%
+  .section-info
+    position: relative
+    h1, h2, .price
+      margin: 0px
+      font-weight: bold
+    h1
+      font-size: 20px
+      line-height: 22px
+    h2, .price
+      font-size: 16px
+      line-height: 18px
+    #total .price
+      font-size: 24px
+      line-height: 26px
+    .price
+      text-align: right
+
+
+//----- Global style
+
+body
+  background: $white image-url('background.png') repeat
+  >.container-fluid
+    background-color: $black
+    margin-bottom: 28px
+
+h1, h2, h3, h4, h5, h6
+  color: $grayDark
+
+table
+  &.no-rounded-corners
+    +border-radius(0px)
+    thead:first-child
+      tr:first-child
+        th:first-child, th:last-child
+          +border-radius(0px)
+    thead:last-child
+      tr:last-child
+        th:first-child, th:last-child
+          +border-radius(0px)
+    tbody:first-child
+      tr:first-child
+        td:first-child, td:last-child
+          +border-radius(0px)
+    tbody:last-child
+      tr:last-child
+        td:first-child, td:last-child
+          +border-radius(0px)
+
+#bucky-box-controls
+  background-color: $black
+  color: $grayLighter
+  a
+    color: $white
+    font-weight: bold
+  #bucky-box-powered
+    display: block
+    height: 37px
+    width: 130px
+    margin: 5px 0px
+    background-position: 0 0
+    background-repeat: no-repeat
+    background-image: image-url('bucky-box-powered.png')
+    position: relative
+    .image-map-links
+      display: block
+      position: absolute
+      text-indent: -999em
+      overflow: hidden
+    #org-link
+      width: 130px
+      height: 37px
+      top: 0px
+      left: 0px
+    #com-link
+      width: 43px
+      height: 10px
+      bottom: 0
+      right: 0
+  #auth-controls
+    margin-top: 11px
+    .account-dropdown
+      padding: 0
+      border: 1px solid #aaa
+      +border-radius(0px)
+      > *
+        padding: 4px 8px
+        border: 1px solid #000
+      .current-account
+        background-color: #333
+        border-bottom: 1px solid #aaa
+        .logout a
+          border: 1px solid #aaa
+          padding: 4px
+          font-size: 13px
+      .switch-accounts
+        background-color: #666
+        border-top: none
+        .signed-out
+          opacity: 0.4
+        a
+          font-weight: normal
+
+#public-banner
+  background-color: $grayDarker
+  color: $grayLighter
+  padding: 10px 0px
+  margin-bottom: 28px
+  #company-logo
+    h1
+      color: $white
+
+#content-information
+  #information
+    background-color: rgba(128, 128, 128, 0.3)
+    padding: 14px
+    margin-bottom: $section-spacing
+
+.btn-process
+  +buttonBackground($btnProcessBackground, $btnProcessBackgroundHighlight)
+
+
 //----- Webstore Sidebar
 
 #content-information
@@ -27,7 +172,7 @@
     line-height: 24px
     i
       display: block
-      background: transparent url('facebook-icon.png') no-repeat right top
+      background: transparent image-url('facebook-icon.png') no-repeat right top
       background-size: 100%
       width: 24px
       height: 24px
@@ -35,7 +180,7 @@
       opacity: 1
     &.phone
       i.phone-icon
-        background: transparent url('phone-icon.png') no-repeat right top
+        background: transparent image-url('phone-icon.png') no-repeat right top
         background-size: 100%
 
 
@@ -60,7 +205,7 @@ $webstore-item-padding: 8px
       width: 100%
     margin-bottom: 16px
     float: left
-    +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+    +box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
     .box
       background-color: $white
       padding: $webstore-item-padding
@@ -230,7 +375,7 @@ $webstore-item-padding: 8px
 #webstore-payment-instructions
   font-weight: bold
   font-size: 16px
-  +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+  +box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
   margin-bottom: $section-spacing
   background-color: $white
   padding: 0
@@ -246,7 +391,7 @@ $webstore-item-padding: 8px
       font-size: 18px
 
 #webstore-payment
-  +single-box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
+  +box-shadow(rgba(0, 0, 0, .25), 0px, 15px, 20px, -6px)
   margin-bottom: $section-spacing
   #amount-due
     background-color: $section-info
