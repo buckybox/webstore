@@ -10,7 +10,7 @@ class Cart
   attr_reader :id
   attr_reader :order
   attr_reader :customer
-  attr_reader :distributor_id
+  attr_reader :webstore_id
   attr_reader :real_order_id # from factory
   attr_reader :real_customer_id # from factory
 
@@ -23,7 +23,7 @@ class Cart
     @id                = args[:id]
     @order             = new_order(args)
     @customer          = new_customer(args)
-    @distributor_id    = args.fetch(:distributor_id)
+    @webstore_id    = args.fetch(:webstore_id)
     @persistence_class = args.fetch(:persistence_class, CartPersistence)
   end
 
@@ -57,16 +57,16 @@ class Cart
     customer.existing_customer
   end
 
-  def distributor
-    Distributor.find(distributor_id)
+  def webstore
+    webstore.find(webstore_id)
   end
 
-  def distributor_parameter_name
-    distributor.parameter_name
+  def webstore_parameter_name
+    webstore.parameter_name
   end
 
   def stock_list
-    distributor.line_items
+    webstore.line_items
   end
 
   def extras_list
@@ -94,7 +94,7 @@ class Cart
   end
 
   def payment_list(payment_options_class = ::PaymentOption)
-    payment_options_class.options(distributor)
+    payment_options_class.options(webstore)
   end
 
   def has_payment_options?
@@ -130,7 +130,7 @@ class Cart
     completed!
 
     factory.customer.add_activity(:order_create, order: factory.order)
-    send_confirmation_email(factory.order) if distributor.email_customer_on_new_webstore_order
+    send_confirmation_email(factory.order) if webstore.email_customer_on_new_webstore_order
 
     factory
   end
@@ -153,7 +153,7 @@ private
   end
 
   def find_or_create_persistence
-    persistence = persistence_class.find_by_id(id)
+    persistence = persistence_class.find_by(id)
     persistence = persistence_class.create unless persistence
     persistence
   end

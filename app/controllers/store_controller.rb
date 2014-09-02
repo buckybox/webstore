@@ -1,20 +1,20 @@
-class StoreController < BaseController
+class StoreController < ApplicationController
   def home
     home = Home.new(
-      distributor: current_distributor,
+      webstore: current_webstore,
       existing_customer: current_customer,
     )
 
     @current_webstore_customer = home.customer.decorate
 
     render 'home', locals: {
-      webstore_products: ProductDecorator.decorate_collection(home.products)
+      webstore_products: ProductDecorator.decorate_collection(home.products, context: { webstore: current_webstore })
     }
   end
 
   def start_checkout
     checkout = Checkout.new(
-      distributor_id: current_distributor.id,
+      webstore_id: current_webstore.id,
       existing_customer: current_customer,
     )
 
@@ -35,7 +35,7 @@ private
 
   def failed_new_checkout
     flash[:alert] = t('oops')
-    redirect_to webstore_store_path
+    redirect_to webstore_path
   end
 
   def next_step

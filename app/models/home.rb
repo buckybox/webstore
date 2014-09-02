@@ -3,12 +3,12 @@ require_relative 'customer'
 
 class Home
   def initialize(args = {})
-    @distributor       = args.fetch(:distributor)
-    @existing_customer = args.fetch(:existing_customer)
+    @webstore       = args.fetch(:webstore)
+    # @existing_customer = args.fetch(:existing_customer)
   end
 
   def products(product_class = Product)
-    @products ||= product_class.build_distributors_products(distributor)
+    @products ||= product_class.build_webstore_products(webstore)
   end
 
   def customer(customer_class = Customer)
@@ -19,6 +19,6 @@ class Home
 
 private
 
-  attr_reader :distributor
+  attr_reader :webstore
   attr_reader :existing_customer
 end

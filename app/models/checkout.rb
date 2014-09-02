@@ -7,7 +7,7 @@ class Checkout
     args               = defaults.merge(args)
     @existing_customer = args.fetch(:existing_customer)
     @cart              = args[:cart_class].new(
-      distributor_id: args[:distributor_id],
+      webstore_id: args[:webstore_id],
       customer: customer_hash
     )
 
@@ -29,7 +29,7 @@ class Checkout
 
 private
 
-  attr_reader :distributor_id
+  attr_reader :webstore_id
   attr_reader :existing_customer
 
   def customer_hash
