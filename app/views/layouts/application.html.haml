@@ -1,14 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Webstore</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+!!! 5
 
-<%= yield %>
+%html
+  %head
+    = raw analytical.head_prepend_javascript
+    %meta{ charset: 'utf-8' }
 
-</body>
-</html>
+    %title= content_for?(:title) ? "Bucky Box - #{yield(:title)}" : 'Bucky Box Web Store'
+
+    = csrf_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    - if Rails.env.production?
+      = favicon_link_tag
+    - elsif Rails.env.staging?
+      = favicon_link_tag '/favicon-gray.ico'
+    - else
+      = favicon_link_tag '/favicon-red.ico'
+
+    - if Rails.env.test?
+      -# http://stackoverflow.com/questions/14488836/capybara-2-having-trouble-interacting-with-bootstrap-modals
+      :css
+        .modal.fade, .fade {
+          -webkit-transition: opacity 0.01s;
+          -moz-transition: opacity 0.01s;
+          -ms-transition: opacity 0.01s;
+          -o-transition: opacity 0.01s;
+          transition: opacity 0.01s;
+        }
+
+    :javascript
+      // custom JS I18n helper - works like Rails' one
+      I18n = {}
+
+      I18n.translations = #{I18n.t('javascript').to_json};
+
+      I18n.t = function(key) {
+        var current_scope = I18n.translations;
+        $.each(key.split("."), function(i, key_part) {
+          current_scope = current_scope[key_part];
+            if (current_scope == undefined) {
+              return false;
+            }
+        });
+        return current_scope || "missing translation: #{I18n.locale}.javascript." + key;
+      };
+
+    / Analytics
+    - analytical.identify(current_webstore.id, email: current_webstore.email) if current_webstore
+    = raw analytical.head_append_javascript
+
+    = render partial: 'layouts/pingdom'
+
+  %body
+    = raw analytical.body_prepend_javascript
+
+    = render partial: 'layouts/banner', locals: { distributor: @distributor }
+
+    .container
+      -# #customer-messages= render_site_messages(flash)
+
+      .row
+        #content-information.span3
+          #information
+            = render partial: 'sidebar'#, locals: { customer: current_customer }
+        #content-body.span9
+          .row-fluid
+            .span12= yield
+
+    = raw analytical.body_append_javascript
+

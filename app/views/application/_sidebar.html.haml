@@ -1,32 +1,32 @@
-- title(t('webstore.web_store', distributor: current_distributor.name), false)
+-# - title(t('webstore.web_store', webstore: current_webstore.name), false)
 
-- content_for :sidebar do
-  - if @distributor.company_team_image?
-    .row-fluid
-      = image_tag(@distributor.company_team_image.photo.url, class: 'img-polaroid span12')
-
+- if @webstore.company_team_image
   .row-fluid
-    .span12
-      %h1#distributor-name= @distributor.name
-      .webstore-information-section
-        %h4= @distributor.city
+    -# = image_tag(@webstore.company_team_image, class: 'img-polaroid span12')
+    = image_tag("https://my.buckybox.com" + @webstore.company_team_image, class: 'img-polaroid span12')
 
-      - unless @distributor.sidebar_description.blank?
-        .webstore-information-section
-          = simple_format(@distributor.sidebar_description)
+.row-fluid
+  .span12
+    %h1#distributor-name= @webstore.name
+    .webstore-information-section
+      %h4= @webstore.city
 
+    - unless @webstore.sidebar_description.blank?
       .webstore-information-section
-        - unless @distributor.facebook_url.blank?
-          .row-fluid.facebook
-            = link_to "https://#{@distributor.facebook_url}", id: 'facebook-link', target: "_blank" do
-              .span2
-                %i.facebook-icon
-              .span10
-                %div= I18n.t("webstore.sidebar.find_us_on_facebook")
-        - unless @distributor.phone.blank?
-          .row-fluid.phone
-            = link_to "tel:#{@distributor.phone.gsub(/[^\d\+]/ , '')}" do
-              .span2
-                %i.phone-icon
-              .span10
-                %div= @distributor.phone
+        = simple_format(@webstore.sidebar_description)
+
+    .webstore-information-section
+      - unless @webstore.facebook_url.blank?
+        .row-fluid.facebook
+          = link_to "https://#{@webstore.facebook_url}", id: 'facebook-link', target: "_blank" do
+            .span2
+              %i.facebook-icon
+            .span10
+              %div= I18n.t("sidebar.find_us_on_facebook")
+      - unless @webstore.phone.blank?
+        .row-fluid.phone
+          = link_to "tel:#{@webstore.phone.gsub(/[^\d\+]/ , '')}" do
+            .span2
+              %i.phone-icon
+            .span10
+              %div= @webstore.phone
