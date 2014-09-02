@@ -1,0 +1,50 @@
+#bucky-box-controls.containter-fluid
+  .container
+    .row
+      .span6
+        #bucky-box-powered
+          = link_to '', Figaro.env.marketing_site_url, class: 'image-map-links', id: 'org-link', title: 'Bucky Box | The Mission', target: '_blank'
+          = link_to '', Figaro.env.marketing_site_url, class: 'image-map-links', id: 'com-link', title: 'Bucky Box, simple to use software for your CSA, Vege Box Scheme, or Food Hub.', target: '_blank'
+
+      #auth-controls.span6.text-right
+        - if false # FIXME current_customer
+          .btn-group
+            = link_to "#{t('my_account')} (#{current_customer.name})", customer_root_path, class: 'btn btn-inverse'
+            = link_to '#', { class: 'btn btn-inverse dropdown-toggle', "data-toggle" => "dropdown" } do
+              %span.caret
+            .account-dropdown.dropdown-menu.pull-right
+              .current-account.text-left
+                %p
+                  %strong= current_customer.distributor.name
+                %p
+                  = current_customer.name
+                  %br
+                  = current_customer.email
+                %p.logout.text-right
+                  = link_to t('log_out'), destroy_customer_session_path, method: :delete
+
+              - other_accounts = current_customers(all: true, current: false)
+              - if other_accounts.any?
+                .switch-accounts.text-left
+                  %p
+                    %strong Switch Accounts
+                  - other_accounts.each do |customer|
+                    %li{ class: "#{'signed-out' unless customer.in?(current_customers)}", title: "Signed #{customer.in?(current_customers) ? 'in' : 'out'}" }
+                      %i.icon-user.icon-white
+                      = link_to customer_can_swith_account? ? url_for(switch_to_distributor: customer.distributor.parameter_name) : 'javascript:alert("You cannot switch account now because you have an ongoing order.")' do
+                        = customer.distributor.name
+
+        - else
+          -# = link_to t('log_in'), new_customer_session_path(distributor: @distributor.parameter_name)
+          Log in
+
+#public-banner.containter-fluid
+  .container
+    .row
+      = link_to webstore_path(@webstore.id) do
+        #company-logo.span12.text-center
+          - if @webstore.company_logo
+            = image_tag(@webstore.company_logo)
+          - else
+            %h1= @webstore.name
+
