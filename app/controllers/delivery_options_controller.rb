@@ -1,4 +1,4 @@
-class DeliveryOptionsController < BaseController
+class DeliveryOptionsController < ApplicationController
   def delivery_options
     delivery_options = DeliveryOptions.new(cart: current_cart)
     render 'delivery_options', locals: {

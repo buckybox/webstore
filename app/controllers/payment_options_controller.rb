@@ -1,4 +1,4 @@
-class PaymentOptionsController < BaseController
+class PaymentOptionsController < ApplicationController
   def payment_options
     render "payment_options", locals: {
       order: current_order,

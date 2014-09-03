@@ -1,4 +1,4 @@
-class CompletedController < BaseController
+class CompletedController < ApplicationController
   def completed
     cart = flush_current_cart!
 

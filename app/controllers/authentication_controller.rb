@@ -1,4 +1,4 @@
-class AuthenticationController < BaseController
+class AuthenticationController < ApplicationController
   def authentication
     render 'authentication', locals: {
       order: current_order,
