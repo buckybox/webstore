@@ -1,21 +1,37 @@
 require_relative 'cart'
 
 class CartPersistence
-  # TODO Redis store
-  # serialize :collected_data
-  def self.find_by(*args)
-    nil
+  attr_accessor :serialized_cart, :id
+
+  def self.find(id)
+    serialized_cart = $redis.get redis_key(id)
+    return unless serialized_cart
+
+    new(id: id, serialized_cart: serialized_cart)
   end
 
-  def self.create
-    new
+  def initialize(args = {})
+    args.each { |k, v| send("#{k}=", v) }
   end
 
-  def id
-    42
+  def cart
+    Marshal.load serialized_cart
   end
 
-  def update_attributes(*args)
-    true
+  def save(cart)
+    self.serialized_cart = Marshal.dump cart
+    self.id = SecureRandom.uuid unless id
+
+    $redis.set redis_key, serialized_cart
+  end
+
+private
+
+  def redis_key
+    self.class.redis_key id
+  end
+
+  def self.redis_key id
+    "#{self}:#{id}".freeze
   end
 end

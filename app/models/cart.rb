@@ -15,8 +15,8 @@ class Cart
   attr_reader :real_customer_id # from factory
 
   def self.find(id, persistence_class = CartPersistence)
-    persistence = persistence_class.find_by(id: id)
-    persistence.collected_data if persistence
+    persistence = persistence_class.find(id)
+    persistence.cart if persistence
   end
 
   def initialize(args = {})
@@ -45,8 +45,7 @@ class Cart
 
   def save
     persistence = find_or_create_persistence
-    self.id = persistence.id
-    persistence.update_attributes(collected_data: self)
+    persistence.save(self) and self.id = persistence.id
   end
 
   def add_product(product_id)
@@ -153,8 +152,8 @@ private
   end
 
   def find_or_create_persistence
-    persistence = persistence_class.find_by(id)
-    persistence = persistence_class.create unless persistence
+    persistence = persistence_class.find(id)
+    persistence = persistence_class.new unless persistence
     persistence
   end
 
