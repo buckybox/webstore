@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
 
   helper_method def current_webstore
     @webstore ||= begin
-      Api.webstore_id = params[:webstore_id]
-      Webstore.fetch
+      API.webstore_id = params[:webstore_id]
+      API.webstore
     end
   end
 
