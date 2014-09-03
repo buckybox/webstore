@@ -7,22 +7,22 @@ describe Cart do
 
   let(:persistence_class) { double('persistence_class') }
   let(:persistence)       { double('persistence') }
-  let(:args)              { { distributor_id: 1, persistence_class: persistence_class } }
+  let(:args)              { { webstore_id: 1, persistence_class: persistence_class } }
   let(:cart)              { Cart.new(args) }
 
   describe '.find' do
     context 'when a cart is found' do
       it 'returns restored cart' do
         allow(cart).to receive(:id) { 1 }
-        allow(persistence).to receive(:collected_data) { cart }
-        allow(persistence_class).to receive(:find_by) { persistence }
+        # allow(persistence).to receive(:collected_data) { cart }
+        allow(persistence_class).to receive(:find) { persistence }
         expect(Cart.find(1, persistence_class).new?).to be false
       end
     end
 
     context 'when a cart is not found' do
       it 'returns nil' do
-        allow(persistence_class).to receive(:find_by) { nil }
+        allow(persistence_class).to receive(:find) { nil }
         expect(Cart.find(1, persistence_class)).to be_nil
       end
     end
@@ -79,14 +79,14 @@ describe Cart do
 
       context 'when save works' do
         it 'saves a cart and returns an true' do
-          allow(persistence).to receive(:update_attributes) { true }
+          allow(persistence).to receive(:save) { true }
           expect(cart.save).to be true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
-          allow(persistence).to receive(:update_attributes) { false }
+          allow(persistence).to receive(:save) { false }
           expect(cart.save).to be false
         end
       end
@@ -100,14 +100,14 @@ describe Cart do
 
       context 'when save works' do
         it 'saves a cart and returns an true' do
-          allow(persistence).to receive(:update_attributes) { true }
+          allow(persistence).to receive(:save) { true }
           expect(cart.save).to be true
         end
       end
 
       context 'when save fails' do
         it 'returns 0' do
-          allow(persistence).to receive(:update_attributes) { false }
+          allow(persistence).to receive(:save) { false }
           expect(cart.save).to be false
         end
       end
