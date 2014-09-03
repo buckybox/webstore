@@ -3,12 +3,12 @@ class CustomiseOrderController < ApplicationController
     render "customise_order", locals: {
       order: current_order,
       customise_order: CustomiseOrder.new(cart: current_cart),
-      extras_list: current_cart.extras_list.decorate,
+      extras_list: current_cart.extras_list,
     }
   end
 
   def save_order_customisation
-    args = { cart: current_cart }.merge(params[:webstore_customise_order])
+    args = { cart: current_cart }.merge(params[:customise_order])
     return if cart_expired?(args)
     customise_order = CustomiseOrder.new(args)
     customise_order.save ? successful_order_customisation : failed_order_customisation(customise_order)
@@ -22,9 +22,9 @@ private
 
   def next_step
     if current_webstore_customer.guest?
-      webstore_authentication_path
+      authentication_path
     else
-      webstore_delivery_options_path
+      delivery_options_path
     end
   end
 

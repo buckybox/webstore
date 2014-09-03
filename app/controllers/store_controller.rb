@@ -39,8 +39,8 @@ private
   end
 
   def next_step
-    return webstore_customise_order_path if current_order.customisable?
+    return customise_order_path if current_order.customisable?
 
-    current_webstore_customer.guest? ? webstore_authentication_path : webstore_delivery_options_path
+    current_webstore_customer.guest? ? authentication_path : delivery_options_path
   end
 end

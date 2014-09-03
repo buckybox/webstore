@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
   end
 
   def save_authentication
-    args = { cart: current_cart }.merge(params[:webstore_authentication])
+    args = { cart: current_cart }.merge(params[:authentication])
     return if cart_expired?(args)
     authentication = Authentication.new(args)
     authentication.sign_in_attempt? ? try_sign_in(authentication) : save_credentials(authentication)
@@ -42,6 +42,6 @@ private
   end
 
   def next_step
-    webstore_delivery_options_path
+    delivery_options_path
   end
 end

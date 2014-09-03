@@ -33,6 +33,6 @@ private
   end
 
   def next_step
-    webstore_payment_options_path
+    payment_options_path
   end
 end
