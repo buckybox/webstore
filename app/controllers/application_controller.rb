@@ -97,7 +97,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cart_expired?(args)
-    current_form_cart_id = args.fetch("cart_id").to_i
+    current_form_cart_id = args.fetch("cart_id")
 
     if !form_cart_id
       session[:form_cart_id] = current_form_cart_id
