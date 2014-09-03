@@ -95,7 +95,7 @@ $(function() {
 
     var extras_input = $('#webstore-extras select');
     extras_input.select2({
-      placeholder: I18n.t('webstore.customise_order.add_extra')
+      placeholder: I18n.t('customise_order.add_extra')
     });
     extras_input.change(function() {
       var extras_input = $(this);

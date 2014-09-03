@@ -1,9 +1,4 @@
 en:
-  javascript:
-    customise_order:
-      add_extra: Add an extra item
-  oops: Oops there was an issue
-  no_js: Oops! You must enable JavaScript in your browser to be able to order from this webstore.
   web_store: "%{distributor} - Web Store"
   no_ongoing_order: There is no ongoing order, please start one.
   cancelled_order: Your previous order has been cancelled, you can start a new one.
