@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+// require turbolinks
+
 //= require_tree ../../../vendor/assets/javascripts
+//= require select2
+
+//= require_tree .
+
