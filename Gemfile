@@ -10,30 +10,33 @@ gem 'rails-html-sanitizer', '~> 1.0' # Use Rails Html Sanitizer for HTML sanitiz
 # gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails' # Use jquery as the JavaScript library
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
+# gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 
 
 # Our additional Gems are listed below
 gem 'unicorn'
-gem 'buckybox-api', git: "https://github.com/buckybox/buckybox-api-ruby.git"#, path: '../buckybox-api-ruby'
+gem 'crazy_money'
+gem 'buckybox-api', path: '../buckybox-api-ruby'
 gem 'foreman'
 gem 'fast_blank'
 gem 'figaro'
+gem 'analytical'
 
 gem 'redis' # for WebstorePersistence
 gem 'hiredis'  # https://github.com/redis/redis-rb#hiredis
 
+gem 'haml-rails'
 gem 'bootstrap-sass', '~> 2.3.2.2' # TODO: upgrade to 3
 gem 'autoprefixer-rails' # Add browser vendor prefixes automatically
+gem 'select2-rails', '>= 3.5.0'
 
-# gem 'select2-rails', '>= 3.5.0'
 gem 'simple_form',   '>= 3.1.0.rc2' # TODO: update to stable release when out
 gem 'virtus',        '~> 1.0.1'
 gem 'draper',        '~> 1.2.1'
-# gem 'naught',        '>= 0.0.2'
+gem 'naught',        '>= 1'
 
 gem 'airbrake'
 gem 'bugsnag'
