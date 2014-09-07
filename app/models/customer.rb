@@ -12,10 +12,18 @@ class Customer
   GUEST_DISCOUNTED = false
   GUEST_ACTIVE     = false
 
+  def self.exists?(args)
+    !!API.customer(args)
+  end
+
+  def self.find(id)
+    # TODO: add some caching
+    API.customer(id)
+  end
+
   def initialize(args = {})
     @cart                 = args.fetch(:cart, nil)
     @existing_customer_id = args.fetch(:existing_customer_id, nil)
-    @customer_class       = args[:customer_class] || ::Customer
   end
 
   def fetch(key, default_value = nil)
@@ -27,7 +35,7 @@ class Customer
   end
 
   def existing_customer
-    customer_class.find(existing_customer_id) if existing_customer_id
+    self.class.find(existing_customer_id) if existing_customer_id
   end
 
   def distributor
@@ -55,7 +63,7 @@ class Customer
   end
 
   def delivery_service_id
-    existing_customer.delivery_service.id if existing_customer.present? && existing_customer.delivery_service.present?
+    existing_customer.delivery_service_id if existing_customer.present? && existing_customer.delivery_service_id.present?
   end
 
   def address
@@ -69,8 +77,4 @@ class Customer
   def balance_threshold
     existing_customer.balance_threshold
   end
-
-private
-
-  attr_reader :customer_class
 end
