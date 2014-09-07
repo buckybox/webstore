@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
 
     if action == "home"
       flush_current_cart!
-      flash[:notice] = t('cancelled_order')
+      flash.now[:notice] = t('cancelled_order')
     end
   end
 
