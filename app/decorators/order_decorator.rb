@@ -17,10 +17,6 @@ class OrderDecorator < Draper::Decorator
     object.delivery_service_fee.with_currency(context[:currency])
   end
 
-  def bucky_fee
-    object.bucky_fee.with_currency(context[:currency])
-  end
-
   def discount
     object.discount.opposite.with_currency(context[:currency])
   end

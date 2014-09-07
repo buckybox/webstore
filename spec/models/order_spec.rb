@@ -84,20 +84,6 @@ describe Order do
     end
   end
 
-  describe "#has_bucky_fee?" do
-    it "return true if there is a bucky fee" do
-      allow(order).to receive(:distributor) { double("distributor", separate_bucky_fee?: true) }
-      expect(order.has_bucky_fee?).to eq(true)
-    end
-  end
-
-  describe "#bucky_fee" do
-    it "returns the bucky fee" do
-      allow(order).to receive(:distributor) { double("distributor", consumer_delivery_fee: 1) }
-      expect(order.bucky_fee).to eq(1)
-    end
-  end
-
   describe "#has_total?" do
     it "returns true if can calculate a total" do
       allow(order).to receive(:information) { { complete: false } }
@@ -110,7 +96,6 @@ describe Order do
       allow(order).to receive(:product_price)  { 10 }
       allow(order).to receive(:extras_price)   { 10 }
       allow(order).to receive(:delivery_service_fee) { 5 }
-      allow(order).to receive(:bucky_fee)      { 1 }
     end
 
     it "returns the total cost of the order" do
