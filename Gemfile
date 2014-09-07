@@ -19,6 +19,7 @@ gem 'jquery-turbolinks'
 
 # Our additional Gems are listed below
 gem 'unicorn'
+gem 'puma'
 gem 'crazy_money'
 gem 'buckybox-api', path: '../buckybox-api-ruby'
 gem 'foreman'
