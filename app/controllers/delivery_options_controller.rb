@@ -9,7 +9,7 @@ class DeliveryOptionsController < ApplicationController
   end
 
   def save_delivery_options
-    args = { cart: current_cart }.merge(params[:webstore_delivery_options])
+    args = { cart: current_cart }.merge(params[:delivery_options])
     return if cart_expired?(args)
     delivery_options = DeliveryOptions.new(args)
     delivery_options.save ? successful_delivery_options : failed_delivery_options(delivery_options)

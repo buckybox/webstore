@@ -101,7 +101,7 @@ $(function() {
       var extras_input = $(this);
       var selected_extra = $(extras_input.find('option:selected')[0]);
       var extra_id = selected_extra.val();
-      var quantity_input = $('#webstore_customise_order_extras_' + extra_id);
+      var quantity_input = $('#customise_order_extras_' + extra_id);
 
       quantity_input.val(1);
       quantity_input.closest('tr').show();
@@ -163,7 +163,7 @@ $(function() {
 
       } else if (selected_week.find('input:checked').length == 0) {
         // enable all rows if this is the only checked day
-        weeks.find('input:data(enabled)').removeAttr('disabled');
+        weeks.find('input[data-enabled]').removeAttr('disabled');
       }
 
       update_day_checkboxes_style();
@@ -171,7 +171,7 @@ $(function() {
 
     $('.schedule-start-date').change(function() {
       var weeks = $('.delivery_service-schedule-inputs:visible .order-days tr');
-      weeks.find('input:data(enabled)').removeAttr('disabled');
+      weeks.find('input[data-enabled]').removeAttr('disabled');
       update_day_checkboxes($(this));
     });
   }
@@ -215,7 +215,7 @@ function update_days() {
     weeks.first().show();
   }
 
-  weeks.find('input:data(enabled)').removeAttr('disabled');
+  weeks.find('input[data-enabled]').removeAttr('disabled');
   var delivery_service_id = $('#delivery_service_select').val();
   var delivery_service_schedule = $('#delivery_service-schedule-inputs-' + delivery_service_id);
   update_day_checkboxes(delivery_service_schedule.find('.schedule-start-date'));

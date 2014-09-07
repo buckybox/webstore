@@ -4,7 +4,7 @@
     -# NOTE: cannot use SimpleForm here, see https://github.com/plataformatec/simple_form/issues/1104
     .control-group.select.required.disabled.webstore_delivery_options_start_date
       .controls
-        = select_tag "webstore_delivery_options[start_date]", options_for_select(form_object.start_dates(delivery_service)), class: "select required disabled schedule-start-date span12"
+        = select_tag "delivery_options[start_date]", options_for_select(delivery_service.start_dates), class: "select required disabled schedule-start-date span12"
 
     %h4= t('webstore.delivery_options.repeat_deliery')
     = f.input :frequency, label: false, collection: form_object.order_frequencies, input_html: { class: 'delivery_service-schedule-frequency span12' }, include_blank: false, disabled: true
