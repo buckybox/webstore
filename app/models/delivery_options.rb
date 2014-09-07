@@ -19,7 +19,7 @@ class DeliveryOptions < Form
   end
 
   def delivery_services
-    distributor.delivery_services
+    API.delivery_services
   end
 
   def delivery_service_list
@@ -50,14 +50,6 @@ class DeliveryOptions < Form
       [I18n.t('models.webstore.delivery_options.extra_frequencies.always'), false],
       [I18n.t('models.webstore.delivery_options.extra_frequencies.once'),   true],
     ]
-  end
-
-  def dates_grid(delivery_dates_class = ::Order)
-    delivery_dates_class.dates_grid
-  end
-
-  def start_dates(delivery_service, delivery_dates_class = ::Order)
-    delivery_dates_class.start_dates(delivery_service)
   end
 
   def cart_has_extras?

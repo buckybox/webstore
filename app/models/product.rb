@@ -11,9 +11,8 @@ class Product
     @box         = args[:box]
   end
 
-  def self.build_distributors_products(distributor)
-    boxes = distributor.boxes.not_hidden
-    build_products(boxes)
+  def self.build_webstore_products(webstore)
+    API.boxes
   end
 
   def image
@@ -30,11 +29,5 @@ class Product
 
   def price
     box.price
-  end
-
-private
-
-  def self.build_products(boxes)
-    boxes.map { |box| new(distributor: box.distributor, box: box) }
   end
 end

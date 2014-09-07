@@ -20,19 +20,19 @@ class CustomiseOrder < Form
   end
 
   def exclusions?
-    product.dislikes?
+    product.dislikes
   end
 
   def substitutions?
-    product.likes?
+    product.likes
   end
 
   def extras_allowed?
-    product.extras_allowed?
+    product.extras_allowed
   end
 
   def extras_unlimited?
-    product.extras_unlimited?
+    product.extras_unlimited
   end
 
   def exclusions_limit
@@ -40,7 +40,7 @@ class CustomiseOrder < Form
   end
 
   def exclusions_unlimited?
-    product.exclusions_unlimited?
+    product.exclusions_unlimited
   end
 
   def substitutions_limit
@@ -48,7 +48,7 @@ class CustomiseOrder < Form
   end
 
   def substitutions_unlimited?
-    product.substitutions_unlimited?
+    product.substitutions_unlimited
   end
 
   def extras_limit

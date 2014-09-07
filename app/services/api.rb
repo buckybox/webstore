@@ -1,7 +1,7 @@
 class API
   class << self
     extend Forwardable
-    def_delegators :api, :webstore, :boxes, :box, :customer, :delivery_services
+    def_delegators :api, :webstore, :boxes, :box, :customer, :delivery_services, :current_customer, :authenticate_customer
 
     attr_accessor :webstore_id
 

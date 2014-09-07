@@ -69,7 +69,7 @@ class Order
 
   def extras_as_objects(extra_class = Extra)
     extra_ids = extras ? extras.keys : []
-    extra_class.where(id: extra_ids)
+    product.extras.select { |extra| extra_ids.include?(extra.id) }
   end
 
   def total(with_discount: true)
@@ -106,11 +106,11 @@ class Order
   end
 
   def extras_list
-    product.available_extras
+    product.extras
   end
 
   def product_image
-    product.webstore_image_url
+    product.images.webstore
   end
 
   def product_name
@@ -154,11 +154,11 @@ class Order
   end
 
   def customisable?
-    product.customisable?
+    product.customizable
   end
 
   def delivery_service
-    delivery_service_class.find_by(id: delivery_service_id)
+    delivery_service_class.find(delivery_service_id) if delivery_service_id
   end
 
   def pickup_point?
