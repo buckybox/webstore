@@ -7,23 +7,26 @@
           = link_to '', Figaro.env.marketing_site_url, class: 'image-map-links', id: 'com-link', title: 'Bucky Box, simple to use software for your CSA, Vege Box Scheme, or Food Hub.', target: '_blank'
 
       #auth-controls.span6.text-right
-        - if false # FIXME current_customer
+        = current_customers.inspect
+        %br
+        = current_customer.inspect
+        - if current_customer
           .btn-group
-            = link_to "#{t('my_account')} (#{current_customer.name})", customer_root_path, class: 'btn btn-inverse'
+            = link_to "#{t('my_account')} (#{current_customer.name})", customer_dashboard_path, class: 'btn btn-inverse'
             = link_to '#', { class: 'btn btn-inverse dropdown-toggle', "data-toggle" => "dropdown" } do
               %span.caret
             .account-dropdown.dropdown-menu.pull-right
               .current-account.text-left
                 %p
-                  %strong= current_customer.distributor.name
+                  %strong= current_customer.webstore_id
                 %p
                   = current_customer.name
                   %br
                   = current_customer.email
                 %p.logout.text-right
-                  = link_to t('log_out'), destroy_customer_session_path, method: :delete
+                  = link_to t('log_out'), customer_sign_out_path, method: :delete
 
-              - other_accounts = current_customers(all: true, current: false)
+              - other_accounts = current_customers.reject { |customer| current_customer && customer.id == current_customer.id }
               - if other_accounts.any?
                 .switch-accounts.text-left
                   %p

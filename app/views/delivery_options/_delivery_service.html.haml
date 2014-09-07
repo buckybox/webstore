@@ -12,8 +12,8 @@
     = f.simple_fields_for(:days) do |g|
       %table.order-days.table.table-bordered
         %tbody
-          - form_object.dates_grid.each_with_index do |week, index|
+          - delivery_service.dates_grid.each_with_index do |week, index|
             %tr
               %td= index.succ.ordinalize
               - week.each do |day, number|
-                %td= g.input "#{number}", label: day, input_html: { data: { enabled: delivery_service.runs_on(number) } }, wrapper_html: { id: "day-#{number}" }, as: :boolean, disabled: true
+                %td= g.input "#{number}", label: day, input_html: { data: { enabled: delivery_service.public_send(day.downcase) } }, wrapper_html: { id: "day-#{number}" }, as: :boolean, disabled: true
