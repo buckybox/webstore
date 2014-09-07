@@ -68,10 +68,6 @@ class DeliveryOptions < Form
 
 private
 
-  def distributor
-    cart.distributor
-  end
-
   def customer
     cart.customer
   end

@@ -1,7 +1,7 @@
 #NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
 
 require 'draper'
-# require_relative '../order_price'
+require_relative 'order_price'
 
 class Order
   include Draper::Decoratable
@@ -41,10 +41,6 @@ class Order
 
   def is_scheduled?
     !!frequency
-  end
-
-  def has_bucky_fee?
-    distributor.separate_bucky_fee?
   end
 
   def has_total?
@@ -95,10 +91,6 @@ class Order
 
   def delivery_service_fee
     delivery_service ? delivery_service.fee : 0
-  end
-
-  def bucky_fee
-    distributor.consumer_delivery_fee
   end
 
   def product
@@ -180,10 +172,6 @@ private
 
   attr_writer :product
   attr_writer :information
-
-  def distributor
-    cart.distributor ? cart.distributor : ::Distributor.new
-  end
 
   def existing_customer
     cart ? cart.existing_customer : nil
