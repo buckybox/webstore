@@ -35,16 +35,15 @@
                         = customer.distributor.name
 
         - else
-          -# = link_to t('log_in'), new_customer_session_path(distributor: @distributor.parameter_name)
-          Log in
+          = link_to t('log_in'), customer_sign_in_url(webstore_id: @webstore.id)
 
 #public-banner.containter-fluid
   .container
     .row
       = link_to webstore_path(@webstore.id) do
         #company-logo.span12.text-center
-          - if @webstore.company_logo
-            = image_tag(@webstore.company_logo)
+          - if @webstore.company_logo.try(:banner)
+            = image_tag(@webstore.company_logo.banner.url)
           - else
             %h1= @webstore.name
 

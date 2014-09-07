@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
     analytical modules: [], use_session_store: true
   end
 
-  # layout 'customer'
-
   before_filter :active_webstore?
   before_filter :setup_webstore
   # before_filter :webstores_customer?
