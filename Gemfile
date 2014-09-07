@@ -18,6 +18,7 @@ gem 'jquery-turbolinks'
 
 
 # Our additional Gems are listed below
+gem 'rails-i18n'
 gem 'unicorn'
 gem 'puma'
 gem 'crazy_money'
