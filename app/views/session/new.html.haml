@@ -1,0 +1,7 @@
+= render_flash_messages(flash)
+
+= simple_form_for(:session, url: customer_sign_in_path) do |f|
+  = f.input :email
+  = f.input :password
+  = f.submit t('log_in')
+
