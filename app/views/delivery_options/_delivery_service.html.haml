@@ -6,7 +6,7 @@
       .controls
         = select_tag "delivery_options[start_date]", options_for_select(delivery_service.start_dates), class: "select required disabled schedule-start-date span12"
 
-    %h4= t('webstore.delivery_options.repeat_deliery')
+    %h4= t('delivery_options.repeat_deliery')
     = f.input :frequency, label: false, collection: form_object.order_frequencies, input_html: { class: 'delivery_service-schedule-frequency span12' }, include_blank: false, disabled: true
 
     = f.simple_fields_for(:days) do |g|

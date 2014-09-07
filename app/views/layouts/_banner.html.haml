@@ -7,9 +7,6 @@
           = link_to '', Figaro.env.marketing_site_url, class: 'image-map-links', id: 'com-link', title: 'Bucky Box, simple to use software for your CSA, Vege Box Scheme, or Food Hub.', target: '_blank'
 
       #auth-controls.span6.text-right
-        = current_customers.inspect
-        %br
-        = current_customer.inspect
         - if current_customer
           .btn-group
             = link_to "#{t('my_account')} (#{current_customer.name})", customer_dashboard_path, class: 'btn btn-inverse'

@@ -43,10 +43,10 @@ $(function() {
     likes.hide();
 
     $('#webstore-customisations').toggle(
-      $('#webstore_customise_order_has_customisations').is(":checked")
+      $('#customise_order_has_customisations').is(":checked")
     );
 
-    $('#webstore_customise_order_has_customisations').click(function() {
+    $('#customise_order_has_customisations').click(function() {
       checkbox_toggle(this, $('#webstore-customisations'));
     });
 
