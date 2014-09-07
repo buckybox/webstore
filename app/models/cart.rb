@@ -57,7 +57,7 @@ class Cart
   end
 
   def webstore
-    webstore.find(webstore_id)
+    API.webstore(webstore_id)
   end
 
   def webstore_parameter_name

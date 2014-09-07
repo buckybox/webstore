@@ -55,12 +55,12 @@ class Order
     customer.halted?
   end
 
-  def exclusion_line_items(line_item_class = LineItem)
-    line_item_class.where(id: exclusions)
+  def exclusion_line_items
+    cart.stock_list.select { |line_item| line_item.id.in?(exclusions) }
   end
 
-  def substitution_line_items(line_item_class = LineItem)
-    line_item_class.where(id: substitutions)
+  def substitution_line_items
+    cart.stock_list.select { |line_item| line_item.id.in?(substitutions) }
   end
 
   def extras_as_objects(extra_class = Extra)

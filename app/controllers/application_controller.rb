@@ -19,10 +19,7 @@ class ApplicationController < ActionController::Base
 # protected
 
   helper_method def current_webstore
-    @webstore ||= begin
-      API.webstore_id = current_webstore_id
-      API.webstore
-    end
+    @webstore ||= API.webstore(current_webstore_id)
   end
 
   helper_method def current_cart
