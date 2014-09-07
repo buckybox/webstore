@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   helper_method def current_webstore
     @webstore ||= begin
-      API.webstore_id = params[:webstore_id]
+      API.webstore_id = current_webstore_id
       API.webstore
     end
   end
@@ -42,6 +42,18 @@ class ApplicationController < ActionController::Base
     @current_cart = nil
 
     cart
+  end
+
+  helper_method def current_customers
+    customers = session[:current_customers]
+    return [] unless customers
+
+    SuperRecursiveOpenStruct.new(customers).freeze
+  end
+
+  helper_method def current_customer
+    webstore_id = current_webstore_id
+    current_customers.detect { |customer| customer.webstore_id == webstore_id }
   end
 
   def current_order
@@ -112,6 +124,10 @@ class ApplicationController < ActionController::Base
 
   def form_cart_id
     session[:form_cart_id]
+  end
+
+  def current_webstore_id
+    params[:webstore_id]
   end
 
 private

@@ -10,12 +10,6 @@ class ProductDecorator < Draper::Decorator
   end
 
   def order_link
-    h.start_checkout_path(context[:webstore].id, box.id)
+    h.start_checkout_path(context[:webstore].id, id)
   end
-
-private
-
-  # def distributor_parameter_name
-  #   object.distributor.parameter_name
-  # end
 end

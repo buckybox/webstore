@@ -19,15 +19,15 @@ class Authentication < Form
   end
 
   def sign_in_attempt?
-    registered == EXISTING_CUSTOMER || Customer.exists?(email: email, distributor_id: cart.distributor_id)
+    registered == EXISTING_CUSTOMER || Customer.exists?(email: email)
   end
 
   def default_option
     options.first.last
   end
 
-  def distributor_parameter_name
-    cart.distributor_parameter_name
+  def webstore_id
+    cart.webstore_id
   end
 
   def to_h

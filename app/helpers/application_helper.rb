@@ -2,7 +2,7 @@ module ApplicationHelper
   def render_flash_messages(flash)
     flash.map do |type, message|
       content_tag(:div, class: "alert #{alert_class_for(type)}") do
-        button_tag("×", class: "close", data: { dismiss: "alert" }) << message
+        link_to("×", "javascript:void(0)", class: "close", data: { dismiss: "alert" }) << message
       end
     end.join.html_safe
   end
