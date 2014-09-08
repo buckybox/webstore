@@ -45,7 +45,9 @@ class ApplicationController < ActionController::Base
     customers = session[:current_customers]
     return [] unless customers
 
-    SuperRecursiveOpenStruct.new(customers).freeze
+    SuperRecursiveOpenStruct.new(
+      JSON.parse(customers)
+    ).freeze
   end
 
   helper_method def current_customer

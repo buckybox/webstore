@@ -23,7 +23,7 @@ class Cart
     @id                = args[:id]
     @order             = new_order(args)
     @customer          = new_customer(args)
-    @webstore_id    = args.fetch(:webstore_id)
+    @webstore_id       = args.fetch(:webstore_id)
     @persistence_class = args.fetch(:persistence_class, CartPersistence)
   end
 

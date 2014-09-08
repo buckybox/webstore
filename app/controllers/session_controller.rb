@@ -9,12 +9,12 @@ class SessionController < ActionController::Base
     credentials = params[:session]
 
     API.webstore_id = current_webstore_id
-    result = API.authenticate_customer(credentials, as_object: false)
+    result = API.authenticate_customer(credentials)
 
-    if result.nil?
+    if result.empty?
       redirect_to customer_sign_in_path, alert: "Nope"
     else
-      session[:current_customers] = result
+      session[:current_customers] = result.to_json
       redirect_to webstore_path
     end
   end

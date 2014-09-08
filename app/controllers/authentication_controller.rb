@@ -16,13 +16,22 @@ class AuthenticationController < ApplicationController
 private
 
   def try_sign_in(authentication)
-    customer = attempt_customer_sign_in(authentication.email, authentication.password, no_track: current_admin.present?)
+    customers = API.authenticate_customer(
+      { email: authentication.email, password: authentication.password },
+    )
+
+    session[:current_customers] = customers.to_json
+
+    # NOTE: first customer if the one for the current web store
+    customer = customers.first
+
     handle_customer(customer)
+
     customer ? save_credentials(authentication) : failed_authentication(authentication)
   end
 
   def handle_customer(customer)
-    current_webstore_customer.associate_real_customer(customer) if customer
+    current_webstore_customer.associate_real_customer(customer.id) if customer
   end
 
   def save_credentials(authentication)
