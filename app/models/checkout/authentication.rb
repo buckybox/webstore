@@ -1,4 +1,4 @@
-require_relative 'form'
+require_relative '../form'
 
 class Authentication < Form
   NEW_CUSTOMER = 'new'

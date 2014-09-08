@@ -1,4 +1,4 @@
-require_relative 'form'
+require_relative '../form'
 
 class DeliveryOptions < Form
   attribute :delivery_service, Integer

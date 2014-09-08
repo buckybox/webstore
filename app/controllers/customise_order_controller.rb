@@ -35,7 +35,7 @@ private
     render "customise_order", locals: {
       order: current_order,
       customise_order: customise_order,
-      extras_list: current_cart.extras_list.decorate,
+      extras_list: current_cart.extras_list,
     }
   end
 end

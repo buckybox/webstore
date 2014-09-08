@@ -1,4 +1,4 @@
-require_relative 'form'
+require_relative '../form'
 
 class Completed < Form
   attribute :real_order

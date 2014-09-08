@@ -1,5 +1,5 @@
-require_relative 'product'
-require_relative 'customer'
+require_relative '../product'
+require_relative '../customer'
 
 class Home
   def initialize(args = {})

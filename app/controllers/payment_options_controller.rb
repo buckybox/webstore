@@ -8,7 +8,7 @@ class PaymentOptionsController < ApplicationController
   end
 
   def save_payment_options
-    args = { cart: current_cart }.merge(params[:webstore_payment_options])
+    args = { cart: current_cart }.merge(params[:payment_options])
     return if cart_expired?(args)
     payment_options = PaymentOptions.new(args)
     payment_options.save ? successful_payment_options : failed_payment_options(payment_options)
@@ -20,7 +20,7 @@ private
     webstore_factory = current_cart.run_factory
     customer_sign_in(webstore_factory.customer, no_track: current_admin.present?)
 
-    redirect_to next_step, notice: t('webstore.order_placed')
+    redirect_to next_step, notice: t('order_placed')
   end
 
   def failed_payment_options(payment_options)
@@ -35,6 +35,6 @@ private
   end
 
   def next_step
-    webstore_completed_path
+    completed_path
   end
 end
