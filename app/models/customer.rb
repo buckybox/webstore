@@ -13,12 +13,11 @@ class Customer
   GUEST_ACTIVE     = false
 
   def self.exists?(args)
-    !!API.customer(args)
+    API.customers(args).present?
   end
 
   def self.find(id)
-    # TODO: add some caching
-    API.customer(id)
+    API.customer(id, embed: :address)
   end
 
   def initialize(args = {})
