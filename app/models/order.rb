@@ -23,8 +23,7 @@ class Order
   end
 
   def add_information(new_information)
-    new_information = new_information.to_h
-    information.merge!(new_information)
+    information.merge!(new_information.to_h)
   end
 
   def has_exclusions?

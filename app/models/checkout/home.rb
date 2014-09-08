@@ -3,7 +3,7 @@ require_relative '../customer'
 
 class Home
   def initialize(args = {})
-    @webstore       = args.fetch(:webstore)
+    @webstore          = args.fetch(:webstore)
     @existing_customer = args.fetch(:existing_customer)
   end
 

@@ -65,7 +65,7 @@ class CustomiseOrder < Form
 
 protected
 
-  def sanitise_attributes(attributes)
+  def sanitize_attributes(attributes)
     attributes.fetch("dislikes", []).delete("")
     attributes.fetch("likes", []).delete("")
     attributes.fetch("extras", {}).delete_if do |key, value|
