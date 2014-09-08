@@ -1,8 +1,5 @@
 class API
   class << self
-    extend Forwardable
-    def_delegators :api, :boxes, :box, :customer, :delivery_services, :current_customer, :authenticate_customer
-
     attr_accessor :webstore_id
 
     def webstore(id = nil)
@@ -11,7 +8,11 @@ class API
         @api = nil
       end
 
-      api.webstore
+      method_missing(:webstore) # funny heh?
+    end
+
+    def method_missing(method, *args)
+      api.public_send(method, *args)
     end
 
     private def api
