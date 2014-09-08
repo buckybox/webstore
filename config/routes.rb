@@ -2,19 +2,27 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root to: redirect("/404.html")
+
   scope ":webstore_id" do
     # get "/fruits", action: "fruits", controller: "store" # TODO: categories using box tags
 
-    # NOTE: future URLs for reference
-    # scope "/account", module: :account do
-    #   get "/", action: "dashboard", as: "customer_dashboard"
-    #   get "/sign_in", action: "sign_in", as: "customer_sign_in"
-    # end
+    scope "/account" do
+      scope module: :account do
+        # get "/", action: "dashboard", as: "customer_dashboard" # NOTE: future
+        get "/", to: redirect("/customer"), as: "customer_dashboard"
+      end
+
+      scope module: :session do
+        get "/sign_in", action: "new", as: "customer_sign_in"
+        post "/sign_in", action: "create", as: nil
+        delete "/sign_out", action: "destroy", as: "customer_sign_out"
+      end
+    end
 
     get "/", to: "store#home", as: "webstore"
-    get "/admin", to: redirect("/distributors/sign_in") # NOTE: temporary redirect
-    # match "/start_checkout/:product_id", to: "store#start_checkout", via: [:get, :post], as: "start_checkout" # FIXME: do we need POST?
     get "/start_checkout/:product_id", to: "store#start_checkout", as: "start_checkout"
+    get "/admin", to: redirect("/distributors/sign_in") # NOTE: temporary redirect
 
     scope module: :customise_order do
       get  "/customise_order", action: "customise_order"
