@@ -1,24 +1,35 @@
-require_relative 'form'
+require_relative '../form'
 
 class PaymentOptions < Form
   extend Forwardable
 
-  include Customer::AddressValidations
-
   attribute :name,            String
   attribute :phone_number,    String
   attribute :phone_type,      String
+  attribute :address_1,       String
+  attribute :address_2,       String
+  attribute :suburb,          String
+  attribute :city,            String
+  attribute :postcode,        String
+  attribute :delivery_note,   String
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
   validates_presence_of :name,           if: :require_name
   validates_presence_of :phone_number,   if: :require_phone
   validates_presence_of :phone_type,     if: :require_phone
+  validates_presence_of :address_1,      if: -> { require_address_1 }
+  validates_presence_of :address_2,      if: -> { require_address_2 }
+  validates_presence_of :suburb,         if: -> { require_suburb }
+  validates_presence_of :city,           if: -> { require_city }
+  validates_presence_of :postcode,       if: -> { require_postcode }
+  validates_presence_of :delivery_note,  if: -> { require_delivery_note }
+  # FIXME need lambda?
   validates_presence_of :payment_method, if: :has_payment_options?
 
   attr_reader :address
 
-  def_delegators :distributor,
+  def_delegators :webstore,
     :collect_phone,
     :collect_delivery_note
 
@@ -59,7 +70,39 @@ class PaymentOptions < Form
   end
 
   def require_phone
-    !pickup_point? && distributor.require_phone
+    !pickup_point? && webstore.require_phone
+  end
+
+  def pickup_point?
+    delivery_service.pickup_point
+  end
+
+  def delivery_service
+    customer.delivery_service
+  end
+
+  def require_address_1
+    !pickup_point? && webstore.require_address_1
+  end
+
+  def require_address_2
+    !pickup_point? && webstore.require_address_2
+  end
+
+  def require_suburb
+    !pickup_point? && webstore.require_suburb
+  end
+
+  def require_city
+    !pickup_point? && webstore.require_city
+  end
+
+  def require_postcode
+    !pickup_point? && webstore.require_postcode
+  end
+
+  def require_delivery_note
+    !pickup_point? && webstore.require_delivery_note
   end
 
   # Returns whether the address is valid or not so we can hide the edit form when it is valid
@@ -112,8 +155,11 @@ private
   end
 
   def build_address
-    address = customer.existing_customer.address if customer.existing_customer
-    address ||= address_class.new
+    address = if customer.existing_customer
+      address_class.new(customer.existing_customer.address.to_h)
+    else
+      address_class.new
+    end
 
     # forward address attributes
     address_class.address_attributes.each do |attribute|
@@ -132,8 +178,8 @@ private
     super || BlackHole.new
   end
 
-  def distributor
-    cart.distributor
+  def webstore
+    cart.webstore
   end
 
   def customer

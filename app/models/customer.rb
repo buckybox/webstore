@@ -66,7 +66,7 @@ class Customer
   end
 
   def address
-    existing_customer ? existing_customer.address : NullObject.new
+    existing_customer ? Address.new(existing_customer.address.to_h) : NullObject.new
   end
 
   def account_balance

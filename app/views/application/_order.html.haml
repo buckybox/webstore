@@ -62,7 +62,7 @@
                   - if order.pickup_point?
                     = order.delivery_service_name
                   - else
-                    = order.customer.address.join('<br>')
+                    = order.customer.address.to_s('<br>')
                 %td.price= order.delivery_service_fee
 
             - if order.has_discount?

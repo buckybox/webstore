@@ -14,8 +14,7 @@
               %h4= t 'payment_options.deliver_to'
           .row-fluid
             .span12
-              -# = payment_options.address.to_s('<br>')
-              ADDRESS
+              = payment_options.address.to_s('<br>')
               %br
             = link_to t('payment_options.change_delivery_address'), 'javascript:void(0)', id: 'edit-address'
       #update-address.row-fluid{ :class => ("hide" unless show_address_form) }

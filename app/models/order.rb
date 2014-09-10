@@ -115,12 +115,12 @@ class Order
     extras[extra.id]
   end
 
-  def schedule(schedule_builder_class = ::ScheduleBuilder)
-    schedule_builder_class.build({
+  def schedule(schedule_builder_class = ScheduleRule)
+    schedule_builder_class.new(
       start_date:  start_date,
       frequency:   frequency,
       days:        days,
-    })
+    )
   end
 
   def exclusions
