@@ -45,6 +45,7 @@ module BuckyBox
 
       # Custom directories with classes and modules you want to be autoloadable.
       config.autoload_paths += Dir["#{config.root}/app/models/checkout"]
+      config.autoload_paths += Dir["#{config.root}/lib"]
     end
   end
 end
