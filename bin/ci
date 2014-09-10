@@ -10,7 +10,7 @@ bundle install
 bundle exec bundle-audit update
 bundle exec bundle-audit check
 
-# bundle exec rubocop --rails --display-cop-names FIXME
+bundle exec rubocop --rails --display-cop-names
 $(dirname $0)/check_i18n
 bundle exec rake
 
