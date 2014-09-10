@@ -24,8 +24,7 @@ class Completed < Form
     real_customer.formated_number
   end
 
-  alias_method :schedule_description, \
-  def schedule_rule
+  def schedule_description
     real_order.schedule_rule
   end
 

@@ -14,8 +14,6 @@ class Order
     @cart                   = args.fetch(:cart)
     @information            = args.fetch(:information, {})
     @product_id             = args.fetch(:product_id, nil)
-    @delivery_service_class = args.fetch(:delivery_service_class, ::DeliveryService)
-    @product_class          = args.fetch(:product_class, ::Box)
   end
 
   def add_product(product_id)
@@ -62,7 +60,7 @@ class Order
     cart.stock_list.select { |line_item| line_item.id.in?(substitutions) }
   end
 
-  def extras_as_objects(extra_class = Extra)
+  def extras_as_objects
     extra_ids = extras ? extras.keys : []
     product.extras.select { |extra| extra_ids.include?(extra.id) }
   end
@@ -92,7 +90,7 @@ class Order
   end
 
   def product
-    product_class.find(product_id)
+    API.box(product_id)
   end
 
   def extras_list
@@ -148,7 +146,7 @@ class Order
   end
 
   def delivery_service
-    delivery_service_class.find(delivery_service_id) if delivery_service_id
+    API.delivery_service(delivery_service_id) if delivery_service_id
   end
 
   def pickup_point?
@@ -164,9 +162,6 @@ class Order
   end
 
 private
-
-  attr_reader :delivery_service_class
-  attr_reader :product_class
 
   attr_writer :product
   attr_writer :information

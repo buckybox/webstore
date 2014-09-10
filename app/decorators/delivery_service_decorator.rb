@@ -1,5 +1,4 @@
 require 'draper'
-require_relative '../models/delivery_service'
 
 class DeliveryServiceDecorator < Draper::Decorator
   delegate_all
