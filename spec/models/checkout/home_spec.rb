@@ -1,4 +1,4 @@
-require_relative '../../app/models/home'
+require_relative '../../../app/models/checkout/home'
 
 describe Home do
   let(:webstore) { double('webstore') }

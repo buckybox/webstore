@@ -1,4 +1,4 @@
-require_relative '../../app/models/customise_order'
+require_relative '../../../app/models/checkout/customise_order'
 
 describe CustomiseOrder do
   let(:product)         { double('product') }

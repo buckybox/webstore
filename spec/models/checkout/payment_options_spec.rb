@@ -1,4 +1,4 @@
-require_relative '../../app/models/payment_options'
+require_relative '../../../app/models/checkout/payment_options'
 
 describe PaymentOptions do
   class Address; end

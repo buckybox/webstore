@@ -1,4 +1,4 @@
-require_relative '../../app/models/delivery_options'
+require_relative '../../../app/models/checkout/delivery_options'
 
 describe DeliveryOptions do
   let(:distributor)      { double('distributor') }
