@@ -13,8 +13,6 @@ class Factory
 
   def initialize(args)
     @cart = args.fetch(:cart)
-    # raise "cart customer is nil" if @cart.customer.nil?
-    # raise "cart order is nil" if @cart.order.nil?
   end
 
   def assemble

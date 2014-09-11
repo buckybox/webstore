@@ -19,6 +19,7 @@ class ScheduleRule
     end.to_sentence
   end
 
+  # e.g. [0, 3]
   def week_days
     days.map { |day| day % 7 }
   end
@@ -41,6 +42,12 @@ class ScheduleRule
       "#{I18n.t('models.schedule_rule.deliver_fornightly_on')} #{delivery_days}"
     when :monthly
       "#{I18n.t('models.schedule_rule.deliver_monthly_on')} #{week.succ.ordinalize_in_full} #{delivery_days}"
+    end
+  end
+
+  def to_h
+    %i(frequency start_date week_days week).each_with_object({}) do |attr, hash|
+      hash[attr] = public_send(attr)
     end
   end
 end

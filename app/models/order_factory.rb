@@ -1,4 +1,3 @@
-# require_relative '../order'
 # require_relative '../event'
 
 class OrderFactory
@@ -10,14 +9,14 @@ class OrderFactory
   def initialize(args)
     @cart     = args.fetch(:cart)
     @customer = args[:customer]
-    @order    = ::Order.new
+    @order    = RecursiveOpenStruct.new
     derive_data
   end
 
   def assemble
     prepare_order
-    order.save!
-    run_after_commit_actions
+    API.create_order(order.to_json)
+    # run_after_commit_actions # FIXME
     order
   end
 
@@ -29,14 +28,14 @@ private
   attr_reader :webstore_order
 
   def prepare_order
+    order.customer_id               = customer_id
     order.box_id                    = product_id
-    order.account                   = account
-    order.schedule_rule_attributes  = schedule_rule
     order.order_extras              = order_extras
     order.extras_one_off            = extras_one_off
     order.excluded_line_item_ids    = excluded_line_item_ids
     order.substituted_line_item_ids = substituted_line_item_ids
-    order.completed!
+    schedule_rule.to_h.each { |k, v| order.public_send("#{k}=", v) }
+    order.completed = true
     order
   end
 
@@ -44,12 +43,12 @@ private
     webstore_order.product_id
   end
 
-  def account
-    customer.account
+  def customer_id
+    customer.id
   end
 
   def schedule_rule
-    webstore_order.schedule.clone_attributes
+    webstore_order.schedule
   end
 
   def order_extras
@@ -86,9 +85,9 @@ private
     cart.order
   end
 
-  def run_after_commit_actions
-    account.update_attributes!(default_payment_method: payment_method)
+  # def run_after_commit_actions
+  #   account.update_attributes!(default_payment_method: payment_method)
 
-    Event.new_webstore_order(order) if account.distributor.notify_for_new_webstore_order
-  end
+  #   Event.new_webstore_order(order) if account.distributor.notify_for_new_webstore_order
+  # end
 end

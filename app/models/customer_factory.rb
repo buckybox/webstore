@@ -1,5 +1,3 @@
-# require_relative '../customer'
-
 class CustomerFactory
   def self.assemble(args)
     customer_factory = new(args)
@@ -7,16 +5,14 @@ class CustomerFactory
   end
 
   def initialize(args)
-    @cart = args[:cart]
-    raise "cart is nil" if @cart.nil?
-
+    @cart = args.fetch(:cart)
     derive_data
   end
 
   def assemble
     prepare_address
     prepare_customer
-    customer.save!
+    API.create_or_update_customer(customer.to_json)
     customer
   end
 
@@ -29,7 +25,7 @@ private
   attr_reader :address
 
   def prepare_address
-    address.phone         = { number: phone_number, type: phone_type } if phone_number && phone_type
+    address.send("#{phone_type}_phone=", phone_number) if phone_number && !phone_type.blank?
     address.address_1     = address_1     if address_1
     address.address_2     = address_2     if address_2
     address.suburb        = suburb        if suburb
@@ -40,12 +36,13 @@ private
   end
 
   def prepare_customer
+    customer.id                  = existing_customer_id if existing_customer_id
     customer.email               = email               if email
-    customer.distributor_id      = distributor_id      if distributor_id
     customer.delivery_service_id = delivery_service_id if delivery_service_id
-    customer.name                = name                if name
+    customer.first_name          = first_name          if first_name
+    customer.last_name           = last_name           if last_name
     customer.address             = address
-    customer.via_webstore!
+    customer.via_webstore        = true
     customer
   end
 
@@ -85,43 +82,53 @@ private
     information[:email]
   end
 
-  def distributor_id
-    cart.distributor.id
-  end
-
   def delivery_service_id
     information[:delivery_service_id]
   end
 
   def name
-    information[:name]
+    information[:name].split(" ", 2)
+  end
+
+  def first_name
+    name.first
+  end
+
+  def last_name
+    name.last
   end
 
   def derive_data
-    @customer    = get_customer || ::Customer.new
-    @address     = get_address  || customer.build_address
-    @order       = get_order
-    @information = get_order_information
+    @customer    = RecursiveOpenStruct.new
+    @address     = RecursiveOpenStruct.new
+    @order       = cart.order
+    @information = order.information
   end
 
-  def get_customer
-    get_webstore_customer.existing_customer
+  def existing_customer_id
+    cart.customer.existing_customer_id
   end
 
-  def get_webstore_customer
-    cart.customer
-  end
+  # def get_customer
+  #   get_webstore_customer.existing_customer
+  # end
 
-  def get_address
-    customer.address
-  end
+  # def get_webstore_customer
+  #   cart.customer
+  # end
 
-  def get_order
-    cart.order
-  end
+  # def get_address
+  #   address = customer.address
+  #   # address = Address.new(address.to_h) unless address.is_a?(Address)
+  #   address
+  # end
 
-  def get_order_information
-    order.information
-  end
+#   def get_order
+#     cart.order
+#   end
+
+#   def get_order_information
+#     order.information
+#   end
 end
 
