@@ -1,5 +1,9 @@
 # Bucky Box Web Store
 
+**THIS IS A WORK-IN-PROGESS. You should not use this quite yet. A functional version will be released in a couple of weeks.**
+
+Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.com/) platform.
+
 ![Screenshot](doc/screenshot.jpg)
 
 ## Roadmap
