@@ -22,9 +22,9 @@ gem 'rails-i18n'
 gem 'unicorn'
 gem 'puma'
 gem 'crazy_money'
+gem 'ordinalize_full', require: 'ordinalize_full/integer'
 gem 'super_recursive_open_struct'
 gem 'buckybox-api', path: '../buckybox-api-ruby'
-gem 'foreman'
 gem 'fast_blank'
 gem 'figaro'
 gem 'analytical'
@@ -60,10 +60,12 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman', require: false
   gem 'bundler-audit', require: false
   gem 'rubocop', require: false
   gem 'i18n-spec', '>= 0.5.2', require: false
   gem 'simplecov', require: false
+  gem 'brakeman', require: false
 end
 
 group :test do
