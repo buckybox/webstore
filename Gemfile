@@ -65,6 +65,8 @@ group :development do
   gem 'i18n-spec', '>= 0.5.2', require: false
   gem 'simplecov', require: false
   gem 'brakeman', require: false
+  gem 'cane', require: false
+  gem 'discover-unused-partials', require: false
 end
 
 group :test do

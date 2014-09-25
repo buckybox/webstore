@@ -87,6 +87,8 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cane (2.6.2)
+      parallel
     capybara (2.3.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -130,6 +132,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    discover-unused-partials (0.3.1)
     docile (1.1.5)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
@@ -199,6 +202,7 @@ GEM
       mini_portile (= 0.6.0)
     ordinalize_full (1.1.2)
       i18n (>= 0.6.6)
+    parallel (1.3.2)
     parser (2.2.0.pre.4)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
@@ -224,13 +228,13 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0.beta1)
       sprockets-rails (~> 3.0.0.beta1)
-    rails-deprecated_sanitizer (1.0.2)
+    rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.2)
+    rails-dom-testing (1.0.3)
       activesupport
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.0)
+    rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
     rails-i18n (4.0.3)
       i18n (~> 0.6)
@@ -347,11 +351,13 @@ DEPENDENCIES
   bugsnag
   bundler-audit
   byebug
+  cane
   capybara (~> 2.3.0)
   capybara-screenshot
   coffee-rails (~> 4.0.0)
   crazy_money
   cucumber-rails
+  discover-unused-partials
   draper
   fast_blank
   figaro
