@@ -1,8 +1,8 @@
-- if Rails.env.production? || Rails.env.staging?
+- if (Rails.env.production? || Rails.env.staging?) && Figaro.env.pingdom_rum_id.present?
   / Pingdom
   :javascript
     try {
-      var _prum = [['id', '52089352abe53d6347000000'],
+      var _prum = [['id', '#{Figaro.env.pingdom_rum_id}'],
                    ['mark', 'firstbyte', (new Date()).getTime()]];
       (function() {
           var s = document.getElementsByTagName('script')[0]
