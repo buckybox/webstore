@@ -2,5 +2,5 @@
 
 if defined? Naught
   NullObject = Naught.build
-  BlackHole = Naught.build { |config| config.black_hole }
+  BlackHole = Naught.build(&:black_hole)
 end

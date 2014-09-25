@@ -49,21 +49,15 @@ class PaymentOptions < Form
     !customer.guest?
   end
 
-  def only_one_payment_option?
-    distributor.only_one_payment_option?
-  end
+  delegate :only_one_payment_option?, to: :distributor
 
   def phone_types(phone_collection_class = ::PhoneCollection)
     phone_collection_class.types_as_options
   end
 
-  def has_payment_options?
-    cart.has_payment_options?
-  end
+  delegate :has_payment_options?, to: :cart
 
-  def customer_address
-    customer.address
-  end
+  delegate :address, to: :customer, prefix: true
 
   def require_name
     !pickup_point?
@@ -77,9 +71,7 @@ class PaymentOptions < Form
     delivery_service.pickup_point
   end
 
-  def delivery_service
-    customer.delivery_service
-  end
+  delegate :delivery_service, to: :customer
 
   def require_address_1
     !pickup_point? && webstore.require_address_1

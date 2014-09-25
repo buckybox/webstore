@@ -76,4 +76,3 @@ describe "authenticate", :js do
     click_button "Next"
   end
 end
-

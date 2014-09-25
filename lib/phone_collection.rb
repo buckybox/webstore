@@ -54,4 +54,3 @@ private
     { type: type, attribute: attribute }
   end
 end
-

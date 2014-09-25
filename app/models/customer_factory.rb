@@ -131,4 +131,3 @@ private
 #     order.information
 #   end
 end
-

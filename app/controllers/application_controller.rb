@@ -3,18 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  unless Rails.env.development?
-    analytical modules: [:google], use_session_store: true
-  else
+  if Rails.env.development? || Rails.env.test?
     analytical modules: [], use_session_store: true
+  else
+    analytical modules: [:google], use_session_store: true
   end
 
-  before_filter :active_webstore?
-  before_filter :setup_webstore
+  before_action :active_webstore?
+  before_action :setup_webstore
   # before_filter :webstores_customer?
-  before_filter :cart_missing?
-  before_filter :cart_present?
-  before_filter :cart_completed?
+  before_action :cart_missing?
+  before_action :cart_present?
+  before_action :cart_completed?
 
 # protected
 

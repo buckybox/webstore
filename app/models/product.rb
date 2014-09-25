@@ -19,15 +19,9 @@ class Product
     box.webstore_image_url
   end
 
-  def name
-    box.name
-  end
+  delegate :name, to: :box
 
-  def description
-    box.description
-  end
+  delegate :description, to: :box
 
-  def price
-    box.price
-  end
+  delegate :price, to: :box
 end

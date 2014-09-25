@@ -16,7 +16,6 @@ gem 'jquery-turbolinks'
 # gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 
-
 # Our additional Gems are listed below
 gem 'rails-i18n'
 gem 'unicorn'
@@ -83,4 +82,3 @@ end
 group :staging do
   gem 'mail_safe'
 end
-

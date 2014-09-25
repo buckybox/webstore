@@ -7,7 +7,7 @@ describe Authentication < Form do
 
   describe '#options' do
     it 'returns an option for authorisation' do
-      expected_options = [["I'm a new customer", 'new'],["I'm a returning customer", 'returning']]
+      expected_options = [["I'm a new customer", 'new'], ["I'm a returning customer", 'returning']]
       expect(authentication.options).to eq(expected_options)
     end
   end

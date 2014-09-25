@@ -48,49 +48,33 @@ class Cart
     persistence.save(self) and self.id = persistence.id
   end
 
-  def add_product(product_id)
-    order.add_product(product_id)
-  end
+  delegate :add_product, to: :order
 
-  def existing_customer
-    customer.existing_customer
-  end
+  delegate :existing_customer, to: :customer
 
   def webstore
     API.webstore(webstore_id)
   end
 
-  def webstore_parameter_name
-    webstore.parameter_name
-  end
+  delegate :parameter_name, to: :webstore, prefix: true
 
   def stock_list
     webstore.line_items
   end
 
-  def extras_list
-    order.extras_list
-  end
+  delegate :extras_list, to: :order
 
   def add_order_information(information)
     order.add_information(information)
   end
 
-  def product
-    order.product
-  end
+  delegate :product, to: :order
 
-  def delivery_service
-    customer.delivery_service
-  end
+  delegate :delivery_service, to: :customer
 
-  def has_extras?
-    order.has_extras?
-  end
+  delegate :has_extras?, to: :order
 
-  def payment_method
-    order.payment_method
-  end
+  delegate :payment_method, to: :order
 
   def payment_list(payment_options_class = ::PaymentOption)
     payment_options_class.options(webstore)

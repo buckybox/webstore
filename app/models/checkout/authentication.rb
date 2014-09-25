@@ -26,9 +26,7 @@ class Authentication < Form
     options.first.last
   end
 
-  def webstore_id
-    cart.webstore_id
-  end
+  delegate :webstore_id, to: :cart
 
   def to_h
     {
@@ -36,4 +34,3 @@ class Authentication < Form
     }
   end
 end
-

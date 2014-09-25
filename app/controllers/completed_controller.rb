@@ -32,4 +32,3 @@ private
     ::Customer.find(cart.real_customer_id)
   end
 end
-

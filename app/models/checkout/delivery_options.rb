@@ -52,9 +52,7 @@ class DeliveryOptions < Form
     ]
   end
 
-  def cart_has_extras?
-    cart.has_extras?
-  end
+  delegate :has_extras?, to: :cart, prefix: true
 
   def to_h
     {

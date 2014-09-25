@@ -6,4 +6,3 @@ RSpec.configure do |config|
   config.include SetupWebstoreHelpers,  type: :feature
   config.extend SetupWebstoreMacros,    type: :feature
 end
-

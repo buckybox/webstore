@@ -14,18 +14,14 @@ class Checkout
     cart.save
   end
 
-  def customer
-    cart.customer
-  end
+  delegate :customer, to: :cart
 
   def add_product!(product_id)
     cart.add_product(product_id)
     cart.save
   end
 
-  def cart_id
-    cart.id
-  end
+  delegate :id, to: :cart, prefix: true
 
 private
 

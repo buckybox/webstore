@@ -25,4 +25,3 @@ describe CustomerFactory do
     end
   end
 end
-

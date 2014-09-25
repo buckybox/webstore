@@ -12,9 +12,7 @@ class Completed < Form
     real_customer.email
   end
 
-  def distributor_paypal_email
-    distributor.paypal_email
-  end
+  delegate :paypal_email, to: :distributor, prefix: true
 
   def customer_address
     real_customer.address.join('<br>')
@@ -32,17 +30,13 @@ class Completed < Form
     real_order.box.name
   end
 
-  def payment_method
-    cart.payment_method
-  end
+  delegate :payment_method, to: :cart
 
   def payment_recurring?
     !schedule_rule.one_off?
   end
 
-  def amount_due
-    cart.amount_due
-  end
+  delegate :amount_due, to: :cart
 
   def amount_due_without_symbol
     undecorated_cart = cart.decorated? ? cart.object : cart
@@ -65,17 +59,11 @@ class Completed < Form
     end
   end
 
-  def bank_name
-    bank_information.bank_name
-  end
+  delegate :bank_name, to: :bank_information
 
-  def bank_account_name
-    bank_information.bank_account_name
-  end
+  delegate :bank_account_name, to: :bank_information
 
-  def bank_account_number
-    bank_information.bank_account_number
-  end
+  delegate :bank_account_number, to: :bank_information
 
   def customer_number
     real_customer.formated_number
@@ -85,17 +73,13 @@ class Completed < Form
     bank_information.customer_message
   end
 
-  def distributor
-    real_customer.distributor
-  end
+  delegate :distributor, to: :real_customer
 
   def bank_information
     distributor.bank_information.decorate
   end
 
-  def currency
-    distributor.currency
-  end
+  delegate :currency, to: :distributor
 
   def top_up_amount
     nil # cannot top up from the web store checkout

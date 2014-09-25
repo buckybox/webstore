@@ -15,4 +15,3 @@ describe StoreController do
     end
   end
 end
-

@@ -101,13 +101,9 @@ class Order
     product.images.webstore
   end
 
-  def product_name
-    product.name
-  end
+  delegate :name, to: :product, prefix: true
 
-  def product_description
-    product.description
-  end
+  delegate :description, to: :product, prefix: true
 
   def extra_quantity(extra)
     extras[extra.id]
@@ -153,9 +149,7 @@ class Order
     delivery_service.pickup_point
   end
 
-  def delivery_service_name
-    delivery_service.name
-  end
+  delegate :name, to: :delivery_service, prefix: true
 
   def customer
     cart ? cart.customer : Customer.new
@@ -171,7 +165,7 @@ private
   end
 
   def extras_as_hashes
-    extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count:extra_quantity(extra)) }
+    extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count: extra_quantity(extra)) }
   end
 
   def frequency

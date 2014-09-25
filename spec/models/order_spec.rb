@@ -47,7 +47,7 @@ describe Order do
 
   describe "#extra_quantity" do
     it "returns the quantity for an extra in this order" do
-      allow(order).to receive(:extras) { {1 => 1} }
+      allow(order).to receive(:extras) { { 1 => 1 } }
       extra = double("extra", id: 1)
       expect(order.extra_quantity(extra)).to eq(1)
     end

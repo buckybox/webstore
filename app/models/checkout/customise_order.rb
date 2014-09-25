@@ -11,13 +11,9 @@ class CustomiseOrder < Form
   validate :validate_number_of_substitutions
   validate :validate_number_of_extras
 
-  def stock_list
-    cart.stock_list
-  end
+  delegate :stock_list, to: :cart
 
-  def extras_list
-    cart.extras_list
-  end
+  delegate :extras_list, to: :cart
 
   def exclusions?
     product.dislikes
@@ -35,25 +31,19 @@ class CustomiseOrder < Form
     product.extras_unlimited
   end
 
-  def exclusions_limit
-    product.exclusions_limit
-  end
+  delegate :exclusions_limit, to: :product
 
   def exclusions_unlimited?
     product.exclusions_unlimited
   end
 
-  def substitutions_limit
-    product.substitutions_limit
-  end
+  delegate :substitutions_limit, to: :product
 
   def substitutions_unlimited?
     product.substitutions_unlimited
   end
 
-  def extras_limit
-    product.extras_limit
-  end
+  delegate :extras_limit, to: :product
 
   def to_h
     {

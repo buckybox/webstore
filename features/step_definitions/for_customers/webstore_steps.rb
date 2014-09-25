@@ -13,10 +13,10 @@ Then /^I should be asked to customise the box$/ do
 end
 
 Given /^I am asked to customise the box$/ do
-  steps %Q{
+  steps %(
     Given I am on the webstore
     When I select a customisable box to order
-  }
+    )
 
   step "I should be asked to customise the box"
 end
@@ -44,10 +44,10 @@ Then /^I should be asked to select my delivery frequency$/ do
 end
 
 Given "I am asked to select my delivery frequency" do
-  steps %Q{
+  steps %(
     Given I am asked to customise the box
     When I customise the box
-  }
+    )
 
   if page.has_link? "Log in" # we need to log in
     step "I fill in my email address"
@@ -74,10 +74,10 @@ Then /^I should be asked for my delivery address$/ do
 end
 
 Given "I am asked for my delivery address" do
-  steps %Q{
+  steps %(
     Given I am asked to select my delivery frequency
     When I select a monthly delivery frequency
-  }
+    )
 
   step "I should be asked for my delivery address"
 end
@@ -90,7 +90,7 @@ When /^I (fill in|confirm) my delivery address$/ do |action|
 
   expect {
     click_button "Complete Order"
-  }.to change{Order.count}.by(1)
+  }.to change {Order.count}.by(1)
 end
 
 When /^I select the payment option "(.*)"$/ do |option|
@@ -111,11 +111,11 @@ Then /^I should see the details of my order$/ do
 end
 
 Given "I have just ordered a box" do
-  steps %Q{
+  steps %(
     Given I am asked for my delivery address
     When I select the payment option "Cash on Delivery"
     And I fill in my delivery address
-  }
+    )
 end
 
 Given /^I am viewing the (.*) step$/ do |step|
@@ -137,4 +137,3 @@ def webstore_step_path step
   path_helper = "webstore_#{step}_path"
   public_send(path_helper, distributor_parameter_name: Distributor.last.parameter_name)
 end
-

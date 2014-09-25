@@ -73,7 +73,5 @@ class Customer
     existing_customer ? existing_customer.account_balance : CrazyMoney.zero
   end
 
-  def balance_threshold
-    existing_customer.balance_threshold
-  end
+  delegate :balance_threshold, to: :existing_customer
 end
