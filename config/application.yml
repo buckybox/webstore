@@ -1,0 +1,25 @@
+# Bucky Box API
+BUCKYBOX_API_KEY: ""
+BUCKYBOX_API_SECRET: ""
+
+# Airbrake
+AIRBRAKE_HOST: "api.airbrake.io"
+AIRBRAKE_API_KEY: ""
+
+# BugSnag
+BUGSNAG_API_KEY: ""
+
+# Pingdom
+PINGDOM_RUM_ID: ""
+
+# URLs
+MARKETING_SITE_URL: http://www.buckybox.com/
+
+# Email headers
+X_MAILER: 'Bucky Box Mailer (1.0.0) www.buckybox.com'
+
+# Environment-dependant configuration
+production:
+  # Secret for config/secrets.yml
+  SECRET_KEY_BASE: ""
+
