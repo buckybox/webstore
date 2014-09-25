@@ -7,19 +7,19 @@
         #payment.span12
           .row-fluid
             .span12.completed-header.important
-              %span= t('webstore.completed.amount_due')
+              %span= t('completed.amount_due')
               %span.pull-right= cart.amount_due
           .row-fluid
             .span12.text-center.payment-title
-              = t('webstore.completed.pay_by')
+              = t('completed.pay_by')
               = completed.payment_title
           .row-fluid
-            .span9.center-row= render partial: "partials/payments/#{cart.payment_method}", locals: { form_object: completed }
+            .span9.center-row= render partial: "payments/#{cart.payment_method}", locals: { form_object: completed }
 
 .row-fluid
   .span12.text-center
-    = link_to t('webstore.completed.back_to_webstore'), webstore_store_path(completed.distributor.parameter_name), class: 'btn btn-process', id: 'webstore'
-    = link_to t('webstore.completed.my_account'), customer_root_path, class: 'btn btn-process', id: 'webstore-my-account'
+    = link_to t('completed.back_to_webstore'), webstore_path(completed.webstore.id), class: 'btn btn-process', id: 'webstore'
+    = link_to t('completed.my_account'), customer_dashboard_path, class: 'btn btn-process', id: 'webstore-my-account'
 
 .spacer
 

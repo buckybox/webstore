@@ -1,5 +1,3 @@
-# require_relative '../event'
-
 class OrderFactory
   def self.assemble(args)
     order_factory = new(args)
@@ -16,7 +14,6 @@ class OrderFactory
   def assemble
     prepare_order
     API.create_order(order.to_json)
-    # run_after_commit_actions # FIXME
     order
   end
 
@@ -84,10 +81,4 @@ private
   def get_webstore_order
     cart.order
   end
-
-  # def run_after_commit_actions
-  #   account.update_attributes!(default_payment_method: payment_method)
-
-  #   Event.new_webstore_order(order) if account.distributor.notify_for_new_webstore_order
-  # end
 end

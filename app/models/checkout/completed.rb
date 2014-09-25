@@ -1,42 +1,31 @@
 require_relative '../form'
 
 class Completed < Form
-  attribute :real_order
-  attribute :real_customer
-
-  def customer_name
-    real_customer.name
-  end
-
-  def customer_email
-    real_customer.email
-  end
-
-  delegate :paypal_email, to: :distributor, prefix: true
+  delegate :webstore, to: :cart
+  delegate :customer, to: :cart
+  delegate :name, to: :customer, prefix: true
+  delegate :email, to: :customer, prefix: true
+  delegate :number, to: :customer, prefix: true
+  delegate :payment_method, to: :cart
+  delegate :amount_due, to: :cart
+  delegate :bank_information, to: :webstore
+  delegate :bank_name, to: :bank_information
 
   def customer_address
-    real_customer.address.join('<br>')
-  end
-
-  def customer_number
-    real_customer.formated_number
+    customer.address.join('<br>')
   end
 
   def schedule_description
-    real_order.schedule_rule
+    order.schedule_rule
   end
 
   def product_name
-    real_order.box.name
+    order.box.name
   end
-
-  delegate :payment_method, to: :cart
 
   def payment_recurring?
     !schedule_rule.one_off?
   end
-
-  delegate :amount_due, to: :cart
 
   def amount_due_without_symbol
     undecorated_cart = cart.decorated? ? cart.object : cart
@@ -55,33 +44,19 @@ class Completed < Form
     when "bank_deposit"
       bank_information.customer_message
     when "cash_on_delivery"
-      bank_information.cod_payment_message
+      webstore.cod_payment_message
     end
   end
 
-  delegate :bank_name, to: :bank_information
+  def bank_account_name
+    bank_information.account_name
+  end
 
-  delegate :bank_account_name, to: :bank_information
-
-  delegate :bank_account_number, to: :bank_information
-
-  def customer_number
-    real_customer.formated_number
+  def bank_account_number
+    bank_information.account_number
   end
 
   def note
     bank_information.customer_message
-  end
-
-  delegate :distributor, to: :real_customer
-
-  def bank_information
-    distributor.bank_information.decorate
-  end
-
-  delegate :currency, to: :distributor
-
-  def top_up_amount
-    nil # cannot top up from the web store checkout
   end
 end

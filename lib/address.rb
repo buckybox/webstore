@@ -38,4 +38,12 @@ class Address
   def default_phone_type
     phones.default_type
   end
+
+  # Handy helper to update a given number type
+  def phone=(phone)
+    type, number = phone[:type], phone[:number]
+    return unless type.present?
+
+    self.send("#{type}_phone=", number)
+  end
 end
