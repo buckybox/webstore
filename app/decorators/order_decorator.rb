@@ -1,6 +1,5 @@
 require 'draper'
 require_relative '../models/order'
-# require_relative '../extra_decorator'
 
 class OrderDecorator < Draper::Decorator
   delegate_all
@@ -25,8 +24,8 @@ class OrderDecorator < Draper::Decorator
     object.total.with_currency(context[:currency])
   end
 
-  def extras(extra_decorator = ExtraDecorator)
-    extra_decorator.decorate_collection(object.extras_as_objects)
+  def extras
+    object.extras_as_objects
   end
 
   def exclusions

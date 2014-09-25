@@ -56,8 +56,6 @@ class Cart
     API.webstore(webstore_id)
   end
 
-  delegate :parameter_name, to: :webstore, prefix: true
-
   def stock_list
     webstore.line_items
   end
@@ -76,8 +74,8 @@ class Cart
 
   delegate :payment_method, to: :order
 
-  def payment_list(payment_options_class = ::PaymentOption)
-    payment_options_class.options(webstore)
+  def payment_list
+    webstore.payment_options
   end
 
   def has_payment_options?

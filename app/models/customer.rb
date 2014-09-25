@@ -37,10 +37,6 @@ class Customer
     self.class.find(existing_customer_id) if existing_customer_id
   end
 
-  def distributor
-    existing_customer.distributor if existing_customer
-  end
-
   def associate_real_customer(customer_id)
     @existing_customer_id = customer_id
   end
@@ -74,4 +70,10 @@ class Customer
   end
 
   delegate :balance_threshold, to: :existing_customer
+
+  def number
+    raise "No number for guest customer" if guest?
+
+    existing_customer.number
+  end
 end

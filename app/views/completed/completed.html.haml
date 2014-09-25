@@ -1,5 +1,3 @@
-= render partial: 'sidebar'
-
 = render partial: 'payment_instructions', locals: { form_object: cart }
 
 - if cart.negative_closing_balance? && cart.has_payment_options?

@@ -17,7 +17,7 @@ private
 
   def try_sign_in(authentication)
     customers = API.authenticate_customer(
-      { email: authentication.email, password: authentication.password },
+      email: authentication.email, password: authentication.password
     )
 
     session[:current_customers] = customers.to_json
