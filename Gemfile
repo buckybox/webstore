@@ -34,12 +34,12 @@ gem 'hiredis'  # https://github.com/redis/redis-rb#hiredis
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 2.3.2.2' # TODO: upgrade to 3
 gem 'autoprefixer-rails' # Add browser vendor prefixes automatically
-gem 'select2-rails', '>= 3.5.0'
+gem 'select2-rails'
 
-gem 'simple_form',   '>= 3.1.0.rc2' # TODO: update to stable release when out
-gem 'virtus',        '~> 1.0.1'
-gem 'draper',        '~> 1.2.1'
-gem 'naught',        '>= 1'
+gem 'simple_form', '>= 3.1.0.rc2' # TODO: update to stable release when out
+gem 'virtus'
+gem 'draper'
+gem 'naught'
 
 gem 'airbrake'
 gem 'bugsnag'
