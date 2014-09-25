@@ -68,13 +68,13 @@ group :development do
 end
 
 group :test do
-  # gem 'cucumber-rails', require: false
+  gem 'rspec-rails', '>= 3', require: false
+  gem 'cucumber-rails', require: false
   gem 'capybara', '~> 2.3.0', require: false # TODO: fix cukes for 2.4
   gem 'capybara-screenshot'
   gem 'poltergeist', require: false
   # gem 'guard', '>= 2'
   # gem 'guard-rspec', '>= 4'
-  gem 'rspec-rails', '>= 3'
   # gem 'listen'
   # gem 'letter_opener'
 end
