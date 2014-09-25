@@ -1,0 +1,38 @@
+.row-fluid
+  .span12
+    .row-fluid
+      .span12.text-center
+        -# https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/formbasics/
+        -# https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/subscribe_buttons/#id08ADFJ0401I
+        %form{action: "https://www.paypal.com/cgi-bin/webscr", method: "post"}
+          %input{type: "hidden", name: "charset", value: "utf-8"}
+          %input{type: "hidden", name: "currency_code", value: form_object.currency}
+          %input{type: "hidden", name: "email", value: form_object.customer_email}
+          %input{type: "hidden", name: "business", value: form_object.paypal_email}
+          %input{type: "hidden", name: "item_name", value: form_object.product_name}
+          %input{type: "hidden", name: "quantity", value: 1}
+          %input{type: "hidden", name: "return", value: customer_dashboard_url}
+
+          -# NOTE: to help reconciliation
+          %input{type: "hidden", name: "custom", value: form_object.customer_number}
+
+          - if form_object.payment_recurring?
+            -# subscribe button
+            %input{type: "hidden", name: "cmd", value: "_xclick-subscriptions"}
+
+            -# a3 - amount to billed each recurrence
+            %input{type: "hidden", name: "a3", value: form_object.amount_due_without_symbol}
+
+            - recurring_payment_params = PaypalForm.recurring_payment_params(form_object.order_frequency)
+            %input{type: "hidden", name: "p3", value: recurring_payment_params.p3}
+            %input{type: "hidden", name: "t3", value: recurring_payment_params.t3}
+
+            -# Set recurring payments until canceled
+            %input{type: "hidden", name: "src", value: "1"}
+
+          - else
+            %input{type: "hidden", name: "cmd", value: "_xclick"}
+            %input{type: "hidden", name: "amount", value: form_object.amount_due_without_symbol}
+
+          %input{type: "submit", name: "submit", class: "btn btn-default paypal-pay-now", value: t('.pay_now')}
+

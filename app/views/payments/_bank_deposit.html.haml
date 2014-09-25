@@ -1,0 +1,22 @@
+.row-fluid
+  .span12.payment-message
+    .row-fluid
+      .span12
+        %strong
+          =t '.deposit_funds'
+          %span.bank_deposit_name #{form_object.bank_name}
+
+    .row-fluid
+      .span12
+        =t('.account_name') << t('colon')
+        %span.bank_deposit_account_name #{form_object.bank_account_name}
+        %br
+        =t('.account_number') << t('colon')
+        %span.bank_deposit_account_number #{form_object.bank_account_number}
+        %br
+        =t('.reference') << t('colon') << form_object.customer_number
+
+    .row-fluid
+      .span12.note
+        = simple_format(form_object.note, { class: "bank_deposit_customer_message" }, sanitize: false)
+
