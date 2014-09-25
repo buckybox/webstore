@@ -1,7 +1,8 @@
-PATH
-  remote: ../buckybox-api-ruby
+GIT
+  remote: https://github.com/buckybox/buckybox-api-ruby.git
+  revision: 9991cb02cc3ece4a5c92e871c87bc49f913cf686
   specs:
-    buckybox-api (0.1.0)
+    buckybox-api (1.0.0)
       httparty (~> 0.13.1)
       super_recursive_open_struct (~> 1.0.2)
 
