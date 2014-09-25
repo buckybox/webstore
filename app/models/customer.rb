@@ -57,6 +57,10 @@ class Customer
     existing_customer.name unless guest?
   end
 
+  def email
+    existing_customer.email unless guest?
+  end
+
   def delivery_service_id
     existing_customer.delivery_service_id if existing_customer.present? && existing_customer.delivery_service_id.present?
   end

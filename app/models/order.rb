@@ -151,8 +151,16 @@ class Order
 
   delegate :name, to: :delivery_service, prefix: true
 
+  def recurring?
+    frequency != "single"
+  end
+
   def customer
     cart ? cart.customer : Customer.new
+  end
+
+  def frequency
+    information[:frequency]
   end
 
 private
@@ -166,10 +174,6 @@ private
 
   def extras_as_hashes
     extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count: extra_quantity(extra)) }
-  end
-
-  def frequency
-    information[:frequency]
   end
 
   def start_date

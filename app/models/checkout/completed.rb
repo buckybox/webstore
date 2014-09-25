@@ -10,21 +10,23 @@ class Completed < Form
   delegate :amount_due, to: :cart
   delegate :bank_information, to: :webstore
   delegate :bank_name, to: :bank_information
+  delegate :paypal_email, to: :webstore
+  delegate :currency, to: :webstore
 
   def customer_address
     customer.address.join('<br>')
   end
 
-  def schedule_description
-    order.schedule_rule
-  end
-
   def product_name
-    order.box.name
+    cart.order.product.name
   end
 
   def payment_recurring?
-    !schedule_rule.one_off?
+    cart.order.recurring?
+  end
+
+  def order_frequency
+    cart.order.frequency
   end
 
   def amount_due_without_symbol
