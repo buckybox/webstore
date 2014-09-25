@@ -1,8 +1,6 @@
 require_relative '../form'
 
 class PaymentOptions < Form
-  extend Forwardable
-
   attribute :name,            String
   attribute :phone_number,    String
   attribute :phone_type,      String
@@ -29,9 +27,7 @@ class PaymentOptions < Form
 
   attr_reader :address
 
-  def_delegators :webstore,
-    :collect_phone,
-    :collect_delivery_note
+  delegate :collect_phone, :collect_delivery_note, to: :webstore
 
   def name
     super || customer.name
@@ -71,7 +67,7 @@ class PaymentOptions < Form
     delivery_service.pickup_point
   end
 
-  delegate :delivery_service, to: :customer
+  delegate :delivery_service, to: :order
 
   def require_address_1
     !pickup_point? && webstore.require_address_1
@@ -182,7 +178,4 @@ private
     cart.order
   end
 
-  def delivery_service
-    order.delivery_service
-  end
 end
