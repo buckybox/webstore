@@ -32,6 +32,16 @@ en:
     repeat_deliery: Repeat delivery?
     when: When would you like it?
     extra_frequency: What about those extra items?
+    select_delivery_service: "- Select delivery service -"
+    order_frequencies:
+      select: "- Select delivery frequency -"
+      single: Deliver once
+      weekly: Deliver weekly on...
+      fortnightly: Deliver every 2 weeks on...
+      monthly: Deliver monthly
+    extra_frequencies:
+      always: Include Extra Items with EVERY delivery
+      once: Include Extra Items with NEXT delivery only
   payment_options:
     deliver_to: Deliver to
     delivery_note: Delivery note
@@ -45,6 +55,15 @@ en:
     pay_by: Pay by
     no_payment: No payment necessary
     complete_order: Complete Order
+    address:
+      address_1: Address 1
+      address_2: Address 2
+      suburb: Suburb
+      city: City
+      postcode: Postcode
+      delivery_note: Delivery note
+      placeholders:
+        delivery_note: "Delivery instructions such as where to place the package, e.g. \"Place on back porch\""
   completed:
     amount_due: Total amount due
     pay_by: Pay by

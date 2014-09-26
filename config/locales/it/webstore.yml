@@ -32,6 +32,16 @@ it:
     repeat_deliery: Ripeti automaticamente la consegna?
     when: Quando desideri la consegna?
     extra_frequency: Per quanto riguarda i prodotti aggiunti?
+    select_delivery_service: "- Seleziona il giro di consegna -"
+    order_frequencies:
+      select: "- Seleziona la frequenza delle consegne -"
+      single: Consegna singola
+      weekly: Consegna una volta a settimana ogni...
+      fortnightly: Consegna una volta ogni 2 settimane il...
+      monthly: Consegna mensile
+    extra_frequencies:
+      always: Aggiungi i prodotti A TUTTE LE CONSEGNE
+      once: Aggiungi i prodotti SOLO ALLA PROSSIMA CONSEGNA
   payment_options:
     deliver_to: Consegna a
     delivery_note: Note di consegna
@@ -45,6 +55,15 @@ it:
     pay_by: Pagamento con
     no_payment: Non è necessario alcun pagamento
     complete_order: Ordine completo
+    address:
+      address_1: Indirizzo 1
+      address_2: Indirizzo 2
+      suburb: Località
+      city: Comune
+      postcode: CAP
+      delivery_note: Note di consegna
+      placeholders:
+        delivery_note: "Istruzioni per la consegna, per esempio: \"lasciare sul pianerottolo\""
   completed:
     amount_due: Totale importo dovuto
     pay_by: Pagamento con

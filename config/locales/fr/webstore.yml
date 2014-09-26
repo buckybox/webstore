@@ -32,6 +32,16 @@ fr:
     when: Quand désirez vous recevoir cette commande ?
     repeat_deliery: Renouvellement automatique de la commande ?
     extra_frequency: À propos de vos extras
+    select_delivery_service: "- Veuillez sélectionner un service de livraison -"
+    order_frequencies:
+      select: "- Veuillez sélectionner une fréquence de livraison -"
+      single: Livrer cette fois seulement
+      weekly: Livrer chaque semaine le...
+      fortnightly: Livrer toutes les deux semaines le...
+      monthly: Livrer mensuellement
+    extra_frequencies:
+      always: Inclure les extras avec chaque commande
+      once: Inclure les extras avec cette commande seulement
   payment_options:
     deliver_to: Livrer à
     delivery_note: Note pour la livraison
@@ -45,6 +55,15 @@ fr:
     pay_by: Payer par
     no_payment: Pas de paiement nécessaire
     complete_order: Completer la commande
+    address:
+      address_1: Adresse 1
+      address_2: Adresse 2
+      suburb: Région
+      city: Ville
+      postcode: Code postal
+      delivery_note: Note pour la livraison
+      placeholders:
+        delivery_note: Instructions telles que où laisser la commande, par example « déposer dans la véranda »
   completed:
     amount_due: Montant total
     pay_by: Payer par

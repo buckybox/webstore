@@ -37,18 +37,18 @@ class DeliveryOptions < Form
 
   def order_frequencies
     [
-      [I18n.t('models.webstore.delivery_options.order_frequencies.select'),      nil],
-      [I18n.t('models.webstore.delivery_options.order_frequencies.weekly'),      :weekly],
-      [I18n.t('models.webstore.delivery_options.order_frequencies.fortnightly'), :fortnightly],
-      [I18n.t('models.webstore.delivery_options.order_frequencies.monthly'),     :monthly],
-      [I18n.t('models.webstore.delivery_options.order_frequencies.single'),      :single]
+      [I18n.t('delivery_options.order_frequencies.select'),      nil],
+      [I18n.t('delivery_options.order_frequencies.weekly'),      :weekly],
+      [I18n.t('delivery_options.order_frequencies.fortnightly'), :fortnightly],
+      [I18n.t('delivery_options.order_frequencies.monthly'),     :monthly],
+      [I18n.t('delivery_options.order_frequencies.single'),      :single]
     ]
   end
 
   def extra_frequencies
     [
-      [I18n.t('models.webstore.delivery_options.extra_frequencies.always'), false],
-      [I18n.t('models.webstore.delivery_options.extra_frequencies.once'),   true],
+      [I18n.t('delivery_options.extra_frequencies.always'), false],
+      [I18n.t('delivery_options.extra_frequencies.once'),   true],
     ]
   end
 
