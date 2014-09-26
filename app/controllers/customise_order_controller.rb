@@ -1,4 +1,4 @@
-class CustomiseOrderController < ApplicationController
+class CustomiseOrderController < CheckoutController
   def customise_order
     render "customise_order", locals: {
       order: current_order,

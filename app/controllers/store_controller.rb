@@ -1,4 +1,4 @@
-class StoreController < ApplicationController
+class StoreController < CheckoutController
   def home
     home = Home.new(
       webstore: current_webstore,

@@ -1,10 +1,10 @@
 class API
   class << self
-    attr_accessor :webstore_id
+    attr_reader :webstore_id
 
     def webstore(id = nil)
       if id != webstore_id
-        self.webstore_id = id
+        @webstore_id = id
         @api = nil
       end
 

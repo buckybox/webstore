@@ -1,4 +1,4 @@
-class AuthenticationController < ApplicationController
+class AuthenticationController < CheckoutController
   def authentication
     render 'authentication', locals: {
       order: current_order,

@@ -1,18 +1,13 @@
-class SessionController < ActionController::Base
-  # TODO: inherit from ApplicationController
-  protect_from_forgery with: :exception
-
+class SessionController < ApplicationController
   def new
   end
 
   def create
     credentials = params[:session]
-
-    API.webstore_id = current_webstore_id
     result = API.authenticate_customer(credentials)
 
     if result.empty?
-      redirect_to customer_sign_in_path, alert: "Nope"
+      redirect_to customer_sign_in_path, alert: t('authentication.bad_email_password')
     else
       session[:current_customers] = result.to_json
       redirect_to webstore_path
@@ -20,8 +15,7 @@ class SessionController < ActionController::Base
   end
 
   def destroy
-    session[:current_customers] = nil
-    redirect_to webstore_path
+    sign_out
   end
 
 private
