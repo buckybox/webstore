@@ -46,7 +46,10 @@ class ScheduleRule
   end
 
   def to_h
-    %i(frequency start_date week_days week).each_with_object({}) do |attr, hash|
+    attributes = %i(frequency start_date week_days)
+    attributes << :week if frequency != :single
+
+    attributes.each_with_object({}) do |attr, hash|
       hash[attr] = public_send(attr)
     end
   end
