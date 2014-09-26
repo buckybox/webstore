@@ -12,6 +12,16 @@ fr:
     extras: Extras
     discount: Votre remise
     total: Total
+  schedule_rule:
+    deliver_on: Livraison le
+    deliver_weekly_on: Livraison hebdomadaire le
+    deliver_fornightly_on: Livraison bi-mensuelle le
+    deliver_monthly_on: Livraison mensuelle le
+    no_future_deliveries: Aucune future livraison planifiée
+  phone_collection:
+    mobile_phone: Numéro mobile
+    work_phone: Numéro bureau
+    home_phone: Numéro domicile
   sidebar:
     find_us_on_facebook: Retrouvez nous sur Facebook
   customise_order:
@@ -24,6 +34,8 @@ fr:
     enter_email: Entrez votre adresse email
     enter_password: Entrez votre mot de passe
     bad_email_password: Votre email et/ou mot de passe est incorrect.
+    new_customer: Je n'ai pas de compte
+    existing_customer: J'ai déjà un compte
   delivery_options:
     pick_delivery_service: Veuillez choisir un service de livraison
     delivery_details: Détails de livraison

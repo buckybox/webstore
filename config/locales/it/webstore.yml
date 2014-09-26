@@ -12,6 +12,16 @@ it:
     extras: Prodotti
     discount: Il tuo sconto
     total: Totale
+  schedule_rule:
+    deliver_on: Consegna il
+    deliver_weekly_on: Consegna settimanale il
+    deliver_fornightly_on: Consegna ogni due settimane il
+    deliver_monthly_on: Consegna una volta al mese il
+    no_future_deliveries: Non ci sono consegne programmate
+  phone_collection:
+    mobile_phone: Cellulare
+    work_phone: Lavoro
+    home_phone: Casa
   sidebar:
     find_us_on_facebook: Seguici su Facebook
   customise_order:
@@ -24,6 +34,8 @@ it:
     enter_email: Indirizzo email
     enter_password: Password
     bad_email_password: La tua email e/o password risulta errata.
+    new_customer: Nuovo cliente
+    existing_customer: Sono già registrato
   delivery_options:
     pick_delivery_service: Seleziona il giro di consegna
     delivery_details: Dettagli consegna

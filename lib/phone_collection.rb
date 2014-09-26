@@ -22,7 +22,7 @@ class PhoneCollection
       phone = @address.send(attribute)
 
       [
-        I18n.t("models.phone_collection.#{attribute}"),
+        I18n.t("phone_collection.#{attribute}"),
         I18n.t('colon'),
         phone
       ].join unless phone.blank?
@@ -40,7 +40,7 @@ class PhoneCollection
 private
 
   def self.type_option(type)
-    [ I18n.t("models.phone_collection.#{type}_phone"), type ]
+    [ I18n.t("phone_collection.#{type}_phone"), type ]
   end
 
   def default

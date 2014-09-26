@@ -13,8 +13,8 @@ class Authentication < Form
 
   def options
     [
-      [I18n.t('models.webstore.authentication.new_customer'),      NEW_CUSTOMER],
-      [I18n.t('models.webstore.authentication.existing_customer'), EXISTING_CUSTOMER],
+      [I18n.t('authentication.new_customer'),      NEW_CUSTOMER],
+      [I18n.t('authentication.existing_customer'), EXISTING_CUSTOMER],
     ]
   end
 

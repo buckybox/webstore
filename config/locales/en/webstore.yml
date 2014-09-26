@@ -12,6 +12,16 @@ en:
     extras: Extra items
     discount: Your discount
     total: Total
+  schedule_rule:
+    deliver_on: Deliver on
+    deliver_weekly_on: Deliver weekly on
+    deliver_fornightly_on: Deliver fortnightly on
+    deliver_monthly_on: Deliver monthly on the
+    no_future_deliveries: No future deliveries scheduled
+  phone_collection:
+    mobile_phone: Mobile phone
+    work_phone: Work phone
+    home_phone: Home phone
   sidebar:
     find_us_on_facebook: Find us on Facebook
   customise_order:
@@ -24,6 +34,8 @@ en:
     enter_email: Enter your email address
     enter_password: Enter your password
     bad_email_password: Your email and/or password is incorrect.
+    new_customer: I'm a new customer
+    existing_customer: I'm a returning customer
   delivery_options:
     pick_delivery_service: Pick A Delivery Service
     delivery_details: Delivery Details

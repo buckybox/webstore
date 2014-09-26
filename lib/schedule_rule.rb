@@ -35,13 +35,13 @@ class ScheduleRule
   def to_s
     case frequency
     when :single
-      "#{I18n.t('models.schedule_rule.deliver_on')} #{I18n.l(start_date, format: "%d %b")}"
+      "#{I18n.t('schedule_rule.deliver_on')} #{I18n.l(start_date, format: "%d %b")}"
     when :weekly
-      "#{I18n.t('models.schedule_rule.deliver_weekly_on')} #{delivery_days}"
+      "#{I18n.t('schedule_rule.deliver_weekly_on')} #{delivery_days}"
     when :fortnightly
-      "#{I18n.t('models.schedule_rule.deliver_fornightly_on')} #{delivery_days}"
+      "#{I18n.t('schedule_rule.deliver_fornightly_on')} #{delivery_days}"
     when :monthly
-      "#{I18n.t('models.schedule_rule.deliver_monthly_on')} #{week.succ.ordinalize_in_full} #{delivery_days}"
+      "#{I18n.t('schedule_rule.deliver_monthly_on')} #{week.succ.ordinalize_in_full} #{delivery_days}"
     end
   end
 
