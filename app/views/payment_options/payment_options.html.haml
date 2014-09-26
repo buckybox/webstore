@@ -62,7 +62,7 @@
     .row-fluid.webstore-section
       #webstore-payment.span12
         .row-fluid
-          #amount-due.span12
+          #amount-due.span12.completed-header
             .row-fluid.important
               - if cart.negative_closing_balance?
                 .span10= t 'payment_options.amount_due'
