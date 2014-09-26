@@ -6,6 +6,6 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new(:spec) { |t| t.ruby_opts = '-w' }
+RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
