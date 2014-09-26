@@ -7,7 +7,8 @@ module_function
     # p3 - number of time periods between each recurrence
     # t3 - time period (D=days, W=weeks, M=months, Y=years)
 
-    p3, t3 = case frequency.to_sym
+    p3, t3 = \
+    case frequency.to_sym
     when :weekly
       [1, "W"]
     when :fortnightly
