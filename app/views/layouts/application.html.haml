@@ -5,7 +5,7 @@
     = raw analytical.head_prepend_javascript
     %meta{ charset: 'utf-8' }
 
-    %title= content_for?(:title) ? "Bucky Box - #{yield(:title)}" : 'Bucky Box Web Store'
+    %title Bucky Box - #{t('web_store', webstore: current_webstore.name)}
 
     = csrf_meta_tag
 

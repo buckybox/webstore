@@ -1,5 +1,5 @@
 it:
-  web_store: "%{distributor} - online!"
+  web_store: "%{webstore} - Online"
   no_ongoing_order: Inserisci un nuovo ordine.
   cancelled_order: Il tuo ordine precedente è stato cancellato, puoi inserirne uno nuovo.
   order_placed: Il tuo ordine è stato inserito.

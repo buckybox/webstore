@@ -17,7 +17,7 @@ class API
 
     private def api
       @api ||= begin
-        raise "WTF" unless webstore_id
+        raise "Webstore-ID is missing" unless webstore_id
 
         BuckyBox::API.new(
           "API-Key" => Figaro.env.buckybox_api_key,
