@@ -42,8 +42,8 @@
     .row
       = link_to webstore_path(@webstore.id) do
         #company-logo.span12.text-center
-          - if @webstore.company_logo.try(:banner)
-            = image_tag(@webstore.company_logo.banner.url)
+          - if @webstore.company_logo
+            = image_tag(@webstore.company_logo)
           - else
             %h1= @webstore.name
 
