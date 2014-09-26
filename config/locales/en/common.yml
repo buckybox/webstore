@@ -1,0 +1,23 @@
+en:
+  current_locale_en: English
+  current_locale: English
+  colon: ": "
+  hi: Hi
+  thanks: Thanks
+  back: back
+  cancel: cancel
+  log_in: Log in
+  log_out: Log out
+  update: Update
+  next: Next
+  or: or
+  password_forgotten?: Lost your password?
+  delivery_service: Delivery service
+  my_account: My account
+  your_account: Your account
+  deliver_on: Deliver on
+  oops: Oops there was an issue
+  no_js: Oops! You must enable JavaScript in your browser to be able to order from this webstore.
+  cash_on_delivery: Cash on Delivery
+  bank_deposit: Bank Deposit
+  paypal_cc: PayPal / Credit Card

@@ -1,0 +1,69 @@
+it:
+  web_store: "%{distributor} - online!"
+  no_ongoing_order: Inserisci un nuovo ordine.
+  cancelled_order: Il tuo ordine precedente è stato cancellato, puoi inserirne uno nuovo.
+  order_placed: Il tuo ordine è stato inserito.
+  halted_customer: Il tuo saldo si trova sotto la soglia minima, non effettueremo alcuna consegna fino a nuovo pagamento.
+  product:
+    order: Ordine
+  order:
+    summary: I tuoi ordini
+    exclude_and_substitute: Escludi & sostituisci
+    extras: Prodotti
+    discount: Il tuo sconto
+    total: Totale
+  sidebar:
+    find_us_on_facebook: Seguici su Facebook
+  customise_order:
+    customise_product: Personalizza la tua cassetta
+    exclude_items: Escludi questi prodotti...
+    substitute_with_items: E sostituiscili con...
+    add_unlimited_extras: Aggiungi tutti i prodotti che desideri
+    add_n_extras: Aggiungi fino a %{limit} prodotti
+  authentication:
+    enter_email: Indirizzo email
+    enter_password: Password
+    bad_email_password: La tua email e/o password risulta errata.
+  delivery_options:
+    pick_delivery_service: Seleziona il giro di consegna
+    delivery_details: Dettagli consegna
+    pickup_details: Dettagli punto di ritiro
+    select_best: Scegli il giro di consegna che più ti è comodo
+    repeat_deliery: Ripeti automaticamente la consegna?
+    when: Quando desideri la consegna?
+    extra_frequency: Per quanto riguarda i prodotti aggiunti?
+  payment_options:
+    deliver_to: Consegna a
+    delivery_note: Note di consegna
+    change_delivery_address: Modifica il mio indirizzo di consegna
+    name: Il tuo nome
+    enter_name: Inserisci il tuo nome
+    phone: Il tuo numero di telefono
+    enter_phone: Inserisci il tuo numero di telefono
+    amount_due: Totale importo dovuto
+    in_credit: Il tuo conto ha un saldo positivo
+    pay_by: Pagamento con
+    no_payment: Non è necessario alcun pagamento
+    complete_order: Ordine completo
+  completed:
+    amount_due: Totale importo dovuto
+    pay_by: Pagamento con
+    back_to_webstore: Torna alla vetrina
+    my_account: Il mio profilo
+  payment_instructions:
+    account_details: Dettagli profilo
+    existing_balance: Il tuo saldo attuale
+    this_order: Questo ordine
+    closing_balance: Saldo finale
+  payments:
+    bank_deposit:
+      deposit_funds: Perfavore effettuare bonifico bancario al seguente conto corrente
+      account_name: Intestato a
+      account_number: IBAN
+      reference: Causale
+    paypal:
+      pay_now: Paga ora
+      top_up: Carica account
+      amount: Importo
+      amount_to_top_up: Importo da caricare
+

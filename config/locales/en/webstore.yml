@@ -55,3 +55,15 @@ en:
     existing_balance: Your existing account balance with us
     this_order: This order
     closing_balance: Closing balance
+  payments:
+    bank_deposit:
+      deposit_funds: Please deposit funds into
+      account_name: Account Name
+      account_number: Account Number
+      reference: Reference
+    paypal:
+      pay_now: Pay now
+      top_up: Add credit to my account
+      amount: Amount
+      amount_to_top_up: Amount to top up
+

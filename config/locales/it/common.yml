@@ -1,0 +1,23 @@
+it:
+  current_locale_en: Italian
+  current_locale: Italiano
+  colon: ": "
+  hi: Ciao
+  thanks: Grazie
+  back: indietro
+  cancel: chiudi
+  log_in: Log in
+  log_out: Log out
+  update: Modifica
+  next: Seguente
+  or: o
+  password_forgotten?:  Hai dimenticato la tua password?
+  delivery_service: Servizio di consegna
+  my_account: Il mio account
+  your_account: Il tuo account
+  deliver_on: Consegna il
+  oops: Oops qualcosa è andato storto
+  no_js: Oops! Devi abilitare JavaScript nel tuo browser per poter ordinare da questo sito.
+  cash_on_delivery: Pagamento alla consegna
+  bank_deposit: Bonifico bancario
+  paypal_cc: PayPal / Carta di credito
