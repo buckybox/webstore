@@ -16,13 +16,12 @@ class PaymentOptions < Form
   validates_presence_of :name,           if: :require_name
   validates_presence_of :phone_number,   if: :require_phone
   validates_presence_of :phone_type,     if: :require_phone
-  validates_presence_of :address_1,      if: -> { require_address_1 }
-  validates_presence_of :address_2,      if: -> { require_address_2 }
-  validates_presence_of :suburb,         if: -> { require_suburb }
-  validates_presence_of :city,           if: -> { require_city }
-  validates_presence_of :postcode,       if: -> { require_postcode }
-  validates_presence_of :delivery_note,  if: -> { require_delivery_note }
-  # FIXME need lambda?
+  validates_presence_of :address_1,      if: :require_address_1
+  validates_presence_of :address_2,      if: :require_address_2
+  validates_presence_of :suburb,         if: :require_suburb
+  validates_presence_of :city,           if: :require_city
+  validates_presence_of :postcode,       if: :require_postcode
+  validates_presence_of :delivery_note,  if: :require_delivery_note
   validates_presence_of :payment_method, if: :has_payment_options?
 
   attr_reader :address
