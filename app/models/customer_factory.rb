@@ -13,7 +13,6 @@ class CustomerFactory
     prepare_address
     prepare_customer
     API.create_or_update_customer(customer.to_json)
-    customer
   end
 
 private
