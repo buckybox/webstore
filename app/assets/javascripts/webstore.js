@@ -1,26 +1,21 @@
 $(function() {
   $('#buy_extra_include_extras').change(function() {
-    if($(this).is(':checked')) {
-      $('#webstore_extras').show();
-    }
-    else {
-      $('#webstore_extras').hide();
-    }
+    $('#webstore_extras').toggle($(this).is(':checked'));
   });
 
   if($('#webstore-items').length > 0) {
     var container = $('#webstore-items');
 
-    container.imagesLoaded(function(){
+    container.imagesLoaded(function() {
       $('#webstore-items').masonry({
         itemSelector : '.webstore-item',
         isResizable: true,
         columnWidth: function(containerWidth) {
           var columns;
 
-          if(containerWidth == 870) { columns = 3; }
-          else if(containerWidth == 700) { columns = 3; }
-          else if(containerWidth == 538) { columns = 2; }
+          if(containerWidth === 870) { columns = 3; }
+          else if(containerWidth === 700) { columns = 3; }
+          else if(containerWidth === 538) { columns = 2; }
           else { columns = 1; }
 
           return containerWidth / columns;
@@ -47,7 +42,7 @@ $(function() {
     );
 
     $('#customise_order_has_customisations').click(function() {
-      checkbox_toggle(this, $('#webstore-customisations'));
+      $('#webstore-customisations').toggle($(this).is(":checked"));
     });
 
     dislikes.change(function() {
@@ -73,7 +68,7 @@ $(function() {
 
       disable_the_others_options(likes_input, dislikes_input);
 
-      if(dislikes_input.find('option:selected').length == 0) {
+      if(dislikes_input.find('option:selected').length === 0) {
         likes_input.find('option:selected').each(function() {
           $(this).removeAttr('selected');
           likes_input.hide();
@@ -111,24 +106,18 @@ $(function() {
       selected_extra.closest('select').select2('val', '');
       selected_extra.closest('select').trigger("liszt:updated");
 
-      total_options = extras_input.find('option').length - 1;
-      disabled_options = extras_input.find('option:disabled').length;
+      var total_options = extras_input.find('option').length - 1;
+      var disabled_options = extras_input.find('option:disabled').length;
 
-      if(total_options == disabled_options) { extras_input.closest('tr').hide(); }
+      if(total_options === disabled_options) { extras_input.closest('tr').hide(); }
     });
   }
 
   if($('#webstore-login').length > 0) {
-    function password_field_visibility() {
-      var show_password_field = ($('#registered input[type=radio]:checked').val() != 'new');
-      $('#password-field').toggle(show_password_field);
-    }
-
-    password_field_visibility();
-
     $('#registered input[type="radio"]').click(function() {
-      password_field_visibility();
-    });
+      var show_password_field = ($('#registered input[type=radio]:checked').val() !== 'new');
+      $('#password-field').toggle(show_password_field);
+    }).trigger('click');
   }
 
   if($('#webstore-delivery_service').length > 0) {
@@ -153,7 +142,7 @@ $(function() {
     });
 
     $('.order-days input').click({weeks: weeks}, function(event) {
-      var checkbox = $(event.target)
+      var checkbox = $(event.target);
       var selected_week = checkbox.closest('tr');
 
       if (checkbox.is(':checked')) {
@@ -161,7 +150,7 @@ $(function() {
         var other_weeks = event.data.weeks.not(selected_week);
         other_weeks.find('input').prop('disabled', 'true').removeAttr('checked');
 
-      } else if (selected_week.find('input:checked').length == 0) {
+      } else if (selected_week.find('input:checked').length === 0) {
         // enable all rows if this is the only checked day
         weeks.find('input[data-enabled]').removeAttr('disabled');
       }
@@ -177,8 +166,6 @@ $(function() {
   }
 
   if($('#webstore-address').length > 0) {
-    var webstore_address = $('#webstore-address');
-
     // Force form to show if there are any fields that are invalid so HTML5 validation can point
     // them out instead of silently failing because it can't focus on the input
     // http://stackoverflow.com/questions/6944783/does-the-handling-of-hidden-form-controls-in-html5-make-sense
@@ -201,7 +188,7 @@ function update_days() {
   var frequency = $('.delivery_service-schedule-frequency:visible').val();
   var weeks = $('.delivery_service-schedule-inputs:visible .order-days tr');
   var week_numbers = weeks.find('td:first-child');
-  var other_weeks = $('.delivery_service-schedule-inputs:not(:visible) .order-days tr')
+  var other_weeks = $('.delivery_service-schedule-inputs:not(:visible) .order-days tr');
   other_weeks.find('input').prop('disabled', 'true').removeAttr('checked');
 
   if (!frequency || frequency === 'single') {
@@ -248,9 +235,9 @@ function update_day_checkboxes(start_date) {
   }
 
   // pre-select first day if none already picked
-  if (weeks.find('input[type="checkbox"]:checked').length == 0) {
+  if (weeks.find('input[type="checkbox"]:checked').length === 0) {
     var checkbox_selector = '#day-' + date.getDay() + ' input[type="checkbox"]';
-    selected_checkbox = delivery_service_schedule_inputs.find(checkbox_selector);
+    var selected_checkbox = delivery_service_schedule_inputs.find(checkbox_selector);
     selected_checkbox.prop('checked', true);
   }
 }
@@ -278,11 +265,22 @@ function update_delivery_service_information(delivery_service_id) {
   update_day_checkboxes(delivery_service_schedule.find('.schedule-start-date'));
 }
 
-function checkbox_toggle(checkbox, div) {
-  if(checkbox.checked) {
-    div.show();
-  }
-  else {
-    div.hide();
-  }
+function disable_the_others_options(affecting_input, effected_input) {
+  enable_all_options(effected_input);
+  effected_input.find('select').select2('close');
+  affecting_input.find('option:selected').each(function() {
+    var counter = effected_input.find("option[value='" + $(this).val() + "']");
+    counter.attr('disabled', 'disabled');
+    counter.removeAttr('selected');
+  });
+
+  effected_input.find('select').trigger("liszt:updated");
 }
+
+function enable_all_options(input){
+  input.find('option').each(function() {
+    $(this).removeAttr('disabled');
+  });
+  input.find('select').trigger('liszt:updated');
+}
+
