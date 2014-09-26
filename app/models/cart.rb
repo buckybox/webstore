@@ -105,9 +105,6 @@ class Cart
     customer_id = factory.customer.id
     customer.associate_real_customer(customer_id)
     completed!
-
-    send_confirmation_email(factory.order) if webstore.email_customer_on_new_webstore_order
-
     factory
   end
 
@@ -137,12 +134,5 @@ private
   def completed!
     @completed = true
     save
-  end
-
-  def send_confirmation_email(order)
-    CustomerMailer.delay(
-      priority: Figaro.env.delayed_job_priority_high,
-      queue: "#{__FILE__}:#{__LINE__}",
-    ).order_confirmation(order)
   end
 end
