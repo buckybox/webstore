@@ -75,7 +75,7 @@ en:
       postcode: Postcode
       delivery_note: Delivery note
       placeholders:
-        delivery_note: "Delivery instructions such as where to place the package, e.g. \"Place on back porch\""
+        delivery_note: Delivery instructions such as where to place the package
   completed:
     amount_due: Total amount due
     pay_by: Pay by
