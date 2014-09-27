@@ -15,9 +15,6 @@ PINGDOM_RUM_ID: ""
 # URLs
 MARKETING_SITE_URL: http://www.buckybox.com/
 
-# Email headers
-X_MAILER: 'Bucky Box Mailer (1.0.0) www.buckybox.com'
-
 # Environment-dependant configuration
 production:
   # Secret for config/secrets.yml
