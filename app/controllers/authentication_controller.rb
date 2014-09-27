@@ -43,7 +43,7 @@ private
   end
 
   def failed_authentication(authentication)
-    flash[:alert] = t('authentication.bad_email_password')
+    flash.now[:alert] = t('authentication.bad_email_password')
     render 'authentication', locals: {
       order: current_order,
       authentication: authentication,

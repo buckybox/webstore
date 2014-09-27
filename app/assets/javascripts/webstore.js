@@ -114,10 +114,9 @@ $(function() {
   }
 
   if($('#webstore-login').length > 0) {
-    $('#registered input[type="radio"]').click(function() {
-      var show_password_field = ($('#registered input[type=radio]:checked').val() !== 'new');
-      $('#password-field').toggle(show_password_field);
-    }).trigger('click');
+    set_password_field_visibility();
+
+    $('#registered input[type="radio"]').click(set_password_field_visibility);
   }
 
   if($('#webstore-delivery_service').length > 0) {
@@ -282,5 +281,10 @@ function enable_all_options(input){
     $(this).removeAttr('disabled');
   });
   input.find('select').trigger('liszt:updated');
+}
+
+function set_password_field_visibility() {
+  var returning = $('#registered input[type=radio]:checked').val() !== 'new';
+  $('#password-field').toggle(returning);
 }
 
