@@ -24,7 +24,7 @@ private
   attr_reader :address
 
   def prepare_address
-    address.phone = {type: phone_type, number: phone_number} if phone_number && !phone_type.blank?
+    address.phone = { type: phone_type, number: phone_number } if phone_number && !phone_type.blank?
     address.address_1     = address_1     if address_1
     address.address_2     = address_2     if address_2
     address.suburb        = suburb        if suburb

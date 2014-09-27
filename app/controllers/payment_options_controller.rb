@@ -18,7 +18,7 @@ private
 
   def successful_payment_options
     webstore_factory = current_cart.run_factory
-    customer_sign_in(webstore_factory.customer, no_track: current_admin.present?)
+    # customer_sign_in(webstore_factory.customer) # TODO: authenticate new customers here
 
     redirect_to next_step, notice: t('order_placed')
   end
