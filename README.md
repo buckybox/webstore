@@ -10,21 +10,28 @@ Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.co
 
 ![Screenshot](doc/screenshot.jpg)
 
-## Roadmap
-
 ## Ruby version
 
-See .travis.yml
+See [.travis.yml](https://github.com/buckybox/webstore/blob/master/.travis.yml).
 
 ## Configuration
 
-## How to run the test suite
+See [config/application.yml](https://github.com/buckybox/webstore/blob/master/config/application.yml).
+The required settings are `BUCKYBOX_API_KEY`, `BUCKYBOX_API_SECRET` and `SECRET_KEY_BASE`. You can leave the rest blank.
 
-## Services (job queues, cache servers, search engines, etc.)
+## Services
+
+You must have [Redis](http://redis.io/) running. It is used as a cache and for transient data.
 
 ## Deployment instructions
 
+TBD
+
 ## Contributing
+
+TBD
+
+We look forward to seeing your pull requests!
 
 ## License
 
