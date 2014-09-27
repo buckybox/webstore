@@ -24,7 +24,7 @@ private
   attr_reader :address
 
   def prepare_address
-    address.send("#{phone_type}_phone=", phone_number) if phone_number && !phone_type.blank?
+    address.phone = {type: phone_type, number: phone_number} if phone_number && !phone_type.blank?
     address.address_1     = address_1     if address_1
     address.address_2     = address_2     if address_2
     address.suburb        = suburb        if suburb
@@ -107,26 +107,4 @@ private
   def existing_customer_id
     cart.customer.existing_customer_id
   end
-
-  # def get_customer
-  #   get_webstore_customer.existing_customer
-  # end
-
-  # def get_webstore_customer
-  #   cart.customer
-  # end
-
-  # def get_address
-  #   address = customer.address
-  #   # address = Address.new(address.to_h) unless address.is_a?(Address)
-  #   address
-  # end
-
-#   def get_order
-#     cart.order
-#   end
-
-#   def get_order_information
-#     order.information
-#   end
 end
