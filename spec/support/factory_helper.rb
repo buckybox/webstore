@@ -1,30 +1,30 @@
 module FactoryHelper
-  def distributor
-    @distributor ||= Fabricate(:distributor)
+  def webstore
+    @webstore ||= double(:webstore, id: 1)
   end
 
   def box
     return @box if @box
 
-    box = Fabricate(:customisable_box, distributor: distributor)
-    2.times { Fabricate(:extra, distributor: distributor) }
+    extras = 2.times.map { |i| double(:extra, id: i, webstore: webstore) }
+    box = double(:customisable_box, id: 1, webstore: webstore, extras: extras)
 
     @box ||= box
   end
 
   def exclusion
-    @exclusion ||= Fabricate(:line_item, distributor: distributor)
+    @exclusion ||= double(:line_item, id: 1, webstore: webstore)
   end
 
   def substitution
-    @substitution ||= Fabricate(:line_item, distributor: distributor)
+    @substitution ||= double(:line_item, id: 1, webstore: webstore)
   end
 
   def cart
     return @cart if @cart
 
     cart = Cart.new(
-      distributor_id: distributor.id,
+      webstore_id: webstore.id,
       customer: {
         cart: double("Cart"),
         existing_customer_id: nil,

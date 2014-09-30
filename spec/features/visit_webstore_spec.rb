@@ -1,19 +1,17 @@
-require_relative "../support/webstore_helper"
-
 describe "visit the webstore homepage", :js do
   include StoreHelpers
 
   before do
     make_a_webstore_with_products
-    visit webstore_store_path(@distributor.parameter_name)
+    visit webstore_path(@webstore.id)
   end
 
-  it "shows the distributor information" do
-    expect(page).to have_content(distributor_name)
-    expect(page).to have_content(distributor_city)
-    expect(page).to have_content(distributor_sidebar_description)
+  it "shows the webstore information" do
+    expect(page).to have_content(webstore_name)
+    expect(page).to have_content(webstore_city)
+    expect(page).to have_content(webstore_sidebar_description)
     expect(page).to have_content("Find us on Facebook")
-    expect(page).to have_content(distributor.phone)
+    expect(page).to have_content(webstore.phone)
   end
 
   describe "products" do
@@ -32,7 +30,7 @@ describe "visit the webstore homepage", :js do
 
   context "logged in" do
     before do
-      @customer = Fabricate(:customer, distributor: @distributor)
+      @customer = Fabricate(:customer, webstore: @webstore)
       simulate_customer_sign_in
     end
 

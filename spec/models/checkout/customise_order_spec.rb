@@ -24,48 +24,48 @@ describe CustomiseOrder do
 
   describe '#exclusions?' do
     it 'returns true if a product allows exclusions' do
-      allow(product).to receive(:dislikes?) { true }
+      allow(product).to receive(:dislikes) { true }
       expect(customise_order.exclusions?).to be true
     end
 
     it 'returns true if a product allows exclusions' do
-      allow(product).to receive(:dislikes?) { false }
+      allow(product).to receive(:dislikes) { false }
       expect(customise_order.exclusions?).to be false
     end
   end
 
   describe '#substitutions?' do
     it 'returns true if a product allows substitutions' do
-      allow(product).to receive(:likes?) { true }
+      allow(product).to receive(:likes) { true }
       expect(customise_order.substitutions?).to be true
     end
 
     it 'returns false if a product allows substitutions' do
-      allow(product).to receive(:likes?) { false }
+      allow(product).to receive(:likes) { false }
       expect(customise_order.substitutions?).to be false
     end
   end
 
   describe '#extras_allowed?' do
     it 'returns true if a product allows extras' do
-      allow(product).to receive(:extras_allowed?) { true }
+      allow(product).to receive(:extras_allowed) { true }
       expect(customise_order.extras_allowed?).to be true
     end
 
     it 'returns false if a product allows extras' do
-      allow(product).to receive(:extras_allowed?) { false }
+      allow(product).to receive(:extras_allowed) { false }
       expect(customise_order.extras_allowed?).to be false
     end
   end
 
   describe '#extras_unlimited?' do
     it 'returns true if a product allows unlimited extras' do
-      allow(product).to receive(:extras_unlimited?) { true }
+      allow(product).to receive(:extras_unlimited) { true }
       expect(customise_order.extras_unlimited?).to be true
     end
 
     it 'returns false if a product allows unlimited extras' do
-      allow(product).to receive(:extras_unlimited?) { false }
+      allow(product).to receive(:extras_unlimited) { false }
       expect(customise_order.extras_unlimited?).to be false
     end
   end

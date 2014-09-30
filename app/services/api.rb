@@ -17,13 +17,14 @@ class API
 
     private def api
       @api ||= begin
-        raise "Webstore-ID is missing" unless webstore_id
-
-        BuckyBox::API.new(
+        params = {
           "API-Key" => Figaro.env.buckybox_api_key,
           "API-Secret" => Figaro.env.buckybox_api_secret,
-          "Webstore-ID" => webstore_id,
-        )
+        }
+
+        params.merge!("Webstore-ID" => webstore_id) if webstore_id
+
+        BuckyBox::API.new(params)
       end
     end
   end

@@ -14,7 +14,6 @@ describe Cart do
     context 'when a cart is found' do
       it 'returns restored cart' do
         allow(cart).to receive(:id) { 1 }
-        # allow(persistence).to receive(:collected_data) { cart }
         allow(persistence_class).to receive(:find) { persistence }
         expect(Cart.find(1, persistence_class).new?).to be false
       end

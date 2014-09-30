@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/buckybox/buckybox-api-ruby.git
-  revision: 9991cb02cc3ece4a5c92e871c87bc49f913cf686
+  revision: 9c2f338d537e88c45adf8b4614ce7644c4fafb90
   specs:
-    buckybox-api (1.0.0)
-      httparty (~> 0.13.1)
-      super_recursive_open_struct (~> 1.0.2)
+    buckybox-api (1.1.0)
+      crazy_money (>= 1.2.1)
+      httparty (>= 0.13.1)
+      super_recursive_open_struct (>= 1.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -112,6 +113,8 @@ GEM
     coffee-script-source (1.8.0)
     colored (1.2)
     columnize (0.8.9)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     crazy_money (1.2.1)
       currency_data (>= 1.1.0)
       i18n (>= 0.6.11)
@@ -193,7 +196,7 @@ GEM
       actionmailer (>= 3.0.0)
     mime-types (2.3)
     mini_portile (0.6.0)
-    minitest (5.4.1)
+    minitest (5.4.2)
     multi_json (1.10.1)
     multi_test (0.1.1)
     multi_xml (0.5.5)
@@ -278,6 +281,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
+    safe_yaml (1.0.3)
     sass (3.4.5)
     sass-rails (5.0.0.beta1)
       railties (>= 4.0.0, < 5.0)
@@ -332,6 +336,9 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    webmock (1.18.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
     websocket-driver (0.3.4)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -387,3 +394,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   virtus
+  webmock

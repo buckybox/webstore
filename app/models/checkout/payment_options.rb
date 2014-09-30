@@ -27,6 +27,9 @@ class PaymentOptions < Form
   attr_reader :address
 
   delegate :collect_phone, :collect_delivery_note, to: :webstore
+  delegate :has_payment_options?, to: :cart
+  delegate :address, to: :customer, prefix: true
+  delegate :delivery_service, to: :order
 
   def name
     super || customer.name
@@ -44,15 +47,9 @@ class PaymentOptions < Form
     !customer.guest?
   end
 
-  delegate :only_one_payment_option?, to: :distributor
-
   def phone_types(phone_collection_class = ::PhoneCollection)
     phone_collection_class.types_as_options
   end
-
-  delegate :has_payment_options?, to: :cart
-
-  delegate :address, to: :customer, prefix: true
 
   def require_name
     !pickup_point?
@@ -65,8 +62,6 @@ class PaymentOptions < Form
   def pickup_point?
     delivery_service.pickup_point
   end
-
-  delegate :delivery_service, to: :order
 
   def require_address_1
     !pickup_point? && webstore.require_address_1
@@ -176,5 +171,4 @@ private
   def order
     cart.order
   end
-
 end

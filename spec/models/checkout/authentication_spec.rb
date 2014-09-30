@@ -18,10 +18,10 @@ describe Authentication < Form do
     end
   end
 
-  describe '#distributor_parameter_name' do
-    it 'returns the parameter name of the distributor associated with this cart' do
-      allow(cart).to receive(:distributor_parameter_name) { 'distributor-name' }
-      expect(authentication.distributor_parameter_name).to eq('distributor-name')
+  describe '#webstore_id' do
+    it 'returns the name of the web store associated with this cart' do
+      allow(cart).to receive(:webstore_id) { 'webstore-name' }
+      expect(authentication.webstore_id).to eq('webstore-name')
     end
   end
 

@@ -8,9 +8,9 @@ describe PaymentOptions do
   let(:address)         { double('address', 'phone=' => nil) }
   let(:address_class)   { double('address_class', new: address, address_attributes: %w()) }
   let(:customer)        { double('customer', guest?: true, existing_customer: nil) }
-  let(:distributor)     { double('distributor', city: "Wellington") }
-  let(:order)           { double('order', delivery_service: double(pickup_point?: false)) }
-  let(:cart)            { double('cart', distributor: distributor, customer: customer, order: order) }
+  let(:webstore)        { double('webstore', city: "Wellington") }
+  let(:order)           { double('order', delivery_service: double(pickup_point: false)) }
+  let(:cart)            { double('cart', webstore: webstore, customer: customer, order: order) }
   let(:args)            { { cart: cart, address_class: address_class } }
   let(:payment_options) { PaymentOptions.new(args) }
 
@@ -50,16 +50,9 @@ describe PaymentOptions do
     end
   end
 
-  describe '#only_one_payment_option?' do
-    it 'returns true if there is only one payment option for this distributor' do
-      allow(distributor).to receive(:only_one_payment_option?) { true }
-      expect(payment_options.only_one_payment_option?).to be true
-    end
-  end
-
   describe '#collect_phone' do
-    it 'returns true if the distributor requires a phone number' do
-      allow(distributor).to receive(:collect_phone) { true }
+    it 'returns true if the webstore requires a phone number' do
+      allow(webstore).to receive(:collect_phone) { true }
       expect(payment_options.collect_phone).to be true
     end
   end
@@ -74,42 +67,42 @@ describe PaymentOptions do
 
   describe '#require_phone' do
     it 'returns true if a phone number is required' do
-      allow(distributor).to receive(:require_phone) { true }
+      allow(webstore).to receive(:require_phone) { true }
       expect(payment_options.require_phone).to be true
     end
   end
 
   describe '#require_address_1' do
     it 'returns true if the first address line is required' do
-      allow(distributor).to receive(:require_address_1) { true }
+      allow(webstore).to receive(:require_address_1) { true }
       expect(payment_options.require_address_1).to be true
     end
   end
 
   describe '#require_address_2' do
     it 'returns true if the second address line is required' do
-      allow(distributor).to receive(:require_address_2) { true }
+      allow(webstore).to receive(:require_address_2) { true }
       expect(payment_options.require_address_2).to be true
     end
   end
 
   describe '#require_suburb' do
     it 'returns true if the suburb is required' do
-      allow(distributor).to receive(:require_suburb) { true }
+      allow(webstore).to receive(:require_suburb) { true }
       expect(payment_options.require_suburb).to be true
     end
   end
 
   describe '#require_city' do
     it 'returns true if the city is required' do
-      allow(distributor).to receive(:require_city) { true }
+      allow(webstore).to receive(:require_city) { true }
       expect(payment_options.require_city).to be true
     end
   end
 
   describe '#require_postcode' do
     it 'returns true if the postcode is required' do
-      allow(distributor).to receive(:require_postcode) { true }
+      allow(webstore).to receive(:require_postcode) { true }
       expect(payment_options.require_postcode).to be true
     end
   end

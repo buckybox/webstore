@@ -11,6 +11,8 @@ class Authentication < Form
   validates_presence_of :email
   validates_format_of :email, with: /.+@.+\..+/i
 
+  delegate :webstore_id, to: :cart
+
   def options
     [
       [I18n.t('authentication.new_customer'),      NEW_CUSTOMER],
@@ -25,8 +27,6 @@ class Authentication < Form
   def default_option
     options.first.last
   end
-
-  delegate :webstore_id, to: :cart
 
   def to_h
     {

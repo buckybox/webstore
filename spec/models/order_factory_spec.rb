@@ -6,7 +6,7 @@ describe OrderFactory do
   describe "#assemble" do
     before do
       # pass in a real existing customer
-      args[:customer] = Fabricate(:customer)
+      args[:customer] = double(:customer, id: 1)
 
       @factory = OrderFactory.new(args)
       @new_order = @factory.assemble

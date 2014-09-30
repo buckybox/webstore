@@ -1,16 +1,18 @@
 module StoreHelpers
   def self.included(base)
-    base.let(:distributor_name)                { 'Local Veg' }
-    base.let(:distributor_city)                { 'Wellington' }
-    base.let(:distributor_sidebar_description) { 'Local farm.' }
-    base.let(:distributor_facebook_url)        { 'http://fb.com' }
+    base.let(:webstore_id)                  { 'local-veg' }
+    base.let(:webstore_name)                { 'Local Veg' }
+    base.let(:webstore_city)                { 'Wellington' }
+    base.let(:webstore_sidebar_description) { 'Local farm.' }
+    base.let(:webstore_facebook_url)        { 'http://fb.com' }
 
-    base.let(:distributor) do
-      Fabricate(:distributor,
-        name:                 distributor_name,
-        city:                 distributor_city,
-        sidebar_description:  distributor_sidebar_description,
-        facebook_url:         distributor_facebook_url
+    base.let(:webstore) do
+      double(:webstore,
+        id:                   webstore_id,
+        name:                 webstore_name,
+        city:                 webstore_city,
+        sidebar_description:  webstore_sidebar_description,
+        facebook_url:         webstore_facebook_url
       )
     end
 
@@ -19,8 +21,8 @@ module StoreHelpers
     base.let(:product_price)       { 2.00 }
 
     base.let(:product) do
-      Fabricate(:box,
-        distributor:  distributor,
+      double(:box,
+        webstore:     webstore,
         name:         product_name,
         description:  product_description,
         price:        product_price
@@ -32,9 +34,9 @@ module StoreHelpers
     base.let(:hidden_product_price)       { 3.00 }
 
     base.let(:hidden_product) do
-      Fabricate(:box,
+      double(:box,
         hidden:       true,
-        distributor:  distributor,
+        webstore:     webstore,
         name:         hidden_product_name,
         description:  hidden_product_description,
         price:        hidden_product_price
@@ -43,7 +45,7 @@ module StoreHelpers
   end
 
   def make_a_webstore_with_products
-    @distributor ||= distributor
-    setup_a_webstore(product) # Send at least one product so it doesn't make its own
+    @webstore ||= webstore
+    # setup_a_webstore(product) # Send at least one product so it doesn't make its own
   end
 end

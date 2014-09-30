@@ -67,23 +67,6 @@ describe DeliveryOptions do
     end
   end
 
-  describe '#dates_grid' do
-    it 'returns a set of selectable dates' do
-      dates_grid = [[double('date_tuple_1')], [double('date_tuple_1')]]
-      delivery_dates_class = double('delivery_dates_class', dates_grid: dates_grid)
-      expect(delivery_options.dates_grid(delivery_dates_class)).to eq(dates_grid)
-    end
-  end
-
-  describe '#start_dates' do
-    it 'returns a list of start dates' do
-      start_dates = [double('date_tuple_1'), double('date_tuple_2')]
-      delivery_dates_class = double('delivery_dates_class', start_dates: start_dates)
-      delivery_service = double('delivery_service')
-      expect(delivery_options.start_dates(delivery_service, delivery_dates_class)).to eq(start_dates)
-    end
-  end
-
   describe '#cart_has_extras' do
     it 'returns true if this cart allows extras' do
       allow(cart).to receive(:has_extras?) { true }

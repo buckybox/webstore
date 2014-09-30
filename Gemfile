@@ -75,6 +75,7 @@ group :test do
   gem 'capybara', '~> 2.3.0', require: false # TODO: fix cukes for 2.4
   gem 'capybara-screenshot'
   gem 'poltergeist', require: false
+  gem 'webmock', require: false
   # gem 'guard', '>= 2'
   # gem 'guard-rspec', '>= 4'
   # gem 'listen'

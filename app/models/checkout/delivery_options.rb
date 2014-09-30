@@ -10,6 +10,8 @@ class DeliveryOptions < Form
   validates_presence_of :delivery_service, :start_date, :frequency
   validates_presence_of :days, if: -> { frequency != "single" }
 
+  delegate :has_extras?, to: :cart, prefix: true
+
   def existing_delivery_service_id
     customer.delivery_service_id
   end
@@ -51,8 +53,6 @@ class DeliveryOptions < Form
       [I18n.t('delivery_options.extra_frequencies.once'),   true],
     ]
   end
-
-  delegate :has_extras?, to: :cart, prefix: true
 
   def to_h
     {

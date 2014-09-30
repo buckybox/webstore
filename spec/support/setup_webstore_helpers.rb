@@ -1,6 +1,6 @@
 module SetupWebstoreHelpers
   def setup_a_webstore(product = nil)
-    @distributor ||= Fabricate(:distributor)
+    @distributor ||= double(:distributor)
     add_required_elements(product)
     activate_webstore
     @distributor.save
@@ -19,14 +19,14 @@ private
   end
 
   def add_a_product
-    Fabricate(:box, distributor: @distributor)
+    double(:box, distributor: @distributor)
   end
 
   def add_bank_information
-    Fabricate(:bank_information, distributor: @distributor)
+    double(:bank_information, distributor: @distributor)
   end
 
   def add_a_delivery_service
-    Fabricate(:delivery_service, distributor: @distributor)
+    double(:delivery_service, distributor: @distributor)
   end
 end
