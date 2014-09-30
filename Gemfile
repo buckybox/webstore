@@ -44,7 +44,7 @@ gem 'puma'
 # gem 'rack-mini-profiler'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'byebug', platform: :mri
   # gem 'web-console', '>= 2.0.0.beta2' # NOTE: doesn't seem to work properly in threaded environment
   gem 'better_errors'
   gem 'binding_of_caller' # to get REPL for better_errors
