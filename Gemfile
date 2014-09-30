@@ -6,24 +6,19 @@ gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 gem 'rails-html-sanitizer', '~> 1.0' # Use Rails Html Sanitizer for HTML sanitization
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 gem 'jquery-rails' # Use jquery as the JavaScript library
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'jquery-turbolinks'
+# gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'jquery-turbolinks'
 # gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 
 # Our additional Gems are listed below
 gem 'rails-i18n'
-gem 'unicorn'
-gem 'puma'
 gem 'crazy_money'
 gem 'ordinalize_full', require: 'ordinalize_full/integer'
 gem 'super_recursive_open_struct'
-gem 'buckybox-api', git: 'https://github.com/buckybox/buckybox-api-ruby.git'
+gem 'buckybox-api'
 gem 'fast_blank'
 gem 'figaro'
 gem 'analytical'
@@ -41,21 +36,18 @@ gem 'virtus'
 gem 'draper'
 gem 'naught'
 
-gem 'airbrake'
-gem 'bugsnag'
+# Optional Gems are listed below
+gem 'puma'
+# gem 'unicorn'
+# gem 'airbrake'
+# gem 'bugsnag'
 # gem 'rack-mini-profiler'
 
 group :development, :test do
-  # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exceptions page and /console in development
   # gem 'web-console', '>= 2.0.0.beta2' # NOTE: doesn't seem to work properly in threaded environment
   gem 'better_errors'
   gem 'binding_of_caller' # to get REPL for better_errors
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  # gem 'spring'
 end
 
 group :development do
@@ -83,5 +75,5 @@ group :test do
 end
 
 group :staging do
-  gem 'mail_safe'
+  # gem 'mail_safe'
 end
