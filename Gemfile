@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0.beta1'
+gem 'rails', '4.2.0.beta2'
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
@@ -45,7 +45,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  # gem 'web-console', '>= 2.0.0.beta2' # NOTE: doesn't seem to work properly in threaded environment
+  # gem 'web-console', '>= 2.0.0.beta4' # NOTE: doesn't seem to work properly in threaded environment
   gem 'better_errors'
   gem 'binding_of_caller' # to get REPL for better_errors
 end
