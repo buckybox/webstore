@@ -130,7 +130,19 @@ describe PaymentOptions do
       payment_options.postcode       = '123'
       payment_options.complete       = true
 
-      expect(payment_options.to_h).to eq({ name: "name", phone_number: "123", phone_type: "mobile", address_1: "12 St", address_2: nil, suburb: "burb", postcode: "123", city: "London", delivery_note: nil, payment_method: nil, complete: true })
+      expect(payment_options.to_h).to eq(
+        name: "name",
+        phone_number: "123",
+        phone_type: "mobile",
+        address_1: "12 St",
+        address_2: nil,
+        suburb: "burb",
+        postcode: "123",
+        city: "London",
+        delivery_note: nil,
+        payment_method: nil,
+        complete: true,
+      )
     end
   end
 end
