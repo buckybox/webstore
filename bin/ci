@@ -7,14 +7,15 @@ export SPEC_OPTS="--format p"
 
 bundle install
 
-bundle exec bundle-audit update
-bundle exec bundle-audit check
-
 bundle exec rubocop --rails --display-cop-names
-$(dirname $0)/check_i18n
-bundle exec rake
-
 bundle exec discover-unused-partials
 bundle exec brakeman -qz --no-progress -w3
 bundle exec cane --no-doc --style-measure 160 --abc-max 30
+
+$(dirname $0)/check_i18n
+
+bundle exec bundle-audit update
+bundle exec bundle-audit check
+
+bundle exec rake
 
