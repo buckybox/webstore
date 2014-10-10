@@ -6,7 +6,7 @@ describe Cart do
   class DeliveryService; end
 
   let(:persistence_class) { double('persistence_class') }
-  let(:persistence)       { double('persistence') }
+  let(:persistence)       { double('persistence', cart: cart) }
   let(:args)              { { webstore_id: 1, persistence_class: persistence_class } }
   let(:cart)              { Cart.new(args) }
 
@@ -69,46 +69,22 @@ describe Cart do
   end
 
   describe '#save' do
+    before do
+      allow(persistence).to receive(:id) { 1 }
+      allow(cart).to receive(:find_or_create_persistence) { persistence }
+    end
 
-    context 'saving a new cart' do
-      before do
-        allow(persistence).to receive(:id) { nil }
-        allow(cart).to receive(:find_or_create_persistence) { persistence }
-      end
-
-      context 'when save works' do
-        it 'saves a cart and returns an true' do
-          allow(persistence).to receive(:save) { true }
-          expect(cart.save).to be true
-        end
-      end
-
-      context 'when save fails' do
-        it 'returns 0' do
-          allow(persistence).to receive(:save) { false }
-          expect(cart.save).to be false
-        end
+    context 'when save works' do
+      it 'saves a cart and returns an true' do
+        allow(persistence).to receive(:save) { true }
+        expect(cart.save).to be_truthy
       end
     end
 
-    context 'after finding an existing cart' do
-      before do
-        allow(persistence).to receive(:id) { 1 }
-        allow(cart).to receive(:find_or_create_persistence) { persistence }
-      end
-
-      context 'when save works' do
-        it 'saves a cart and returns an true' do
-          allow(persistence).to receive(:save) { true }
-          expect(cart.save).to be true
-        end
-      end
-
-      context 'when save fails' do
-        it 'returns 0' do
-          allow(persistence).to receive(:save) { false }
-          expect(cart.save).to be false
-        end
+    context 'when save fails' do
+      it 'returns 0' do
+        allow(persistence).to receive(:save) { false }
+        expect(cart.save).to be_falsy
       end
     end
   end

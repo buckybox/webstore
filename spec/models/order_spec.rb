@@ -14,15 +14,6 @@ describe Order do
   let(:args)                   { { cart: cart, delivery_service_class: delivery_service_class, product_class: product_class } }
   let(:order)                  { Order.new(args) }
 
-  describe "#product_image" do
-    it "returns a product image" do
-      allow(product).to receive(:webstore_image_url) { "image.png" }
-      order = Order.new(cart: nil)
-      allow(order).to receive(:product) { product }
-      expect(order.product_image).to eq("image.png")
-    end
-  end
-
   describe "#product_name" do
     it "returns a product name" do
       allow(product).to receive(:name) { "product name" }
@@ -72,7 +63,7 @@ describe Order do
   describe "#schedule" do
     it "returns the schedule for when this order should be delivered" do
       schedule = double("schedule")
-      schedule_builder_class = double("schedule_builder_class", build: schedule)
+      schedule_builder_class = double("schedule_builder_class", new: schedule)
       expect(order.schedule(schedule_builder_class)).to eq(schedule)
     end
   end
@@ -99,19 +90,7 @@ describe Order do
     end
 
     it "returns the total cost of the order" do
-      expect(order.total).to eq(10 + 10 + 5 + 1)
-    end
-  end
-
-  describe "#delivery_service" do
-    it "returns nil if there is no delivery service found" do
-      allow(delivery_service_class).to receive(:find_by) { nil }
-      expect(order.delivery_service).to be_nil
-    end
-
-    it "returns a delivery service if one is found" do
-      allow(delivery_service_class).to receive(:find_by) { delivery_service }
-      expect(order.delivery_service).to eq(delivery_service)
+      expect(order.total).to eq(10 + 10 + 5)
     end
   end
 end

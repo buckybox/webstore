@@ -17,7 +17,7 @@ class Customer
   end
 
   def self.find(id)
-    API.customer(id, embed: :address)
+    API.customer(id, embed: "address")
   end
 
   def initialize(args = {})

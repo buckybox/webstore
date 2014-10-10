@@ -1,5 +1,3 @@
-#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
-
 require "draper"
 require_relative "order"
 require_relative "customer"
@@ -11,6 +9,15 @@ class Cart
   attr_reader :order
   attr_reader :customer
   attr_reader :webstore_id
+
+  delegate :delivery_service,  to: :customer
+  delegate :existing_customer, to: :customer
+
+  delegate :add_product,    to: :order
+  delegate :extras_list,    to: :order
+  delegate :product,        to: :order
+  delegate :has_extras?,    to: :order
+  delegate :payment_method, to: :order
 
   def self.find(id, persistence_class = CartPersistence)
     persistence = persistence_class.find(id)
@@ -46,10 +53,6 @@ class Cart
     persistence.save(self) and self.id = persistence.id
   end
 
-  delegate :add_product, to: :order
-
-  delegate :existing_customer, to: :customer
-
   def webstore
     API.webstore(webstore_id)
   end
@@ -58,19 +61,9 @@ class Cart
     webstore.line_items
   end
 
-  delegate :extras_list, to: :order
-
   def add_order_information(information)
     order.add_information(information)
   end
-
-  delegate :product, to: :order
-
-  delegate :delivery_service, to: :customer
-
-  delegate :has_extras?, to: :order
-
-  delegate :payment_method, to: :order
 
   def payment_list
     webstore.payment_options
