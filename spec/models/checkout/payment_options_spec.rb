@@ -1,10 +1,6 @@
 require_relative '../../../app/models/checkout/payment_options'
 
 describe PaymentOptions do
-  class Address; end
-  class PhoneCollection; end
-  class PaymentOption; end
-
   let(:address)         { double('address', 'phone=' => nil) }
   let(:address_class)   { double('address_class', new: address, address_attributes: %w()) }
   let(:customer)        { double('customer', guest?: true, existing_customer: nil) }

@@ -1,21 +1,19 @@
 require_relative '../../../app/models/checkout/checkout'
 
 describe Checkout do
-  let(:distributor)        { double('distributor') }
+  let(:webstore)           { double('webstore') }
   let(:logged_in_customer) { double('logged_in_customer') }
   let(:cart)               { double('cart').as_null_object }
   let(:cart_class)         { double('cart_class', new: cart) }
   let(:checkout)           { Checkout.new(args) }
   let(:args) do
     {
-      distributor: distributor,
+      webstore: webstore,
       logged_in_customer: logged_in_customer,
       cart_class: cart_class,
       existing_customer: nil,
     }
   end
-
-  class Cart; end
 
   describe '#customer' do
     it 'returns a customer' do

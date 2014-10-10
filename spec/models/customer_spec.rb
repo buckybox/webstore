@@ -1,8 +1,6 @@
 require_relative "../../app/models/customer"
 
 describe Customer do
-  class Customer; end
-
   let(:cart)              { double("cart") }
   let(:existing_customer) { double("existing_customer") }
   let(:customer_class)    { double("customer_class", find: existing_customer) }

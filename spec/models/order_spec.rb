@@ -1,11 +1,6 @@
 require_relative "../../app/models/order"
 
 describe Order do
-  class DeliveryService; end
-  class Box; end
-  class Distributor; end
-  class Customer; end
-
   let(:delivery_service)       { double("delivery_service") }
   let(:delivery_service_class) { double("delivery_service_class") }
   let(:product)                { double("product") }

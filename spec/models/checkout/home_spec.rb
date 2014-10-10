@@ -12,9 +12,6 @@ describe Home do
     }
   end
 
-  class Product; end
-  class Customer; end
-
   describe '#products' do
     it 'returns an array of products' do
       products = [double('products')]

@@ -1,10 +1,6 @@
 require_relative '../../app/models/cart'
 
 describe Cart do
-  class CartPersistence; end
-  class Box; end
-  class DeliveryService; end
-
   let(:persistence_class) { double('persistence_class') }
   let(:persistence)       { double('persistence', cart: cart) }
   let(:args)              { { webstore_id: 1, persistence_class: persistence_class } }

@@ -1,9 +1,9 @@
 require_relative '../../app/models/product'
 
 describe Product do
-  let(:distributor) { double('distributor') }
+  let(:webstore)    { double('webstore') }
   let(:box)         { double('box') }
-  let(:args)        { { distributor: distributor, box: box } }
+  let(:args)        { { webstore: webstore, box: box } }
   let(:product)     { Product.new(args) }
 
   describe '#image' do
