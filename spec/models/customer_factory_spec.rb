@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CustomerFactory do
   include FactoryHelper
 
-  describe "#assemble" do
+  describe "#assemble", :api do
     before do
       @factory = CustomerFactory.new(args)
       @new_customer = @factory.assemble

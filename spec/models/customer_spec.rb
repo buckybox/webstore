@@ -8,7 +8,7 @@ describe Customer do
   let(:customer)          { Customer.new(args) }
 
   describe "#delivery_service_id" do
-    it "returns a delivery service id" do
+    it "returns a delivery service id", :api do
       delivery_service = double("delivery_service", id: 3)
       allow(existing_customer).to receive(:delivery_service) { delivery_service }
       expect(customer.delivery_service_id).to eq(3)

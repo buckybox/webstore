@@ -27,7 +27,7 @@ describe DeliveryOptions do
   end
 
   describe '#delivery_services' do
-    it 'returns an array of delivery_services' do
+    it 'returns an array of delivery_services', :api do
       expected_delivery_services = [double('delivery_service')]
       allow(webstore).to receive(:delivery_services) { expected_delivery_services }
       expect(delivery_options.delivery_services).to eq(expected_delivery_services)
@@ -35,7 +35,7 @@ describe DeliveryOptions do
   end
 
   describe '#delivery_service_list' do
-    it 'returns a list of delivery_service options for selection' do
+    it 'returns a list of delivery_service options for selection', :api do
       delivery_service = double('delivery_service', id: 3, name_days_and_fee: 'delivery_service wed $5.00')
       allow(webstore).to receive(:delivery_services) { [delivery_service] }
 

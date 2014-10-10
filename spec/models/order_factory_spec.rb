@@ -3,7 +3,7 @@ require 'spec_helper'
 describe OrderFactory do
   include FactoryHelper
 
-  describe "#assemble" do
+  describe "#assemble", :api do
     before do
       # pass in a real existing customer
       args[:customer] = double(:customer, id: 1)
