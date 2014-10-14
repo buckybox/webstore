@@ -8,27 +8,9 @@
     %title Bucky Box - #{t('web_store', webstore: current_webstore.name)}
 
     = csrf_meta_tag
-
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-
-    - if Rails.env.production?
-      = favicon_link_tag
-    - elsif Rails.env.staging?
-      = favicon_link_tag '/favicon-gray.ico'
-    - else
-      = favicon_link_tag '/favicon-red.ico'
-
-    - if Rails.env.test?
-      -# http://stackoverflow.com/questions/14488836/capybara-2-having-trouble-interacting-with-bootstrap-modals
-      :css
-        .modal.fade, .fade {
-          -webkit-transition: opacity 0.01s;
-          -moz-transition: opacity 0.01s;
-          -ms-transition: opacity 0.01s;
-          -o-transition: opacity 0.01s;
-          transition: opacity 0.01s;
-        }
+    = favicon_link_tag
 
     :javascript
       // custom JS I18n helper - works like Rails' one
@@ -64,7 +46,7 @@
       .row
         #content-information.span3
           #information
-            = render partial: 'sidebar'#, locals: { customer: current_customer }
+            = render partial: 'sidebar'
         #content-body.span9
           .row-fluid
             .span12= yield
