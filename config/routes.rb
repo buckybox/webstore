@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
     get "/", to: "store#home", as: "webstore"
     get "/start_checkout/:product_id", to: "store#start_checkout", as: "start_checkout"
-    get "/admin", to: redirect("/distributors/sign_in") # NOTE: temporary redirect
+    get "/admin", to: redirect("/distributor") # NOTE: temporary redirect
 
     scope module: :customise_order do
       get  "/customise_order", action: "customise_order"
