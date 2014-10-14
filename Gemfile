@@ -41,7 +41,7 @@ gem 'naught'
 gem 'puma'
 # gem 'unicorn'
 # gem 'airbrake'
-# gem 'bugsnag'
+gem 'bugsnag'
 # gem 'rack-mini-profiler'
 
 group :development, :test do

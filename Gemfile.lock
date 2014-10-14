@@ -56,7 +56,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
-    brakeman (2.6.2)
+    brakeman (2.6.3)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
@@ -71,6 +71,9 @@ GEM
       crazy_money (>= 1.2.1)
       httparty (>= 0.13.1)
       super_recursive_open_struct (>= 1.0.2)
+    bugsnag (2.5.0)
+      httparty (>= 0.6, < 1.0)
+      multi_json (~> 1.0)
     builder (3.2.2)
     bundler-audit (0.3.1)
       bundler (~> 1.2)
@@ -338,6 +341,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.2.2)
   brakeman
   buckybox-api
+  bugsnag
   bundler-audit
   byebug
   cane
