@@ -1,6 +1,8 @@
 require_relative '../form'
 
 class PaymentOptions < Form
+  PAID = 'paid'.freeze
+
   attribute :name,            String
   attribute :phone_number,    String
   attribute :phone_type,      String
