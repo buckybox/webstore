@@ -1,5 +1,3 @@
-#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
-
 require 'draper'
 require_relative 'order_price'
 
@@ -9,6 +7,10 @@ class Order
   attr_reader :cart
   attr_reader :product_id
   attr_reader :information
+
+  delegate :name, to: :product, prefix: true
+  delegate :description, to: :product, prefix: true
+  delegate :name, to: :delivery_service, prefix: true
 
   def initialize(args = {})
     @cart                   = args.fetch(:cart)
@@ -101,10 +103,6 @@ class Order
     product.images.webstore
   end
 
-  delegate :name, to: :product, prefix: true
-
-  delegate :description, to: :product, prefix: true
-
   def extra_quantity(extra)
     extras[extra.id]
   end
@@ -149,7 +147,6 @@ class Order
     delivery_service.pickup_point
   end
 
-  delegate :name, to: :delivery_service, prefix: true
 
   def recurring?
     frequency != "single"
