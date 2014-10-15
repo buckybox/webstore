@@ -10,7 +10,7 @@ Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.co
 
 ## Configuration
 
-See [config/application.yml](https://github.com/buckybox/webstore/blob/master/config/application.yml).
+See [config/application.yml](https://github.com/buckybox/webstore/blob/master/config/application.yml.example).
 The required settings are `BUCKYBOX_API_KEY`, `BUCKYBOX_API_SECRET` and `SECRET_KEY_BASE`. You can leave the rest blank.
 
 ## Services
@@ -18,6 +18,10 @@ The required settings are `BUCKYBOX_API_KEY`, `BUCKYBOX_API_SECRET` and `SECRET_
 You must have [Redis](http://redis.io/) running - it is used for transient data.
 
 ## Deployment instructions
+
+```bash
+cp config/application.yml.example config/application.yml
+```
 
 TBD
 
