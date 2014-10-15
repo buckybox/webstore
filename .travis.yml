@@ -12,5 +12,4 @@ matrix:
     - rvm: rbx-head
 notifications:
   email:
-    on_success: always
     on_failure: always
