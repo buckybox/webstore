@@ -147,7 +147,6 @@ class Order
     delivery_service.pickup_point
   end
 
-
   def recurring?
     frequency != "single"
   end
