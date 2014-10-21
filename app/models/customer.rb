@@ -1,5 +1,3 @@
-#NOTE: Can be cleaned up with SimpleDelegator or Forwardable in std Ruby lib.
-
 require 'draper'
 
 class Customer
@@ -11,6 +9,8 @@ class Customer
   GUEST_HALTED     = false
   GUEST_DISCOUNTED = false
   GUEST_ACTIVE     = false
+
+  delegate :balance_threshold, to: :existing_customer
 
   def self.exists?(args)
     API.customers(args).present?
@@ -72,8 +72,6 @@ class Customer
   def account_balance
     existing_customer ? existing_customer.account_balance : CrazyMoney.zero
   end
-
-  delegate :balance_threshold, to: :existing_customer
 
   def number
     raise "No number for guest customer" if guest?
