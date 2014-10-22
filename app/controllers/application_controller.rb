@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 protected
 
   helper_method def current_webstore
-    @webstore ||= API.webstore(current_webstore_id)
+    @current_webstore ||= API.webstore(current_webstore_id)
   end
   alias_method :set_current_webstore, :current_webstore
 

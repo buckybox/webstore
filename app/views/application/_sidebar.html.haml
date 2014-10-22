@@ -1,29 +1,29 @@
-- if @webstore.company_team_image
+- if current_webstore.company_team_image
   .row-fluid
-    = image_tag(@webstore.company_team_image, class: 'img-polaroid span12')
+    = image_tag(current_webstore.company_team_image, class: 'img-polaroid span12')
 
 .row-fluid
   .span12
     %h1#webstore_name= current_webstore.name
     .webstore-information-section
-      %h4= @webstore.city
+      %h4= current_webstore.city
 
-    - unless @webstore.sidebar_description.blank?
+    - unless current_webstore.sidebar_description.blank?
       .webstore-information-section
-        = simple_format(@webstore.sidebar_description)
+        = simple_format(current_webstore.sidebar_description)
 
     .webstore-information-section
-      - unless @webstore.facebook_url.blank?
+      - unless current_webstore.facebook_url.blank?
         .row-fluid.facebook
-          = link_to "https://#{@webstore.facebook_url}", id: 'facebook-link', target: "_blank" do
+          = link_to "https://#{current_webstore.facebook_url}", id: 'facebook-link', target: "_blank" do
             .span2
               %i.facebook-icon
             .span10
               %div= I18n.t("sidebar.find_us_on_facebook")
-      - unless @webstore.phone.blank?
+      - unless current_webstore.phone.blank?
         .row-fluid.phone
-          = link_to "tel:#{@webstore.phone.gsub(/[^\d\+]/ , '')}" do
+          = link_to "tel:#{current_webstore.phone.gsub(/[^\d\+]/ , '')}" do
             .span2
               %i.phone-icon
             .span10
-              %div= @webstore.phone
+              %div= current_webstore.phone
