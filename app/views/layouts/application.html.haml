@@ -38,7 +38,7 @@
   %body
     = raw analytical.body_prepend_javascript
 
-    = render partial: 'layouts/banner', locals: { distributor: @distributor }
+    = render partial: 'layouts/banner'
 
     .container
       #customer-messages= render_flash_messages(flash)
