@@ -31,8 +31,8 @@
                   - other_accounts.each do |customer|
                     %li{ class: "#{'signed-out' unless customer.in?(current_customers)}", title: "Signed #{customer.in?(current_customers) ? 'in' : 'out'}" }
                       %i.icon-user.icon-white
-                      = link_to customer_can_swith_account? ? url_for(switch_to_distributor: customer.distributor.parameter_name) : 'javascript:alert("You cannot switch account now because you have an ongoing order.")' do
-                        = customer.distributor.name
+                      = link_to customer_can_swith_account? ? url_for(switch_to_distributor: customer.webstore.id) : 'javascript:alert("You cannot switch account now because you have an ongoing order.")' do
+                        = customer.webstore.name
 
         - else
           = link_to t('log_in'), customer_sign_in_url(webstore_id: current_webstore.id)
