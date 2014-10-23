@@ -47,6 +47,8 @@ class Completed < Form
       bank_information.customer_message
     when "cash_on_delivery"
       webstore.cod_payment_message
+    else
+      nil
     end
   end
 
