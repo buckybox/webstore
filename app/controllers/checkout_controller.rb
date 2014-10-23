@@ -54,7 +54,7 @@ protected
   def cart_missing?
     return if current_cart
 
-    if !action.in?(%w(home start_checkout))
+    unless action.in?(%w(home start_checkout))
       redirect_to webstore_path, alert: t('no_ongoing_order')
     end
   end
