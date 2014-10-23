@@ -11,7 +11,7 @@ class Product
     @box         = args[:box]
   end
 
-  def self.build_webstore_products(webstore)
+  def self.build_webstore_products
     API.boxes
   end
 

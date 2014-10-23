@@ -8,7 +8,7 @@ class Home
   end
 
   def products(product_class = Product)
-    @products ||= product_class.build_webstore_products(webstore)
+    @products ||= product_class.build_webstore_products
   end
 
   def customer(customer_class = Customer)

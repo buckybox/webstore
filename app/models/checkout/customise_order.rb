@@ -58,7 +58,7 @@ protected
   def sanitize_attributes(attributes)
     attributes.fetch("dislikes", []).delete("")
     attributes.fetch("likes", []).delete("")
-    attributes.fetch("extras", {}).delete_if do |key, value|
+    attributes.fetch("extras", {}).delete_if do |_key, value|
       value = value.to_i
       value <= 0 || value > max_line_items_count
     end

@@ -5,9 +5,6 @@ Lint/AmbiguousRegexpLiteral:
 Lint/EndAlignment:
   Enabled: false
 
-Lint/UnusedBlockArgument:
-  Enabled: false
-
 Lint/UnusedMethodArgument:
   Enabled: false
 
