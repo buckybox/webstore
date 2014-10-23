@@ -79,7 +79,7 @@ protected
   end
 
   def extras_count
-    extras.values.inject(&:+) || 0
+    extras.values.reduce(:+) || 0
   end
 
 private

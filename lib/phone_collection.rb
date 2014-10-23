@@ -1,7 +1,7 @@
 # Class to store multiple phone numbers
 # Each number is associated with a type (mobile, home, work)
 class PhoneCollection
-  TYPES = %w(mobile home work).inject({}) do |hash, type|
+  TYPES = %w(mobile home work).reduce({}) do |hash, type|
     hash.merge!(type => "#{type}_phone")
   end.freeze
 
