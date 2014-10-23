@@ -41,7 +41,7 @@ describe Order do
 
   describe "#extras_price" do
     it "returns the total price of the extras" do
-      expected_array = [ double("tuple1"), double("tuple2") ]
+      expected_array = [double("tuple1"), double("tuple2")]
       allow(order).to receive(:extras_as_hashes)
       order_price_class = double("order_price_class", extras_price: expected_array)
       expect(order.extras_price(order_price_class)).to eq(expected_array)

@@ -90,7 +90,7 @@ When /^I (fill in|confirm) my delivery address$/ do |action|
 
   expect {
     click_button "Complete Order"
-  }.to change {Order.count}.by(1)
+  }.to change { Order.count }.by(1)
 end
 
 When /^I select the payment option "(.*)"$/ do |option|

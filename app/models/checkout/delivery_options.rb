@@ -71,6 +71,6 @@ private
   end
 
   def delivery_service_list_item(delivery_service)
-    [ delivery_service.name_days_and_fee, delivery_service.id ]
+    [delivery_service.name_days_and_fee, delivery_service.id]
   end
 end

@@ -61,7 +61,7 @@ describe "submitting customisations", :js do
   def customisable_product(product)
     @line_items = 2.times.map { Fabricate(:line_item, distributor: @distributor) }
 
-    @extras = [ Fabricate(:extra, distributor: @distributor) ]
+    @extras = [Fabricate(:extra, distributor: @distributor)]
     Fabricate(:box_extra, extra: @extras[0], box: product)
 
     @dislike = @line_items[0].name

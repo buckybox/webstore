@@ -40,7 +40,7 @@ class PhoneCollection
 private
 
   def self.type_option(type)
-    [ I18n.t("phone_collection.#{type}_phone"), type ]
+    [I18n.t("phone_collection.#{type}_phone"), type]
   end
 
   def default
