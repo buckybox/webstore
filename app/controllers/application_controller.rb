@@ -28,7 +28,7 @@ protected
 
   helper_method def current_customer
     webstore_id = current_webstore_id
-    current_customers.detect { |customer| customer.webstore_id == webstore_id }
+    current_customers.find { |customer| customer.webstore_id == webstore_id }
   end
 
   def sign_out

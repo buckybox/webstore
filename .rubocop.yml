@@ -46,10 +46,6 @@ Style/AndOr:
 Style/Blocks:
   Enabled: false
 
-# Configuration parameters: PreferredMethods.
-Style/CollectionMethods:
-  Enabled: false
-
 # Configuration parameters: Keywords.
 Style/CommentAnnotation:
   Enabled: false

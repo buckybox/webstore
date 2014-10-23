@@ -33,7 +33,7 @@ describe OrderFactory do
 
     it "sets the extras" do
       information_hash[:extras].each do |id, count|
-        order_extra = @new_order.order_extras.detect do |oe|
+        order_extra = @new_order.order_extras.find do |oe|
           oe.extra_id == id && oe.count == count
         end
 
