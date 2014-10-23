@@ -23,25 +23,25 @@ private
   attr_reader :information
   attr_reader :address
 
+  def assign_attributes_to_object(object, attributes)
+    attributes.each do |attribute|
+      value = send(attribute)
+      object.public_send("#{attribute}=", value) if value
+    end
+
+    object
+  end
+
   def prepare_address
     address.phone = { type: phone_type, number: phone_number } if phone_number && !phone_type.blank?
-    address.address_1     = address_1     if address_1
-    address.address_2     = address_2     if address_2
-    address.suburb        = suburb        if suburb
-    address.city          = city          if city
-    address.postcode      = postcode      if postcode
-    address.delivery_note = delivery_note if delivery_note
-    address
+    assign_attributes_to_object(address, %i(address_1 address_2 suburb city postcode delivery_note))
   end
 
   def prepare_customer
-    customer.id                  = existing_customer_id if existing_customer_id
-    customer.email               = email               if email
-    customer.delivery_service_id = delivery_service_id if delivery_service_id
-    customer.first_name          = first_name          if first_name
-    customer.last_name           = last_name           if last_name
-    customer.address             = address
-    customer.via_webstore        = true
+    customer.id           = existing_customer_id if existing_customer_id
+    customer              = assign_attributes_to_object(customer, %i(email delivery_service_id first_name last_name))
+    customer.address      = address
+    customer.via_webstore = true
     customer
   end
 
