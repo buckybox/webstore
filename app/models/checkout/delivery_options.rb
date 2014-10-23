@@ -25,8 +25,8 @@ class DeliveryOptions < Form
   end
 
   def delivery_service_list
-    delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) }. \
-      unshift([I18n.t('delivery_options.select_delivery_service'), nil])
+    delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) } \
+      .unshift([I18n.t('delivery_options.select_delivery_service'), nil])
   end
 
   def single_delivery_service?

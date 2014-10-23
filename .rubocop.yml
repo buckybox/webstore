@@ -49,10 +49,6 @@ Style/Blocks:
 Style/Documentation:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/DotPosition:
-  Enabled: false
-
 Style/EmptyLinesAroundBody:
   Enabled: false
 
