@@ -82,13 +82,6 @@ Style/HashSyntax:
 Style/LeadingCommentSpace:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/MethodDefParentheses:
-  Enabled: false
-
-Style/NegatedIf:
-  Enabled: false
-
 Style/OpMethod:
   Enabled: false
 

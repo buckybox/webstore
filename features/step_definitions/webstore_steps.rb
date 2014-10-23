@@ -133,7 +133,7 @@ Then /^I should be viewing the (.*) step$/ do |step|
   step "I should not see an failure message"
 end
 
-def webstore_step_path step
+def webstore_step_path(step)
   path_helper = "webstore_#{step}_path"
   public_send(path_helper, distributor_parameter_name: Distributor.last.parameter_name)
 end

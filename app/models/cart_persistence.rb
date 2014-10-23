@@ -31,7 +31,7 @@ private
     self.class.redis_key id
   end
 
-  def self.redis_key id
+  def self.redis_key(id)
     "#{self}:#{id}".freeze
   end
 end

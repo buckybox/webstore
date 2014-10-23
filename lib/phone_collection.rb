@@ -13,7 +13,7 @@ class PhoneCollection
     TYPES.each_key.map { |type| type_option(type) }
   end
 
-  def initialize address
+  def initialize(address)
     @address = address
   end
 
