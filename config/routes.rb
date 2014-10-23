@@ -25,22 +25,22 @@ Rails.application.routes.draw do
     get "/admin", to: redirect("/distributor") # NOTE: temporary redirect
 
     scope module: :customise_order do
-      get  "/customise_order", action: "customise_order"
+      get "/customise_order", action: "customise_order"
       post "/customise_order", action: "save_order_customisation"
     end
 
     scope module: :authentication do
-      get  "/authentication", action: "authentication"
+      get "/authentication", action: "authentication"
       post "/authentication", action: "save_authentication"
     end
 
     scope module: :delivery_options do
-      get  "/delivery_options", action: "delivery_options"
+      get "/delivery_options", action: "delivery_options"
       post "/delivery_options", action: "save_delivery_options"
     end
 
     scope module: :payment_options do
-      get  "/payment_options", action: "payment_options"
+      get "/payment_options", action: "payment_options"
       post "/payment_options", action: "save_payment_options"
     end
 
