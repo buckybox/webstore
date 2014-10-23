@@ -23,5 +23,4 @@ private
   def current_webstore_id
     params[:webstore_id]
   end
-
 end

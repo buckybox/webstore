@@ -1,5 +1,4 @@
 module PaypalForm
-
 module_function
 
   def recurring_payment_params(frequency)
