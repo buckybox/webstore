@@ -53,10 +53,6 @@ Style/Documentation:
 Style/GuardClause:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/HashSyntax:
-  Enabled: false
-
 Style/LeadingCommentSpace:
   Enabled: false
 

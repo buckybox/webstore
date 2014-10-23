@@ -33,13 +33,13 @@ module FactoryHelper
         product_id: box.id,
         cart: double("Cart"),
         information: {
-          :dislikes => [
+          dislikes: [
             exclusion.id
           ],
-          :likes => [
+          likes: [
             substitution.id
           ],
-          :extras => {
+          extras: {
             box.extras[0].id => 2,
             box.extras[1].id => 3,
           },
