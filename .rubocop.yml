@@ -53,12 +53,6 @@ Style/Documentation:
 Style/GuardClause:
   Enabled: false
 
-Style/LeadingCommentSpace:
-  Enabled: false
-
-Style/OpMethod:
-  Enabled: false
-
 # Configuration parameters: NamePrefix, NamePrefixBlacklist.
 Style/PredicateName:
   Enabled: false

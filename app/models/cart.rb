@@ -40,11 +40,11 @@ class Cart
     @completed
   end
 
-  def ==(comparison_cart)
+  def ==(other)
     if new?
-      self.object_id == comparison_cart.object_id
+      self.object_id == other.object_id
     else
-      self.id == comparison_cart.id
+      self.id == other.id
     end
   end
 
