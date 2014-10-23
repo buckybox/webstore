@@ -29,7 +29,7 @@ describe Authentication < Form do
     it 'returns a hash of the important form data' do
       authentication.email    = 'test@example.com'
       authentication.password = 'password'
-      expect(authentication.to_h).to eq({ email: 'test@example.com' })
+      expect(authentication.to_h).to eq(email: 'test@example.com')
     end
   end
 end

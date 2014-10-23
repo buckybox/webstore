@@ -46,10 +46,6 @@ Style/AndOr:
 Style/Blocks:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/BracesAroundHashParameters:
-  Enabled: false
-
 # Configuration parameters: PreferredMethods.
 Style/CollectionMethods:
   Enabled: false

@@ -82,7 +82,7 @@ describe DeliveryOptions do
       delivery_options.frequency       = 'single'
       delivery_options.days            = { 1 => 2 }
       delivery_options.extra_frequency = true
-      expect(delivery_options.to_h).to eq({ delivery_service_id: 3, start_date: start_date, frequency: "single", days: { 1 => 2 }, extra_frequency: true })
+      expect(delivery_options.to_h).to eq(delivery_service_id: 3, start_date: start_date, frequency: "single", days: { 1 => 2 }, extra_frequency: true)
     end
   end
 end

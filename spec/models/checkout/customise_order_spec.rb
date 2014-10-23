@@ -96,7 +96,7 @@ describe CustomiseOrder do
       customise_order.dislikes = [1]
       customise_order.likes    = [1]
       customise_order.extras   = { 1 => 1 }
-      expect(customise_order.to_h).to eq({ dislikes: [1], likes: [1], extras: { 1 => 1 } })
+      expect(customise_order.to_h).to eq(dislikes: [1], likes: [1], extras: { 1 => 1 })
     end
   end
 end

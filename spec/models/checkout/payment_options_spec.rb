@@ -14,7 +14,7 @@ describe PaymentOptions do
     context 'has been passed a name attribute' do
       it 'returns the attribute value' do
         name = 'New Customer'
-        new_args = args.merge({ name: name })
+        new_args = args.merge(name: name)
         payment_options = PaymentOptions.new(new_args)
         expect(payment_options.name).to eq(name)
       end
