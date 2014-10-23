@@ -71,15 +71,12 @@ Style/TrailingComma:
 
 # Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, Whitelist.
 Style/TrivialAccessors:
-  Enabled: false
+  ExactNameMatch: true
 
 Lint/DefEndAlignment:
   Enabled: false
 
 Style/CommentIndentation:
-  Enabled: false
-
-Style/IndentationConsistency:
   Enabled: false
 
 Style/IndentationWidth:
