@@ -42,9 +42,9 @@ class Cart
 
   def ==(other)
     if new?
-      self.object_id == other.object_id
+      object_id == other.object_id
     else
-      self.id == other.id
+      id == other.id
     end
   end
 

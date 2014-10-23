@@ -44,6 +44,6 @@ class Address
     type, number = phone[:type], phone[:number]
     return unless type.present?
 
-    self.send("#{type}_phone=", number)
+    send("#{type}_phone=", number)
   end
 end

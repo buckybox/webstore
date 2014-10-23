@@ -57,9 +57,6 @@ Style/GuardClause:
 Style/PredicateName:
   Enabled: false
 
-Style/RedundantSelf:
-  Enabled: false
-
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/SignalException:
   Enabled: false
