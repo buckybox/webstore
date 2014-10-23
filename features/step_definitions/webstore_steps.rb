@@ -24,7 +24,7 @@ end
 When /^I customise the box$/ do
   check "Customise my product"
   select2("Grapes", from: "webstore_customise_order_dislikes")
-  # TODO test subs
+  # TODO: test subs
   click_button "Next"
 end
 
