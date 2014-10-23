@@ -1,0 +1,7 @@
+---
+rules:
+  ignore:
+  - missing_class_documentation
+  - missing_method_documentation
+  - prefer_single_quoted_strings
+

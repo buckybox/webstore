@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/buckybox/webstore.svg?branch=master)](https://travis-ci.org/buckybox/webstore)
 [![Code Climate](https://codeclimate.com/github/buckybox/webstore/badges/gpa.svg)](https://codeclimate.com/github/buckybox/webstore)
 [![Dependency Status](https://gemnasium.com/buckybox/webstore.svg)](https://gemnasium.com/buckybox/webstore)
+[![PullReview stats](https://www.pullreview.com/github/buckybox/webstore/badges/master.svg?)](https://www.pullreview.com/github/buckybox/webstore/reviews/master)
 
 Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.com/) platform.
 
