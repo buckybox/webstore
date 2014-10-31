@@ -35,7 +35,7 @@ class ScheduleRule
   def to_s
     case frequency
     when :single
-      "#{I18n.t('schedule_rule.deliver_on')} #{I18n.l(start_date, format: "%d %b")}"
+      "#{I18n.t('schedule_rule.deliver_on')} #{I18n.l(start_date, format: '%d %b')}"
     when :weekly
       "#{I18n.t('schedule_rule.deliver_weekly_on')} #{delivery_days}"
     when :fortnightly

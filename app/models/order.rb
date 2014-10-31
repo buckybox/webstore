@@ -69,8 +69,8 @@ class Order
 
   def total(with_discount: true)
     product_price(with_discount: with_discount) +
-    extras_price(with_discount: with_discount) +
-    delivery_service_fee
+      extras_price(with_discount: with_discount) +
+      delivery_service_fee
   end
 
   def discount
