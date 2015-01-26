@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0.beta3'
-gem 'sass-rails', '~> 5.0.0.beta1'
+gem 'rails', '4.2.0'
+gem 'sass-rails', '~> 5.0.0'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'rails-html-sanitizer', '~> 1.0' # Use Rails Html Sanitizer for HTML sanitization
@@ -32,7 +32,7 @@ gem 'bootstrap-sass', '~> 2.3.2.2' # TODO: upgrade to 3
 gem 'autoprefixer-rails' # Add browser vendor prefixes automatically
 gem 'select2-rails'
 
-gem 'simple_form', '>= 3.1.0.rc2' # TODO: update to stable release when out
+gem 'simple_form', '>= 3.1.0'
 gem 'virtus'
 gem 'draper'
 gem 'naught'
