@@ -13,6 +13,8 @@ class Form
 
   attribute :cart
 
+  delegate :id, to: :cart, prefix: true
+
   def initialize(attributes = {})
     attributes = sanitize_attributes(attributes)
     before_standard_initialize(attributes)
@@ -38,10 +40,6 @@ class Form
   end
 
 protected
-
-  def cart_id
-    cart.id
-  end
 
   def sanitize_attributes(attributes)
     attributes
