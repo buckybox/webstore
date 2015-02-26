@@ -39,10 +39,9 @@ private
 
   def prepare_customer
     customer.id           = existing_customer_id if existing_customer_id
-    customer              = assign_attributes_to_object(customer, %i(email delivery_service_id first_name last_name))
     customer.address      = address
     customer.via_webstore = true
-    customer
+    assign_attributes_to_object(customer, %i(email delivery_service_id first_name last_name))
   end
 
   def phone_number
