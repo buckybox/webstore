@@ -25,13 +25,13 @@ private
   attr_reader :webstore_order
 
   def prepare_order
-    order.customer_id               = customer_id
-    order.box_id                    = product_id
-    order.order_extras              = order_extras
-    order.extras_one_off            = extras_one_off
-    order.excluded_line_item_ids    = excluded_line_item_ids
-    order.substituted_line_item_ids = substituted_line_item_ids
-    order.payment_method            = payment_method
+    order.customer_id    = customer_id
+    order.box_id         = product_id
+    order.order_extras   = order_extras
+    order.extras_one_off = extras_one_off
+    order.exclusions     = exclusions
+    order.substitutions  = substitutions
+    order.payment_method = payment_method
     schedule_rule.to_h.each { |k, v| order.public_send("#{k}=", v) }
     order.completed = true
     order
@@ -63,11 +63,11 @@ private
     webstore_order.extras || []
   end
 
-  def excluded_line_item_ids
+  def exclusions
     webstore_order.exclusions
   end
 
-  def substituted_line_item_ids
+  def substitutions
     webstore_order.substitutions
   end
 
