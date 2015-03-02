@@ -8,7 +8,7 @@ fr:
     order: Commander
   order:
     summary: Récapitulatif de la commande
-    exclude_and_substitute: Exclusions et subsitutions
+    exclude_and_substitute: Exclure et remplacer
     extras: Extras
     discount: Votre remise
     total: Total

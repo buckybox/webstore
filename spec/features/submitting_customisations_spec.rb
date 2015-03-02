@@ -21,7 +21,7 @@ describe "submitting customisations", :js do
       expect(page).to have_content @dislike
     end
 
-    context "with substitutes" do
+    context "with substitutions" do
       before do
         select2 @like, from: "webstore_customise_order_likes"
       end
