@@ -91,9 +91,6 @@ Metrics/PerceivedComplexity:
 Style/DoubleNegation:
   Enabled: false
 
-Rails/Validation:
-  Enabled: false
-
 Style/IfUnlessModifier:
   Enabled: false
 

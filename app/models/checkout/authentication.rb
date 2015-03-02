@@ -8,8 +8,7 @@ class Authentication < Form
   attribute :registered,  String, default: NEW_CUSTOMER
   attribute :password,    String
 
-  validates_presence_of :email
-  validates_format_of :email, with: /.+@.+\..+/i
+  validates :email, presence: true, format: /.+@.+\..+/i
 
   delegate :webstore_id, to: :cart
 

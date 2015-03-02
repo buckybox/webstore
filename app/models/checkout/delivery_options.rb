@@ -7,8 +7,8 @@ class DeliveryOptions < Form
   attribute :days,             Hash[Integer => Integer]
   attribute :extra_frequency,  Boolean
 
-  validates_presence_of :delivery_service, :start_date, :frequency
-  validates_presence_of :days, if: -> { frequency != "single" }
+  validates :delivery_service, :start_date, :frequency, presence: true
+  validates :days, presence: true, if: -> { frequency != "single" }
 
   delegate :has_extras?, to: :cart, prefix: true
 

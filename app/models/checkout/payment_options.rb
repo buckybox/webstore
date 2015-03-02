@@ -15,16 +15,16 @@ class PaymentOptions < Form
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
-  validates_presence_of :name,           if: :require_name
-  validates_presence_of :phone_number,   if: :require_phone
-  validates_presence_of :phone_type,     if: :require_phone
-  validates_presence_of :address_1,      if: :require_address_1
-  validates_presence_of :address_2,      if: :require_address_2
-  validates_presence_of :suburb,         if: :require_suburb
-  validates_presence_of :city,           if: :require_city
-  validates_presence_of :postcode,       if: :require_postcode
-  validates_presence_of :delivery_note,  if: :require_delivery_note
-  validates_presence_of :payment_method, if: :has_payment_options?
+  validates :name,           presence: true, if: :require_name
+  validates :phone_number,   presence: true, if: :require_phone
+  validates :phone_type,     presence: true, if: :require_phone
+  validates :address_1,      presence: true, if: :require_address_1
+  validates :address_2,      presence: true, if: :require_address_2
+  validates :suburb,         presence: true, if: :require_suburb
+  validates :city,           presence: true, if: :require_city
+  validates :postcode,       presence: true, if: :require_postcode
+  validates :delivery_note,  presence: true, if: :require_delivery_note
+  validates :payment_method, presence: true, if: :has_payment_options?
 
   attr_reader :address
 
