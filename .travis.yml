@@ -1,16 +1,18 @@
 language: ruby
-script: ./bin/ci
+script: "./bin/ci"
 rvm:
-  - 2.1
-  - 2.2
-  - ruby-head
-  - rbx
-  - rbx-head
+- 2.1
+- 2.2
+- ruby-head
+- rbx
+- rbx-head
 matrix:
   allow_failures:
-    - rvm: ruby-head
-    - rvm: rbx
-    - rvm: rbx-head
+  - rvm: ruby-head
+  - rvm: rbx
+  - rvm: rbx-head
 notifications:
   email:
     on_failure: always
+  slack:
+    secure: YLqK6RvH71ZjXEWP84D2AsjDWpG549XE3EQsLizCsURV1VFvDj1g4L9zhVoSAuVj5LLAFSahQqQ1RpZdzaPUtjh72QmHWrOf4lRAS93tH6XTcbIMHCZ8nIO9HX+ErmH8uxEqwiejNxJWvI24hPjfPEtsV2MiJW7Ub2tHABG1WfA=
