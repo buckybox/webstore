@@ -27,7 +27,7 @@ private
   def prepare_order
     order.customer_id    = customer_id
     order.box_id         = product_id
-    order.order_extras   = order_extras
+    order.extras         = extras
     order.extras_one_off = extras_one_off
     order.exclusions     = exclusions
     order.substitutions  = substitutions
@@ -49,18 +49,21 @@ private
     webstore_order.schedule
   end
 
-  def order_extras
-    extra_id_and_counts.each_with_object({}) do |(id, count), hash|
-      hash[id] = { count: count }
+  def extras
+    extra_ids_and_counts.map do |id, count|
+      {
+        id: id,
+        quantity: count,
+      }
     end
+  end
+
+  def extra_ids_and_counts
+    webstore_order.extras
   end
 
   def extras_one_off
     webstore_order.extra_frequency
-  end
-
-  def extra_id_and_counts
-    webstore_order.extras || []
   end
 
   def exclusions
