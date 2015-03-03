@@ -3,6 +3,9 @@ require_relative '../cart'
 class Checkout
   attr_reader :cart
 
+  delegate :customer, to: :cart
+  delegate :id, to: :cart, prefix: true
+
   def initialize(args = {})
     args               = defaults.merge(args)
     @existing_customer = args.fetch(:existing_customer)
@@ -14,14 +17,10 @@ class Checkout
     cart.save
   end
 
-  delegate :customer, to: :cart
-
   def add_product!(product_id)
     cart.add_product(product_id)
     cart.save
   end
-
-  delegate :id, to: :cart, prefix: true
 
 private
 

@@ -6,6 +6,10 @@ class Product
   attr_reader :box
   attr_reader :distributor
 
+  delegate :name, to: :box
+  delegate :description, to: :box
+  delegate :price, to: :box
+
   def initialize(args = {})
     @distributor = args[:distributor]
     @box         = args[:box]
@@ -18,10 +22,4 @@ class Product
   def image
     box.webstore_image_url
   end
-
-  delegate :name, to: :box
-
-  delegate :description, to: :box
-
-  delegate :price, to: :box
 end
