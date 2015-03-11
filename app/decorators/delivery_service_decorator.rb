@@ -11,4 +11,10 @@ class DeliveryServiceDecorator < Draper::Decorator
   def schedule_input_id
     "delivery_service-schedule-inputs-#{object.id}"
   end
+
+  def start_dates
+    object.start_dates.map do |human_date, iso_date, attributes|
+      [human_date, iso_date, attributes.to_h]
+    end
+  end
 end
