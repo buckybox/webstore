@@ -15,5 +15,9 @@
 /log/*.log
 /tmp
 
+# Redis
+/dump.rdb
+
+# Figaro config
 /config/application.yml
 
