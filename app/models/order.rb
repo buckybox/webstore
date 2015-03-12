@@ -139,6 +139,13 @@ class Order
     product.customizable
   end
 
+  def invalid?
+    product # fetch the actual product and make sure it exists
+    false
+  rescue BuckyBox::API::NotFoundError
+    true
+  end
+
   def delivery_service
     API.delivery_service(delivery_service_id) if delivery_service_id
   end

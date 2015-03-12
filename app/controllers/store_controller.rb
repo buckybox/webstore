@@ -30,7 +30,7 @@ private
 
   def successful_new_checkout(checkout)
     session[:cart_id] = checkout.cart_id
-    redirect_to next_step
+    redirect_to(*next_step)
   end
 
   def failed_new_checkout
@@ -39,6 +39,7 @@ private
   end
 
   def next_step
+    return webstore_path, alert: t('oops') if current_order.invalid?
     return customise_order_path if current_order.customisable?
 
     current_webstore_customer.guest? ? authentication_path : delivery_options_path
