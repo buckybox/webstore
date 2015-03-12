@@ -15,7 +15,6 @@ protected
   helper_method def current_webstore
     @current_webstore ||= API.webstore(current_webstore_id)
   end
-  alias_method :set_current_webstore, :current_webstore
 
   helper_method def current_customers
     customers = session[:current_customers]
@@ -37,6 +36,12 @@ protected
   end
 
 private
+
+  def set_current_webstore
+    current_webstore # fetch the actual web store and make sure it exists
+  rescue BuckyBox::API::NotFoundError
+    redirect_to "/404.html"
+  end
 
   def current_webstore_id
     params[:webstore_id]
