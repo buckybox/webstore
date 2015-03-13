@@ -12,6 +12,9 @@ BUGSNAG_API_KEY: ""
 # Pingdom
 PINGDOM_RUM_ID: ""
 
+# Skylight
+SKYLIGHT_AUTHENTICATION: ""
+
 # URLs
 MARKETING_SITE_URL: http://www.buckybox.com/
 
