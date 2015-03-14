@@ -41,7 +41,7 @@ it:
     delivery_details: Dettagli consegna
     pickup_details: Dettagli punto di ritiro
     select_best: Scegli il giro di consegna che più ti è comodo
-    repeat_deliery: Ripeti automaticamente la consegna?
+    repeat_delivery: Ripeti automaticamente la consegna?
     when: Quando desideri la consegna?
     extra_frequency: Per quanto riguarda i prodotti aggiunti?
     select_delivery_service: "- Seleziona il giro di consegna -"

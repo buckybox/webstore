@@ -42,7 +42,7 @@ fr:
     pickup_details: Détails du point relai
     select_best: Choisissez le service qui vous convient le mieux
     when: Quand désirez vous recevoir cette commande ?
-    repeat_deliery: Renouvellement automatique de la commande ?
+    repeat_delivery: Renouvellement automatique de la commande ?
     extra_frequency: À propos de vos extras
     select_delivery_service: "- Veuillez sélectionner un service de livraison -"
     order_frequencies:
