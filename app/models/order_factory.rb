@@ -59,7 +59,7 @@ private
   end
 
   def extra_ids_and_counts
-    webstore_order.extras
+    webstore_order.extras || {}
   end
 
   def extras_one_off
