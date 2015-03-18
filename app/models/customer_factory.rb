@@ -33,7 +33,7 @@ private
   end
 
   def prepare_address
-    address.phone = { type: phone_type, number: phone_number } if phone_number && !phone_type.blank?
+    address.public_send("#{phone_type}_phone=", phone_number) if phone_number && !phone_type.blank?
     assign_attributes_to_object(address, %i(address_1 address_2 suburb city postcode delivery_note))
   end
 
