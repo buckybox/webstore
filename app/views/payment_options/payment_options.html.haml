@@ -31,7 +31,7 @@
                 %h4= t 'payment_options.phone'
             .row-fluid
               .span9= f.input :phone_number, label: false, placeholder: t('payment_options.enter_phone'), input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
-              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, selected: payment_options.default_phone_type
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, prompt: "", selected: payment_options.default_phone_type
 
           - unless payment_options.pickup_point?
             .row-fluid
