@@ -1,5 +1,13 @@
-= simple_form_for(:session, url: customer_sign_in_path) do |f|
-  = f.input :email
-  = f.input :password
-  = f.submit t('log_in')
+= simple_form_for(:session, url: customer_sign_in_path, html: { novalidate: false }) do |f|
+
+  .row-fluid
+    .span12= f.input :email, label: t('authentication.enter_email'), input_html: { required: true }
+  .row-fluid
+    .span12= f.input :password, label: t('authentication.enter_password'), as: :password, input_html: { required: true }
+
+  .row-fluid
+    .span12
+      = f.button :submit, t('log_in'), class: 'btn btn-process'
+      %i.icon-lock
+      = link_to t('password_forgotten?'), "https://my.buckybox.com/customers/password/new?distributor=#{current_webstore.id}", target: '_blank'
 
