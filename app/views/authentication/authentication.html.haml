@@ -6,7 +6,7 @@
   #webstore-login.row-fluid.webstore-section
     .span12
       .row-fluid
-        .ten.columns= f.input :email, label: t('authentication.enter_email'), input_html: { class: 'span12' }
+        .ten.columns= f.input :email, label: t('authentication.enter_email'), input_html: { class: 'span12', required: true }
       #registered.row-fluid
         .ten.columns= f.input :registered, label: false, collection: authentication.options, as: :radio_buttons
       #password-field.row-fluid
