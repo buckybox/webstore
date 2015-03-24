@@ -1,4 +1,4 @@
-= simple_form_for(:session, url: customer_sign_in_path, html: { novalidate: false }) do |f|
+= simple_form_for(:session, url: customer_sign_in_path) do |f|
 
   .row-fluid
     .span12= f.input :email, label: t('authentication.enter_email'), input_html: { required: true }
