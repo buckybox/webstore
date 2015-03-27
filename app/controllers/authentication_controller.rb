@@ -21,7 +21,7 @@ private
     )
 
     session[:current_customers] = customers.to_json
-    customer = customers.find { |customer| customer.webstore_id == current_webstore_id }
+    customer = customers.find { |c| c.webstore_id == current_webstore_id }
 
     if customer
       current_webstore_customer.associate_real_customer(customer.id)
