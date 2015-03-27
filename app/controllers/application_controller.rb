@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_current_webstore
+  before_action :set_locale
 
   if Rails.env.development? || Rails.env.test?
     analytical modules: [], use_session_store: true
@@ -45,5 +46,9 @@ private
 
   def current_webstore_id
     params[:webstore_id]
+  end
+
+  def set_locale
+    I18n.locale = current_webstore.locale
   end
 end
