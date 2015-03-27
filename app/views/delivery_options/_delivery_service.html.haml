@@ -17,5 +17,5 @@
               %td= index.succ.ordinalize
               - week.each do |day, number|
                 - day_en = I18n.t('date.abbr_day_names', locale: :en)[number % 7]
-                %td= g.input "#{number}", label: day, input_html: { data: { enabled: delivery_service.public_send(day_en.downcase) } }, wrapper_html: { id: "day-#{number}" }, as: :boolean, disabled: true
+                %td= g.input "#{number}", label: day, input_html: { data: ({enabled: true} if delivery_service.public_send(day_en.downcase)) }, wrapper_html: { id: "day-#{number}" }, as: :boolean, disabled: true
 
