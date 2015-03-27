@@ -37,7 +37,7 @@ describe "submitting customisations", :js do
   context "with extras" do
     before do
       check "Customise my product"
-      select2 /^#{@extra}/, from: "webstore_customise_order_add_extra"
+      select2(/^#{@extra}/, from: "webstore_customise_order_add_extra")
     end
 
     it "displays them" do
