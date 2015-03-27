@@ -21,17 +21,14 @@ private
     )
 
     session[:current_customers] = customers.to_json
+    customer = customers.find { |customer| customer.webstore_id == current_webstore_id }
 
-    # NOTE: first customer if the one for the current web store
-    customer = customers.first
-
-    handle_customer(customer)
-
-    customer ? save_credentials(authentication) : failed_authentication(authentication)
-  end
-
-  def handle_customer(customer)
-    current_webstore_customer.associate_real_customer(customer.id) if customer
+    if customer
+      current_webstore_customer.associate_real_customer(customer.id)
+      save_credentials(authentication)
+    else
+      failed_authentication(authentication)
+    end
   end
 
   def save_credentials(authentication)
