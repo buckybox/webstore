@@ -17,6 +17,10 @@ protected
     @current_cart = current_cart
   end
 
+  helper_method def customer_can_switch_account?
+    !current_cart
+  end
+
   def flush_current_cart!
     cart = current_cart.dup if current_cart
 
