@@ -106,16 +106,19 @@ private
   attr_reader :persistence_class
   attr_writer :id
 
-  def new_order(args)
-    args = args.fetch(:order, {})
+  def new_model(model, args)
+    args = args.fetch(model, {})
     args = args.merge(cart: self)
-    Order.new(args)
+
+    model.to_s.humanize.constantize.new(args)
+  end
+
+  def new_order(args)
+    new_model(:order, args)
   end
 
   def new_customer(args)
-    args = args.fetch(:customer, {})
-    args = args.merge(cart: self)
-    Customer.new(args)
+    new_model(:customer, args)
   end
 
   def find_or_create_persistence
