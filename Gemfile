@@ -22,7 +22,6 @@ gem 'super_recursive_open_struct'
 gem 'buckybox-api'
 gem 'fast_blank'
 gem 'figaro'
-gem 'analytical'
 
 gem 'redis' # for WebstorePersistence
 gem 'hiredis'  # https://github.com/redis/redis-rb#hiredis

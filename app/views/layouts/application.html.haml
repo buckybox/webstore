@@ -2,7 +2,6 @@
 
 %html
   %head
-    = raw analytical.head_prepend_javascript
     %meta{ charset: 'utf-8' }
 
     %title Bucky Box - #{t('web_store', webstore: current_webstore.name)}
@@ -29,15 +28,10 @@
         return current_scope || "missing translation: #{I18n.locale}.javascript." + key;
       };
 
-    / Analytics
-    - analytical.identify(current_webstore.id, email: current_webstore.email) if current_webstore
-    = raw analytical.head_append_javascript
-
+    = render partial: 'layouts/google_analytics'
     = render partial: 'layouts/pingdom'
 
   %body
-    = raw analytical.body_prepend_javascript
-
     = render partial: 'layouts/banner'
 
     .container
@@ -50,6 +44,4 @@
         #content-body.span9
           .row-fluid
             .span12= yield
-
-    = raw analytical.body_append_javascript
 
