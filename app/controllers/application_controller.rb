@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :set_current_webstore
   before_action :set_locale
 
-  if Rails.env.development? || Rails.env.test?
-    analytical modules: [], use_session_store: true
+  if Rails.env.production? && Figaro.env.ga_key.present?
+    analytical modules: {google: {key: Figaro.env.ga_key}}, use_session_store: true
   else
-    analytical modules: [:google], use_session_store: true
+    analytical modules: {}, use_session_store: true
   end
 
 protected

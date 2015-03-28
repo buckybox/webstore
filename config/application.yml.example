@@ -9,6 +9,9 @@ AIRBRAKE_API_KEY: ""
 # BugSnag
 BUGSNAG_API_KEY: ""
 
+# Google Analytics
+GA_KEY: ""
+
 # Pingdom
 PINGDOM_RUM_ID: ""
 
