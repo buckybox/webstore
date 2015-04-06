@@ -43,9 +43,6 @@ Style/AlignParameters:
 Style/AndOr:
   Enabled: false
 
-Style/Blocks:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false
 
@@ -95,6 +92,9 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/ElseAlignment:
+  Enabled: false
+
+Style/ClosingParenthesisIndentation:
   Enabled: false
 
 Metrics/AbcSize:

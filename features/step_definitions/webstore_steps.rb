@@ -88,9 +88,7 @@ When /^I (fill in|confirm) my delivery address$/ do |action|
     fill_in :webstore_payment_options_address_1, with: "Rabbit Hole"
   end
 
-  expect {
-    click_button "Complete Order"
-  }.to change { Order.count }.by(1)
+  expect { click_button "Complete Order" }.to change { Order.count }.by(1)
 end
 
 When /^I select the payment option "(.*)"$/ do |option|

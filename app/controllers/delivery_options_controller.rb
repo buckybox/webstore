@@ -22,8 +22,8 @@ private
   end
 
   def failed_delivery_options(delivery_options)
-    flash[:alert] = t('oops') << t('colon') \
-      << delivery_options.errors.full_messages.join(", ").downcase
+    flash[:alert] = t('oops') << t('colon') <<
+                    delivery_options.errors.full_messages.join(", ").downcase
 
     render "delivery_options", locals: {
       order: current_order,

@@ -46,6 +46,5 @@ module StoreHelpers
 
   def make_a_webstore_with_products
     @webstore ||= webstore
-    # setup_a_webstore(product) # Send at least one product so it doesn't make its own
   end
 end
