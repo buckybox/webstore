@@ -41,7 +41,7 @@ gem 'puma'
 # gem 'unicorn'
 # gem 'airbrake'
 gem 'bugsnag'
-gem 'skylight'
+# gem 'skylight'
 # gem 'rack-mini-profiler'
 
 group :development, :test do
