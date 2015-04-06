@@ -38,7 +38,7 @@ gem 'naught'
 
 # Optional Gems are listed below
 gem 'puma'
-# gem 'unicorn'
+gem 'unicorn'
 # gem 'airbrake'
 gem 'bugsnag'
 # gem 'skylight'
