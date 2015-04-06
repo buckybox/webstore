@@ -3,7 +3,6 @@
 # Set the current app's path for later reference. Rails.root isn't available at
 # this point, so we have to point up a directory
 app_path = File.expand_path("#{__dir__}/..")
-puts "App path = #{app_path}"
 
 # Typically one worker per CPU core
 worker_processes ENV.fetch("UNICORN_WORKERS", 2).to_i
@@ -29,7 +28,7 @@ listen "#{app_path}/tmp/unicorn.sock", backlog: 64
 stderr_path "#{app_path}/log/unicorn.log"
 stdout_path "#{app_path}/log/unicorn.log"
 
-before_fork do |server, worker|
+before_fork do |server, _worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
   defined?($redis) and $redis.client.disconnect
 
@@ -42,16 +41,17 @@ before_fork do |server, worker|
   # we send it a QUIT.
 
   old_pid = "#{server.config[:pid]}.oldbin"
-  if File.exists?(old_pid) && server.pid != old_pid
+  if File.exist?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
     rescue Errno::ENOENT, Errno::ESRCH
       # someone else did our job for us
+      nil
     end
   end
 end
 
-after_fork do |server, worker|
+after_fork do |_server, _worker|
   # Unicorn master loads the app then forks off workers - because of the way
   # Unix forking works, we need to make sure we aren't using any of the parent's
   # sockets, e.g. db connection
@@ -60,4 +60,3 @@ after_fork do |server, worker|
   # Redis and Memcached would go here but their connections are established
   # on demand, so the master never opens a socket
 end
-
