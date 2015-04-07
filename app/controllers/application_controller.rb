@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :exception
 
-  before_action :flush_api_cache
   before_action :set_current_webstore
   before_action :set_locale
 
@@ -45,9 +44,5 @@ private
 
   def set_locale
     I18n.locale = current_webstore.locale
-  end
-
-  def flush_api_cache
-    API.flush_cache!
   end
 end
