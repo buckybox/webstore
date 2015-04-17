@@ -11,8 +11,6 @@ class OrderPrice
     customer_discount = BigDecimal.new(customer_discount.discount.to_s) if customer_discount.respond_to?(:discount)
 
     total_price = order_extras.map do |order_extra|
-      order_extra = order_extra.to_hash unless order_extra.is_a? Hash
-
       CrazyMoney.new(order_extra[:price]) * order_extra[:count]
     end.sum
 

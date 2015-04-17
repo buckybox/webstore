@@ -176,7 +176,10 @@ private
   end
 
   def extras_as_hashes
-    extras_as_objects.each_with_object([]) { |extra, array| array << extra.to_hash.merge(count: extra_quantity(extra)) }
+    extras_as_objects.each_with_object([]) do |extra, array|
+      count = extra_quantity(extra)
+      array << extra.to_hash.with_indifferent_access.merge(count: count)
+    end
   end
 
   def start_date
