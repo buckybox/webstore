@@ -41,7 +41,7 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    autoprefixer-rails (5.1.9)
+    autoprefixer-rails (5.1.10)
       execjs
       json
     axiom-types (0.1.1)
@@ -70,7 +70,7 @@ GEM
       crazy_money (>= 1.2.1)
       httparty (>= 0.13.1)
       super_recursive_open_struct (>= 1.0.2)
-    bugsnag (2.8.4)
+    bugsnag (2.8.5)
       multi_json (~> 1.0)
     builder (3.2.2)
     bundler-audit (0.3.1)
@@ -187,12 +187,13 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     naught (1.0.0)
+    newrelic_rpm (3.11.2.286)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ordinalize_full (1.3.0)
       i18n (~> 0.7.0)
     parallel (1.4.1)
-    parser (2.2.0.3)
+    parser (2.2.2.1)
       ast (>= 1.1, < 3.0)
     poltergeist (1.6.0)
       capybara (~> 2.1)
@@ -355,6 +356,7 @@ DEPENDENCIES
   i18n-spec
   jquery-rails
   naught
+  newrelic_rpm
   ordinalize_full
   poltergeist
   puma

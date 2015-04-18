@@ -12,6 +12,9 @@ BUGSNAG_API_KEY: ""
 # Google Analytics
 GA_TRACKING_ID: ""
 
+# New Relic
+NEW_RELIC_LICENSE_KEY: ""
+
 # Pingdom
 PINGDOM_RUM_ID: ""
 

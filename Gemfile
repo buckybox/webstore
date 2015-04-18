@@ -41,6 +41,7 @@ gem 'unicorn'
 gem 'puma'
 # gem 'airbrake'
 gem 'bugsnag'
+gem 'newrelic_rpm'
 # gem 'skylight'
 # gem 'rack-mini-profiler'
 
