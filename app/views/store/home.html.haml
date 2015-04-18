@@ -1,7 +1,8 @@
-%noscript
-  .alert.alert-error
-    = t('no_js')
+- cache([request.fullpath, webstore_products.map(&:updated_at).max]) do
+  %noscript
+    .alert.alert-error
+      = t('no_js')
 
-.row-fluid
-  .span12
-    #webstore-items= render partial: 'product', collection: webstore_products
+  .row-fluid
+    .span12
+      #webstore-items= render partial: 'product', collection: webstore_products
