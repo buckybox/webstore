@@ -8,19 +8,6 @@ class CheckoutController < ApplicationController
 
 protected
 
-  helper_method def current_cart
-    return @current_cart if @current_cart
-
-    current_cart = Cart.find(session[:cart_id])
-    current_cart = current_cart.decorate(decorator_context) if current_cart
-
-    @current_cart = current_cart
-  end
-
-  helper_method def customer_can_switch_account?
-    !current_cart
-  end
-
   def flush_current_cart!
     cart = current_cart.dup if current_cart
 

@@ -25,6 +25,17 @@ protected
     current_customers.find { |customer| customer.webstore_id == webstore_id }
   end
 
+  helper_method def current_cart
+    @current_cart ||= begin
+      current_cart = Cart.find(session[:cart_id])
+      current_cart.decorate(decorator_context) if current_cart
+    end
+  end
+
+  helper_method def customer_can_switch_account?
+    !current_cart
+  end
+
   def sign_out
     session[:current_customers] = nil
     redirect_to webstore_path
