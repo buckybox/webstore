@@ -15,6 +15,10 @@ class API
       api.public_send(method, *args)
     end
 
+    def respond_to_missing?(*args)
+      api.respond_to?(*args)
+    end
+
     private def api
       @api ||= begin
         params = {
