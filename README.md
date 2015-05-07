@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/buckybox/webstore/badges/gpa.svg)](https://codeclimate.com/github/buckybox/webstore)
 [![Dependency Status](https://gemnasium.com/buckybox/webstore.svg)](https://gemnasium.com/buckybox/webstore)
 [![PullReview stats](https://www.pullreview.com/github/buckybox/webstore/badges/master.svg?)](https://www.pullreview.com/github/buckybox/webstore/reviews/master)
+[![security](https://hakiri.io/github/buckybox/webstore/master.svg)](https://hakiri.io/github/buckybox/webstore/master)
 
 Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.com/) platform.
 
