@@ -4,14 +4,14 @@
       .span12
         %strong
           =t '.deposit_funds'
-          %span.bank_deposit_name #{form_object.bank_name}
+          %span.bank_deposit_name= form_object.bank_name
 
     .row-fluid
       .span12
         =t('.account_name') << t('colon')
-        %span.bank_deposit_account_name #{form_object.bank_account_name}
+        %span.bank_deposit_account_name= form_object.bank_account_name
         %br
-        %span.bank_deposit_account_number #{form_object.bank_account_number}
+        %span.bank_deposit_account_number= simple_format(form_object.bank_account_number, {}, wrapper_tag: "span")
         %br
         =t('.reference') << t('colon') << form_object.customer_number
 
