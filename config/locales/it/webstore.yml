@@ -90,7 +90,6 @@ it:
     bank_deposit:
       deposit_funds: Perfavore effettuare bonifico bancario al seguente conto corrente
       account_name: Intestato a
-      account_number: IBAN
       reference: Causale
     paypal:
       pay_now: Paga ora

@@ -90,11 +90,9 @@ fr:
     bank_deposit:
       deposit_funds: Veuillez faire votre virement vers
       account_name: Intitulé du compte
-      account_number: Numéro du compte
       reference: Référence
     paypal:
       pay_now: Payer maintenant
       top_up: Rechargement du compte # meh, better idea anyone?
       amount: Montant
       amount_to_top_up: Montant à créditer
-

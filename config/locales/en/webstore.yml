@@ -90,7 +90,6 @@ en:
     bank_deposit:
       deposit_funds: Please deposit funds into
       account_name: Account Name
-      account_number: Account Number
       reference: Reference
     paypal:
       pay_now: Pay now
