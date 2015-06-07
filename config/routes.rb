@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: redirect("/customer")
 
-  scope ":webstore_id" do
+  scope ":webstore_id", constraints: { format: "html" } do
     # get "/fruits", action: "fruits", controller: "store" # TODO: categories using box tags
 
     scope "/account" do
