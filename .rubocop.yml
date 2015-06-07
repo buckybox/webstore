@@ -97,6 +97,9 @@ Style/ElseAlignment:
 Style/ClosingParenthesisIndentation:
   Enabled: false
 
+Style/ParallelAssignment:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 
