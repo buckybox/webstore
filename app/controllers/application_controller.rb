@@ -46,7 +46,7 @@ private
   def set_current_webstore
     current_webstore # fetch the actual web store and make sure it exists
   rescue BuckyBox::API::NotFoundError
-    redirect_to "/404.html"
+    render layout: false, file: "public/404.html", status: :not_found
   end
 
   def current_webstore_id
