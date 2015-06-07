@@ -5,6 +5,10 @@ export RAILS_ENV=test
 export COVERAGE=1
 export SPEC_OPTS="--format p"
 
+output="$(git submodule update --remote)"
+echo -n "$output"
+test -z "$output"
+
 bundle install
 
 bundle exec rubocop --rails --display-cop-names
