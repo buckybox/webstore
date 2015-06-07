@@ -1,8 +1,12 @@
 class API
   class << self
+    WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/.freeze
+
     attr_reader :webstore_id
 
     def webstore(id = nil)
+      raise BuckyBox::API::NotFoundError if id !~ WEBSTORE_ID_FORMAT
+
       if id != webstore_id
         @webstore_id = id
         @api = nil
