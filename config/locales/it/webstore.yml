@@ -8,7 +8,7 @@ it:
     order: Ordine
   order:
     summary: I tuoi ordini
-    exclude_and_substitute: Escludi & sostituisci
+    exclusions_and_substitutes: Escludi & sostituisci
     extras: Prodotti
     discount: Il tuo sconto
     total: Totale

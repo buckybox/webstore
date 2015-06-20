@@ -8,7 +8,7 @@ en:
     order: Order
   order:
     summary: Order summary
-    exclude_and_substitute: Exclude & substitute
+    exclusions_and_substitutes: Exclusions & substitutes
     extras: Extra items
     discount: Your discount
     total: Total
