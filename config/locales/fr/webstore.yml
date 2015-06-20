@@ -41,8 +41,8 @@ fr:
     delivery_details: Détails de livraison
     pickup_details: Détails du point relai
     select_best: Choisissez le service qui vous convient le mieux
-    when: Quand désirez vous recevoir cette commande ?
     repeat_delivery: Renouvellement automatique de la commande ?
+    when: Quand désirez vous recevoir cette commande ?
     extra_frequency: À propos de vos extras
     select_delivery_service: "- Veuillez sélectionner un service de livraison -"
     order_frequencies:
@@ -93,6 +93,6 @@ fr:
       reference: Référence
     paypal:
       pay_now: Payer maintenant
-      top_up: Rechargement du compte # meh, better idea anyone?
+      top_up: Rechargement du compte
       amount: Montant
       amount_to_top_up: Montant à créditer

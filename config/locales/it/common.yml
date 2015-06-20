@@ -11,7 +11,7 @@ it:
   update: Modifica
   next: Seguente
   or: o
-  password_forgotten?:  Hai dimenticato la tua password?
+  password_forgotten?: Hai dimenticato la tua password?
   delivery_service: Servizio di consegna
   my_account: Il mio account
   your_account: Il tuo account

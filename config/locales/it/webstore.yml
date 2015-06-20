@@ -75,7 +75,7 @@ it:
       postcode: CAP
       delivery_note: Note di consegna
       placeholders:
-        delivery_note: "Istruzioni per la consegna, per esempio: \"lasciare sul pianerottolo\""
+        delivery_note: 'Istruzioni per la consegna, per esempio: "lasciare sul pianerottolo"'
   completed:
     amount_due: Totale importo dovuto
     pay_by: Pagamento con
@@ -96,4 +96,3 @@ it:
       top_up: Carica account
       amount: Importo
       amount_to_top_up: Importo da caricare
-
