@@ -1,0 +1,27 @@
+[main]
+host = https://www.transifex.com
+
+[buckybox-webstore.common]
+file_filter = config/locales/<lang>/common.yml
+source_file = config/locales/en/common.yml
+source_lang = en
+type = YML
+
+[buckybox-webstore.javascript]
+file_filter = config/locales/<lang>/javascript.yml
+source_file = config/locales/en/javascript.yml
+source_lang = en
+type = YML
+
+[buckybox-webstore.simple_form]
+file_filter = config/locales/<lang>/simple_form.yml
+source_file = config/locales/en/simple_form.yml
+source_lang = en
+type = YML
+
+[buckybox-webstore.webstore]
+file_filter = config/locales/<lang>/webstore.yml
+source_file = config/locales/en/webstore.yml
+source_lang = en
+type = YML
+

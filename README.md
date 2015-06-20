@@ -35,6 +35,8 @@ TBD
 
 You can help translate it into your favorite language. We use [Transifex](https://www.transifex.com/projects/p/buckybox-webstore/).
 
+New translations can be fetched with `tx pull -af`.
+
 ## License
 
 GPLv3+
