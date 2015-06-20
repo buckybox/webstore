@@ -1,3 +1,11 @@
+Given /^A distributor is in the system$/ do
+  # TODO
+end
+
+Given(/^I am unauthenticated$/) do
+  expect(page).to have_button("Log in")
+end
+
 Given /^I am on the webstore$/ do
   path = webstore_store_path(distributor_parameter_name: Distributor.last.parameter_name)
   visit path
