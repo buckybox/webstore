@@ -1,0 +1,97 @@
+pt_BR:
+  web_store: "%(lojaonline) - Loja online"
+  no_ongoing_order: Não há pedidos em andamento, por favor inicie um novo pedido.
+  cancelled_order: Seu pedido anterior foi cancelado, mas você pode iniciar novo pedido.
+  order_placed: Seu pedido foi aceito.
+  halted_customer: O saldo de sua conta está abaixo do permitido! Você não poderá receber novos pedidos se seus pagamentos não forem regularizados antes da data de embalagem das proximas entregas.
+  product:
+    order: Pedido
+  order:
+    summary: Sumário do pedido
+    extras: Itens extras
+    discount: Seu desconto
+    total: Total
+  schedule_rule:
+    deliver_on: Entregar dia
+    deliver_weekly_on: Entregar semanalmente às
+    deliver_fornightly_on: Entregar quinzenalmente às
+    deliver_monthly_on: Entregar mensalmente no dia
+    no_future_deliveries: Nenhuma entrega futura programada
+  phone_collection:
+    mobile_phone: Telefone  celular
+    work_phone: Telefone no trabalho
+    home_phone: Telefone residencial
+  sidebar:
+    find_us_on_facebook: Encontre-nos no Facebook
+  customise_order:
+    customise_product: Personalizar meu produto
+    exclude_items: Excluir estes itens
+    substitute_with_items: Substituir por estes itens
+    add_unlimited_extras: 'Adicionar qualquer quantidade de itens extras '
+    add_n_extras: Adicionar até %(limite) itens extras
+  authentication:
+    enter_email: Digite seu endereço de email
+    enter_password: Digite sua senha
+    bad_email_password: Seu endereço de email ou sua senha estão incorretos.
+    new_customer: Sou um novo cliente
+    existing_customer: Sou um cliente que está de volta
+  delivery_options:
+    pick_delivery_service: Escolher um serviço de entregas
+    delivery_details: Detalhes de entrega
+    pickup_details: Detalhes de apanha
+    select_best: Selecione aquele que melhor atende a sua área
+    repeat_delivery: Repetir a entrega?
+    when: Quando você gostaria de recebê-lo(a)?
+    extra_frequency: O que você achou daqueles itens extras?
+    select_delivery_service: "- Selecionar o serviço de entregas -"
+    order_frequencies:
+      select: "- Selecionar a frequencia de entrega -"
+      single: Entregar apenas uma vez
+      weekly: Entregar semanalmente às ...
+      fortnightly: Entregar a cada duas semanas às ...
+      monthly: Entregar mensalmente
+    extra_frequencies:
+      always: Incluir os itens extras em TODAS as entregas
+      once: Incluir os itens extras somente na PRÓXIMA entrega
+  payment_options:
+    deliver_to: Entregar para
+    delivery_note: Nota de entrega
+    change_delivery_address: Mudar meu endereço de entrega
+    name: Seu nome
+    enter_name: Digite seu nome
+    phone: Seu telefone
+    enter_phone: Digite seu telefone
+    amount_due: 'Total devido '
+    in_credit: Existe crédito em sua conta
+    pay_by: Pagar até
+    no_payment: Não é necessário pagar
+    complete_order: Completar o pedido
+    address:
+      address_1: Endereço 1
+      address_2: Endereço 2
+      suburb: Suburbio
+      city: Cidade
+      postcode: CEP
+      delivery_note: Nota de entrega
+      placeholders:
+        delivery_note: Instruções de entrega, tais como onde deixar o pacote
+  completed:
+    amount_due: Total devido
+    pay_by: Pagar até
+    back_to_webstore: Voltar para a loja online
+    my_account: Minha conta
+  payment_instructions:
+    account_details: Detalhes da conta
+    existing_balance: Saldo de sua conta conosco
+    this_order: Este pedido
+    closing_balance: Saldo final
+  payments:
+    bank_deposit:
+      deposit_funds: Favor depositar seu pagemento no(a)
+      account_name: Nome da conta
+      reference: Referencia
+    paypal:
+      pay_now: Pague agora
+      top_up: Adicionar crédito à minha conta
+      amount: Montante
+      amount_to_top_up: Montante limite
