@@ -8,6 +8,7 @@ pt_BR:
     order: Pedido
   order:
     summary: Sumário do pedido
+    exclusions_and_substitutes: Exclusões e substituições
     extras: Itens extras
     discount: Seu desconto
     total: Total

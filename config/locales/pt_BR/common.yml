@@ -1,23 +1,23 @@
-en:
+pt_BR:
   current_locale_en: Portuguese
   current_locale: Português
   colon: ": "
-  hi: Hi
-  thanks: Thanks
-  back: back
-  cancel: cancel
-  log_in: Log in
-  log_out: Log out
-  update: Update
-  next: Next
-  or: or
-  password_forgotten?: Lost your password?
-  delivery_service: Delivery service
-  my_account: My account
-  your_account: Your account
-  deliver_on: Deliver on
-  oops: Oops there was an issue
-  no_js: Oops! You must enable JavaScript in your browser to be able to order from this webstore.
-  cash_on_delivery: Cash on Delivery
-  bank_deposit: Bank Deposit
-  paypal_cc: PayPal / Credit Card
+  hi: Olá
+  thanks: Muito obrigado!
+  back: voltar
+  cancel: cancelar
+  log_in: Entrar
+  log_out: Sair
+  update: Atualizar
+  next: Próximo
+  or: ou
+  password_forgotten?: Esqueceu sua senha?
+  delivery_service: Serviço de entregas
+  my_account: Minha conta
+  your_account: 'Sua conta '
+  deliver_on: Entregar dia
+  oops: Oops! Houve um problema.
+  no_js: Oops! Você precisa habilitar JavaScript em seu navegador para fazer seus pedidos online nesta loja.
+  cash_on_delivery: 'Dinheiro, contra entrega '
+  bank_deposit: Depósito bancário
+  paypal_cc: PayPal / Cartão de crédito
