@@ -29,7 +29,7 @@ module BuckyBox
 
       # https://github.com/svenfuchs/rails-i18n
       config.i18n.available_locales = Dir[Rails.root.join("config", "locales", "*")]
-        .select { |path| File.directory? path }
+        .select { |path| File.directory?(path) && !File.symlink?(path) }
         .map { |directory| File.basename directory }
 
       config.i18n.default_locale = :en
