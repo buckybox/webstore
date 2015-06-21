@@ -1,4 +1,4 @@
-pt_BR:
+pt-BR:
   web_store: "%{webstore} - Loja online"
   no_ongoing_order: Não há pedidos em andamento, por favor inicie um novo pedido.
   cancelled_order: Seu pedido anterior foi cancelado, mas você pode iniciar novo pedido.
