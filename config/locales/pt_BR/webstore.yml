@@ -1,5 +1,5 @@
 pt_BR:
-  web_store: "%(lojaonline) - Loja online"
+  web_store: "%{webstore} - Loja online"
   no_ongoing_order: Não há pedidos em andamento, por favor inicie um novo pedido.
   cancelled_order: Seu pedido anterior foi cancelado, mas você pode iniciar novo pedido.
   order_placed: Seu pedido foi aceito.
@@ -29,7 +29,7 @@ pt_BR:
     exclude_items: Excluir estes itens
     substitute_with_items: Substituir por estes itens
     add_unlimited_extras: 'Adicionar qualquer quantidade de itens extras '
-    add_n_extras: Adicionar até %(limite) itens extras
+    add_n_extras: Adicionar até %{limit} itens extras
   authentication:
     enter_email: Digite seu endereço de email
     enter_password: Digite sua senha
