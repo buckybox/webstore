@@ -7,6 +7,7 @@
 [![security](https://hakiri.io/github/buckybox/webstore/master.svg)](https://hakiri.io/github/buckybox/webstore/master)
 
 Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.com/) platform.
+It allows customers to place orders and communicates with the [Bucky Box API](https://api.buckybox.com/docs/).
 
 ![Screenshot](doc/screenshot.jpg)
 
@@ -23,13 +24,12 @@ You must have [Redis](http://redis.io/) running - it is used for transient data.
 
 ```bash
 cp config/application.yml.example config/application.yml
+foreman start
 ```
-
-TBD
 
 ## Contributing
 
-TBD
+Any bug fix or tweak is welcomed but if you have bigger plans, please drop us a line at `support AT buckybox.com` first.
 
 ## Translation
 
