@@ -17,7 +17,7 @@ it:
   your_account: Il tuo account
   deliver_on: Consegna il
   oops: Oops qualcosa è andato storto
-  no_js: Oops! Devi abilitare JavaScript nel tuo browser per poter ordinare da questo sito.
+  no_js: Oops! Devi abilitare JavaScript nel tuo browser.
   cash_on_delivery: Pagamento alla consegna
   bank_deposit: Bonifico bancario
   paypal_cc: PayPal / Carta di credito

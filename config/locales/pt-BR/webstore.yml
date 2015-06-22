@@ -5,7 +5,7 @@ pt-BR:
   order_placed: Seu pedido foi aceito.
   halted_customer: O saldo de sua conta está abaixo do permitido! Você não poderá receber novos pedidos se seus pagamentos não forem regularizados antes da data de embalagem das proximas entregas.
   product:
-    order: Pedido
+    order: Faça seu pedido
   order:
     summary: Sumário do pedido
     exclusions_and_substitutes: Exclusões e substituições
