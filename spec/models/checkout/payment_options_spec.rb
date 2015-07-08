@@ -119,7 +119,6 @@ describe PaymentOptions do
       allow(customer).to receive(:guest?)         { false }
       allow(customer).to receive(:name)           { 'name' }
       allow(customer).to receive(:address)        { address }
-      allow(customer).to receive(:payment_method) { 'COD' }
 
       payment_options.name           = 'name'
       payment_options.phone_number   = '123'
@@ -128,6 +127,7 @@ describe PaymentOptions do
       payment_options.suburb         = 'burb'
       payment_options.city           = 'London'
       payment_options.postcode       = '123'
+      payment_options.payment_method = 'COD'
       payment_options.complete       = true
 
       expect(payment_options.to_h).to eq(
@@ -140,7 +140,7 @@ describe PaymentOptions do
         postcode: "123",
         city: "London",
         delivery_note: nil,
-        payment_method: nil,
+        payment_method: 'COD',
         complete: true,
       )
     end
