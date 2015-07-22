@@ -56,7 +56,6 @@ group :development do
   gem 'foreman', require: false
   gem 'bundler-audit', require: false
   gem 'rubocop', require: false
-  gem 'i18n-spec', require: false
   gem 'simplecov', require: false
   gem 'brakeman', require: false
   gem 'cane', require: false

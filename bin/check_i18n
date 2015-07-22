@@ -1,25 +1,17 @@
 #!/bin/bash -eu
 
-function check_completeness() {
-  local from=$1
-  local to=$2
+cd "$(dirname $0)/.."
 
-  echo -e "\nChecking completeness from ${from} to ${to}..."
+locales=$(find config/locales/ -type d -printf "%f\n" | tail -n+2)
+locales="${locales[@]/en}" # don't check en to en pair
 
-  for file in $(ls -r1 config/locales/${from}/); do
-    output="$(bundle exec rake --verbose -r 'rspec/expectations' -r 'i18n-spec/tasks' i18n-spec:completeness config/locales/${from}/${file} config/locales/${to}/${file})"
-
-    echo "$output"
-    echo "$output" | grep COMPLETE > /dev/null # will exit non-zero if missing
-  done
-}
-
-locales=$(find config/locales/ -type d -printf "%f\n" | grep -v "locales/")
+files=$(find config/locales/en/ -type f -printf "%f\n")
 
 for locale in $locales; do
-  if [ $locale != "en" ]; then
-    check_completeness "en" $locale
-    check_completeness $locale "en"
-  fi
+  for file in $files; do
+    echo -n "Checking completeness from en/${file} to ${locale}..."
+    output=$(./vendor/bin/yamlkeysdiff "config/locales/en/$file#en" "config/locales/$locale/$file#$locale" || true)
+    [ -n "$output" ] && { echo -e "\n${output}"; exit 1; } || echo " OK"
+  done
 done
 

@@ -16,7 +16,7 @@ bundle exec discover-unused-partials
 bundle exec brakeman -qz --no-progress -w3
 bundle exec cane --no-doc --style-measure 160 --abc-max 30
 
-#$(dirname $0)/check_i18n # FIXME i18n-spec seems to be broken with Ruby 2.2
+$(dirname $0)/check_i18n
 
 bundle exec bundle-audit update
 bundle exec bundle-audit check
