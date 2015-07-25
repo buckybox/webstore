@@ -66,7 +66,7 @@ GEM
       ruby_parser (~> 3.7.0)
       sass (~> 3.0)
       terminal-table (~> 1.4)
-    buckybox-api (1.5.0)
+    buckybox-api (1.6.2)
       crazy_money (>= 1.2.1)
       httparty (>= 0.13.1)
       super_recursive_open_struct (>= 1.0.2)
@@ -86,7 +86,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (1.0.10)
+    capybara-screenshot (1.0.11)
       capybara (>= 1.0, < 3)
       launchy
     cliver (0.3.2)
