@@ -46,6 +46,9 @@ module BuckyBox
       # Custom directories with classes and modules you want to be autoloadable.
       config.autoload_paths += Dir["#{config.root}/app/models/checkout"]
       config.autoload_paths += Dir["#{config.root}/lib"]
+
+      # Use memory store since we only need to cache a few megabytes
+      config.cache_store = :memory_store, { compress: false }
     end
   end
 end
