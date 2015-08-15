@@ -77,7 +77,7 @@ describe DeliveryOptions do
   describe '#to_h' do
     it 'returns a hash of the important form data' do
       start_date = Date.parse('2013-02-03')
-      delivery_options.delivery_service           = 3
+      delivery_options.delivery_service = 3
       delivery_options.start_date      = start_date
       delivery_options.frequency       = 'single'
       delivery_options.days            = { 1 => 2 }

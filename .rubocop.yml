@@ -100,6 +100,9 @@ Style/ClosingParenthesisIndentation:
 Style/ParallelAssignment:
   Enabled: false
 
+Style/TrivialAccessors:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 

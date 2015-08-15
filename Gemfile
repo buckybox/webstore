@@ -24,7 +24,7 @@ gem 'fast_blank'
 gem 'figaro'
 
 gem 'redis' # for WebstorePersistence
-gem 'hiredis'  # https://github.com/redis/redis-rb#hiredis
+gem 'hiredis' # https://github.com/redis/redis-rb#hiredis
 
 gem 'haml-rails'
 gem 'bootstrap-sass', '< 3' # TODO: upgrade to 3
