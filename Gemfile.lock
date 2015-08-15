@@ -197,7 +197,6 @@ GEM
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
-    puma (2.13.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -353,7 +352,6 @@ DEPENDENCIES
   newrelic_rpm
   ordinalize_full
   poltergeist
-  puma
   rails
   rails-html-sanitizer
   rails-i18n
