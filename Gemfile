@@ -64,7 +64,7 @@ end
 group :test do
   gem 'rspec-rails', require: false
   gem 'cucumber-rails', require: false
-  gem 'capybara', '< 2.4', require: false # TODO: fix cukes for 2.4
+  gem 'capybara', require: false
   gem 'capybara-screenshot'
   gem 'poltergeist', require: false
   gem 'webmock', require: false
