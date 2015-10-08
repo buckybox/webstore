@@ -6,11 +6,11 @@ SecureHeaders::Configuration.configure do |config|
   config.csp = {
     enforce: false,
     default_src: "'self'",
-    img_src: "'self' https://my.buckybox.com https://www.google-analytics.com/ https://*.pingdom.net/",
-    script_src: "'self' 'unsafe-inline' https://www.google-analytics.com/ https://*.pingdom.net/ https://js-agent.newrelic.com/ https://bam.nr-data.net/",
+    img_src: "'self' my.buckybox.com *.google-analytics.com *.pingdom.net",
+    script_src: "'self' 'unsafe-inline' www.google-analytics.com *.pingdom.net js-agent.newrelic.com bam.nr-data.net",
     style_src: "'self' 'unsafe-inline'",
-    form_action: "'self' https://www.paypal.com/",
-    frame_ancestors: "https://mydeal-tahiti.com/",
+    form_action: "'self' www.paypal.com",
+    frame_ancestors: "mydeal-tahiti.com",
     block_all_mixed_content: "",
     report_uri: "https://api.buckybox.com/v1/csp-report",
   }
