@@ -15,6 +15,7 @@ gem 'jquery-rails' # Use jquery as the JavaScript library
 # gem 'bcrypt' # Use ActiveModel has_secure_password
 
 # Our additional Gems are listed below
+gem 'secure_headers'
 gem 'rails-i18n'
 gem 'crazy_money'
 gem 'ordinalize_full', require: 'ordinalize_full/integer'

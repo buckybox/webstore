@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
+  ensure_security_headers # secure_headers Gem
+
   protect_from_forgery with: :exception
 
   before_action :set_current_webstore
