@@ -6,8 +6,9 @@ SecureHeaders::Configuration.configure do |config|
   config.csp = {
     enforce: false,
     default_src: "'self'",
-    img_src: "'self' https://my.buckybox.com",
-    script_src: "'self' 'unsafe-inline'",
+    img_src: "'self' https://my.buckybox.com https://www.google-analytics.com/ https://*.pingdom.net/",
+    script_src: "'self' 'unsafe-inline' https://www.google-analytics.com/ https://*.pingdom.net/ https://js-agent.newrelic.com/ https://bam.nr-data.net/",
+    style_src: "'self' 'unsafe-inline'",
     form_action: "'self'",
     frame_ancestors: "https://mydeal-tahiti.com/",
     block_all_mixed_content: "",
