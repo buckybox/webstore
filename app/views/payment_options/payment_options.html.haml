@@ -23,15 +23,15 @@
             .span12
               %h4= t 'payment_options.name'
           .row-fluid
-            .span12= f.input :name, label: false, placeholder: t('payment_options.enter_name'), input_html: { class: 'span12', required: true }
+            .span12= f.input :name, label: false, placeholder: t('payment_options.enter_name'), required: true, input_html: { class: 'span12' }
 
           - if payment_options.collect_phone
             .row-fluid
               .span12
                 %h4= t 'payment_options.phone'
             .row-fluid
-              .span9= f.input :phone_number, label: false, placeholder: t('payment_options.enter_phone'), input_html: { class: 'span12', value: payment_options.default_phone_number, required: payment_options.require_phone }
-              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, input_html: { class: 'span12', required: payment_options.require_phone }, include_blank: false, prompt: "", selected: payment_options.default_phone_type
+              .span9= f.input :phone_number, label: false, placeholder: t('payment_options.enter_phone'), required: payment_options.require_phone, input_html: { class: 'span12', value: payment_options.default_phone_number }
+              .span3= f.input :phone_type, collection: payment_options.phone_types, label: false, required: payment_options.require_phone, include_blank: false, prompt: "", selected: payment_options.default_phone_type, input_html: { class: 'span12' }
 
           - unless payment_options.pickup_point?
             .row-fluid

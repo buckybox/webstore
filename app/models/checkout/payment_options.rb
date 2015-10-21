@@ -15,7 +15,7 @@ class PaymentOptions < Form
   attribute :payment_method,  String
   attribute :complete,        Boolean
 
-  validates :name,           presence: true, if: :require_name
+  validates :name,           presence: true
   validates :phone_number,   presence: true, if: :require_phone
   validates :phone_type,     presence: true, if: :require_phone
   validates :address_1,      presence: true, if: :require_address_1
@@ -28,7 +28,7 @@ class PaymentOptions < Form
 
   attr_reader :address
 
-  delegate :collect_phone, :collect_delivery_note, to: :webstore
+  delegate :collect_phone, :require_phone, :collect_delivery_note, to: :webstore
   delegate :has_payment_options?, to: :cart
   delegate :address, to: :customer, prefix: true
   delegate :delivery_service, to: :order
@@ -51,14 +51,6 @@ class PaymentOptions < Form
 
   def phone_types(phone_collection_class = ::PhoneCollection)
     phone_collection_class.types_as_options
-  end
-
-  def require_name
-    !pickup_point?
-  end
-
-  def require_phone
-    !pickup_point? && webstore.require_phone
   end
 
   def pickup_point?
