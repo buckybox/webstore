@@ -1,7 +1,7 @@
 require "secure_headers"
 
 SecureHeaders::Configuration.configure do |config|
-  config.x_frame_options = "DENY"
+  config.x_frame_options = false
   config.x_xss_protection = { value: 1, mode: "block" }
   config.csp = {
     enforce: true,
@@ -11,7 +11,6 @@ SecureHeaders::Configuration.configure do |config|
     style_src: "'self' 'unsafe-inline'",
     form_action: "'self' www.paypal.com",
     connect_src: "'self' *.google-analytics.com",
-    frame_ancestors: "mydeal-tahiti.com",
     block_all_mixed_content: "",
     report_uri: "https://api.buckybox.com/v1/csp-report",
   }
