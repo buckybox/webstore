@@ -71,8 +71,9 @@
                   %h2= t 'order.discount'
                 %td.price= order.discount
 
-            %tr#total
-              %td.description
-                %h1= t 'order.total'
-              %td.price
-                %span= order.total
+            - if order.total.present?
+              %tr#total
+                %td.description
+                  %h1= t 'order.total'
+                %td.price
+                  %span= order.total

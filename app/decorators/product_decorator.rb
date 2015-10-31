@@ -6,7 +6,8 @@ class ProductDecorator < Draper::Decorator
   delegate_all
 
   def price
-    CrazyMoney.new(object.price).with_currency(context[:webstore].currency)
+    price = CrazyMoney.new(object.price)
+    price.zero? ? "" : price.with_currency(context[:webstore].currency)
   end
 
   def order_link

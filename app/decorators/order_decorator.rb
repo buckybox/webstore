@@ -5,7 +5,8 @@ class OrderDecorator < Draper::Decorator
   delegate_all
 
   def product_price
-    object.product_price(with_discount: false).with_currency(context[:currency])
+    product_price = object.product_price(with_discount: false)
+    product_price.zero? ? "" : product_price.with_currency(context[:currency])
   end
 
   def extras_price
@@ -21,7 +22,8 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total
-    object.total.with_currency(context[:currency])
+    total = object.total
+    total.zero? ? "" : total.with_currency(context[:currency])
   end
 
   def extras
