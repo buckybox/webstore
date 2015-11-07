@@ -10,9 +10,6 @@ gem 'therubyracer' # JS runtime
 gem 'jquery-rails' # Use jquery as the JavaScript library
 # gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'jquery-turbolinks'
-# gem 'jbuilder' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'sdoc', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
-# gem 'bcrypt' # Use ActiveModel has_secure_password
 
 # Our additional Gems are listed below
 gem 'secure_headers'
