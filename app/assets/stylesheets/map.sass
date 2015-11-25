@@ -1,1 +1,39 @@
 @import "leaflet"
+
+.lightbox
+  position: fixed
+  width: 100%
+  height: 100%
+  z-index: 10000
+  text-align: center
+  background: #000
+  opacity: 0.8
+  color: #FFF
+  font-family: "Myriad Pro", sans-serif
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+
+  .content
+    border: 1px solid blue
+    width: 100%
+    font-size: 14px
+    opacity: 0.75
+
+    ul
+      list-style: none
+      text-align: right
+
+  h1
+    font-size: 32px
+    img
+      margin-bottom: -8px // image height = 41px
+
+  footer
+    border: 1px solid red
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    font-size: 18px
+

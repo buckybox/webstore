@@ -7,8 +7,7 @@
 
     %title Find locally sourced food, Box Schemes powered by Bucky Box
 
-    = stylesheet_link_tag "map"
-    = javascript_include_tag "map"
+    = stylesheet_link_tag 'map'
     = favicon_link_tag '/favicon.ico'
 
     :css
@@ -16,9 +15,25 @@
       #map { min-height: 100%; }
 
   %body
-    %div#map
+    %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }
+      .content
+        %h1
+          = image_tag "marker-icon.png", alt: ""
+          Find locally sourced food
 
-    :javascript
-      var map = L.map('map').setView([20, 40], 2);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-      var marker = L.marker(["-41.180937", "174.83541"]).addTo(map);
+      .content
+        %ul
+          %li box schemes
+          %li community supported agricultures
+          %li food co-oops
+          %li recipe bags
+          %li raw milk
+
+      %footer
+        This is a map of web stores powered by
+        = link_to("Bucky Box", "http://www.buckybox.com", target: "_blank") + ","
+        %strong an ordering system for local food organisations
+        %span> .
+
+    %div#map
+    = javascript_include_tag 'map'
