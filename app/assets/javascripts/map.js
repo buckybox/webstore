@@ -9,6 +9,14 @@
 var lightbox = document.querySelectorAll(".lightbox")[0];
 lightbox.addEventListener("click", function(e) { this.remove(); });
 
+function fadeInElements() {
+  var elements = lightbox.querySelectorAll(".fade-in");
+  for (var i = 0; i < elements.length; i++) {
+    var el = elements[i];
+    setTimeout(function(el) { el.style.opacity = 1; }, i*1000, el);
+  }
+}
+
 
 /// MAP
 
@@ -24,9 +32,17 @@ if ("geolocation" in navigator) {
 
     map.setView(ll, 10);
 
+    fadeInElements();
+
     //console.log(window.navigator.language);
   }, function(error) {
+    console.log("user refused geolocation");
+    fadeInElements();
     // fall back to IP location?
   });
-} // else fall back to IP location?
+} else {
+  console.warn("geolocation unavailable");
+  fadeInElements();
+  // fall back to IP location?
+}
 

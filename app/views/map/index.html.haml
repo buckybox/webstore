@@ -16,8 +16,6 @@
 
   %body
     %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }
-      %div.close &times;
-
       .content
         %h1
           = image_tag "marker-icon.png", alt: ""
@@ -25,17 +23,19 @@
 
       .content
         %ul
-          %li box schemes
-          %li community supported agricultures
-          %li food co-oops
-          %li recipe bags
-          %li raw milk
+          %li.fade-in box schemes
+          %li.fade-in community supported agricultures
+          %li.fade-in food co-oops
+          %li.fade-in recipe bags
+          %li.fade-in raw milk
 
-      %footer
+      %footer.fade-in
         This is a map of web stores powered by
         = link_to("Bucky Box", "http://www.buckybox.com", target: "_blank") + ","
         %strong an ordering system for local food organisations
         %span> .
+
+      %div.close &times;
 
     %div#map
     = javascript_include_tag 'map'
