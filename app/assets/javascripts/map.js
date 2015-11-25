@@ -25,7 +25,8 @@ if ("geolocation" in navigator) {
     map.setView(ll, 10);
 
     //console.log(window.navigator.language);
+  }, function(error) {
+    // fall back to IP location?
   });
-} else {
-  /* geolocation IS NOT available */
-}
+} // else fall back to IP location?
+

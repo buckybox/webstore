@@ -16,6 +16,8 @@
 
   %body
     %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }
+      %div.close &times;
+
       .content
         %h1
           = image_tag "marker-icon.png", alt: ""
@@ -37,3 +39,4 @@
 
     %div#map
     = javascript_include_tag 'map'
+
