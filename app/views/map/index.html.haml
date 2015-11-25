@@ -1,0 +1,24 @@
+!!! 5
+
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    -# <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> # FIXME: do we need that for mobiles?
+
+    %title Find locally sourced food, Box Schemes powered by Bucky Box
+
+    = stylesheet_link_tag "map"
+    = javascript_include_tag "map"
+    = favicon_link_tag '/favicon.ico'
+
+    :css
+      html, body { margin: 0; padding: 0; height: 100%; }
+      #map { min-height: 100%; }
+
+  %body
+    %div#map
+
+    :javascript
+      var map = L.map('map').setView([20, 40], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+      var marker = L.marker(["-41.180937", "174.83541"]).addTo(map);

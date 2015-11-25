@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root to: redirect("/customer")
+  root to: "map#index"
 
   scope ":webstore_id", constraints: { format: "html" } do
     # get "/fruits", action: "fruits", controller: "store" # TODO: categories using box tags

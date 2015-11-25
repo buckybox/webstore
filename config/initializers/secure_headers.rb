@@ -6,7 +6,7 @@ SecureHeaders::Configuration.configure do |config|
   config.csp = {
     enforce: true,
     default_src: "'none'",
-    img_src: "'self' my.buckybox.com *.google-analytics.com *.pingdom.net",
+    img_src: "'self' my.buckybox.com *.google-analytics.com *.pingdom.net *.tile.openstreetmap.org",
     script_src: "'self' 'unsafe-inline' *.google-analytics.com *.pingdom.net js-agent.newrelic.com bam.nr-data.net",
     style_src: "'self' 'unsafe-inline'",
     form_action: "'self' www.paypal.com",
