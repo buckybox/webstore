@@ -13,7 +13,7 @@ function fadeInElements() {
   var elements = lightbox.querySelectorAll(".fade-in");
   for (var i = 0; i < elements.length; i++) {
     var el = elements[i];
-    setTimeout(function(el) { el.style.opacity = 1; }, i*1000, el);
+    setTimeout(function(el) { el.style.opacity = 0.75; }, i*1000, el);
   }
 }
 

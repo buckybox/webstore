@@ -10,24 +10,21 @@
     = stylesheet_link_tag 'map'
     = favicon_link_tag '/favicon.ico'
 
-    :css
-      html, body { margin: 0; padding: 0; height: 100%; }
-      #map { min-height: 100%; }
-
   %body
     %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }
-      .content
-        %h1
-          = image_tag "marker-icon.png", alt: ""
-          Find locally sourced food
+      .wrapper
+        .content
+          %h1
+            = image_tag "marker-icon.png", alt: ""
+            Find locally sourced food
 
-      .content
-        %ul
-          %li.fade-in box schemes
-          %li.fade-in community supported agricultures
-          %li.fade-in food co-oops
-          %li.fade-in recipe bags
-          %li.fade-in raw milk
+        .content
+          %ul
+            %li.fade-in box schemes
+            %li.fade-in community supported agriculture
+            %li.fade-in food co-ops
+            %li.fade-in recipe bags
+            %li.fade-in raw milk
 
       %footer.fade-in
         This is a map of web stores powered by
@@ -37,6 +34,6 @@
 
       %div.close &times;
 
-    %div#map
+    %div#map{ style: "min-height: 100%" }
     = javascript_include_tag 'map'
 
