@@ -20,16 +20,18 @@ function fadeInElements() {
 
 /// MAP
 
-var map = L.map('map').setView([20, 40], 2);
+var map = L.map("map").setView([20, 40], 2);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+fetchWebstores(map);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
 map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
 
 var FooterControl = L.Control.extend({
-  options: { position: 'bottomleft' },
+  options: { position: "bottomleft" },
   onAdd: function (map) {
-    var container = L.DomUtil.create('div', 'leaflet-control-attribution');
+    var container = L.DomUtil.create("div", "leaflet-control-attribution");
 
     container.innerHTML = `
       Map of web stores powered by
@@ -45,16 +47,15 @@ map.addControl(new FooterControl());
 
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude, lon = position.coords.longitude;
-    var ll = [lat, lon];
+    var lat = position.coords.latitude, lng = position.coords.longitude;
+    var ll = [lat, lng];
 
     var marker = L.marker(ll).addTo(map);
+    marker.bindPopup("Your approximate location");
 
     map.setView(ll, 10);
 
     fadeInElements();
-
-    //console.log(window.navigator.language);
   }, function(error) {
     console.log("user refused geolocation");
     fadeInElements();
@@ -64,5 +65,30 @@ if ("geolocation" in navigator) {
   console.warn("geolocation unavailable");
   fadeInElements();
   // fall back to IP location?
+}
+
+function fetchWebstores(map) {
+  var request = new Request("https://api.buckybox.com/v1/webstores", {
+    method: "GET",
+    mode: "cors"
+  });
+
+  fetch(request).then(function(response) {
+    return response.json();
+  }).then(function(json) {
+
+    for (var i = 0; i < json.length; i++) {
+      var webstore = json[i];
+      var ll = webstore.ll;
+
+      if (ll[0] && ll[1]) { // if we have valid coordinates
+        var marker = L.marker(webstore.ll).addTo(map);
+        marker.bindPopup("<b><a href='" + webstore.webstore_url + "' target='_blank'>" + webstore.name + "</a></b><br>" + webstore.postal_address);
+      }
+    }
+
+  }).catch(function(err) {
+    console.error(err);
+  });
 }
 
