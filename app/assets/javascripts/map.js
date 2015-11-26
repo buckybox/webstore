@@ -33,11 +33,9 @@ var FooterControl = L.Control.extend({
   onAdd: function (map) {
     var container = L.DomUtil.create("div", "leaflet-control-attribution");
 
-    container.innerHTML = `
-      Map of web stores powered by
-      <a target="_blank" href="http://www.buckybox.com">Bucky Box</a>,
-      an ordering system for local food organisations
-    `;
+    container.innerHTML = 'Map of web stores powered by ' +
+      '<a target="_blank" href="http://www.buckybox.com">Bucky Box</a>, ' +
+      'an ordering system for local food organisations';
 
     return container;
   }

@@ -19,5 +19,6 @@
 
 //= require_tree ../../../vendor/assets/javascripts
 
-//= require_tree .
+//= require ./nprogress-config
+//= require ./webstore
 
