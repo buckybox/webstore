@@ -21,7 +21,27 @@ function fadeInElements() {
 /// MAP
 
 var map = L.map('map').setView([20, 40], 2);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
+
+var FooterControl = L.Control.extend({
+  options: { position: 'bottomleft' },
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-attribution');
+
+    container.innerHTML = `
+      Map of web stores powered by
+      <a target="_blank" href="http://www.buckybox.com">Bucky Box</a>,
+      an ordering system for local food organisations
+    `;
+
+    return container;
+  }
+});
+
+map.addControl(new FooterControl());
 
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function(position) {
