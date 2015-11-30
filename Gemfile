@@ -2,10 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'sass-rails'
+gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails' # Use CoffeeScript for .coffee assets and views
 gem 'rails-html-sanitizer' # Use Rails Html Sanitizer for HTML sanitization
-gem 'jquery-rails' # Use jquery as the JavaScript library
+
 gem 'therubyracer' # JS runtime
+gem 'jquery-rails' # Use jquery as the JavaScript library
 # gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'jquery-turbolinks'
 
@@ -49,7 +51,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
   gem 'foreman', require: false
   gem 'bundler-audit', require: false
   gem 'rubocop', require: false
