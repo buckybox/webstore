@@ -13,6 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/public/dev-assets/
 /tmp
 
 # Redis
