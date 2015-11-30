@@ -1,10 +1,23 @@
 @import "leaflet"
 
+// Leaflet overrides
+
+.leaflet-container
+  font-family: "Myriad Pro", "Open Sans", sans-serif
+
+.leaflet-control-attribution
+  color: #008C8C
+  a
+    text-decoration: underline
+
+
+// Our own CSS
+
 html, body
   margin: 0
   padding: 0
   height: 100%
-  font-family: "Myriad Pro", sans-serif
+  font-family: "Myriad Pro", "Open Sans", sans-serif
 
 .lightbox
   position: fixed
@@ -63,9 +76,4 @@ html, body
     bottom: 10px
     width: 100%
     font-size: 18px
-
-.leaflet-control-attribution
-  color: #008C8C
-  a
-    text-decoration: underline
 
