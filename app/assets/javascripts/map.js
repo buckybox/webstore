@@ -80,7 +80,7 @@ function fetchWebstores(map) {
       var ll = webstore.ll;
 
       if (ll[0] && ll[1]) { // if we have valid coordinates
-        var marker = L.marker(webstore.ll).addTo(map);
+        var marker = L.marker(webstore.ll, {alt: webstore.name}).addTo(map);
         marker.bindPopup("<b><a href='" + webstore.webstore_url + "' target='_blank'>" + webstore.name + "</a></b><br>" + webstore.postal_address);
       }
     }
