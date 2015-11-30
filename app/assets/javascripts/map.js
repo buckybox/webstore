@@ -66,13 +66,23 @@ if ("geolocation" in navigator) {
   // fall back to IP location?
 }
 
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
 function fetchWebstores(map) {
   var request = new Request("https://api.buckybox.com/v1/webstores", {
     method: "GET",
     mode: "cors"
   });
 
-  fetch(request).then(function(response) {
+  fetch(request).then(checkStatus).then(function(response) {
     return response.json();
   }).then(function(json) {
 
