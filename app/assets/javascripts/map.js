@@ -1,3 +1,4 @@
+//= require fetch
 //= require leaflet
 
 "use strict";
