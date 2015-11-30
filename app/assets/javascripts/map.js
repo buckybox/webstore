@@ -49,10 +49,9 @@ if ("geolocation" in navigator) {
     var lat = position.coords.latitude, lng = position.coords.longitude;
     var ll = [lat, lng];
 
-    var marker = L.marker(ll).addTo(map);
-    marker.bindPopup("Your approximate location");
-
-    map.setView(ll, 10);
+    // user's approximate location
+    L.circle(ll, 20*1E3).addTo(map);
+    map.setView(ll, 8);
 
     fadeInElements();
   }, function(error) {
