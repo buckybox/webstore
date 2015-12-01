@@ -1,108 +1,150 @@
 //= require fetch
 //= require leaflet
 
-"use strict";
+(function() {
+  "use strict";
 
+  /// LIGHTBOX
 
-/// LIGHTBOX
+  // assume there is only one lightbox present at a time
+  var lightbox = document.querySelectorAll(".lightbox")[0];
+  lightbox.addEventListener("click", function(e) { this.remove(); });
 
-// assume there is only one lightbox present at a time
-var lightbox = document.querySelectorAll(".lightbox")[0];
-lightbox.addEventListener("click", function(e) { this.remove(); });
-
-function fadeInElements() {
-  var elements = lightbox.querySelectorAll(".fade-in");
-  for (var i = 0; i < elements.length; i++) {
-    var el = elements[i];
-    setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
-  }
-}
-
-fadeInElements();
-
-
-/// MAP
-
-var map = L.map("map").setView([20, 40], 2);
-
-detectLocation(map);
-fetchWebstores(map);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-setFooter(map);
-
-// functions below:
-
-function setFooter(map) {
-  map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
-
-  var FooterControl = L.Control.extend({
-    options: { position: "bottomleft" },
-    onAdd: function (map) {
-      var container = L.DomUtil.create("div", "leaflet-control-attribution");
-
-      container.innerHTML = 'Map of web stores powered by ' +
-        '<a target="_blank" href="http://www.buckybox.com">Bucky Box</a>, ' +
-        'an ordering system for local food organisations';
-
-      return container;
+  (function fadeInElements() {
+    var elements = lightbox.querySelectorAll(".fade-in");
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
+      setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
     }
+  })();
+
+
+  /// MAP
+
+  function MapData() {
+    this.userLocation = null;
+    this.stores = null;
+  }
+
+  var mapData = new MapData();
+
+  addEventListener("userLocationAcquired", function(e) {
+    mapData.userLocation = e.detail;
+    tryToPan();
   });
 
-  map.addControl(new FooterControl());
-}
-
-function detectLocation(map) {
-  var request = new Request("https://freegeoip.net/json/", {
-    method: "GET",
-    mode: "cors"
+  addEventListener("storesAcquired", function(e) {
+    mapData.stores = e.detail;
+    tryToPan();
   });
 
-  fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
+  var map = L.map("map").setView([20, 40], 2);
 
-    var ll = [json.latitude, json.longitude]; // user's approximate location
+  detectLocation(map);
+  fetchStores(map);
+  setFooter(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-    L.circle(ll, 50*1E3).addTo(map);
-    map.setView(ll, 8);
+  // functions below:
 
-  }).catch(function(err) {
-    console.error(err);
-  });
-}
+  function tryToPan() {
+    if (!mapData.userLocation || !mapData.stores) return;
 
-function fetchWebstores(map) {
-  var request = new Request("https://api.buckybox.com/v1/webstores", {
-    method: "GET",
-    mode: "cors"
-  });
+    var userLocation = mapData.userLocation,
+        stores = mapData.stores,
+        minDistance = Number.MAX_VALUE,
+        closestStore = null;
 
-  fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
+    for (var i = 0; i < stores.length; i++) {
+      var store = stores[i],
+          storeLocation = L.latLng(store.ll),
+          distance = storeLocation.distanceTo(userLocation);
 
-    for (var i = 0; i < json.length; i++) {
-      var webstore = json[i];
-      var ll = webstore.ll;
-
-      if (ll[0] && ll[1]) { // if we have valid coordinates
-        var marker = L.marker(webstore.ll, {alt: webstore.name}).addTo(map);
-        marker.bindPopup("<b><a href='" + webstore.webstore_url + "' target='_blank'>" + webstore.name + "</a></b> - " + webstore.postal_address);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestStore = store;
       }
     }
 
-  }).catch(function(err) {
-    console.error(err);
-  });
-}
-
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    var error = new Error(response.statusText);
-    error.response = response;
-    throw error;
+    map.fitBounds([userLocation, closestStore.ll], { maxZoom: 8 });
   }
-}
 
-function parseJSON(response) {
-  return response.json();
-}
+  function setFooter(map) {
+    map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
 
+    var FooterControl = L.Control.extend({
+      options: { position: "bottomleft" },
+      onAdd: function (map) {
+        var container = L.DomUtil.create("div", "leaflet-control-attribution");
+
+        container.innerHTML = 'Map of  stores powered by ' +
+          '<a target="_blank" href="http://www.buckybox.com">Bucky Box</a>, ' +
+          'an ordering system for local food organisations';
+
+        return container;
+      }
+    });
+
+    map.addControl(new FooterControl());
+  }
+
+  function detectLocation(map) {
+    var request = new Request("https://freegeoip.net/json/", {
+      method: "GET",
+      mode: "cors"
+    });
+
+    fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
+
+      var userLocation = L.latLng(json.latitude, json.longitude);
+      L.circle(userLocation, 50*1E3).addTo(map);
+
+      var event = new CustomEvent("userLocationAcquired", { 'detail': userLocation });
+      dispatchEvent(event);
+
+    }).catch(function(err) {
+      console.error(err);
+    });
+  }
+
+  function fetchStores(map) {
+    var request = new Request("https://api.buckybox.com/v1/webstores", {
+      method: "GET",
+      mode: "cors"
+    });
+
+    fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
+
+      var event = new CustomEvent("storesAcquired", { 'detail': json });
+      dispatchEvent(event);
+
+      for (var i = 0; i < json.length; i++) {
+        var store = json[i];
+        var ll = store.ll;
+
+        if (ll[0] && ll[1]) { // if we have valid coordinates
+          var marker = L.marker(store.ll, {alt: store.name}).addTo(map);
+          marker.bindPopup("<b><a href='" + store.webstore_url + "' target='_blank'>" + store.name + "</a></b> - " + store.postal_address);
+        }
+      }
+
+    }).catch(function(err) {
+      console.error(err);
+    });
+  }
+
+  function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    } else {
+      var error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    }
+  }
+
+  function parseJSON(response) {
+    return response.json();
+  }
+
+})();
