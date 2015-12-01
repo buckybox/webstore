@@ -10,7 +10,7 @@ SecureHeaders::Configuration.configure do |config|
     script_src: "'self' 'unsafe-inline' *.google-analytics.com *.pingdom.net js-agent.newrelic.com bam.nr-data.net",
     style_src: "'self' 'unsafe-inline'",
     form_action: "'self' www.paypal.com",
-    connect_src: "'self' api.buckybox.com *.google-analytics.com",
+    connect_src: "'self' api.buckybox.com freegeoip.net *.google-analytics.com",
     block_all_mixed_content: "",
     report_uri: "https://api.buckybox.com/v1/csp-report",
   }

@@ -18,61 +18,55 @@ function fadeInElements() {
   }
 }
 
+fadeInElements();
+
 
 /// MAP
 
 var map = L.map("map").setView([20, 40], 2);
 
+detectLocation(map);
 fetchWebstores(map);
-
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+setFooter(map);
 
-map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
+// functions below:
 
-var FooterControl = L.Control.extend({
-  options: { position: "bottomleft" },
-  onAdd: function (map) {
-    var container = L.DomUtil.create("div", "leaflet-control-attribution");
+function setFooter(map) {
+  map.attributionControl.setPrefix('Map powered by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and <a href="http://leafletjs.com" target="_blank">Leaflet</a>');
 
-    container.innerHTML = 'Map of web stores powered by ' +
-      '<a target="_blank" href="http://www.buckybox.com">Bucky Box</a>, ' +
-      'an ordering system for local food organisations';
+  var FooterControl = L.Control.extend({
+    options: { position: "bottomleft" },
+    onAdd: function (map) {
+      var container = L.DomUtil.create("div", "leaflet-control-attribution");
 
-    return container;
-  }
-});
+      container.innerHTML = 'Map of web stores powered by ' +
+        '<a target="_blank" href="http://www.buckybox.com">Bucky Box</a>, ' +
+        'an ordering system for local food organisations';
 
-map.addControl(new FooterControl());
-
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude, lng = position.coords.longitude;
-    var ll = [lat, lng];
-
-    // user's approximate location
-    L.circle(ll, 20*1E3).addTo(map);
-    map.setView(ll, 8);
-
-    fadeInElements();
-  }, function(error) {
-    console.log("user refused geolocation");
-    fadeInElements();
-    // fall back to IP location?
+      return container;
+    }
   });
-} else {
-  console.warn("geolocation unavailable");
-  fadeInElements();
-  // fall back to IP location?
+
+  map.addControl(new FooterControl());
 }
 
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    var error = new Error(response.statusText);
-    error.response = response;
-    throw error;
-  }
+function detectLocation(map) {
+  var request = new Request("https://freegeoip.net/json/", {
+    method: "GET",
+    mode: "cors"
+  });
+
+  fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
+
+    var ll = [json.latitude, json.longitude]; // user's approximate location
+
+    L.circle(ll, 50*1E3).addTo(map);
+    map.setView(ll, 8);
+
+  }).catch(function(err) {
+    console.error(err);
+  });
 }
 
 function fetchWebstores(map) {
@@ -81,9 +75,7 @@ function fetchWebstores(map) {
     mode: "cors"
   });
 
-  fetch(request).then(checkStatus).then(function(response) {
-    return response.json();
-  }).then(function(json) {
+  fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
 
     for (var i = 0; i < json.length; i++) {
       var webstore = json[i];
@@ -98,5 +90,19 @@ function fetchWebstores(map) {
   }).catch(function(err) {
     console.error(err);
   });
+}
+
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
+function parseJSON(response) {
+  return response.json();
 }
 
