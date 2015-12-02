@@ -55,6 +55,7 @@ group :development do
   gem 'bundler-audit', require: false
   gem 'rubocop', require: false
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
   gem 'brakeman', require: false
   gem 'cane', require: false
   gem 'discover-unused-partials', require: false

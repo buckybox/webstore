@@ -1,5 +1,6 @@
 language: ruby
 script: "./bin/ci"
+after_script: "bundle exec rake coveralls:push"
 rvm:
 - 2.1
 - 2.2

@@ -12,4 +12,7 @@ if Rails.env.development? || Rails.env.test?
 
   task default: :spec
 
+  require "coveralls/rake/task"
+  Coveralls::RakeTask.new
+
 end
