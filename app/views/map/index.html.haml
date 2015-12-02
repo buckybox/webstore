@@ -11,7 +11,7 @@
     = favicon_link_tag "/favicon.ico"
 
     = render partial: "layouts/bugsnag"
-    = render partial: "layouts/google_analytics"
+    = render partial: "layouts/google_analytics", locals: { ga_tracking_id: "UA-21417656-11" }
     = render partial: "layouts/pingdom"
 
   %body
