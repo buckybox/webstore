@@ -7,8 +7,11 @@
 
     %title Find locally sourced food, CSA Box Schemes powered by Bucky Box
 
-    = stylesheet_link_tag 'map'
-    = favicon_link_tag '/favicon.ico'
+    = stylesheet_link_tag "map"
+    = favicon_link_tag "/favicon.ico"
+
+    = render partial: "layouts/google_analytics"
+    = render partial: "layouts/pingdom"
 
   %body
     %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }
@@ -36,5 +39,5 @@
         = image_tag "close-icon.png", alt: "close"
 
     %div#map{ style: "min-height: 100%" }
-    = javascript_include_tag 'map'
+    = javascript_include_tag "map"
 
