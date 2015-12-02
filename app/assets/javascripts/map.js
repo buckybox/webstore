@@ -95,7 +95,7 @@
     fetch(request).then(checkStatus).then(parseJSON).then(function(json) {
 
       var userLocation = L.latLng(json.latitude, json.longitude);
-      L.circle(userLocation, 50*1E3).addTo(map);
+      L.circle(userLocation, 50*1E3, { clickable: false, stroke: false }).addTo(map);
 
       var event = new CustomEvent("userLocationAcquired", { 'detail': userLocation });
       dispatchEvent(event);
