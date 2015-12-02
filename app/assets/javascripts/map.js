@@ -12,10 +12,9 @@
 
   (function fadeInElements() {
     var elements = lightbox.querySelectorAll(".fade-in");
-    for (var i = 0; i < elements.length; i++) {
-      var el = elements[i];
+    Array.from(elements).forEach(function(el, i) {
       setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
-    }
+    });
   })();
 
 
@@ -55,16 +54,15 @@
         minDistance = Number.MAX_VALUE,
         closestStore = null;
 
-    for (var i = 0; i < stores.length; i++) {
-      var store = stores[i],
-          storeLocation = L.latLng(store.ll),
+    stores.forEach(function(store) {
+      var storeLocation = L.latLng(store.ll),
           distance = storeLocation.distanceTo(userLocation);
 
       if (distance < minDistance) {
         minDistance = distance;
         closestStore = store;
       }
-    }
+    });
 
     map.fitBounds([userLocation, closestStore.ll], { maxZoom: 8 });
   }
@@ -118,15 +116,14 @@
       var event = new CustomEvent("storesAcquired", { 'detail': json });
       dispatchEvent(event);
 
-      for (var i = 0; i < json.length; i++) {
-        var store = json[i];
+      json.forEach(function(store) {
         var ll = store.ll;
 
         if (ll[0] && ll[1]) { // if we have valid coordinates
           var marker = L.marker(store.ll, {alt: store.name}).addTo(map);
           marker.bindPopup("<b><a href='" + store.webstore_url + "' target='_blank'>" + store.name + "</a></b> - " + store.postal_address);
         }
-      }
+      });
 
     }).catch(function(err) {
       console.error(err);
