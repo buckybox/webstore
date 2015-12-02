@@ -3,13 +3,18 @@
 %html
   %head
     %meta{ charset: 'utf-8' }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
 
     %title Bucky Box - #{t('web_store', webstore: current_webstore.name)}
 
     = csrf_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = favicon_link_tag '/favicon.ico'
+
+    = render partial: 'layouts/bugsnag'
+    = render partial: 'layouts/google_analytics'
+    = render partial: 'layouts/pingdom'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     :javascript
       // custom JS I18n helper - works like Rails' one
@@ -27,9 +32,6 @@
         });
         return current_scope || "missing translation: #{I18n.locale}.javascript." + key;
       };
-
-    = render partial: 'layouts/google_analytics'
-    = render partial: 'layouts/pingdom'
 
   %body
     = render partial: 'layouts/banner'
