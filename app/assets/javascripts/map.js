@@ -122,7 +122,7 @@
 
         if (ll[0] && ll[1]) { // if we have valid coordinates
           var marker = L.marker(store.ll, {alt: store.name}).addTo(map);
-          marker.bindPopup("<b><a href='" + store.webstore_url + "' target='_blank'>" + store.name + "</a></b> - " + store.postal_address);
+          marker.bindPopup("<b><a href='" + store.webstore_url + "'>" + store.name + "</a></b> - " + store.postal_address);
         }
       });
 
