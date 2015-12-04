@@ -12,9 +12,10 @@
 
   (function fadeInElements() {
     var elements = lightbox.querySelectorAll(".fade-in");
-    Array.from(elements).forEach(function(el, i) {
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
       setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
-    });
+    }
   })();
 
 
