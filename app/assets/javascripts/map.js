@@ -8,15 +8,20 @@
 
   // assume there is only one lightbox present at a time
   var lightbox = document.querySelectorAll(".lightbox")[0];
-  lightbox.addEventListener("click", function(e) { this.remove(); });
 
-  (function fadeInElements() {
-    var elements = lightbox.querySelectorAll(".fade-in");
-    for (var i = 0; i < elements.length; i++) {
-      var el = elements[i];
-      setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
-    }
-  })();
+  if (document.cookie.indexOf("skip_lightbox=1") !== -1) {
+    lightbox.remove();
+  } else {
+    lightbox.addEventListener("click", function(e) { this.remove(); });
+
+    (function fadeInElements() {
+      var elements = lightbox.querySelectorAll(".fade-in");
+      for (var i = 0; i < elements.length; i++) {
+        var el = elements[i];
+        setTimeout(function(el) { el.style.opacity = 0.9; }, i*1000, el);
+      }
+    })();
+  }
 
 
   /// MAP
