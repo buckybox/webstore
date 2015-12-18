@@ -93,7 +93,7 @@
   }
 
   function detectLocation(map) {
-    var request = new Request("https://freegeoip.net/json/", {
+    var request = new Request("https://api.buckybox.com/v1/geoip", {
       method: "GET",
       mode: "cors"
     });
