@@ -2,8 +2,8 @@ language: ruby
 script: "./bin/ci"
 after_script: "bundle exec rake coveralls:push"
 rvm:
-- 2.1
-- 2.2
+- 2.2.3
+- 2.3.0
 - ruby-head
 - rbx
 - rbx-head
