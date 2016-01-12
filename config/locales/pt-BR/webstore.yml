@@ -1,11 +1,11 @@
 pt-BR:
-  web_store: "%{webstore} - Loja online"
+  web_store: "%{webstore} - Loja virtual"
   no_ongoing_order: Você não tem pedidos em andamento, por favor inicie um novo pedido.
   cancelled_order: Seu pedido anterior foi cancelado, mas você pode fazer um novo pedido.
   order_placed: Seu pedido foi aceito.
   halted_customer: O saldo de sua conta ultrapassou o limite permitido! Você não poderá receber novas entregas se seus pagamentos não forem regularizados antes da data de embalagem das próximas entregas programadas para todos os Clientes.
   product:
-    order: Faça já seu pedido
+    order: Encomendar
   order:
     summary: Sumário do pedido
     exclusions_and_substitutes: Exclusões e substituições
@@ -13,8 +13,8 @@ pt-BR:
     discount: Seu desconto
     total: Total
   schedule_rule:
-    deliver_on: Entregar na
-    deliver_weekly_on: Entregar semanalmente às
+    deliver_on: Entregar
+    deliver_weekly_on: Entregar semanalmente
     deliver_fornightly_on: Entregar quinzenalmente às
     deliver_monthly_on: Entregar mensalmente no dia
     no_future_deliveries: Não há entregas futuras programadas
@@ -25,15 +25,15 @@ pt-BR:
   sidebar:
     find_us_on_facebook: Encontre-nos no Facebook
   customise_order:
-    customise_product: Personalizar meu produto
+    customise_product: Personalizar minha encomenda
     exclude_items: Excluir estes itens
     substitute_with_items: Substituir por estes itens
-    add_unlimited_extras: 'Adicionar qualquer quantidade de itens extras '
+    add_unlimited_extras: Adicionar os itens extras que você quer receber
     add_n_extras: Adicionar até %{limit} itens extras
   authentication:
     enter_email: Digite seu endereço de email
     enter_password: Digite sua senha
-    bad_email_password: Seu endereço de email ou sua senha estão incorretos.
+    bad_email_password: Endereço de email ou senha incorretos.
     new_customer: Sou um novo cliente
     existing_customer: Sou um cliente que está de volta
   delivery_options:
@@ -42,14 +42,14 @@ pt-BR:
     pickup_details: Detalhes para apanha pelo Cliente
     select_best: Selecione aquele que melhor atende a sua área
     repeat_delivery: Repetir a entrega?
-    when: Quando você gostaria de receber sua(s) entrega(s)?
+    when: Quando você gostaria de receber sua(s) encomenda(s)?
     extra_frequency: O que você achou dos itens extras que você solicitou?
     select_delivery_service: "- Selecionar um serviço de entregas -"
     order_frequencies:
       select: "- Selecionar a frequencia de entrega -"
-      single: Entregar apenas uma vez, na
-      weekly: Entregar semanalmente, às ...
-      fortnightly: Entregar a cada duas semanas, às ...
+      single: Entregar apenas uma vez
+      weekly: Entregar semanalmente
+      fortnightly: Entregar a cada duas semanas
       monthly: Entregar mensalmente, no dia
     extra_frequencies:
       always: Incluir os itens extras em TODAS as entregas
@@ -64,7 +64,7 @@ pt-BR:
     enter_phone: Digite seu telefone
     amount_due: 'Total devido '
     in_credit: Existe crédito em sua conta
-    pay_by: Pagar até
+    pay_by: Pagar
     no_payment: Não é necessário pagar
     complete_order: Completar este pedido
     address:
@@ -78,8 +78,8 @@ pt-BR:
         delivery_note: Instruções de entrega, tais como onde deixar o pacote
   completed:
     amount_due: Total devido
-    pay_by: Pagar até
-    back_to_webstore: Voltar para a loja online
+    pay_by: Pagar
+    back_to_webstore: Voltar para a loja virtual
     my_account: Minha conta
   payment_instructions:
     account_details: Detalhes da conta
@@ -88,9 +88,9 @@ pt-BR:
     closing_balance: Saldo final
   payments:
     bank_deposit:
-      deposit_funds: Favor depositar seu pagemento no
-      account_name: Nome da conta
-      reference: Referencia
+      deposit_funds: Favor fazer seu depósito no
+      account_name: Favorecido
+      reference: 'Referência: '
     paypal:
       pay_now: Pague agora
       top_up: Adicionar crédito à minha conta
