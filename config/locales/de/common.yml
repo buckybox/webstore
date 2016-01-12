@@ -1,0 +1,23 @@
+de:
+  current_locale_en: German
+  current_locale: Deutsch
+  colon: ":"
+  hi: Hallo
+  thanks: Danke
+  back: zurück
+  cancel: abbrechen
+  log_in: einloggen
+  log_out: ausloggen
+  update: aktualisieren
+  next: weiter
+  or: oder
+  password_forgotten?: Passwort vergessen?
+  delivery_service: Lieferservice
+  my_account: Mein Konto
+  your_account: Ihr Konto
+  deliver_on: Liefern am
+  oops: Oh, es ist ein Fehler aufgetreten
+  no_js: Oh, Du musst JavaScript in deinem Browser einrichten
+  cash_on_delivery: Barzahlung bei Lieferung
+  bank_deposit: Bankdepot
+  paypal_cc: PayPal / Kreditkarte

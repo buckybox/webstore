@@ -1,0 +1,98 @@
+de:
+  web_store: "%{webstore} - Web Shop"
+  no_ongoing_order: Es gibt noch keine laufende Bestellung, bitte beginne jetzt..
+  cancelled_order: 'Deine Bestellung wurde storniert, du kannst nun eine Neue beginnen. '
+  order_placed: Deine Bestellung wurde entgegengenommen.
+  halted_customer: Dein Kontostand ist unter dem Minimum und erlaubt keine neuen Bestellungen, es sei denn, dass der Kontostand bis zum Liefertermin ausgeglichen wurde.
+  product:
+    order: Bestellung
+  order:
+    summary: Zusammenfassung der Bestellung
+    exclusions_and_substitutes: Ausschlüsse und Ersatzprodukte
+    extras: Zusätzliche Waren
+    discount: Dein Rabatt
+    total: Gesamt
+  schedule_rule:
+    deliver_on: Lieferung am
+    deliver_weekly_on: Wöchentliche Lieferung am
+    deliver_fornightly_on: 14-tägige Lieferung am
+    deliver_monthly_on: Monatliche Lieferung am
+    no_future_deliveries: 'Keine zukünftigen Lieferungen '
+  phone_collection:
+    mobile_phone: Mobiltelefon
+    work_phone: Telefon Arbeit
+    home_phone: Telefon zu Hause
+  sidebar:
+    find_us_on_facebook: Find uns auf Facebook
+  customise_order:
+    customise_product: Mein Produkt anpassen
+    exclude_items: Diese Waren weglassen...
+    substitute_with_items: Dafür mit diesen Waren ersetzen...
+    add_unlimited_extras: Füge beliebig viele Extrawaren hinzu
+    add_n_extras: Füge bis %{limit} extra Waren hinzu
+  authentication:
+    enter_email: Deine Emailadresse
+    enter_password: Dein Passwort
+    bad_email_password: Dein/e Email/Passwort war falsch.
+    new_customer: Ich bin ein neuer Nutzer
+    existing_customer: Ich bin bereits Nutzer
+  delivery_options:
+    pick_delivery_service: Wähle eine Lieferart
+    delivery_details: Lieferungs Details
+    pickup_details: Abhol Details
+    select_best: Wähle einen Anbieter dem du vertraust.
+    repeat_delivery: Lieferung/en wiederholen?
+    when: Wann möchtest du das?
+    extra_frequency: Was ist mit den extra Waren?
+    select_delivery_service: "- Wähle einen Lieferservice -"
+    order_frequencies:
+      select: "- Wähle die Häufigkeit der Lieferung -"
+      single: Einmalige Lieferung
+      weekly: Liefere wöchentlich am...
+      fortnightly: Lieferung alle 2 Wochen am...
+      monthly: Lieferung monatlich
+    extra_frequencies:
+      always: Füge die extra Waren JEDER Lieferung hinzu
+      once: Füge die extra Waren nur der NÄCHSTEN Lieferung hinzu
+  payment_options:
+    deliver_to: Lieferung an
+    delivery_note: Lieferungs Hinweise
+    change_delivery_address: Ändere meine Lieferadresse
+    name: Dein Name
+    enter_name: Namen eintragen
+    phone: Deine Telefonnummer
+    enter_phone: Telefonnummer eintragen
+    amount_due: Gesamtbetrag fällig zum
+    in_credit: Dein Guthaben reicht aus
+    pay_by: Bezahlen mit
+    no_payment: Keine Zahlung erforderlich
+    complete_order: Bestellung abschließen
+    address:
+      address_1: Adresse 1
+      address_2: Adresse 2
+      suburb: Bezirk / Ortsteil
+      city: Ort
+      postcode: Postleitzahl
+      delivery_note: Lieferungs Hinweis
+      placeholders:
+        delivery_note: Lieferungshinweise bzw. Anweisungen wo/wem genau das Paket abgestelt oder ausgehändigt werden soll.
+  completed:
+    amount_due: Gesamtbetrag fällig zum
+    pay_by: Bezahlen mit
+    back_to_webstore: Zurück zum Web Shop
+    my_account: Mein Konto
+  payment_instructions:
+    account_details: Konto Details
+    existing_balance: Dein aktuller Kontostand bei uns
+    this_order: Diese Bestellung
+    closing_balance: Abschließender Kontostand
+  payments:
+    bank_deposit:
+      deposit_funds: Bitte Kontoguthaben einzahlen an
+      account_name: Konto Name
+      reference: Referenz
+    paypal:
+      pay_now: Jetzt bezahlen
+      top_up: Konto aufladen
+      amount: Betrag
+      amount_to_top_up: Aufladebetrag
