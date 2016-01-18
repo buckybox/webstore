@@ -1,1 +1,4 @@
-de: {}
+de:
+  javascript:
+    customise_order:
+      add_extra: Füge einen weiteren Artikel hinzu
