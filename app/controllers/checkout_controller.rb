@@ -94,7 +94,7 @@ private
 
   def decorator_context
     {
-      context: { currency: current_webstore.currency }
+      context: { currency: current_webstore.currency },
     }
   end
 end

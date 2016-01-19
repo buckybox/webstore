@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require_relative '../form'
 
 class Authentication < Form
-  NEW_CUSTOMER = 'new'
-  EXISTING_CUSTOMER = 'returning'
+  NEW_CUSTOMER = 'new'.freeze
+  EXISTING_CUSTOMER = 'returning'.freeze
 
   attribute :email,       String
   attribute :registered,  String, default: NEW_CUSTOMER

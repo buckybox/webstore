@@ -26,7 +26,7 @@ class DeliveryOptions < Form
 
   def delivery_service_list
     delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) } \
-      .unshift([I18n.t('delivery_options.select_delivery_service'), nil])
+                     .unshift([I18n.t('delivery_options.select_delivery_service'), nil])
   end
 
   def single_delivery_service?
@@ -43,7 +43,7 @@ class DeliveryOptions < Form
       [I18n.t('delivery_options.order_frequencies.weekly'),      :weekly],
       [I18n.t('delivery_options.order_frequencies.fortnightly'), :fortnightly],
       [I18n.t('delivery_options.order_frequencies.monthly'),     :monthly],
-      [I18n.t('delivery_options.order_frequencies.single'),      :single]
+      [I18n.t('delivery_options.order_frequencies.single'),      :single],
     ]
   end
 

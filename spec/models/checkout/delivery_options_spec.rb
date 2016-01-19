@@ -40,9 +40,9 @@ describe DeliveryOptions do
       allow(webstore).to receive(:delivery_services) { [delivery_service] }
 
       expect(delivery_options.delivery_service_list).to eq([
-        ["- Select delivery service -", nil],
-        ["delivery_service wed $5.00",  3]
-      ])
+                                                             ["- Select delivery service -", nil],
+                                                             ["delivery_service wed $5.00",  3],
+                                                           ])
     end
   end
 
@@ -53,7 +53,7 @@ describe DeliveryOptions do
         ['Deliver weekly on...',          :weekly],
         ['Deliver every 2 weeks on...',   :fortnightly],
         ['Deliver monthly',               :monthly],
-        ['Deliver once',                  :single]
+        ['Deliver once',                  :single],
       ]
 
       expect(delivery_options.order_frequencies).to eq(expected_options)

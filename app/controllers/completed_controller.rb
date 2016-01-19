@@ -10,7 +10,7 @@ class CompletedController < CheckoutController
         ),
         order: cart.order.decorate(
           context: { currency: current_webstore.currency }
-        )
+        ),
       }
 
     else # they likely refreshed the page

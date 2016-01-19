@@ -59,7 +59,7 @@ describe "submitting customisations", :js do
   end
 
   def customisable_product(product)
-    @line_items = 2.times.map { Fabricate(:line_item, distributor: @distributor) }
+    @line_items = Array.new(2) { Fabricate(:line_item, distributor: @distributor) }
 
     @extras = [Fabricate(:extra, distributor: @distributor)]
     Fabricate(:box_extra, extra: @extras[0], box: product)

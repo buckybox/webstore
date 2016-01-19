@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'cart'
 
 class CartPersistence
@@ -8,6 +9,10 @@ class CartPersistence
     return unless serialized_cart
 
     new(id: id, serialized_cart: serialized_cart)
+  end
+
+  def self.redis_key(id)
+    "#{self}:#{id}".freeze
   end
 
   def initialize(args = {})
@@ -25,13 +30,7 @@ class CartPersistence
     $redis.set redis_key, serialized_cart
   end
 
-private
-
   def redis_key
     self.class.redis_key id
-  end
-
-  def self.redis_key(id)
-    "#{self}:#{id}".freeze
   end
 end

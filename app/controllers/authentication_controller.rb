@@ -2,7 +2,7 @@ class AuthenticationController < CheckoutController
   def authentication
     render 'authentication', locals: {
       order: current_order,
-      authentication: Authentication.new(cart: current_cart)
+      authentication: Authentication.new(cart: current_cart),
     }
   end
 

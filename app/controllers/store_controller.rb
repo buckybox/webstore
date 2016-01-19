@@ -8,7 +8,7 @@ class StoreController < CheckoutController
     @current_webstore_customer = home.customer.decorate
 
     render 'home', locals: {
-      webstore_products: ProductDecorator.decorate_collection(home.products, context: { webstore: current_webstore })
+      webstore_products: ProductDecorator.decorate_collection(home.products, context: { webstore: current_webstore }),
     }
   end
 

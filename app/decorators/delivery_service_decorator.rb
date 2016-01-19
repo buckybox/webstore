@@ -4,7 +4,7 @@ class DeliveryServiceDecorator < Draper::Decorator
   delegate_all
 
   def instructions
-    text = object.instructions.gsub(/\r/, "").gsub(/\n+/, "\n") # we don't want multiple <p>
+    text = object.instructions.delete("\r").gsub(/\n+/, "\n") # we don't want multiple <p>
     h.simple_format(text)
   end
 

@@ -8,7 +8,7 @@ class MapController < ActionController::Base
     if cookies[:skip_lightbox].to_i != 1
       cookies[:skip_lightbox] = {
         value: cookies[:skip_lightbox].nil? ? 0 : 1,
-        expires: 1.week.from_now
+        expires: 1.week.from_now,
       }
     end
   end

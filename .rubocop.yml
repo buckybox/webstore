@@ -1,77 +1,68 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
 
-# Configuration parameters: AlignWith, SupportedStyles.
+Lint/DefEndAlignment:
+  Enabled: false
+
 Lint/EndAlignment:
   Enabled: false
 
-Lint/UnusedMethodArgument:
+Metrics/AbcSize:
   Enabled: false
 
-Lint/UselessAssignment:
-  Enabled: false
-
-# Configuration parameters: CountComments.
 Metrics/ClassLength:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
   Enabled: false
 
-# Configuration parameters: AllowURI.
 Metrics/LineLength:
-  Max: 120
   Enabled: false
 
-# Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 45
   Enabled: false
 
-# Configuration parameters: SupportedStyles.
+Metrics/PerceivedComplexity:
+  Enabled: false
+
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Style/AccessorMethodName:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/AlignParameters:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/AndOr:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-# Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Enabled: false
 
-# Configuration parameters: NamePrefix, NamePrefixBlacklist.
 Style/PredicateName:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/SignalException:
   Enabled: false
 
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/StringLiterals:
   Enabled: false
 
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
   Enabled: false
 
-# Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, Whitelist.
 Style/TrivialAccessors:
   ExactNameMatch: true
-
-Lint/DefEndAlignment:
-  Enabled: false
 
 Style/CommentIndentation:
   Enabled: false
@@ -80,9 +71,6 @@ Style/IndentationWidth:
   Enabled: false
 
 Style/GlobalVars:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
   Enabled: false
 
 Style/DoubleNegation:
@@ -101,8 +89,5 @@ Style/ParallelAssignment:
   Enabled: false
 
 Style/TrivialAccessors:
-  Enabled: false
-
-Metrics/AbcSize:
   Enabled: false
 

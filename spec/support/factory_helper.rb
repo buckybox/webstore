@@ -6,7 +6,7 @@ module FactoryHelper
   def box
     return @box if @box
 
-    extras = 2.times.map { |i| double(:extra, id: i, webstore: webstore) }
+    extras = Array.new(2) { |i| double(:extra, id: i, webstore: webstore) }
     box = double(:customisable_box, id: 1, webstore: webstore, extras: extras)
 
     @box ||= box
@@ -34,10 +34,10 @@ module FactoryHelper
         cart: double("Cart"),
         information: {
           dislikes: [
-            exclusion.id
+            exclusion.id,
           ],
           likes: [
-            substitution.id
+            substitution.id,
           ],
           extras: {
             box.extras[0].id => 2,
@@ -60,8 +60,8 @@ module FactoryHelper
           postcode: "",
           delivery_note: "",
           payment_method: "bank_deposit",
-          complete: true
-        }
+          complete: true,
+        },
       }
     )
 

@@ -1,6 +1,6 @@
 class API
   class << self
-    WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/.freeze
+    WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/
 
     attr_reader :webstore_id
 
@@ -30,7 +30,7 @@ class API
           "API-Secret" => Figaro.env.buckybox_api_secret,
         }
 
-        params.merge!("Webstore-ID" => webstore_id) if webstore_id
+        params["Webstore-ID"] = webstore_id if webstore_id
 
         BuckyBox::API.new(params)
       end

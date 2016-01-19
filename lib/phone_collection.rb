@@ -13,6 +13,10 @@ class PhoneCollection
     TYPES.each_key.map { |type| type_option(type) }
   end
 
+  def self.type_option(type)
+    [I18n.t("phone_collection.#{type}_phone"), type]
+  end
+
   def initialize(address)
     @address = address
   end
@@ -24,7 +28,7 @@ class PhoneCollection
       [
         I18n.t("phone_collection.#{attribute}"),
         I18n.t('colon'),
-        phone
+        phone,
       ].join unless phone.blank?
     end.compact
   end
@@ -38,10 +42,6 @@ class PhoneCollection
   end
 
 private
-
-  def self.type_option(type)
-    [I18n.t("phone_collection.#{type}_phone"), type]
-  end
 
   def default
     TYPES.each do |type, attribute|

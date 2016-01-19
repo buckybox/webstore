@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative '../form'
 
 class PaymentOptions < Form
@@ -118,7 +119,7 @@ protected
     @address_class = attributes.delete(:address_class)
   end
 
-  def after_standard_initialize(attributes)
+  def after_standard_initialize(_attributes)
     @address = build_address
   end
 

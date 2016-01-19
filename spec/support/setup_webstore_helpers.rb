@@ -13,7 +13,7 @@ private
   end
 
   def add_required_elements(product = nil)
-    product ||= add_a_product
+    add_a_product unless product
     add_bank_information
     add_a_delivery_service
   end

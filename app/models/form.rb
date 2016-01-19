@@ -23,7 +23,7 @@ class Form
   end
 
   def save
-    return false unless self.valid?
+    return false unless valid?
 
     cart.add_order_information(self)
     cart.save
