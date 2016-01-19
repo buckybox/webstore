@@ -39,7 +39,7 @@ class Order
   end
 
   def is_scheduled?
-    !!frequency
+    frequency
   end
 
   def has_total?

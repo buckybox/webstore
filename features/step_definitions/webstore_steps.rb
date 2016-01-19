@@ -57,9 +57,7 @@ Given "I am asked to select my delivery frequency" do
     When I customise the box
     )
 
-  if page.has_link? "Log in" # we need to log in
-    step "I fill in my email address"
-  end
+  step "I fill in my email address" if page.has_link? "Log in" # we need to log in
 
   if page.has_selector? "#delivery_service_select"
     step "I select the last delivery service"

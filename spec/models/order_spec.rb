@@ -51,7 +51,7 @@ describe Order do
   describe "#scheduled?" do
     it "return true if the order has a schedule" do
       allow(order).to receive(:frequency) { double("frequency") }
-      expect(order.is_scheduled?).to eq(true)
+      expect(order.is_scheduled?).to be_truthy
     end
   end
 

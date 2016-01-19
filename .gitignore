@@ -16,6 +16,7 @@
 /log/*.log
 /public/dev-assets/
 /tmp
+/.rubocop-*
 
 # Redis
 /dump.rdb
