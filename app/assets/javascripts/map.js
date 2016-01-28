@@ -61,6 +61,11 @@
         closestStore = null;
 
     stores.forEach(function(store) {
+      if (!store.ll[0]) {
+        console.warn("No location for store " + store.name);
+        return;
+      }
+
       var storeLocation = L.latLng(store.ll),
           distance = storeLocation.distanceTo(userLocation);
 
