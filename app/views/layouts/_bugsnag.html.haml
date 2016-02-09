@@ -4,6 +4,6 @@
   :javascript
     if (typeof Bugsnag !== 'undefined') {
       Bugsnag.beforeNotify = function(payload) {
-        return (navigator.userAgent.match(/MSIE|Trident|Mobile/i) === null);
+        return (navigator.userAgent.match(/MSIE|Trident|Mobile|Googlebot/i) === null);
       }
     }
