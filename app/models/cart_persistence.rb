@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'cart'
 
 class CartPersistence
@@ -12,7 +13,7 @@ class CartPersistence
   end
 
   def self.redis_key(id)
-    "#{self}:#{id}".freeze
+    "#{self}:#{id}"
   end
 
   def initialize(args = {})

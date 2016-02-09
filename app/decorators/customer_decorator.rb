@@ -1,11 +1,12 @@
 # frozen_string_literal: true
+
 require "draper"
 require_relative "../models/customer"
 
 class CustomerDecorator < Draper::Decorator
   delegate_all
 
-  GUEST_NAME = "Guest".freeze
+  GUEST_NAME = "Guest"
 
   def id
     object.existing_customer_id

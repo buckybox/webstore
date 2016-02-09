@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require_relative '../form'
 
 class PaymentOptions < Form
-  PAID = 'paid'.freeze
+  PAID = 'paid'
 
   attribute :name,            String
   attribute :phone_number,    String
