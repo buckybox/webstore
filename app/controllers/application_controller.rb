@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  ensure_security_headers # secure_headers Gem
-
   protect_from_forgery with: :exception
 
   before_action :set_current_webstore
