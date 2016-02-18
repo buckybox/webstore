@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScheduleRule
   attr_accessor :frequency, :start_date, :days
 

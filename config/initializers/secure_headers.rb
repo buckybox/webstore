@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "secure_headers"
 
 SecureHeaders::Configuration.default do |config|

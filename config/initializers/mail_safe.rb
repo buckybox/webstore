@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if defined?(MailSafe::Config)
   MailSafe::Config.internal_address_definition = lambda { |address|
     address =~ /.*@buckybox\.com/i &&

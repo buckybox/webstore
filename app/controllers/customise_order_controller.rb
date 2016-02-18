@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustomiseOrderController < CheckoutController
   def customise_order
     render "customise_order", locals: {

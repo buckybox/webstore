@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class to store multiple phone numbers
 # Each number is associated with a type (mobile, home, work)
 class PhoneCollection

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompletedController < CheckoutController
   def completed
     cart = flush_current_cart!

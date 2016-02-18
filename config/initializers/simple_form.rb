@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: see if we can get rid of this when upgrading SimpleForm
 
 # Use this setup block to configure all options available in SimpleForm.

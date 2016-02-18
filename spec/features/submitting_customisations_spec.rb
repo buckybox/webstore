@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../support/capybara/select2_helper"
 require_relative "../support/webstore_helper"
 

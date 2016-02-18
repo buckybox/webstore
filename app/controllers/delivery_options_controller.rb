@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeliveryOptionsController < CheckoutController
   def delivery_options
     delivery_options = DeliveryOptions.new(cart: current_cart)

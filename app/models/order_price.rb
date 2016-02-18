@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderPrice
   def self.discounted(price, customer)
     return price if customer.nil?

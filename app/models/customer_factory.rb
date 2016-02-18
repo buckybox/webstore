@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustomerFactory
   def self.assemble(args)
     customer_factory = new(args)

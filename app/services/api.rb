@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class API
   class << self
     WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/

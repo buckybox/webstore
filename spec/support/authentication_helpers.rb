@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthenticationHelpers
   shared_examples_for 'it is on the customer authorisation page' do
     it 'has a field to enter your email address' do

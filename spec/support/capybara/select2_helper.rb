@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Select2Helper
   # @example
   #   select2 "Item", from: "select_id"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeliveryOptionsHelpers
   shared_examples_for "it needs a delivery_service" do
   end

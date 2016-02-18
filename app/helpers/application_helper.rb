@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def render_flash_messages(flash)
     flash.map do |type, message|

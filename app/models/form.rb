@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'virtus'
 require 'active_model/naming'
 require 'active_model/conversion'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../app/models/checkout/payment_options'
 
 describe PaymentOptions do

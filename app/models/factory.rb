@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'order_factory'
 require_relative 'customer_factory'
 

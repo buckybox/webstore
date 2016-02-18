@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticationController < CheckoutController
   def authentication
     render 'authentication', locals: {

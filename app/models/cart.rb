@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "draper"
 require_relative "order"
 require_relative "customer"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given /^A distributor is in the system$/ do
   # TODO
 end

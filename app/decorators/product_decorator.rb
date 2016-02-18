@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'draper'
 require "crazy_money"
 require_relative '../models/product'

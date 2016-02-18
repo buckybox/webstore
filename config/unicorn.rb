@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # unicorn -c .../current/config/unicorn.rb -E production
 
 # Set the current app's path for later reference. Rails.root isn't available at

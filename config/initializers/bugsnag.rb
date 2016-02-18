@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if defined?(Bugsnag) && Figaro.env.bugsnag_api_key.present?
   Bugsnag.configure do |config|
     config.api_key = Figaro.env.bugsnag_api_key

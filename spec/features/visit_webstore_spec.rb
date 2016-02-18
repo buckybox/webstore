@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe "visit the webstore homepage", :js do
   include StoreHelpers
 

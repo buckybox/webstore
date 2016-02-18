@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaymentOptionsController < CheckoutController
   def payment_options
     render "payment_options", locals: {

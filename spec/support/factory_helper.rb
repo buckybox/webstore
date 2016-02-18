@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FactoryHelper
   def webstore
     @webstore ||= double(:webstore, id: 1)

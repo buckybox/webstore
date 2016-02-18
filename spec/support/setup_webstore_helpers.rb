@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SetupWebstoreHelpers
   def setup_a_webstore(product = nil)
     @distributor ||= double(:distributor)

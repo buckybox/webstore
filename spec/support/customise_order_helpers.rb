@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CustomiseOrderHelpers
   shared_examples_for 'it has exclusions' do
     it 'can be customised' do

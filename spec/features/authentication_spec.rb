@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../support/webstore_helper"
 
 describe "authenticate", :js do

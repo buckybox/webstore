@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StoreHelpers
   def self.included(base)
     base.let(:webstore_id)                  { 'local-veg' }

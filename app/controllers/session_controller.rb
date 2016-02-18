@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionController < ApplicationController
   def new
     redirect_to customer_dashboard_path if current_customer
