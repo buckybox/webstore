@@ -12,7 +12,7 @@ class ScheduleRule
     self.start_date = start_date.is_a?(Date) ? start_date : Date.parse(start_date)
 
     self.days = days.keys.map(&:to_i)
-    raise ArgumentError if self.days.any? { |day| day < 0 || day > 27 }
+    raise ArgumentError if self.days.any? { |day| day.negative? || day > 27 }
   end
 
   def delivery_days

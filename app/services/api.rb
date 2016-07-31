@@ -18,7 +18,11 @@ class API
     end
 
     def method_missing(method, *args)
-      api.public_send(method, *args)
+      if api.respond_to?(method)
+        api.public_send(method, *args)
+      else
+        super
+      end
     end
 
     def respond_to_missing?(*args)

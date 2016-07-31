@@ -4,6 +4,9 @@ inherit_from:
 Rails:
   Enabled: true
 
+Rails/OutputSafety:
+  Enabled: false
+
 Style/AccessorMethodName:
   Enabled: false
 
@@ -15,4 +18,3 @@ Style/GuardClause:
 
 Style/TrivialAccessors:
   Enabled: false
-
