@@ -121,7 +121,6 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
-    discover-unused-partials (0.3.1)
     docile (1.1.5)
     draper (2.1.0)
       actionpack (>= 3.0)
@@ -343,7 +342,6 @@ DEPENDENCIES
   coveralls
   crazy_money
   cucumber-rails
-  discover-unused-partials
   draper
   fast_blank
   figaro

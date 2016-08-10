@@ -61,7 +61,6 @@ group :development do
   gem 'coveralls', require: false
   gem 'brakeman', require: false
   gem 'cane', require: false
-  gem 'discover-unused-partials', require: false
 end
 
 group :test do

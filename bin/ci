@@ -12,7 +12,6 @@ test -z "$output"
 bundle install
 
 bundle exec rubocop -DES
-bundle exec discover-unused-partials
 bundle exec brakeman -qz --no-progress -w3
 bundle exec cane --no-doc --style-measure 160 --abc-max 30
 
