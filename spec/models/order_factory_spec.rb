@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require_relative "../../app/models/order_factory"
 
 describe OrderFactory do
-  include FactoryHelper
-
   describe "#assemble", :api do
     before do
       # pass in a real existing customer

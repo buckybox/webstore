@@ -6,24 +6,20 @@ Feature: Unauthenticated customer places an order
   As an unauthenticated visitor
   I want to be able to order via the webstore
 
-Background:
-  Given A distributor is in the system
-  And I am unauthenticated
+# Scenario: Select a box
+#   Given I am on the webstore
+#   When I select a customisable box to order
+#   Then I should be asked to customise the box
 
-Scenario: Select a box
-  Given I am on the webstore
-  When I select a customisable box to order
-  Then I should be asked to customise the box
+# Scenario: Customise a box
+#   Given I am asked to customise the box
+#   When I customise the box
+#   Then I should be asked to log in or sign up
 
-Scenario: Customise a box
-  Given I am asked to customise the box
-  When I customise the box
-  Then I should be asked to log in or sign up
-
-Scenario: Choose my delivery frequency
-  Given I am asked to select my delivery frequency
-  When I select a monthly delivery frequency
-  Then I should be asked for my delivery address
+# Scenario: Choose my delivery frequency
+#   Given I am asked to select my delivery frequency
+#   When I select a monthly delivery frequency
+#   Then I should be asked for my delivery address
 
 Scenario: Order a box
   Given I am asked for my delivery address

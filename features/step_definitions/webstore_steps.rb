@@ -1,25 +1,43 @@
 # frozen_string_literal: true
 
-Given /^A distributor is in the system$/ do
-  # TODO
+World(Select2Helper)
+
+def step_path(step)
+  path_helper = "#{step}_path"
+  public_send(path_helper, webstore_id: "fantastic-vege-people")
 end
 
 Given(/^I am unauthenticated$/) do
   expect(page).to have_button("Log in")
 end
 
+Given /^I am logged in$/ do
+  step "I am viewing the login page"
+  step "I fill in valid credentials"
+end
+
+Given /^I am viewing the login page$/ do
+  visit step_path("customer_sign_in")
+end
+
+When /^I fill in valid credentials$/ do
+  fill_in "email", with: "joe@buckybox.com"
+  fill_in "password", with: "whatever"
+  click_button "Log in"
+  expect(page).not_to have_content "password is incorrect"
+end
+
 Given /^I am on the webstore$/ do
-  path = webstore_store_path(distributor_parameter_name: Distributor.last.parameter_name)
-  visit path
+  visit step_path("webstore")
 end
 
 When /^I select a customisable box to order$/ do
-  find("#webstore-items").first(:button, "Order").click # first button found, e.g. first box
+  click_link("Order", match: :first)
 end
 
 Then /^I should be asked to customise the box$/ do
   step "I should be viewing the customise_order step"
-  step "I should not see a message"
+  step "I should not see an error message"
 end
 
 Given /^I am asked to customise the box$/ do
@@ -33,24 +51,24 @@ end
 
 When /^I customise the box$/ do
   check "Customise my product"
-  select2("Grapes", from: "webstore_customise_order_dislikes")
+  select2("Cabbage", from: "customise_order_dislikes")
   # TODO: test subs
   click_button "Next"
 end
 
 Then "I should be asked to log in or sign up" do
   step "I should be viewing the authentication step"
-  step "I should not see a message"
+  step "I should not see an error message"
 end
 
 When /^I fill in my email address$/ do
-  fill_in :webstore_authentication_email, with: "starving.rabbit+#{SecureRandom.uuid}@example.net"
+  fill_in :authentication_email, with: "joe@buckybox.com"
   click_button "Next"
 end
 
 Then /^I should be asked to select my delivery frequency$/ do
   step "I should be viewing the delivery_options step"
-  step "I should not see a message"
+  step "I should not see an error message"
 end
 
 Given "I am asked to select my delivery frequency" do
@@ -72,13 +90,13 @@ When /^I select the last delivery service$/ do
 end
 
 When /^I select a (.*) delivery frequency$/ do |frequency|
-  select frequency, from: :webstore_delivery_options_frequency
+  select frequency, from: :delivery_options_frequency
   click_button "Next"
 end
 
 Then /^I should be asked for my delivery address$/ do
   step "I should be viewing the payment_options step"
-  step "I should not see a message"
+  step "I should not see an error message"
 end
 
 Given "I am asked for my delivery address" do
@@ -92,11 +110,11 @@ end
 
 When /^I (fill in|confirm) my delivery address$/ do |action|
   if action == "fill in"
-    fill_in :webstore_payment_options_name, with: "Crazy Rabbit"
-    fill_in :webstore_payment_options_address_1, with: "Rabbit Hole"
+    fill_in :payment_options_name, with: "Crazy Rabbit"
+    fill_in :payment_options_address_1, with: "Rabbit Hole"
   end
 
-  expect { click_button "Complete Order" }.to change { Order.count }.by(1)
+  click_button "Complete Order"
 end
 
 When /^I select the payment option "(.*)"$/ do |option|
@@ -106,14 +124,12 @@ When /^I select the payment option "(.*)"$/ do |option|
 end
 
 Then /^My order should be placed$/ do
-  step 'I should see a success message with "Your order has been placed"'
+  expect(page).to have_content "Your order has been placed"
 end
 
 Then /^I should see the details of my order$/ do
-  page.should have_content "Account details",
-    "Pay by Cash On Delivery",
-    "Order summary",
-    "Deliver to"
+  expect(page).to have_content "Account details"
+  expect(page).to have_content "Pay by Cash on Delivery"
 end
 
 Given "I have just ordered a box" do
@@ -125,21 +141,20 @@ Given "I have just ordered a box" do
 end
 
 Given /^I am viewing the (.*) step$/ do |step|
-  visit webstore_step_path(step)
+  visit step_path(step)
 
   step "I should be viewing the #{step} step"
 end
 
 Then /^I should be viewing the (.*) step$/ do |step|
-  expected_path = webstore_step_path(step)
-  current_path.should eq expected_path
+  expected_path = step_path(step)
+  expect(current_path).to eq expected_path
 
   expect(page.title).to start_with "Bucky Box - "
 
-  step "I should not see an failure message"
+  step "I should not see an error message"
 end
 
-def webstore_step_path(step)
-  path_helper = "webstore_#{step}_path"
-  public_send(path_helper, distributor_parameter_name: Distributor.last.parameter_name)
+Then /^I should not see an error message$/ do
+  expect(page).not_to have_content "Oops"
 end

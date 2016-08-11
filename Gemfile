@@ -20,7 +20,7 @@ gem 'crazy_money'
 gem 'ordinalize_full', require: 'ordinalize_full/integer'
 gem 'super_recursive_open_struct'
 gem 'recursive-open-struct', '< 1' # TODO: upgrade
-gem 'buckybox-api'
+gem 'buckybox-api', git: 'https://github.com/buckybox/buckybox-api-ruby'
 gem 'fast_blank'
 gem 'figaro'
 
@@ -60,7 +60,6 @@ group :development do
   gem 'simplecov', require: false
   gem 'coveralls', require: false
   gem 'brakeman', require: false
-  gem 'cane', require: false
 end
 
 group :test do
@@ -70,4 +69,5 @@ group :test do
   gem 'capybara-screenshot'
   gem 'poltergeist', require: false
   gem 'webmock', require: false
+  gem 'vcr', require: false
 end

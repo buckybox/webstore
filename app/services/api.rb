@@ -29,16 +29,25 @@ class API
       api.respond_to?(*args)
     end
 
-    private def api
-      @api ||= begin
-        params = {
-          "API-Key" => Figaro.env.buckybox_api_key,
-          "API-Secret" => Figaro.env.buckybox_api_secret,
-        }
+  private
 
+    def api
+      @api ||= BuckyBox::API.new(credentials)
+    end
+
+    def credentials
+      key = Figaro.env.buckybox_api_key
+      secret = Figaro.env.buckybox_api_secret
+
+      key ||= "" if Rails.env.test?
+      secret ||= "" if Rails.env.test?
+
+      if key.nil? || secret.nil?
+        raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables"
+      end
+
+      { "API-Key" => key, "API-Secret" => secret }.tap do |params|
         params["Webstore-ID"] = webstore_id if webstore_id
-
-        BuckyBox::API.new(params)
       end
     end
   end

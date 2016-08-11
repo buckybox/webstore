@@ -7,15 +7,12 @@ require "simplecov" if ENV["COVERAGE"]
 require File.expand_path("../../config/environment", __FILE__)
 
 require "rspec/rails"
-require "webmock/rspec"
 require "capybara/rspec"
 require "capybara/rails"
 require "capybara/poltergeist"
 require "capybara-screenshot/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
-WebMock.disable_net_connect!(allow_localhost: true) unless ENV["TEST_API"]
 
 Capybara.default_driver = Capybara.javascript_driver = :poltergeist
 Capybara.asset_host = "http://localhost:3000"
@@ -29,7 +26,6 @@ RSpec.configure do |config|
   config.order = :random
 
   config.filter_run :focus
-  config.filter_run_excluding :js unless ENV["TEST_JS"]
   config.filter_run_excluding :api unless ENV["TEST_API"]
   config.run_all_when_everything_filtered = true
 

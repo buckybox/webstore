@@ -7,22 +7,22 @@ Feature: Authenticated customer places an order
   I want to be able to order via the webstore
 
 Background:
-  Given I am logged in as a customer
+  Given I am logged in
 
-Scenario: Select a box
-  Given I am on the webstore
-  When I select a customisable box to order
-  Then I should be asked to customise the box
+# Scenario: Select a box
+#   Given I am on the webstore
+#   When I select a customisable box to order
+#   Then I should be asked to customise the box
 
-Scenario: Customise a box
-  Given I am asked to customise the box
-  When I customise the box
-  Then I should be asked to select my delivery frequency
+# Scenario: Customise a box
+#   Given I am asked to customise the box
+#   When I customise the box
+#   Then I should be asked to select my delivery frequency
 
-Scenario: Choose my delivery frequency
-  Given I am asked to select my delivery frequency
-  When I select a monthly delivery frequency
-  Then I should be asked for my delivery address
+# Scenario: Choose my delivery frequency
+#   Given I am asked to select my delivery frequency
+#   When I select a monthly delivery frequency
+#   Then I should be asked for my delivery address
 
 Scenario: Order a box
   Given I am asked for my delivery address
@@ -30,5 +30,4 @@ Scenario: Order a box
   And I confirm my delivery address
   Then My order should be placed
   And I should see the details of my order
-
 

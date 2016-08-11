@@ -15,6 +15,16 @@ rubocop:
   script:
   - rubocop
 
+rspec:
+  script:
+  - rspec
+
+cucumber:
+  script:
+  - ./vendor/bin/install_phantomjs.sh
+  - cucumber
+
 integration:
   script:
+  - ./vendor/bin/install_phantomjs.sh
   - ./bin/ci

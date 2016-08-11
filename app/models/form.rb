@@ -3,6 +3,8 @@
 require 'virtus'
 require 'active_model/naming'
 require 'active_model/conversion'
+require 'active_model/callbacks'
+require 'active_model/validator'
 require 'active_model/validations'
 require 'active_model/translation'
 

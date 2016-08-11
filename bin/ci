@@ -13,12 +13,9 @@ bundle install
 
 bundle exec rubocop -DES
 bundle exec brakeman -qz --no-progress -w3
-bundle exec cane --no-doc --style-measure 160 --abc-max 30
+bundle exec bundle-audit check --update
 
 $(dirname $0)/check_i18n
 
-bundle exec bundle-audit update
-bundle exec bundle-audit check
-
-bundle exec rake
-
+bundle exec rspec
+bundle exec cucumber
