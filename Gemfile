@@ -40,15 +40,12 @@ gem "naught"
 
 # Optional Gems are listed below
 gem "unicorn"
-# gem 'airbrake'
+# gem "airbrake"
 gem "bugsnag"
 gem "newrelic_rpm"
-# gem 'skylight'
-# gem 'rack-mini-profiler'
 
 group :development, :test do
   gem "byebug", platform: :mri
-  # gem 'web-console' # NOTE: doesn't seem to work properly in threaded environment
   gem "better_errors"
   gem "binding_of_caller" # to get REPL for better_errors
 end

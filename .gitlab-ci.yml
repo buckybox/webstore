@@ -2,6 +2,12 @@
 # https://hub.docker.com/r/library/ruby/tags/
 image: ruby:2.3
 
+services:
+  - redis:latest
+
+variables:
+  REDIS_URL: redis://redis:6379/
+
 cache:
   paths:
     - vendor/ruby # cache gems in between builds

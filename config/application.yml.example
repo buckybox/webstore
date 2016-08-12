@@ -18,9 +18,6 @@ NEW_RELIC_LICENSE_KEY: ""
 # Pingdom
 PINGDOM_RUM_ID: ""
 
-# Skylight
-SKYLIGHT_AUTHENTICATION: ""
-
 # URLs
 MARKETING_SITE_URL: http://www.buckybox.com/
 
@@ -28,4 +25,3 @@ MARKETING_SITE_URL: http://www.buckybox.com/
 production:
   # Secret for config/secrets.yml
   SECRET_KEY_BASE: ""
-

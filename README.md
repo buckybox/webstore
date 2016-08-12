@@ -38,7 +38,14 @@ You can help translate it into your favorite language. We use [Transifex](https:
 
 New translations can be fetched with `tx pull -af`.
 
+## Tests
+
+```bash
+./bin/ci
+# or
+git commit && gitlab-ci-multi-runner exec docker integration
+```
+
 ## License
 
 GPLv3+
-
