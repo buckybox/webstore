@@ -25,10 +25,6 @@ class Authentication < Form
     registered == EXISTING_CUSTOMER || Customer.exists?(email: email)
   end
 
-  def default_option
-    options.first.last
-  end
-
   def to_h
     {
       email: email,

@@ -7,11 +7,23 @@ def step_path(step)
   public_send(path_helper, webstore_id: "fantastic-vege-people")
 end
 
-Given(/^I am unauthenticated$/) do
-  expect(page).to have_button("Log in")
+Given /^I am authenticated$/ do
+  step "I am on the webstore"
+  step "I log in" if page.has_link?("Log in")
+  expect(page).not_to have_button("Log in")
 end
 
-Given /^I am logged in$/ do
+Given /^I am unauthenticated$/ do
+  step "I am on the webstore"
+  step "I log out" if page.has_link?("Log out")
+  expect(page).to have_link("Log in")
+end
+
+When /^I log out$/ do
+  click "Log out"
+end
+
+Given /^I log in$/ do
   step "I am viewing the login page"
   step "I fill in valid credentials"
 end
@@ -24,7 +36,7 @@ When /^I fill in valid credentials$/ do
   fill_in "email", with: "joe@buckybox.com"
   fill_in "password", with: "whatever"
   click_button "Log in"
-  expect(page).not_to have_content "password is incorrect"
+  step "I am authenticated"
 end
 
 Given /^I am on the webstore$/ do
@@ -40,14 +52,14 @@ Then /^I should be asked to customise the box$/ do
   step "I should not see an error message"
 end
 
-Given /^I am asked to customise the box$/ do
-  steps %(
-    Given I am on the webstore
-    When I select a customisable box to order
-    )
-
-  step "I should be asked to customise the box"
-end
+#Given /^I am asked to customise the box$/ do
+#  steps %(
+#    Given I am on the webstore
+#    When I select a customisable box to order
+#  )
+#
+#  step "I should be asked to customise the box"
+#end
 
 When /^I customise the box$/ do
   check "Customise my product"
@@ -71,23 +83,23 @@ Then /^I should be asked to select my delivery frequency$/ do
   step "I should not see an error message"
 end
 
-Given "I am asked to select my delivery frequency" do
-  steps %(
-    Given I am asked to customise the box
-    When I customise the box
-    )
+#Given "I am asked to select my delivery frequency" do
+#  steps %(
+#    Given I am asked to customise the box
+#    When I customise the box
+#  )
+#
+#  step "I fill in my email address" if page.has_link? "Log in" # we need to log in
+#
+#  if page.has_selector? "#delivery_service_select"
+#    step "I select the last delivery service"
+#  end
+#end
 
-  step "I fill in my email address" if page.has_link? "Log in" # we need to log in
-
-  if page.has_selector? "#delivery_service_select"
-    step "I select the last delivery service"
-  end
-end
-
-When /^I select the last delivery service$/ do
-  last_delivery_service = find("#delivery_service_select option:last-child")
-  select last_delivery_service.text, from: :delivery_service_select
-end
+#When /^I select the last delivery service$/ do
+#  last_delivery_service = find("#delivery_service_select option:last-child")
+#  select last_delivery_service.text, from: :delivery_service_select
+#end
 
 When /^I select a (.*) delivery frequency$/ do |frequency|
   select frequency, from: :delivery_options_frequency
@@ -99,28 +111,28 @@ Then /^I should be asked for my delivery address$/ do
   step "I should not see an error message"
 end
 
-Given "I am asked for my delivery address" do
-  steps %(
-    Given I am asked to select my delivery frequency
-    When I select a monthly delivery frequency
-    )
-
-  step "I should be asked for my delivery address"
-end
+#Given "I am asked for my delivery address" do
+#  steps %(
+#    Given I am asked to select my delivery frequency
+#    When I select a monthly delivery frequency
+#  )
+#
+#  step "I should be asked for my delivery address"
+#end
 
 When /^I (fill in|confirm) my delivery address$/ do |action|
   if action == "fill in"
     fill_in :payment_options_name, with: "Crazy Rabbit"
     fill_in :payment_options_address_1, with: "Rabbit Hole"
   end
-
-  click_button "Complete Order"
 end
 
 When /^I select the payment option "(.*)"$/ do |option|
   within "#payment-options" do
     choose option
   end
+
+  click_button "Complete Order"
 end
 
 Then /^My order should be placed$/ do
@@ -129,22 +141,25 @@ end
 
 Then /^I should see the details of my order$/ do
   expect(page).to have_content "Account details"
-  expect(page).to have_content "Pay by Cash on Delivery"
 end
 
-Given "I have just ordered a box" do
-  steps %(
-    Given I am asked for my delivery address
-    When I select the payment option "Cash on Delivery"
-    And I fill in my delivery address
-    )
+Then /^I should see "(.*)"$/ do |content|
+  expect(page).to have_content content
 end
 
-Given /^I am viewing the (.*) step$/ do |step|
-  visit step_path(step)
+#Given "I have just ordered a box" do
+#  steps %(
+#    Given I am asked for my delivery address
+#    When I select the payment option "Bank Deposit"
+#    And I fill in my delivery address
+#    )
+#end
 
-  step "I should be viewing the #{step} step"
-end
+#Given /^I am viewing the (.*) step$/ do |step|
+#  visit step_path(step)
+#
+#  step "I should be viewing the #{step} step"
+#end
 
 Then /^I should be viewing the (.*) step$/ do |step|
   expected_path = step_path(step)

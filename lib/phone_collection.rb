@@ -23,18 +23,6 @@ class PhoneCollection
     @address = address
   end
 
-  def all
-    TYPES.each_value.map do |attribute|
-      phone = @address.send(attribute)
-
-      [
-        I18n.t("phone_collection.#{attribute}"),
-        I18n.t('colon'),
-        phone,
-      ].join unless phone.blank?
-    end.compact
-  end
-
   def default_number
     @address.send(default[:attribute])
   end

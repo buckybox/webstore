@@ -57,8 +57,7 @@ protected
     attributes.fetch("dislikes", []).delete("")
     attributes.fetch("likes", []).delete("")
     attributes.fetch("extras", {}).delete_if do |_key, value|
-      value = value.to_i
-      value <= 0 || value > max_line_items_count
+      !value.to_i.between?(1, 1000)
     end
 
     attributes
@@ -102,9 +101,5 @@ private
     if !items_unlimited && items_count > items_limit
       errors.add(items, "you have too many #{items}, the maximum is #{items_limit}")
     end
-  end
-
-  def max_line_items_count
-    1000
   end
 end

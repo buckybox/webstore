@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../product'
 require_relative '../customer'
 
 class Home
@@ -9,8 +8,8 @@ class Home
     @existing_customer = args.fetch(:existing_customer)
   end
 
-  def products(product_class = Product)
-    @products ||= product_class.build_webstore_products
+  def products
+    @products ||= API.boxes
   end
 
   def customer(customer_class = Customer)

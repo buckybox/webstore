@@ -14,12 +14,6 @@ describe Authentication < Form do
     end
   end
 
-  describe '#default_option' do
-    it 'returns the default authorisation option' do
-      expect(authentication.default_option).to eq('new')
-    end
-  end
-
   describe '#webstore_id' do
     it 'returns the name of the web store associated with this cart' do
       allow(cart).to receive(:webstore_id) { 'webstore-name' }

@@ -3,35 +3,12 @@
 require_relative "../../app/models/order"
 
 describe Order do
-  let(:delivery_service)       { double("delivery_service") }
   let(:delivery_service_class) { double("delivery_service_class") }
   let(:product)                { double("product") }
   let(:product_class)          { double("product_class", find: product) }
   let(:cart)                   { double("cart").as_null_object }
   let(:args)                   { { cart: cart, delivery_service_class: delivery_service_class, product_class: product_class } }
   let(:order)                  { Order.new(args) }
-
-  describe "#product_name" do
-    it "returns a product name", :api do
-      allow(product).to receive(:name) { "product name" }
-      expect(order.product_name).to eq("product name")
-    end
-  end
-
-  describe "#product_description" do
-    it "returns a product description", :api do
-      allow(product).to receive(:description) { "product description" }
-      expect(order.product_description).to eq("product description")
-    end
-  end
-
-  describe "#product_price" do
-    it "returns a product price", :api do
-      order_price_class = double("order_price_class", discounted: 5)
-      allow(product).to receive(:price) { 1 }
-      expect(order.product_price(order_price_class)).to eq(5)
-    end
-  end
 
   describe "#extra_quantity" do
     it "returns the quantity for an extra in this order" do

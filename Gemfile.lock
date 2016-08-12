@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/buckybox/buckybox-api-ruby
-  revision: 7a64f8fbbc450acc328372225a400f6b41e1c91e
+  revision: eb8312f5c3615af351639696e92298fca4e6c3de
   specs:
     buckybox-api (1.6.2)
       crazy_money (>= 1.4.0)

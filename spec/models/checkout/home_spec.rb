@@ -14,14 +14,6 @@ describe Home do
     }
   end
 
-  describe '#products' do
-    it 'returns an array of products' do
-      products = [double('products')]
-      product_class = double('product_class', build_webstore_products: products)
-      expect(home.products(product_class)).to eq(products)
-    end
-  end
-
   describe '#customer' do
     it 'returns a webstore customer' do
       customer = double('customer')

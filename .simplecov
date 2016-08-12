@@ -1,14 +1,11 @@
-SimpleCov.start "rails" do
+SimpleCov.start do
+  track_files "**/*.rb"
+
+  add_filter "/config/environments/"
+  add_filter "/config/unicorn.rb"
+  add_filter "/features/support/env.rb"
+  add_filter "/spec/"
   add_filter "/vendor/"
-
-  add_group "Decorators", "app/decorators"
-  add_group "Services", "app/services"
-
-  add_group "Long files" do |src_file|
-    src_file.lines.count > 150
-  end
-
-  merge_timeout 3600
 end
 
 # vim: ft=ruby

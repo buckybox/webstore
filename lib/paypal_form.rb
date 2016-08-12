@@ -17,7 +17,9 @@ module_function
       when :monthly
         [1, "M"]
       else
+        # :nocov:
         raise ArgumentError, "Invalid frequency for recurring_payment_params: #{frequency.inspect}"
+        # :nocov:
       end
 
     OpenStruct.new(p3: p3, t3: t3).freeze
