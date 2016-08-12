@@ -7,20 +7,14 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /coverage/
 /log/*.log
 /public/dev-assets/
-/tmp
-/.rubocop-*
+/tmp/
 
 # Redis
 /dump.rdb
 
 # Figaro config
 /config/application.yml
-

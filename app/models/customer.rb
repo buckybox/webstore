@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'draper'
+require "draper"
 
 class Customer
   include Draper::Decoratable

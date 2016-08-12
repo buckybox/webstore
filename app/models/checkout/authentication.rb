@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../form'
+require_relative "../form"
 
 class Authentication < Form
-  NEW_CUSTOMER = 'new'
-  EXISTING_CUSTOMER = 'returning'
+  NEW_CUSTOMER = "new"
+  EXISTING_CUSTOMER = "returning"
 
   attribute :email,       String
   attribute :registered,  String, default: NEW_CUSTOMER
@@ -16,8 +16,8 @@ class Authentication < Form
 
   def options
     [
-      [I18n.t('authentication.new_customer'),      NEW_CUSTOMER],
-      [I18n.t('authentication.existing_customer'), EXISTING_CUSTOMER],
+      [I18n.t("authentication.new_customer"),      NEW_CUSTOMER],
+      [I18n.t("authentication.existing_customer"), EXISTING_CUSTOMER],
     ]
   end
 

@@ -26,7 +26,7 @@ class Address
   def to_s(join_with = ", ")
     ADDRESS_ATTRIBUTES.map do |attribute|
       public_send attribute
-    end.reject(&:blank?).join(join_with).html_safe
+    end.reject(&:blank?).join(join_with).html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def phones
@@ -43,7 +43,8 @@ class Address
 
   # Handy helper to update a given number type
   def phone=(phone)
-    type, number = phone[:type], phone[:number]
+    type = phone[:type]
+    number = phone[:number]
     return unless type.present?
 
     send("#{type}_phone=", number)

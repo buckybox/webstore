@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../form'
+require_relative "../form"
 
 class Completed < Form
   delegate :webstore, to: :cart
@@ -16,7 +16,7 @@ class Completed < Form
   delegate :currency, to: :webstore
 
   def customer_address
-    customer.address.join('<br>')
+    customer.address.join("<br>")
   end
 
   def product_name

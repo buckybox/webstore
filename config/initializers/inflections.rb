@@ -18,5 +18,5 @@
 # end
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.acronym 'API' # so autoload doesn't get confused with 'Api'
+  inflect.acronym "API" # so autoload doesn't get confused with 'Api'
 end

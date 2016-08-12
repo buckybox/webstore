@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'draper'
-require_relative 'order_price'
+require "draper"
+require_relative "order_price"
 
 class Order
   include Draper::Decoratable

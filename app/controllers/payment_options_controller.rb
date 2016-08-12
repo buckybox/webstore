@@ -23,11 +23,11 @@ private
     # webstore_factory = current_cart.run_factory
     # customer_sign_in(webstore_factory.customer) # TODO: authenticate new customers here
 
-    redirect_to next_step, notice: t('order_placed')
+    redirect_to next_step, notice: t("order_placed")
   end
 
   def failed_payment_options(payment_options)
-    flash[:alert] = t('oops') << t('colon') <<
+    flash[:alert] = t("oops") << t("colon") <<
                     payment_options.errors.full_messages.join(", ").downcase
 
     render "payment_options", locals: {

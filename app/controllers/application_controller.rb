@@ -17,7 +17,7 @@ protected
     return [] unless customers
 
     SuperRecursiveOpenStruct.new(
-      JSON.parse(customers)
+      JSON.parse(customers),
     ).freeze
   end
 

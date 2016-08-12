@@ -52,15 +52,6 @@ Then /^I should be asked to customise the box$/ do
   step "I should not see an error message"
 end
 
-#Given /^I am asked to customise the box$/ do
-#  steps %(
-#    Given I am on the webstore
-#    When I select a customisable box to order
-#  )
-#
-#  step "I should be asked to customise the box"
-#end
-
 When /^I customise the box$/ do
   check "Customise my product"
   select2("Cabbage", from: "customise_order_dislikes")
@@ -83,24 +74,6 @@ Then /^I should be asked to select my delivery frequency$/ do
   step "I should not see an error message"
 end
 
-#Given "I am asked to select my delivery frequency" do
-#  steps %(
-#    Given I am asked to customise the box
-#    When I customise the box
-#  )
-#
-#  step "I fill in my email address" if page.has_link? "Log in" # we need to log in
-#
-#  if page.has_selector? "#delivery_service_select"
-#    step "I select the last delivery service"
-#  end
-#end
-
-#When /^I select the last delivery service$/ do
-#  last_delivery_service = find("#delivery_service_select option:last-child")
-#  select last_delivery_service.text, from: :delivery_service_select
-#end
-
 When /^I select a (.*) delivery frequency$/ do |frequency|
   select frequency, from: :delivery_options_frequency
   click_button "Next"
@@ -110,15 +83,6 @@ Then /^I should be asked for my delivery address$/ do
   step "I should be viewing the payment_options step"
   step "I should not see an error message"
 end
-
-#Given "I am asked for my delivery address" do
-#  steps %(
-#    Given I am asked to select my delivery frequency
-#    When I select a monthly delivery frequency
-#  )
-#
-#  step "I should be asked for my delivery address"
-#end
 
 When /^I (fill in|confirm) my delivery address$/ do |action|
   if action == "fill in"
@@ -146,20 +110,6 @@ end
 Then /^I should see "(.*)"$/ do |content|
   expect(page).to have_content content
 end
-
-#Given "I have just ordered a box" do
-#  steps %(
-#    Given I am asked for my delivery address
-#    When I select the payment option "Bank Deposit"
-#    And I fill in my delivery address
-#    )
-#end
-
-#Given /^I am viewing the (.*) step$/ do |step|
-#  visit step_path(step)
-#
-#  step "I should be viewing the #{step} step"
-#end
 
 Then /^I should be viewing the (.*) step$/ do |step|
   expected_path = step_path(step)

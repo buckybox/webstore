@@ -16,7 +16,7 @@ class ScheduleRule
   end
 
   def delivery_days
-    I18n.t('date.day_names').select.each_with_index do |_day, index|
+    I18n.t("date.day_names").select.each_with_index do |_day, index|
       runs_on index
     end.to_sentence
   end

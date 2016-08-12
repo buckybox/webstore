@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../form'
+require_relative "../form"
 
 class CustomiseOrder < Form
   attribute :has_customisations,  Boolean

@@ -3,7 +3,7 @@
 require_relative "../../lib/schedule_rule"
 
 describe ScheduleRule do
-  let(:schedule) { ScheduleRule.new(frequency: :monthly, start_date: "2014-09-10", days: { 10 => 1, 13 => 1 }) }
+  let(:schedule) { described_class.new(frequency: :monthly, start_date: "2014-09-10", days: { 10 => 1, 13 => 1 }) }
 
   before { I18n.locale = :en }
 

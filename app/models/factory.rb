@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'order_factory'
-require_relative 'customer_factory'
+require_relative "order_factory"
+require_relative "customer_factory"
 
 class Factory
   attr_reader :cart

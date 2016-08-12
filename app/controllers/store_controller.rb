@@ -10,7 +10,7 @@ class StoreController < CheckoutController
     @current_webstore_customer = home.customer.decorate
     products = ProductDecorator.decorate_collection(home.products, context: { webstore: current_webstore })
 
-    render 'home', locals: { products: products }
+    render "home", locals: { products: products }
   end
 
   def start_checkout
@@ -35,12 +35,12 @@ private
   end
 
   def failed_new_checkout
-    flash[:alert] = t('oops')
+    flash[:alert] = t("oops")
     redirect_to webstore_path
   end
 
   def next_step
-    return webstore_path, alert: t('oops') if current_order.invalid?
+    return webstore_path, alert: t("oops") if current_order.invalid?
     return customise_order_path if current_order.customisable?
 
     current_webstore_customer.guest? ? authentication_path : delivery_options_path

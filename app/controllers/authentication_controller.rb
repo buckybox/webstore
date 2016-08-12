@@ -2,7 +2,7 @@
 
 class AuthenticationController < CheckoutController
   def authentication
-    render 'authentication', locals: {
+    render "authentication", locals: {
       order: current_order,
       authentication: Authentication.new(cart: current_cart),
     }
@@ -19,7 +19,7 @@ private
 
   def try_sign_in(authentication)
     customers = API.authenticate_customer(
-      email: authentication.email, password: authentication.password
+      email: authentication.email, password: authentication.password,
     )
 
     session[:current_customers] = customers.to_json
@@ -42,8 +42,8 @@ private
   end
 
   def failed_authentication(authentication)
-    flash.now[:alert] = t('authentication.bad_email_password')
-    render 'authentication', locals: {
+    flash.now[:alert] = t("authentication.bad_email_password")
+    render "authentication", locals: {
       order: current_order,
       authentication: authentication,
     }

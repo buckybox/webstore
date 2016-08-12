@@ -31,8 +31,8 @@ stderr_path "#{app_path}/log/unicorn.log"
 stdout_path "#{app_path}/log/unicorn.log"
 
 before_fork do |server, _worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
-  defined?($redis) and $redis.client.disconnect
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+  defined?($redis) && $redis.client.disconnect
 
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
   # immediately start loading up a new version of itself (loaded with a new
@@ -58,7 +58,7 @@ after_fork do |_server, _worker|
   # Unix forking works, we need to make sure we aren't using any of the parent's
   # sockets, e.g. db connection
 
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
   # Redis and Memcached would go here but their connections are established
   # on demand, so the master never opens a socket
 end

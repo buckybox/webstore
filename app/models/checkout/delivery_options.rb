@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../form'
+require_relative "../form"
 
 class DeliveryOptions < Form
   attribute :delivery_service, Integer
@@ -28,7 +28,7 @@ class DeliveryOptions < Form
 
   def delivery_service_list
     delivery_services.map { |delivery_service| delivery_service_list_item(delivery_service) } \
-                     .unshift([I18n.t('delivery_options.select_delivery_service'), nil])
+                     .unshift([I18n.t("delivery_options.select_delivery_service"), nil])
   end
 
   def single_delivery_service?
@@ -41,18 +41,18 @@ class DeliveryOptions < Form
 
   def order_frequencies
     [
-      [I18n.t('delivery_options.order_frequencies.select'),      nil],
-      [I18n.t('delivery_options.order_frequencies.weekly'),      :weekly],
-      [I18n.t('delivery_options.order_frequencies.fortnightly'), :fortnightly],
-      [I18n.t('delivery_options.order_frequencies.monthly'),     :monthly],
-      [I18n.t('delivery_options.order_frequencies.single'),      :single],
+      [I18n.t("delivery_options.order_frequencies.select"),      nil],
+      [I18n.t("delivery_options.order_frequencies.weekly"),      :weekly],
+      [I18n.t("delivery_options.order_frequencies.fortnightly"), :fortnightly],
+      [I18n.t("delivery_options.order_frequencies.monthly"),     :monthly],
+      [I18n.t("delivery_options.order_frequencies.single"),      :single],
     ]
   end
 
   def extra_frequencies
     [
-      [I18n.t('delivery_options.extra_frequencies.always'), false],
-      [I18n.t('delivery_options.extra_frequencies.once'),   true],
+      [I18n.t("delivery_options.extra_frequencies.always"), false],
+      [I18n.t("delivery_options.extra_frequencies.once"),   true],
     ]
   end
 

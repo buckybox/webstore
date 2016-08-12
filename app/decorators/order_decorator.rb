@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'draper'
-require_relative '../models/order'
+require "draper"
+require_relative "../models/order"
 
 class OrderDecorator < Draper::Decorator
   delegate_all
@@ -33,10 +33,10 @@ class OrderDecorator < Draper::Decorator
   end
 
   def exclusions
-    object.exclusion_line_items.map(&:name).join(', ')
+    object.exclusion_line_items.map(&:name).join(", ")
   end
 
   def substitutions
-    object.substitution_line_items.map(&:name).join(', ')
+    object.substitution_line_items.map(&:name).join(", ")
   end
 end

@@ -48,7 +48,7 @@ protected
     return if current_cart
 
     unless action.in?(%w(home start_checkout))
-      redirect_to webstore_path, alert: t('no_ongoing_order')
+      redirect_to webstore_path, alert: t("no_ongoing_order")
     end
   end
 
@@ -57,14 +57,14 @@ protected
 
     if action == "home"
       flush_current_cart!
-      flash.now[:notice] = t('cancelled_order')
+      flash.now[:notice] = t("cancelled_order")
     end
   end
 
   def cart_completed?
     if !action.in?(%w(home completed)) && current_cart && current_cart.completed?
       redirect_to webstore_path,
-        alert: "This order has been completed, please start a new one."
+                  alert: "This order has been completed, please start a new one."
     end
   end
 
@@ -77,8 +77,8 @@ protected
     elsif form_cart_id != current_form_cart_id
       flush_current_cart!
 
-      redirect_to webstore_path,
-        alert: "Sorry, this order has expired, please start a new one." and return true
+      redirect_to(webstore_path,
+                  alert: "Sorry, this order has expired, please start a new one.") && (return true)
     end
 
     false

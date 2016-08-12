@@ -81,10 +81,6 @@ private
   end
 
   def derive_data
-    @webstore_order = get_webstore_order
-  end
-
-  def get_webstore_order
-    cart.order
+    @webstore_order = cart.order
   end
 end

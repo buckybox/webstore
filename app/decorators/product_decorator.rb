@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'draper'
+require "draper"
 require "crazy_money"
-require_relative '../models/product'
+require_relative "../models/product"
 
 class ProductDecorator < Draper::Decorator
   delegate_all

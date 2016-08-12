@@ -52,7 +52,7 @@ class Cart
 
   def save
     persistence = find_or_create_persistence
-    persistence.save(self) and self.id = persistence.id
+    persistence.save(self) and self.id = persistence.id # rubocop:disable Style/AndOr
   end
 
   def webstore

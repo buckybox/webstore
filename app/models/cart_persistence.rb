@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'cart'
+require_relative "cart"
 
 class CartPersistence
   attr_accessor :serialized_cart, :id

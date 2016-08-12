@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../customer'
+require_relative "../customer"
 
 class Home
   def initialize(args = {})
@@ -14,7 +14,7 @@ class Home
 
   def customer(customer_class = Customer)
     @customer ||= customer_class.new(
-      existing_customer_id: existing_customer && existing_customer.id
+      existing_customer_id: existing_customer && existing_customer.id,
     )
   end
 

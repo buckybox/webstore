@@ -3,48 +3,40 @@
 require_relative "../../app/models/order"
 
 describe Order do
-  let(:delivery_service_class) { double("delivery_service_class") }
-  let(:product)                { double("product") }
-  let(:product_class)          { double("product_class", find: product) }
-  let(:cart)                   { double("cart").as_null_object }
+  let(:delivery_service_class) { instance_double("delivery_service_class") }
+  let(:product)                { instance_double(Product) }
+  let(:product_class)          { instance_double("product_class", find: product) }
+  let(:cart)                   { instance_double(Cart).as_null_object }
   let(:args)                   { { cart: cart, delivery_service_class: delivery_service_class, product_class: product_class } }
-  let(:order)                  { Order.new(args) }
+  let(:order)                  { described_class.new(args) }
 
   describe "#extra_quantity" do
     it "returns the quantity for an extra in this order" do
       allow(order).to receive(:extras) { { 1 => 1 } }
-      extra = double("extra", id: 1)
+      extra = double("extra", id: 1) # rubocop:disable RSpec/VerifiedDoubles
       expect(order.extra_quantity(extra)).to eq(1)
     end
   end
 
   describe "#extras_price" do
     it "returns the total price of the extras" do
-      expected_array = [double("tuple1"), double("tuple2")]
+      expected_array = [double("tuple1"), double("tuple2")] # rubocop:disable RSpec/VerifiedDoubles
       allow(order).to receive(:extras_as_hashes)
-      order_price_class = double("order_price_class", extras_price: expected_array)
+      order_price_class = class_double(OrderPrice, extras_price: expected_array)
       expect(order.extras_price(order_price_class)).to eq(expected_array)
     end
   end
 
   describe "#scheduled?" do
     it "return true if the order has a schedule" do
-      allow(order).to receive(:frequency) { double("frequency") }
+      allow(order).to receive(:frequency) { "single" }
       expect(order.is_scheduled?).to be_truthy
-    end
-  end
-
-  describe "#schedule" do
-    it "returns the schedule for when this order should be delivered" do
-      schedule = double("schedule")
-      schedule_builder_class = double("schedule_builder_class", new: schedule)
-      expect(order.schedule(schedule_builder_class)).to eq(schedule)
     end
   end
 
   describe "#delivery_service_fee" do
     it "return the delivery fee" do
-      allow(order).to receive(:delivery_service) { double("delivery_service", fee: 5) }
+      allow(order).to receive(:delivery_service) { object_double("delivery_service", fee: 5) }
       expect(order.delivery_service_fee).to eq(5)
     end
   end

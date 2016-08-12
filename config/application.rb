@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -27,7 +27,7 @@ module BuckyBox
       # config.time_zone = 'Central Time (US & Canada)'
 
       # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-      config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+      config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
 
       # https://github.com/svenfuchs/rails-i18n
       config.i18n.available_locales = Dir[Rails.root.join("config", "locales", "*")]

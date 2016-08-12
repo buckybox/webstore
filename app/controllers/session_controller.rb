@@ -10,7 +10,7 @@ class SessionController < ApplicationController
     result = API.authenticate_customer(credentials)
 
     if result.empty?
-      redirect_to customer_sign_in_path, alert: t('authentication.bad_email_password')
+      redirect_to customer_sign_in_path, alert: t("authentication.bad_email_password")
     else
       session[:current_customers] = result.to_json
       redirect_to webstore_path
