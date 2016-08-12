@@ -11,6 +11,8 @@ matrix:
   - rvm: ruby-head
   - rvm: rbx
   - rvm: rbx-head
+services:
+  - redis-server
 notifications:
   email:
     on_failure: always
