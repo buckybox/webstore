@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class OrderFactory
+  OrderWrapper = Struct.new(
+    *%i(customer_id box_id extras extras_one_off exclusions substitutions
+        payment_method frequency start_date week_days week completed),
+  )
+
   def self.assemble(args)
     order_factory = new(args)
     order_factory.assemble
@@ -9,7 +14,7 @@ class OrderFactory
   def initialize(args)
     @cart     = args.fetch(:cart)
     @customer = args[:customer]
-    @order    = RecursiveOpenStruct.new
+    @order    = OrderWrapper.new
     derive_data
   end
 

@@ -13,12 +13,9 @@ protected
   end
 
   helper_method def current_customers
-    customers = session[:current_customers]
-    return [] unless customers
-
-    SuperRecursiveOpenStruct.new(
-      JSON.parse(customers),
-    ).freeze
+    json = session[:current_customers] || "[]"
+    customers = JSON.parse(json)
+    customers.map { |customer| OpenStruct.new(customer).freeze }
   end
 
   helper_method def current_customer

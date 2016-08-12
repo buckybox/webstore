@@ -18,8 +18,6 @@ gem "secure_headers"
 gem "rails-i18n"
 gem "crazy_money"
 gem "ordinalize_full", require: "ordinalize_full/integer"
-gem "super_recursive_open_struct"
-gem "recursive-open-struct", "< 1" # TODO: upgrade
 gem "buckybox-api", git: "https://github.com/buckybox/buckybox-api-ruby"
 gem "fast_blank"
 gem "figaro"
