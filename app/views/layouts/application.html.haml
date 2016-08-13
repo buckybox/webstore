@@ -15,7 +15,7 @@
     = render partial: 'layouts/google_analytics'
     = render partial: 'layouts/pingdom'
     = render partial: 'layouts/i18n'
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true
 
   %body
     = render partial: 'layouts/banner'
