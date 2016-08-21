@@ -46,9 +46,7 @@ class API
         raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables"
       end
 
-      { "API-Key" => key, "API-Secret" => secret }.tap do |params|
-        params["Webstore-ID"] = webstore_id if webstore_id
-      end
+      { "API-Key" => key, "API-Secret" => secret, "Webstore-ID" => webstore_id }
     end
   end
 end
