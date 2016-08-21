@@ -18,3 +18,8 @@
 
 # Figaro config
 /config/application.yml
+
+# Elastic Beanstalk
+/.elasticbeanstalk/*
+!/.elasticbeanstalk/*.cfg.yml
+!/.elasticbeanstalk/*.global.yml
