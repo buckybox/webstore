@@ -124,9 +124,7 @@ private
   end
 
   def find_or_create_persistence
-    persistence = persistence_class.find(id)
-    persistence = persistence_class.new unless persistence
-    persistence
+    persistence_class.find(id) || persistence_class.new
   end
 
   def completed!
