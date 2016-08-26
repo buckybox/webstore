@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MapController < ApplicationController
+  layout false
+
   def index
     # show lightbox once a week
     if cookies[:skip_lightbox].to_i != 1
