@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class SessionController < ApplicationController
+class SessionController < CheckoutController
+  skip_before_action :cart_missing?
+
   def new
     redirect_to customer_dashboard_path if current_customer
   end
@@ -19,11 +21,5 @@ class SessionController < ApplicationController
 
   def destroy
     sign_out
-  end
-
-private
-
-  def current_webstore_id
-    params[:webstore_id]
   end
 end

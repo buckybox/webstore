@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class StoreController < CheckoutController
+  skip_before_action :cart_missing?, only: [:home, :start_checkout]
+  skip_before_action :cart_completed?, only: :home
+  before_action :cart_present?, only: :home
+
   def home
     home = Home.new(
       webstore: current_webstore,
@@ -28,6 +32,13 @@ class StoreController < CheckoutController
   end
 
 private
+
+  def cart_present?
+    return unless current_cart
+
+    flush_current_cart!
+    flash.now[:notice] = t("cancelled_order")
+  end
 
   def successful_new_checkout(checkout)
     session[:cart_id] = checkout.cart_id

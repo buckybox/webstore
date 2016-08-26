@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CompletedController < CheckoutController
+  skip_before_action :cart_completed?, only: :completed
+
   def completed
     cart = flush_current_cart!
 
