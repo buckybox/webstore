@@ -41,6 +41,7 @@ gem "unicorn"
 # gem "airbrake"
 gem "bugsnag"
 gem "newrelic_rpm"
+gem "datadoge"
 
 group :development, :test do
   gem "byebug", platform: :mri
