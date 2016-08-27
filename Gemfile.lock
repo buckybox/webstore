@@ -1,11 +1,12 @@
 GIT
   remote: https://github.com/buckybox/buckybox-api-ruby
-  revision: cf0772c57dbe18fe69caf01a6c9c2a25873d889e
+  revision: 194277f6270a41cf45631940c7acf8829e718cfa
   specs:
     buckybox-api (1.6.2)
       crazy_money (>= 1.4.0)
       hashie (>= 3.4.4)
       httparty (>= 0.13.1)
+      oj
 
 GEM
   remote: https://rubygems.org/
@@ -188,6 +189,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    oj (2.17.3)
     ordinalize_full (1.3.0)
       i18n (~> 0.7.0)
     parser (2.3.1.2)
