@@ -13,7 +13,7 @@ class CartPersistence
   end
 
   def self.redis_key(id)
-    "#{self}:#{id}"
+    "webstore:CartPersistence:#{id}"
   end
 
   def initialize(args = {})
