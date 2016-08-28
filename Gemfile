@@ -41,7 +41,7 @@ gem "unicorn"
 # gem "airbrake"
 gem "bugsnag"
 gem "newrelic_rpm"
-gem "datadoge"
+gem "datadoge", git: "https://github.com/buckybox/datadoge.git"
 
 group :development, :test do
   gem "byebug", platform: :mri
