@@ -28,7 +28,8 @@ class CartPersistence
     self.serialized_cart = Marshal.dump cart
     self.id = SecureRandom.uuid unless id
 
-    $redis.set redis_key, serialized_cart
+    ttl = 1.week.to_i
+    $redis.setex redis_key, ttl, serialized_cart
   end
 
   def redis_key
