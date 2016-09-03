@@ -7,8 +7,8 @@
 [![PullReview stats](https://www.pullreview.com/github/buckybox/webstore/badges/master.svg?)](https://www.pullreview.com/github/buckybox/webstore/reviews/master)
 [![security](https://hakiri.io/github/buckybox/webstore/master.svg)](https://hakiri.io/github/buckybox/webstore/master)
 
-Bucky Box Web Store is an extraction from the [Bucky Box](http://www.buckybox.com/) platform.
-It allows customers to place orders and communicates with the [Bucky Box API](https://api.buckybox.com/docs/).
+Bucky Box Web Store is part of the [Bucky Box](http://www.buckybox.com/) platform.
+It allows customers to place orders using the [Bucky Box API](https://api.buckybox.com/docs/).
 
 ![Screenshot](doc/screenshot.jpg)
 
@@ -19,7 +19,7 @@ The required settings are `BUCKYBOX_API_KEY`, `BUCKYBOX_API_SECRET` and `SECRET_
 
 ## Services
 
-You must have [Redis](http://redis.io/) running - it is used for transient data.
+No database is required but you must have [Redis](http://redis.io/) running to store carts.
 
 ## Deployment instructions
 
@@ -34,8 +34,8 @@ Any bug fix or tweak is welcomed but if you have bigger plans, please drop us a 
 
 ## Translation
 
-You can help translate it into your favorite language. We use [Transifex](https://www.transifex.com/projects/p/buckybox-webstore/).
-
+You can help translate it into your favorite language.
+We use [Transifex](https://www.transifex.com/projects/p/buckybox-webstore/).
 New translations can be fetched with `tx pull -af`.
 
 ## Tests
