@@ -4,25 +4,15 @@ class API
   class << self
     WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/
 
-    attr_reader :webstore_id
-
-    def webstore(id = nil)
+    def webstore(id)
       raise BuckyBox::API::NotFoundError if id !~ WEBSTORE_ID_FORMAT
 
-      if id != webstore_id
-        @webstore_id = id
-        @api = nil
-      end
-
-      method_missing(:webstore) # funny heh?
+      webstore_id(id)
+      api.webstore
     end
 
     def method_missing(method, *args)
-      if api.respond_to?(method)
-        api.public_send(method, *args)
-      else
-        super
-      end
+      api.respond_to?(method) ? api.public_send(method, *args) : super
     end
 
     def respond_to_missing?(*args)
@@ -31,22 +21,32 @@ class API
 
   private
 
+    def webstore_id(id = nil)
+      Thread.current[:webstore_id] = id unless id.nil?
+      Thread.current[:webstore_id]
+    end
+
     def api
-      @api ||= BuckyBox::API.new(credentials)
+      @api ||= {}
+      @api[webstore_id] ||= BuckyBox::API.new(
+        credentials.merge("Webstore-ID" => webstore_id),
+      )
     end
 
     def credentials
-      key = Figaro.env.buckybox_api_key
-      secret = Figaro.env.buckybox_api_secret
+      @credentials ||= begin
+        key = Figaro.env.buckybox_api_key
+        secret = Figaro.env.buckybox_api_secret
 
-      key ||= "" if Rails.env.test?
-      secret ||= "" if Rails.env.test?
+        key ||= "" if Rails.env.test?
+        secret ||= "" if Rails.env.test?
 
-      if key.nil? || secret.nil?
-        raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables"
+        if key.nil? || secret.nil?
+          raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables"
+        end
+
+        { "API-Key" => key, "API-Secret" => secret }
       end
-
-      { "API-Key" => key, "API-Secret" => secret, "Webstore-ID" => webstore_id }
     end
   end
 end

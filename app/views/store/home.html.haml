@@ -1,3 +1,5 @@
+- raise "#{params[:webstore_id]} != #{current_webstore.id}" if params[:webstore_id] != current_webstore.id
+
 - cache([request.fullpath, products.map(&:id).hash, products.map(&:updated_at).max]) do
   %noscript
     .alert.alert-error
