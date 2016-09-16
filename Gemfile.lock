@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/buckybox/datadoge.git
-  revision: acf1b6862fbf6cebd55aa0f38618fc19abdbf52f
+  revision: 4e1fba841abd1da7965ef477949625ad1522a5ed
   specs:
     datadoge (0.0.3)
       dogstatsd-ruby (> 0)
