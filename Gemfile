@@ -19,6 +19,7 @@ gem "rails-i18n"
 gem "crazy_money"
 gem "ordinalize_full", require: "ordinalize_full/integer"
 gem "buckybox-api", git: "https://github.com/buckybox/buckybox-api-ruby"
+gem "hashie", "3.4.4" # TODO: 3.4.6 is broken
 gem "fast_blank"
 gem "figaro"
 

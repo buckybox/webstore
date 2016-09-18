@@ -361,6 +361,7 @@ DEPENDENCIES
   figaro
   foreman
   haml-rails
+  hashie (= 3.4.4)
   hiredis
   jquery-rails
   leaflet-rails
