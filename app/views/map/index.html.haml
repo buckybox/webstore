@@ -2,17 +2,13 @@
 
 %html
   %head
-    %meta{ charset: "utf-8" }
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    = render partial: "layouts/common_head"
 
     %title Find locally sourced food, CSA Box Schemes powered by Bucky Box
 
     = stylesheet_link_tag "map"
-    = favicon_link_tag "/public/favicon.ico"
 
-    = render partial: "layouts/bugsnag"
     = render partial: "layouts/google_analytics", locals: { ga_tracking_id: "UA-21417656-11" }
-    = render partial: "layouts/pingdom"
 
   %body
     %div.lightbox{ tabindex: -1, role: "dialog", "aria-hidden": true }

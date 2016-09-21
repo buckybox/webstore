@@ -2,18 +2,13 @@
 
 %html
   %head
-    %meta{ charset: 'utf-8' }
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    = render partial: "layouts/common_head"
 
     %title Bucky Box - #{t('web_store', webstore: current_webstore.name)}
 
     = csrf_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = favicon_link_tag '/public/favicon.ico'
-
-    = render partial: 'layouts/bugsnag'
     = render partial: 'layouts/google_analytics'
-    = render partial: 'layouts/pingdom'
     = render partial: 'layouts/i18n'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true
 
