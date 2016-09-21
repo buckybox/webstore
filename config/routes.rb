@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root to: "map#index"
+  get "/ping", to: "application#ping"
 
   scope ":webstore_id", constraints: { format: "html" } do
     # get "/fruits", action: "fruits", controller: "store" # TODO: categories using box tags
