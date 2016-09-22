@@ -43,7 +43,6 @@ gem "puma"
 # gem "airbrake"
 gem "bugsnag"
 gem "newrelic_rpm"
-gem "datadoge", git: "https://github.com/buckybox/datadoge.git"
 
 group :development, :test do
   gem "byebug", platform: :mri
