@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
   root to: "map#index"
   get "/ping", to: "application#ping"
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
     scope "/account" do
       scope module: :account do
         # get "/", action: "dashboard", as: "customer_dashboard" # NOTE: future
-        get "/", to: redirect("/customer"), as: "customer_dashboard"
+        get "/", to: redirect("https://my.buckybox.com/customer"), as: "customer_dashboard"
       end
 
       scope module: :session do
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
 
     get "/", to: "store#home", as: "webstore"
     get "/start_checkout/:product_id", to: "store#start_checkout", as: "start_checkout"
-    get "/admin", to: redirect("/distributor") # NOTE: temporary redirect
+    # get "/admin", to: redirect("/distributor") # NOTE: future
 
     scope module: :customise_order do
       get "/customise_order", action: "customise_order"
