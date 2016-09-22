@@ -1,3 +1,3 @@
 web: bundle exec rails s -p 5000
-#unicorn: bundle exec unicorn -p $PORT -c config/unicorn.rb
-#redis: redis-server
+puma: bundle exec puma -p 5000 --config config/puma.rb --log-requests
+redis: redis-server

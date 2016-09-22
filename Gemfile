@@ -38,7 +38,6 @@ gem "draper"
 gem "naught"
 
 # Optional Gems are listed below
-gem "unicorn"
 gem "puma"
 # gem "airbrake"
 gem "bugsnag"
