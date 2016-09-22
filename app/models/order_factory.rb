@@ -2,8 +2,8 @@
 
 class OrderFactory
   OrderWrapper = Struct.new(
-    *%i(customer_id box_id extras extras_one_off exclusions substitutions
-        payment_method frequency start_date week_days week completed),
+    :customer_id, :box_id, :extras, :extras_one_off, :exclusions, :completed,
+    :substitutions, :payment_method, :frequency, :start_date, :week_days, :week
   )
 
   def self.assemble(args)

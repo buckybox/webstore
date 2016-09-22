@@ -83,9 +83,9 @@ protected
 private
 
   def webstore_active?
-    unless current_webstore && current_webstore.active
-      redirect_to Figaro.env.marketing_site_url
-    end
+    return if current_webstore&.active
+
+    redirect_to Figaro.env.marketing_site_url
   end
 
   def setup_webstore
@@ -93,9 +93,9 @@ private
   end
 
   def customer_valid?
-    if current_customer && current_customer.webstore_id != current_webstore.id
-      sign_out
-    end
+    return unless current_customer && current_customer.webstore_id != current_webstore.id
+
+    sign_out
   end
 
   def cart_missing?
@@ -105,10 +105,10 @@ private
   end
 
   def cart_completed?
-    if current_cart && current_cart.completed?
-      redirect_to webstore_path,
-                  alert: "This order has been completed, please start a new one."
-    end
+    return unless current_cart&.completed?
+
+    redirect_to webstore_path,
+                alert: "This order has been completed, please start a new one."
   end
 
   def set_current_webstore

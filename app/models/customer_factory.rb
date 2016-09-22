@@ -2,12 +2,13 @@
 
 class CustomerFactory
   CustomerWrapper = Struct.new(
-    *%i(id address via_webstore email delivery_service_id first_name last_name),
+    :id, :address, :via_webstore, :email, :delivery_service_id,
+    :first_name, :last_name
   )
 
   AddressWrapper = Struct.new(
-    *%i(address_1 address_2 suburb city postcode delivery_note
-        home_phone mobile_phone work_phone),
+    :address_1, :address_2, :suburb, :city, :postcode, :delivery_note,
+    :home_phone, :mobile_phone, :work_phone
   )
 
   def self.assemble(args)

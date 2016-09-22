@@ -98,8 +98,8 @@ private
     items_unlimited = send("#{items}_unlimited?")
     items_limit     = send("#{items}_limit")
 
-    if !items_unlimited && items_count > items_limit
-      errors.add(items, "you have too many #{items}, the maximum is #{items_limit}")
-    end
+    return if items_unlimited || items_count <= items_limit
+
+    errors.add(items, "you have too many #{items}, the maximum is #{items_limit}")
   end
 end

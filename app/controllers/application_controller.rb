@@ -18,8 +18,8 @@ private
   end
 
   def new_relic_ignore_pingdom
-    if request.user_agent =~ /pingdom|ELB-HealthChecker/i
-      NewRelic::Agent.ignore_transaction
-    end
+    return unless request.user_agent =~ /pingdom|ELB-HealthChecker/i
+
+    NewRelic::Agent.ignore_transaction
   end
 end
