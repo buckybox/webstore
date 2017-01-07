@@ -25,69 +25,69 @@ describe CustomiseOrder do
   end
 
   describe "#exclusions?" do
-    it "returns true if a product allows exclusions" do
+    specify do
       allow(product).to receive(:dislikes) { true }
       expect(customise_order.exclusions?).to be true
     end
 
-    it "returns true if a product allows exclusions" do
+    specify do
       allow(product).to receive(:dislikes) { false }
       expect(customise_order.exclusions?).to be false
     end
   end
 
   describe "#substitutions?" do
-    it "returns true if a product allows substitutions" do
+    specify do
       allow(product).to receive(:likes) { true }
       expect(customise_order.substitutions?).to be true
     end
 
-    it "returns false if a product allows substitutions" do
+    specify do
       allow(product).to receive(:likes) { false }
       expect(customise_order.substitutions?).to be false
     end
   end
 
   describe "#extras_allowed?" do
-    it "returns true if a product allows extras" do
+    specify do
       allow(product).to receive(:extras_allowed) { true }
       expect(customise_order.extras_allowed?).to be true
     end
 
-    it "returns false if a product allows extras" do
+    specify do
       allow(product).to receive(:extras_allowed) { false }
       expect(customise_order.extras_allowed?).to be false
     end
   end
 
   describe "#extras_unlimited?" do
-    it "returns true if a product allows unlimited extras" do
+    specify do
       allow(product).to receive(:extras_unlimited) { true }
       expect(customise_order.extras_unlimited?).to be true
     end
 
-    it "returns false if a product allows unlimited extras" do
+    specify do
       allow(product).to receive(:extras_unlimited) { false }
       expect(customise_order.extras_unlimited?).to be false
     end
   end
 
   describe "#exclusions_limit" do
-    it "returns the exclusions limit" do
+    specify do
       allow(product).to receive(:exclusions_limit) { 5 }
       expect(customise_order.exclusions_limit).to eq(5)
     end
   end
 
   describe "#substitutions_limit" do
-    it "returns the substitution limit" do
+    specify do
       allow(product).to receive(:substitutions_limit) { 5 }
       expect(customise_order.substitutions_limit).to eq(5)
     end
   end
 
   describe "#extras_limit" do
-    it "returns the extras limit" do
+    specify do
       allow(product).to receive(:extras_limit) { 5 }
       expect(customise_order.extras_limit).to eq(5)
     end

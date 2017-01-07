@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 4"
+gem "rails", "~> 4.2"
 gem "sass-rails"
 gem "uglifier" # Use Uglifier as compressor for JavaScript assets
 gem "coffee-rails" # Use CoffeeScript for .coffee assets and views
