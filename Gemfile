@@ -39,7 +39,6 @@ gem "draper"
 gem "naught"
 
 # Optional Gems are listed below
-# gem "airbrake"
 gem "bugsnag"
 
 group :development, :test do
