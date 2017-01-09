@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "rails", "~> 4.2"
+gem "puma"
 gem "sass-rails"
 gem "uglifier" # Use Uglifier as compressor for JavaScript assets
 gem "coffee-rails" # Use CoffeeScript for .coffee assets and views
@@ -38,10 +39,8 @@ gem "draper"
 gem "naught"
 
 # Optional Gems are listed below
-gem "puma"
 # gem "airbrake"
 gem "bugsnag"
-gem "newrelic_rpm"
 
 group :development, :test do
   gem "byebug", platform: :mri
