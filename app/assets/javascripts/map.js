@@ -127,11 +127,13 @@
       var event = new CustomEvent("storesAcquired", { 'detail': json });
       dispatchEvent(event);
 
+      var icon = new L.Icon.Default();
+
       json.forEach(function(store) {
         var ll = store.ll;
 
         if (ll[0] && ll[1]) { // if we have valid coordinates
-          var marker = L.marker(store.ll, {alt: store.name}).addTo(map);
+          var marker = L.marker(store.ll, {alt: store.name, icon: icon}).addTo(map);
           marker.bindPopup("<b><a href='" + store.webstore_url + "'>" + store.name + "</a></b> - " + store.postal_address);
         }
       });
