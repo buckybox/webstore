@@ -1,0 +1,23 @@
+nl:
+  current_locale_en: Dutch
+  current_locale: Nederlands
+  colon: ": "
+  hi: Hallo
+  thanks: Dank u
+  back: terug
+  cancel: annuleer
+  log_in: inloggen
+  log_out: uitloggen
+  update: Update
+  next: Volgende
+  or: of
+  password_forgotten?: Paswoord vergeten?
+  delivery_service: Thuis bezorging
+  my_account: Mijn account
+  your_account: Uw account
+  deliver_on: Lever op
+  oops: Oeps, er was een probleempje...
+  no_js: Oops! U moet JavaScript aanzetten in uw browser.
+  cash_on_delivery: Betaal bij levering
+  bank_deposit: Bank overschrijving
+  paypal_cc: Paypall / Credit Card
