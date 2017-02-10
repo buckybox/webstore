@@ -21,7 +21,7 @@ class CartPersistence
   end
 
   def cart
-    Marshal.load serialized_cart
+    Marshal.load serialized_cart # rubocop:disable Security/MarshalLoad
   end
 
   def save(cart)
