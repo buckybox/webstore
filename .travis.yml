@@ -3,17 +3,13 @@ services:
   - redis-server
 before_install: gem update --system --no-doc # https://github.com/sickill/rainbow/issues/49
 script: ./bin/ci
-after_script: bundle exec rake coveralls:push
+after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.3.3" ] || bundle exec rake coveralls:push'
 rvm:
 - 2.3.3
 - 2.4.0
-- ruby-head
-- rbx
 matrix:
   allow_failures:
   - rvm: 2.4.0
-  - rvm: ruby-head
-  - rvm: rbx
 notifications:
   email:
     on_failure: always
