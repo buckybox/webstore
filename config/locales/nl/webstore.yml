@@ -1,99 +1,98 @@
 nl:
-  web_store: "%{webstore} - Web Store"
-  no_ongoing_order: There is no ongoing order, please start one.
-  cancelled_order: Your previous order has been cancelled, you can start a new one.
-  order_placed: Your order has been placed.
-  halted_customer: Your account is under the minimum balance and will not recieve new orders unless payment is cleared before the packing date.
+  web_store: "%{webstore} - Webshop"
+  no_ongoing_order: Er is geen lopende bestelling, kies aub een product.
+  cancelled_order: Uw vorige bestelling is geannuleerd. U kan een nieuwe bestelling maken.
+  order_placed: Uw bestelling is geplaatst.
+  halted_customer: Uw account saldo is onder het minimum. U kan slechts nieuwe bestellingen plaatsen als u de betaling uitvoert voor de bestellings-deadline.
   product:
-    order: Order
+    order: Bestelling
   order:
-    summary: Order summary
-    exclusions_and_substitutes: Exclusions & substitutes
+    summary: Overzicht bestelling
+    exclusions_and_substitutes: Weggelaten en vervanging
     extras: Extra items
-    discount: Your discount
-    total: Total
+    discount: Uw korting
+    total: Totaal
   schedule_rule:
-    deliver_on: Deliver on
-    deliver_weekly_on: Deliver weekly on
-    deliver_fornightly_on: Deliver fortnightly on
-    deliver_monthly_on: Deliver monthly on the
-    no_future_deliveries: No future deliveries scheduled
+    deliver_on: Lever op
+    deliver_weekly_on: Lever wekelijks op
+    deliver_fornightly_on: Lever tweewekelijks op
+    deliver_monthly_on: Lever maandelijks op de
+    no_future_deliveries: Geen toekomstige leveringen gepland
   phone_collection:
-    mobile_phone: Mobile phone
-    work_phone: Work phone
-    home_phone: Home phone
+    mobile_phone: GSM
+    work_phone: Werk telefoon
+    home_phone: Huis telefoon
   sidebar:
-    find_us_on_facebook: Find us on Facebook
+    find_us_on_facebook: Vind ons op Facebook
   customise_order:
-    customise_product: Customise my product
-    exclude_items: Exclude these items...
-    substitute_with_items: Substitute for these items...
-    add_unlimited_extras: Add any amount of extra items
-    add_n_extras: Add up to %{limit} extra items
+    customise_product: Personaliseer mijn product
+    exclude_items: Laat volgende items weg...
+    substitute_with_items: Vervang door volgende items...
+    add_unlimited_extras: Voeg naar wens extra producten toe
+    add_n_extras: Voeg tot %{limit} extra producten toe
   authentication:
-    enter_email: Enter your email address
-    enter_password: Enter your password
-    bad_email_password: Your email and/or password is incorrect.
-    new_customer: I'm a new customer
-    existing_customer: I'm a returning customer
+    enter_email: Voer uw email adres in
+    enter_password: Voer uw wachtwoord in
+    bad_email_password: Uw email en/of wachtwoord is foutief
+    new_customer: Ik ben een nieuwe klant
+    existing_customer: Ik ben een bestaande klant
   delivery_options:
-    pick_delivery_service: Pick A Delivery Service
-    delivery_details: Delivery Details
-    pickup_details: Pickup Details
-    select_best: Select the one that best services your location
-    repeat_delivery: Repeat delivery?
-    when: When would you like it?
-    extra_frequency: What about those extra items?
-    select_delivery_service: "- Select delivery service -"
+    pick_delivery_service: Kies een leverings-service
+    delivery_details: Details Levering
+    pickup_details: Details Ophalen
+    select_best: Kies wat best bij uw locatie past
+    repeat_delivery: Herhaal levering?
+    when: Wanneer wil je het?
+    extra_frequency: Wat met de extra producten?
+    select_delivery_service: "- Kies leveringsmethode -"
     order_frequencies:
-      select: "- Select delivery frequency -"
-      single: Deliver once
-      weekly: Deliver weekly on...
-      fortnightly: Deliver every 2 weeks on...
-      monthly: Deliver monthly
+      select: "- Kies leveringsfrequentie -"
+      single: Lever éénmalig
+      weekly: Lever wekelijks op...
+      fortnightly: Lever tweewekelijks op...
+      monthly: Lever maandelijks
     extra_frequencies:
-      always: Include Extra Items with EVERY delivery
-      once: Include Extra Items with NEXT delivery only
+      always: Voeg Extra Producten toe bij ELKE levering
+      once: Voeg Extra Producten toe bij enkel de VOLGENDE levering
   payment_options:
-    deliver_to: Deliver to
-    delivery_note: Delivery note
-    change_delivery_address: Change my delivery address
-    name: Your name
-    enter_name: Enter your name
-    phone: Your phone number
-    enter_phone: Enter your phone number
-    amount_due: Total amount due
-    in_credit: Your account is in credit
-    pay_by: Pay by
-    no_payment: No payment necessary
-    complete_order: Complete Order
+    deliver_to: Lever op
+    delivery_note: Leveringsnota
+    change_delivery_address: Wijzig mijn leveringsadres
+    name: Uw naam
+    enter_name: Voer uw naam in
+    phone: Uw telefoonnummer
+    enter_phone: Voer uw telefoonnummer in
+    amount_due: Totaal te betalen bedrag
+    in_credit: Uw account heeft krediet
+    pay_by: Betaal tegen
+    no_payment: Geen betaling nodig
+    complete_order: Rond bestelling af
     address:
-      address_1: Address 1
-      address_2: Address 2
-      suburb: Suburb
-      city: City
+      address_1: Adres 1
+      address_2: Adres 2
+      suburb: Wijk
+      city: Stad
       postcode: Postcode
-      delivery_note: Delivery note
+      delivery_note: Leveringsnota
       placeholders:
-        delivery_note: Delivery instructions such as where to place the package
+        delivery_note: Leveringsinstructies zoals waar het pakket te plaatsen
   completed:
-    amount_due: Total amount due
-    pay_by: Pay by
-    back_to_webstore: Back to web store
-    my_account: My account
+    amount_due: Totaal te betalen bedrag
+    pay_by: Betaal tegen
+    back_to_webstore: Terug naar webshop
+    my_account: Mijn account
   payment_instructions:
     account_details: Account details
-    existing_balance: Your existing account balance with us
-    this_order: This order
-    closing_balance: Closing balance
+    existing_balance: Uw huidige account saldo bij ons
+    this_order: Deze bestelling
+    closing_balance: Nieuw saldo
   payments:
     bank_deposit:
-      deposit_funds: Please deposit funds into
-      account_name: Account Name
-      reference: Reference
+      deposit_funds: Schrijf het bedrag aub over naar
+      account_name: Naam rekeninghouder
+      reference: Referentie
     paypal:
-      pay_now: Pay now
-      top_up: Add credit to my account
-      amount: Amount
-      amount_to_top_up: Amount to top up
-
+      pay_now: Betaal nu
+      top_up: Voeg crediet toe aan mijn account
+      amount: Bedrag
+      amount_to_top_up: Op te laden Bedrag
