@@ -45,15 +45,15 @@ private
   end
 
   def prepare_address
-    address.public_send("#{phone_type}_phone=", phone_number) if phone_number && !phone_type.blank?
-    assign_attributes_to_object(address, %i(address_1 address_2 suburb city postcode delivery_note))
+    address.public_send("#{phone_type}_phone=", phone_number) if phone_number && phone_type.present?
+    assign_attributes_to_object(address, %i[address_1 address_2 suburb city postcode delivery_note])
   end
 
   def prepare_customer
     customer.id           = existing_customer_id if existing_customer_id
     customer.address      = address
     customer.via_webstore = true
-    assign_attributes_to_object(customer, %i(email delivery_service_id first_name last_name))
+    assign_attributes_to_object(customer, %i[email delivery_service_id first_name last_name])
   end
 
   def phone_number

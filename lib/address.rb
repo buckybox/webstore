@@ -3,14 +3,14 @@
 require_relative "phone_collection"
 
 class Address
-  ADDRESS_ATTRIBUTES = %i(
+  ADDRESS_ATTRIBUTES = %i[
     address_1
     address_2
     suburb
     city
     postcode
     delivery_note
-  ).freeze
+  ].freeze
 
   attr_accessor(*ADDRESS_ATTRIBUTES)
   attr_accessor(*PhoneCollection.attributes)
@@ -45,7 +45,7 @@ class Address
   def phone=(phone)
     type = phone[:type]
     number = phone[:number]
-    return unless type.present?
+    return if type.blank?
 
     send("#{type}_phone=", number)
   end

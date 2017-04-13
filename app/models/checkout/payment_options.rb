@@ -89,7 +89,7 @@ class PaymentOptions < Form
 
     begin
       valid? # populate `errors`
-      (errors.keys - [:phone_type, :payment_method]).empty?
+      (errors.keys - %i[phone_type payment_method]).empty?
     ensure
       # make sure we reset `errors` to its previous value for SimpleForm
       # kinda hackish but does the trick until we split up the models

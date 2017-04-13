@@ -4,7 +4,7 @@ require_relative "../../../app/models/checkout/payment_options"
 
 describe PaymentOptions do
   let(:address)         { instance_double(Address, "phone=" => nil) }
-  let(:address_class)   { class_double(Address, new: address, address_attributes: %w()) }
+  let(:address_class)   { class_double(Address, new: address, address_attributes: %w[]) }
   let(:customer)        { instance_double(Customer, guest?: true, existing_customer: nil) }
   let(:webstore)        { double("webstore", city: "Wellington") } # rubocop:disable RSpec/VerifiedDoubles
   let(:order)           { instance_double(Order, delivery_service: double(pickup_point: false)) } # rubocop:disable RSpec/VerifiedDoubles

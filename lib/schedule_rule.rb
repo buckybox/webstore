@@ -3,7 +3,7 @@
 class ScheduleRule
   attr_accessor :frequency, :start_date, :days
 
-  FREQUENCIES = %i(single weekly fortnightly monthly).freeze
+  FREQUENCIES = %i[single weekly fortnightly monthly].freeze
 
   def initialize(frequency:, start_date:, days:)
     self.frequency = frequency.to_sym
@@ -48,7 +48,7 @@ class ScheduleRule
   end
 
   def to_h
-    attributes = %i(frequency start_date week_days)
+    attributes = %i[frequency start_date week_days]
     attributes << :week if frequency != :single
 
     attributes.each_with_object({}) do |attr, hash|

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StoreController < CheckoutController
-  skip_before_action :cart_missing?, only: [:home, :start_checkout]
+  skip_before_action :cart_missing?, only: %i[home start_checkout]
   skip_before_action :cart_completed?, only: :home
   before_action :cart_present?, only: :home
 
