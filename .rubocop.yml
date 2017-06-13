@@ -8,6 +8,17 @@ RSpec/NestedGroups:
 Bundler/OrderedGems:
   Enabled: false
 
+# Layout
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/ElseAlignment:
+  Enabled: false
+
+Layout/IndentationWidth:
+  Enabled: false
+
 # Lint
 
 Lint/AmbiguousRegexpLiteral:
@@ -32,20 +43,11 @@ Rails/FilePath:
 
 # Style
 
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
-
 Style/Documentation:
-  Enabled: false
-
-Style/ElseAlignment:
   Enabled: false
 
 Style/GlobalVars:
   AllowedVariables: [$redis]
-
-Style/IndentationWidth:
-  Enabled: false
 
 Style/PredicateName:
   Enabled: false
