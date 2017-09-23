@@ -4,8 +4,6 @@
 [![Build Status](https://travis-ci.org/buckybox/webstore.svg?branch=master)](https://travis-ci.org/buckybox/webstore)
 [![Coverage Status](https://coveralls.io/repos/buckybox/webstore/badge.svg?branch=master&service=github)](https://coveralls.io/github/buckybox/webstore?branch=master)
 [![Code Climate](https://codeclimate.com/github/buckybox/webstore/badges/gpa.svg)](https://codeclimate.com/github/buckybox/webstore)
-[![PullReview stats](https://www.pullreview.com/github/buckybox/webstore/badges/master.svg?)](https://www.pullreview.com/github/buckybox/webstore/reviews/master)
-[![security](https://hakiri.io/github/buckybox/webstore/master.svg)](https://hakiri.io/github/buckybox/webstore/master)
 
 Bucky Box Web Store is part of the [Bucky Box](http://www.buckybox.com/) platform.
 It allows customers to place orders using the [Bucky Box API](https://api.buckybox.com/docs/).
