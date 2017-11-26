@@ -1,0 +1,100 @@
+zh:
+  web_store: "%{webstore} - 在线商店"
+  no_ongoing_order: 没有任何订单，请开始新的订购。
+  cancelled_order: 你先前订单已取消，你可以开始新的预订。
+  order_placed: 你订购商品已下单。
+  halted_customer: 你的账户余额过低，在付款前无法接受新的订单。
+  product:
+    order: 订单
+  order:
+    summary: 订单详情
+    exclusions_and_substitutes: 未找到商品或替代品
+    extras: 额外商品
+    discount: 你的折扣
+    total: 总计
+  schedule_rule:
+    deliver_on: 送货时间
+    deliver_weekly_on: 每周固定送货日期
+    deliver_fornightly_on: 每两周固定送货日期
+    deliver_monthly_on: 每月固定送货日期
+    no_future_deliveries: 没有更多预定好的配送
+  phone_collection:
+    mobile_phone: 手机
+    work_phone: 工作电话
+    home_phone: 家用电话
+  sidebar:
+    find_us_on_facebook: 在Facebook上联系我们
+  customise_order:
+    customise_product: 定制我的产品
+    exclude_items: 排除这些...
+    substitute_with_items: 替代这些商品...
+    add_unlimited_extras: 添加任意数量的额外商品
+    add_n_extras: 添加最多 %{limit} 件额外商品
+  authentication:
+    enter_email: 输入你的电子邮件地址
+    enter_password: 输入你的密码
+    bad_email_password: 你的电子邮件/密码错误
+    new_customer: 我是一名新客户
+    existing_customer: 我是一名老客户
+  delivery_options:
+    pick_delivery_service: 选择一种配送方式
+    delivery_details: 配送详情
+    pickup_details: 取货详情
+    select_best: 选择一个最适合你所居住位置的服务
+    repeat_delivery: 重复配送？
+    when: 你什么时候需要？
+    extra_frequency: 那么额外商品呢？
+    select_delivery_service: "- 选择配送服务 -"
+    order_frequencies:
+      select: "- 选择配送频率 -"
+      single: 只配送一次
+      weekly: 每周配送，在...
+      fortnightly: 每两周配送，在...
+      monthly: 每月配送
+    extra_frequencies:
+      always: 在每次配送时包括额外商品
+      once: 只有在次日送达时包含额外商品
+  payment_options:
+    deliver_to: 配送到
+    delivery_note: 配送备注
+    change_delivery_address: 更改我的配送地址
+    name: 你的名字
+    enter_name: 输入你的名字
+    phone: 你的电话号码
+    enter_phone: 输入你的电话号码
+    amount_due: 总计需付款
+    in_credit: 你有账户余额
+    pay_by: 支付人
+    no_payment: 不需要付款
+    complete_order: 结束订单
+    address:
+      address_1: 地址 1
+      address_2: 地址 2
+      suburb: 郊区
+      city: 城市
+      postcode: 邮编
+      delivery_note: 配送备注
+      placeholders:
+        delivery_note: 配送指南比如物品放置位置
+  completed:
+    amount_due: 总计需付款
+    pay_by: 付款人
+    back_to_webstore: 返回到网上商店
+    my_account: 我的帐户
+  payment_instructions:
+    account_details: 帐户细节
+  payment_instructions:
+    account_details: 帐户细节
+    existing_balance: 你的现有账户余额
+    this_order: 这个订单
+    closing_balance: 期末余额
+  payments:
+    bank_deposit:
+      deposit_funds: 请存款至
+      account_name: 账号名
+      reference: 备注
+    paypal:
+      pay_now: 现在支付
+      top_up: 给我的账户充值
+      amount: 金额
+      amount_to_top_up: 充值金额
