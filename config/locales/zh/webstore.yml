@@ -83,8 +83,6 @@ zh:
     my_account: 我的帐户
   payment_instructions:
     account_details: 帐户细节
-  payment_instructions:
-    account_details: 帐户细节
     existing_balance: 你的现有账户余额
     this_order: 这个订单
     closing_balance: 期末余额
