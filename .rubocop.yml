@@ -36,6 +36,10 @@ Lint/EndAlignment:
 Metrics:
   Enabled: false
 
+# Naming
+Naming/PredicateName:
+  Enabled: false
+
 # Rails
 
 Rails:
@@ -51,9 +55,6 @@ Style/Documentation:
 
 Style/GlobalVars:
   AllowedVariables: [$redis]
-
-Style/PredicateName:
-  Enabled: false
 
 Style/SafeNavigation:
   Enabled: false
