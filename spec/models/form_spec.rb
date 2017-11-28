@@ -10,14 +10,14 @@ describe Form do
 
     before { allow(form).to receive(:cart) { cart } }
 
-    context "successfully" do
+    context "when successful" do
       it "returns true" do
         allow(cart).to receive(:save) { true }
         expect(form.save).to be true
       end
     end
 
-    context "unsuccessfully" do
+    context "when unsuccessful" do
       it "returns false" do
         allow(cart).to receive(:save) { false }
         expect(form.save).to be false

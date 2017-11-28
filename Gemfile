@@ -15,7 +15,7 @@ gem "jquery-rails" # Use jquery as the JavaScript library
 # gem 'jquery-turbolinks'
 
 # Our additional Gems are listed below
-gem "secure_headers"
+gem "secure_headers", "< 4" # TODO: upgrade
 gem "rails-i18n"
 gem "crazy_money"
 gem "ordinalize_full", require: "ordinalize_full/integer"
@@ -52,7 +52,7 @@ group :development do
   gem "bundler-audit", require: false
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false
-  gem "simplecov", require: false
+  gem "simplecov", "< 0.15", require: false # TODO: upgrade when https://travis-ci.org/buckybox/webstore/builds/308318715 is resolved
   gem "coveralls", require: false
   gem "brakeman", require: false
 end

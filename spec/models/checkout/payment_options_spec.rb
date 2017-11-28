@@ -13,7 +13,7 @@ describe PaymentOptions do
   let(:payment_options) { described_class.new(args) }
 
   describe "#name" do
-    context "has been passed a name attribute" do
+    context "with a name attribute" do
       it "returns the attribute value" do
         name = "New Customer"
         new_args = args.merge(name: name)
@@ -22,7 +22,7 @@ describe PaymentOptions do
       end
     end
 
-    context "has not been passed a name attribute" do
+    context "without a name attribute" do
       it "returns the customer name" do
         allow(customer).to receive(:name) { "Existing Customer" }
         payment_options = described_class.new(args)

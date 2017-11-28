@@ -38,7 +38,7 @@ describe Cart do
   end
 
   describe "#==" do
-    context "a cart is new" do
+    context "with a new cart" do
       let(:cart1) { described_class.new(args) }
 
       it "returns true if the carts are the same objects" do
@@ -51,7 +51,7 @@ describe Cart do
       end
     end
 
-    context "a cart has been saved" do
+    context "with a saved cart" do
       let(:cart1) { described_class.new(args.merge(id: 1)) }
 
       it "returns true if the carts have the same id" do

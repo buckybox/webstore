@@ -12,7 +12,7 @@ test -z "$output"
 bundle install
 
 bundle exec rubocop -DES
-bundle exec brakeman -qz --no-progress -w3
+bundle exec brakeman -qz --no-progress --no-pager -w3
 bundle exec bundle-audit check --update
 
 $(dirname $0)/check_i18n
