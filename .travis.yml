@@ -3,9 +3,9 @@ services:
   - redis-server
 before_install: gem update --system --no-doc # https://github.com/sickill/rainbow/issues/49
 script: ./bin/ci
-after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.4.2" ] || bundle exec rake coveralls:push'
+after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.4.3" ] || bundle exec rake coveralls:push'
 rvm:
-- 2.4.2
+- 2.4.3
 notifications:
   email:
     on_failure: always
