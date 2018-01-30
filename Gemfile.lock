@@ -196,7 +196,7 @@ GEM
     multi_test (0.1.2)
     naught (1.1.0)
     netrc (0.11.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     oj (3.3.9)
     ordinalize_full (1.4.0)
@@ -403,4 +403,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
