@@ -19,6 +19,9 @@ Layout/AccessModifierIndentation:
 Layout/ElseAlignment:
   Enabled: false
 
+Layout/EndAlignment:
+  Enabled: false
+
 Layout/IndentationWidth:
   Enabled: false
 
@@ -27,9 +30,6 @@ Layout/IndentationWidth:
 Lint/AmbiguousRegexpLiteral:
   Exclude:
     - features/step_definitions/*.rb
-
-Lint/EndAlignment:
-  Enabled: false
 
 # Metrics
 
@@ -65,5 +65,8 @@ Style/StringLiterals:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
