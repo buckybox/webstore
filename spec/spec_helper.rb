@@ -4,7 +4,7 @@ ENV["RAILS_ENV"] ||= "test"
 
 require "simplecov" if ENV["COVERAGE"]
 
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../config/environment", __dir__)
 
 require "rspec/rails"
 RSpec.configure do |config|

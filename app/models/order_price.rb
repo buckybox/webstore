@@ -4,7 +4,7 @@ class OrderPrice
   def self.discounted(price, customer)
     return price if customer.nil?
 
-    customer_discount = BigDecimal.new(customer.discount.to_s)
+    customer_discount = BigDecimal(customer.discount.to_s)
     price * (1 - customer_discount)
   end
 
