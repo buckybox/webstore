@@ -48,7 +48,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "foreman", require: false
   gem "bundler-audit", require: false
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false

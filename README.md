@@ -23,7 +23,7 @@ No database is required but you must have [Redis](http://redis.io/) running to s
 
 ```bash
 cp config/application.yml.example config/application.yml
-foreman start
+RAILS_ENV=development bundle exec puma -p 5000 --config config/puma.rb --log-requests
 ```
 
 ## Contributing
