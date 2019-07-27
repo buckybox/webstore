@@ -15,6 +15,9 @@ SecureHeaders::Configuration.default do |config|
     connect_src: %w['self' api.buckybox.com *.google-analytics.com],
     report_uri: %w[https://api.buckybox.com/v1/csp-report],
   }
+
+  config.csp[:img_src] << "http://my.buckybox.local:3000" if Rails.env.development?
+
   # config.hpkp = {
   # TODO: set up HPKP
   # }
