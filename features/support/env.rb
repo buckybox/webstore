@@ -5,8 +5,7 @@ require "simplecov" if ENV["COVERAGE"]
 require "cucumber/rails"
 ActionController::Base.allow_rescue = true
 
-require "capybara/poltergeist"
-Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :selenium_chrome
 
 require "capybara-screenshot/cucumber"
 

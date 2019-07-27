@@ -19,5 +19,5 @@ before_script:
 
 integration:
   script:
-  - ./vendor/bin/install_phantomjs.sh
+  - apt-get update -q && apt-get install chromium-driver -yq
   - ./bin/ci

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 World(Select2Helper)
 
 def step_path(step)
@@ -10,7 +8,7 @@ end
 Given /^I am authenticated$/ do
   step "I am on the webstore"
   step "I log in" if page.has_link?("Log in")
-  expect(page).not_to have_button("Log in")
+  expect(page).not_to have_link("Log in")
 end
 
 Given /^I am unauthenticated$/ do

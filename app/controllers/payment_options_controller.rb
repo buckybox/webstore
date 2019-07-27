@@ -10,8 +10,10 @@ class PaymentOptionsController < CheckoutController
   end
 
   def save_payment_options
-    args = { cart: current_cart }.merge(params[:payment_options])
+    payment_options = params.require(:payment_options).permit!
+    args = { cart: current_cart }.merge(payment_options)
     return if cart_expired?(args)
+
     payment_options = PaymentOptions.new(args)
     payment_options.save ? successful_payment_options : failed_payment_options(payment_options)
   end

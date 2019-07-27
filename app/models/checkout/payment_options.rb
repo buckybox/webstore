@@ -99,17 +99,17 @@ class PaymentOptions < Form
 
   def to_h
     {
-      name:            name,
-      phone_number:    phone_number,
-      phone_type:      phone_type,
-      address_1:       address_1,
-      address_2:       address_2,
-      suburb:          suburb,
-      city:            city,
-      postcode:        postcode,
-      delivery_note:   delivery_note,
-      payment_method:  payment_method,
-      complete:        complete,
+      name: name,
+      phone_number: phone_number,
+      phone_type: phone_type,
+      address_1: address_1,
+      address_2: address_2,
+      suburb: suburb,
+      city: city,
+      postcode: postcode,
+      delivery_note: delivery_note,
+      payment_method: payment_method,
+      complete: complete,
     }
   end
 

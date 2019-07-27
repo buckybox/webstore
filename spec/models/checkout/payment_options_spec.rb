@@ -108,14 +108,14 @@ describe PaymentOptions do
   describe "#to_h" do
     it "returns a hash of the important form data" do # rubocop:disable RSpec/ExampleLength
       address = instance_double(Address,
-                                default_phone_number:  "123",
-                                default_phone_type:    "mobile",
-                                address_1:             "12 St",
-                                address_2:             "Apt 2",
-                                suburb:                "burb",
-                                city:                  "city",
-                                postcode:              "123",
-                                delivery_note:         "notes")
+                                default_phone_number: "123",
+                                default_phone_type: "mobile",
+                                address_1: "12 St",
+                                address_2: "Apt 2",
+                                suburb: "burb",
+                                city: "city",
+                                postcode: "123",
+                                delivery_note: "notes")
 
       allow(customer).to receive(:guest?)         { false }
       allow(customer).to receive(:name)           { "name" }

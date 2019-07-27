@@ -2,7 +2,7 @@
 
 class API
   class << self
-    WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/
+    WEBSTORE_ID_FORMAT = /\A[a-z0-9\-_]+\Z/.freeze
 
     def webstore(id)
       raise BuckyBox::API::NotFoundError if id !~ WEBSTORE_ID_FORMAT
@@ -41,9 +41,7 @@ class API
         key ||= "" if Rails.env.test?
         secret ||= "" if Rails.env.test?
 
-        if key.nil? || secret.nil?
-          raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables"
-        end
+        raise "You must set BUCKYBOX_API_KEY and BUCKYBOX_API_SECRET variables" if key.nil? || secret.nil?
 
         { "API-Key" => key, "API-Secret" => secret }
       end

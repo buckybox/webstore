@@ -26,7 +26,7 @@ class Address
   def to_s(join_with = ", ")
     ADDRESS_ATTRIBUTES.map do |attribute|
       public_send attribute
-    end.reject(&:blank?).join(join_with).html_safe # rubocop:disable Rails/OutputSafety
+    end.reject(&:blank?).join(join_with).html_safe
   end
 
   def phones

@@ -8,7 +8,7 @@ class SessionController < CheckoutController
   end
 
   def create
-    credentials = params[:session]
+    credentials = params.require(:session).permit(:email, :password).to_h
     result = API.authenticate_customer(credentials)
 
     if result.empty?

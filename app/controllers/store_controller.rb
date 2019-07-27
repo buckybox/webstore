@@ -27,7 +27,7 @@ class StoreController < CheckoutController
 
     @current_webstore_customer = checkout.customer.decorate
 
-    product_id = params[:product_id]
+    product_id = params.permit(:product_id)[:product_id]
     checkout.add_product!(product_id) ? successful_new_checkout(checkout) : failed_new_checkout
   end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path("boot", __dir__)
+require_relative "boot"
 
 # Pick the frameworks you want:
 require "active_model/railtie"

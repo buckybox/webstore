@@ -1,5 +1,8 @@
 require: rubocop-rspec
 
+RSpec/FilePath:
+  Enabled: false
+
 RSpec/NestedGroups:
   Enabled: false
 
@@ -37,6 +40,7 @@ Metrics:
   Enabled: false
 
 # Naming
+
 Naming/PredicateName:
   Enabled: false
 
@@ -45,16 +49,20 @@ Naming/PredicateName:
 Rails:
   Enabled: true
 
-Rails/FilePath:
-  Enabled: false
-
 # Style
 
 Style/Documentation:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - features/step_definitions/*.rb
+
 Style/GlobalVars:
   AllowedVariables: [$redis]
+
+Style/MixinUsage:
+  Exclude: [bin/*]
 
 Style/SafeNavigation:
   Enabled: false

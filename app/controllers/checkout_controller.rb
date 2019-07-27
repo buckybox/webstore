@@ -118,7 +118,7 @@ private
   end
 
   def current_webstore_id
-    params[:webstore_id]
+    params.permit(:webstore_id)[:webstore_id]
   end
 
   def set_locale

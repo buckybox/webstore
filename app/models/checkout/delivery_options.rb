@@ -59,10 +59,10 @@ class DeliveryOptions < Form
   def to_h
     {
       delivery_service_id: delivery_service,
-      start_date:          start_date,
-      frequency:           frequency,
-      days:                days,
-      extra_frequency:     extra_frequency,
+      start_date: start_date,
+      frequency: frequency,
+      days: days,
+      extra_frequency: extra_frequency,
     }
   end
 

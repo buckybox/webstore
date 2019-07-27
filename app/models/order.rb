@@ -111,9 +111,9 @@ class Order
 
   def schedule(schedule_builder_class = ScheduleRule)
     schedule_builder_class.new(
-      start_date:  start_date,
-      frequency:   frequency,
-      days:        days,
+      start_date: start_date,
+      frequency: frequency,
+      days: days,
     )
   end
 
