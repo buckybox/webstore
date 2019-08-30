@@ -2,11 +2,6 @@ language: ruby
 services:
   - redis-server
 script: ./bin/ci
-after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.5.5" ] || bundle exec rake coveralls:push'
+after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.5.6" ] || bundle exec rake coveralls:push'
 rvm:
-- 2.5.5
-notifications:
-  email:
-    on_failure: always
-  slack:
-    secure: YLqK6RvH71ZjXEWP84D2AsjDWpG549XE3EQsLizCsURV1VFvDj1g4L9zhVoSAuVj5LLAFSahQqQ1RpZdzaPUtjh72QmHWrOf4lRAS93tH6XTcbIMHCZ8nIO9HX+ErmH8uxEqwiejNxJWvI24hPjfPEtsV2MiJW7Ub2tHABG1WfA=
+- 2.5.6
