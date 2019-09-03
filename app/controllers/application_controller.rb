@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   force_ssl if: :ssl_configured?, except: :ping
 
   def ping
-    render text: "Pong!"
+    render plain: "Pong!"
   end
 
 private

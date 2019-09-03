@@ -10,8 +10,10 @@ class CustomiseOrderController < CheckoutController
   end
 
   def save_order_customisation
-    args = { cart: current_cart }.merge(params[:customise_order])
+    customise_order = params.require(:customise_order).permit!
+    args = { cart: current_cart }.merge(customise_order)
     return if cart_expired?(args)
+
     customise_order = CustomiseOrder.new(args)
     customise_order.save ? successful_order_customisation : failed_order_customisation(customise_order)
   end

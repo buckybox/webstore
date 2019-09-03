@@ -45,9 +45,9 @@ class CustomiseOrder < Form
 
   def to_h
     {
-      dislikes:  dislikes,
-      likes:     likes,
-      extras:    extras,
+      dislikes: dislikes,
+      likes: likes,
+      extras: extras,
     }
   end
 

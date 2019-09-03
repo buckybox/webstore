@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 4.2"
+gem "rails", "~> 5.0.0"
 gem "puma"
 gem "sass-rails"
 gem "uglifier" # Use Uglifier as compressor for JavaScript assets
@@ -16,7 +16,7 @@ gem "jquery-rails" # Use jquery as the JavaScript library
 
 # Our additional Gems are listed below
 gem "secure_headers", "< 4" # TODO: upgrade
-gem "rails-i18n"
+gem "rails-i18n", "~> 5.1" # for 5.0.x, 5.1.x and 5.2.x
 gem "crazy_money"
 gem "ordinalize_full", require: "ordinalize_full/integer"
 gem "buckybox-api" # to use the git version: git: "https://github.com/buckybox/buckybox-api-ruby"
@@ -61,7 +61,7 @@ group :test do
   gem "cucumber-rails", require: false
   gem "capybara", require: false
   gem "capybara-screenshot"
-  gem "poltergeist", require: false
+  gem "selenium-webdriver", require: false
   gem "webmock", require: false
   gem "vcr", require: false
 end

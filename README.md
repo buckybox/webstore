@@ -41,7 +41,7 @@ New translations can be fetched with `tx pull -af`.
 ```bash
 ./bin/ci
 # or
-git commit && gitlab-ci-multi-runner exec docker integration
+git commit && gitlab-runner exec docker integration
 ```
 
 ## License

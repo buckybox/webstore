@@ -13,7 +13,7 @@ class Checkout
     @existing_customer = args.fetch(:existing_customer)
     @cart              = args[:cart_class].new(
       webstore_id: args[:webstore_id],
-      customer:    customer_hash,
+      customer: customer_hash,
     )
 
     cart.save
