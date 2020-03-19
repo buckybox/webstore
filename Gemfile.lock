@@ -205,7 +205,7 @@ GEM
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     public_suffix (3.0.2)
-    puma (3.12.2)
+    puma (3.12.4)
     rack (1.6.12)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -370,7 +370,7 @@ DEPENDENCIES
   naught
   ordinalize_full
   poltergeist
-  puma
+  puma (~> 3.12.4)
   rails (~> 4.2)
   rails-html-sanitizer
   rails-i18n
