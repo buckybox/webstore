@@ -5,3 +5,7 @@ script: ./bin/ci
 after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.5.8" ] || bundle exec rake coveralls:push'
 rvm:
 - 2.5.8
+- 2.6.6
+matrix:
+  allow_failures:
+  - rvm: 2.6.6
