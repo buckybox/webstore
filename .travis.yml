@@ -2,6 +2,6 @@ language: ruby
 services:
   - redis-server
 script: ./bin/ci
-after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.5.7" ] || bundle exec rake coveralls:push'
+after_script: '[ "$TRAVIS_RUBY_VERSION" != "2.5.8" ] || bundle exec rake coveralls:push'
 rvm:
-- 2.5.7
+- 2.5.8
