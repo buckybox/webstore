@@ -191,6 +191,7 @@ GEM
     multi_json (1.13.1)
     multi_test (0.1.2)
     naught (1.1.0)
+    nio4r (2.5.7)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     oj (3.5.0)
@@ -205,7 +206,8 @@ GEM
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     public_suffix (3.0.2)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (1.6.13)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -370,7 +372,7 @@ DEPENDENCIES
   naught
   ordinalize_full
   poltergeist
-  puma (~> 3.12.6)
+  puma (~> 4.3.8)
   rails (~> 4.2)
   rails-html-sanitizer
   rails-i18n
